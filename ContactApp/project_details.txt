@@ -1,0 +1,1 @@
+Implment Contact application which resembles to those application installed in our mobile phones, as a spring boot project
