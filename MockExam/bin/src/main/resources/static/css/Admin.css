@@ -28,20 +28,6 @@
      box-shadow: 2px 18px 70px 0px #9d9d9d;
 }
 
-.wrapperAdmin {
-     width: 88%;
-     height: 714px;
-     position: relative;
-     margin: 3% auto;
-     box-shadow: 2px 18px 70px 0px #9d9d9d;
-}
-
-.adminDiv{
-	text-align: -webkit-center;
-	height : 62%;
-	overflow-y: auto;
-}
-
 input[type=text] {
   width: 50%;
   padding: 12px 20px;
