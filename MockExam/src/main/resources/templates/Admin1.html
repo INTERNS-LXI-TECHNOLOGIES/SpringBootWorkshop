@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ADMIN</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+</head>
+<body>
+<div class = "wrapper">
+		<div  align="center" style="background-color: darkmagenta;">
+			<br>
+			<br>
+		<h1><font style="font-size:50px;" color="white">WELCOME ADMIN</font></h1>
+			<br>
+			<br>
+			</div>
+    <div align="center">
+   		 <br>
+        <table>
+ 			<tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Option1</th>
+            <th>Option2</th>
+            <th>Option3</th>
+            <th>Option4</th>
+            <th>Action</th>
+            </tr>
+                <tr th:each="list : ${listQuestions}">
+                    <td th:text="${list.question}"></td>
+                    <td th:text="${list.answer}"></td>
+                    <td th:text="${list.option1}"></td>
+                    <td th:text="${list.option2}"></td>
+                    <td th:text="${list.option3}"></td>
+                    <td th:text="${list.option4}"></td>
+                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a></td>
+                </tr>
+        </table>
+        <form >
+        <button>TEST</button><button>ADD</button><button>LOGOUT</button>
+    	</form>
+    </DIV>
+    </div>
+
+</body>
+</html>
