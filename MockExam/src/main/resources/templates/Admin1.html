@@ -34,12 +34,13 @@
                     <td th:text="${list.option2}"></td>
                     <td th:text="${list.option3}"></td>
                     <td th:text="${list.option4}"></td>
-                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a></td>
+                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a>
+                        <a th:href="@{/updateQuestion/{id}(id=${list.id})}">Update</a></td>
                 </tr>
         </table>
     </DIV>
     <form style = "text-align: center;">
-        <button class = "button">TEST</button> <button class = "button">ADD</button> <button class = "button">LOGOUT</button>
+        <button class = "button">TEST</button> <button formaction = "addQuestion" class = "button">ADD</button> <button class = "button">LOGOUT</button>
     </form>
     </div>
 

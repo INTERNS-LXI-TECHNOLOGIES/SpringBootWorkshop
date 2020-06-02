@@ -48,7 +48,7 @@ public class MockController {
 	}
 		
 	 @GetMapping("/addQuestion")
-     public ModelAndView newContact(ModelAndView model) {
+     public ModelAndView addNewQuestion(ModelAndView model) {
         MockEntity mockEntity = new MockEntity();
         model.addObject("mockEntity", mockEntity);
         model.setViewName("Add");
@@ -57,10 +57,8 @@ public class MockController {
 
 	 @GetMapping("/add")
 	 public String addQuestion(@ModelAttribute MockEntity mockEntity) {
-		 
-		 mockService.saveQuestion(mockEntity);
-		 
-		 return "Admin";
+			 mockService.saveQuestion(mockEntity);
+		 return "redirect:/testAdmin";
 	 }
 	 
 	 @GetMapping("/getAllQuestion")
@@ -81,13 +79,23 @@ public class MockController {
 	 
 	 @GetMapping("/deleteQuestion/{id}")
 	    public String deleteQuestion(@PathVariable("id") int id) {
-		 
-		 //Optional<MockEntity> mockEntity = mockService.getQuestionId(id);
 			    mockService.deleteQuestion(id);
-			    //model.addAttribute("listQuestions", mockService.getAllQuestions());
-	        
-	        //mockService.deleteQuestion(questionId);
-	        return "redirect:/delete";
+	        return "redirect:/testAdmin";
 	    }
+	 
+	 @GetMapping("/updateQuestion/{id}")
+	 public ModelAndView updateQuestion(@PathVariable("id") int id) {
+		 Optional<MockEntity> mockEntity = mockService.getQuestionId(id);
+		 ModelAndView modelAndView = new ModelAndView();
+		 modelAndView.addObject("mockEntity",mockEntity);
+		 modelAndView.setViewName("Update");
+		 return modelAndView;
+	 }
+	 
+	 @GetMapping("/update")
+	 public String updateQuestion(@ModelAttribute MockEntity mockEntity) {
+		 mockService.saveQuestion(mockEntity);
+		 return "redirect:/testAdmin"; 
+	 }
 	 
 }

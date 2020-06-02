@@ -21,8 +21,15 @@
 }
 
 .wrapper {
-     width: 900px;
-     height: 600px;
+     width: 1000px;
+     height: 747px;
+     position: relative;
+     margin: 3% auto;
+     box-shadow: 2px 18px 70px 0px #9d9d9d;
+}
+.wrapperUpdate {
+     width: 1000px;
+     height: 818px;
      position: relative;
      margin: 3% auto;
      box-shadow: 2px 18px 70px 0px #9d9d9d;
@@ -30,7 +37,7 @@
 
 .wrapperAdmin {
      width: 88%;
-     height: 714px;
+     height: 777px;
      position: relative;
      margin: 3% auto;
      box-shadow: 2px 18px 70px 0px #9d9d9d;
@@ -38,8 +45,10 @@
 
 .adminDiv{
 	text-align: -webkit-center;
-	height : 62%;
+	height : 63%;
 	overflow-y: auto;
+	border: outset;
+	padding-bottom: 12px;
 }
 
 input[type=text] {
@@ -80,7 +89,7 @@ tr{
   border: 1px solid darkmagenta;
   height: 50px;
   font-variant-caps: petite-caps;
-  font-size: 22px;
+  font-size: x-large;
 }
 td{
   text-align: center;
