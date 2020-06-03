@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,16 +119,16 @@ public class ExamController {
         return "redirect:/list";
     }
 
-    @RequestMapping(value = "/updateForm", method = RequestMethod.GET)
-    public String showFormForUpdate(@RequestParam("examId") int theId,
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String showFormForUpdate(@PathVariable("id") int theId,
         Model theModel) throws ResourceNotFoundException {
         Exam theExam = examService.getExam(theId);
         theModel.addAttribute("exam", theExam);
-        return "exam-form";
+        return "update";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteExam(@RequestParam("examId") int theId) throws ResourceNotFoundException {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteExam(@PathVariable("id") int theId) throws ResourceNotFoundException {
         examService.deleteExam(theId);
         return "redirect:/list";
     }

@@ -28,7 +28,7 @@
         <form action="#" th:action="@{/saveExam}" th:object="${exam}" modelAttribute="exam" method="post">
 
        <table>
-       	<input type="hidden" th:field="*{slno}"/>
+        	<input type="hidden" th:field="*{slno}"/>
             <tr>
                 <td><font size="5" color="midnightblue">Question : </font></td>
                 <td><input type="text" th:field="*{qn}"/></td>
@@ -54,13 +54,13 @@
                 <td><input type="text" th:field="*{ans}"/></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="submit" onclick="myFunction()" class="button button1" value="add"></td>
+                <td colspan="2" align="center"><input type="submit" onclick="myFunction()" class="button button1" value="update"></td>
             </tr>
         </table>
         </form>
         <script>
 function myFunction() {
-  confirm("successfully added!");
+  confirm("successfully updated!");
 }
 </script>
     </div>
