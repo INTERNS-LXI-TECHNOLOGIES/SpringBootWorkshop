@@ -4,16 +4,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/Style.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
 </head>
 <body>
-<div class = "homeDiv">
-<h1>Home Page</h1>
+<div class = "wrapper">
+<div  align="center" style="background-color: darkmagenta;">
+			<br>
+			<br>
+			<h1><font style="font-size:50px;" color="white">HOME PAGE</font></h1>
+			<br>
+			<br>
+			</div>
 <br>
+<div align="center" style = "padding-top: 21%;">
 <form>
-<button formaction = "testAdmin">ADMIN</button>
-<button formaction = "user">USER</button>
+<button class = "button" formaction = "testAdmin">ADMIN</button>
+<button class = "button" formaction = "user">USER</button>
 </form>
+</div>
 </div>
 </body>
 </html>

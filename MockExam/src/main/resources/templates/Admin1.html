@@ -19,6 +19,7 @@
    		 <br>
         <table>
  			<tr>
+ 			<th>Sl No</th>
             <th>Question</th>
             <th>Answer</th>
             <th>Option1</th>
@@ -27,7 +28,9 @@
             <th>Option4</th>
             <th>Action</th>
             </tr>
-                <tr th:each="list : ${listQuestions}">
+    			
+                <tr th:each="list,iterationStatus : ${listQuestions}">
+                	<td th:text=${iterationStatus.count}></td>
                     <td th:text="${list.question}"></td>
                     <td th:text="${list.answer}"></td>
                     <td th:text="${list.option1}"></td>
