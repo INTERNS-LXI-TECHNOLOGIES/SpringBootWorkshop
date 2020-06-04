@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Exam</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/User.css}"/>
+</head>
+<body>
+<div class = "questionWrapper">
+		<div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
+			<br>
+			<br>
+		<h1><font style="font-size:50px;" color="white">Exam Question</font></h1>
+			<br>
+			<br>
+			</div>
+			
+<div style="padding-top: 18px;" align="center">
+<div class = "questionOption">
+<form action="#" th:action = "@{/add}" method="GET" th:object="${listQuestions}">
+<label>Question : </label>
+<a th:text = "${listQuestions.question}"></a><br>
+<a th:text = "${listQuestions.option1}"></a><br>
+<a th:text = "${listQuestions.option2}"></a><br>
+<a th:text = "${listQuestions.option3}"></a><br>
+<a th:text = "${listQuestions.option4}"></a>
+</form>
+<ul>
+	<li><a th:text = "${listQuestions.option1}"></a></li>
+	<li><a th:text = "${listQuestions.option2}"></a></li>
+	<li><a th:text = "${listQuestions.option3}"></a></li>
+	<li><a th:text = "${listQuestions.option4}"></a></li>			
+</ul>
+<!-- <input type="radio" th:field="${listQuestions.question}" th:value="${listQuestions.question}" />
+<label th:for="${listQuestions.question}" th:text="${listQuestions.question}"></label> -->
+
+  <input type="radio" id="option1" name="option1" value="1" th:field="${listQuestions.option1}">
+  <label th:for="option1" th:text="${listQuestions.option1}" ></label><br>
+  <input type="radio" id="option2" name="option2" value="2" th:field="${listQuestions.option2}">
+  <label th:for="option2" th:text="${listQuestions.option2}" ></label><br>
+  <input type="radio" id="option3" name="option3" value="3" th:field="${listQuestions.option3}">
+  <label th:for="option3" th:text="${listQuestions.option3}" ></label><br>
+  <input type="radio" id="option4" name="option4" value="4" th:field="${listQuestions.option4}">
+  <label th:for="option4" th:text="${listQuestions.option4}" ></label>
+</div>
+<form>
+<button class="button">NEXT</button>
+</form>
+</div>
+</div>
+</body>
+</html>

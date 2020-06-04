@@ -46,6 +46,14 @@ public class MockController {
 	public String userView() {
 		return "Introduction";
 	}
+	
+	@GetMapping("/startExam")
+	public ModelAndView startExam(ModelAndView model) {
+		List<MockEntity> listQuestions = mockService.getAllQuestions();
+		 model.addObject("listQuestions", listQuestions.get(0));
+	     model.setViewName("Exam");
+		return model;
+	}
 		
 	 @GetMapping("/addQuestion")
      public ModelAndView addNewQuestion(ModelAndView model) {
