@@ -29,11 +29,6 @@ public class MockController {
 		return "home";
 	}
 	
-	@GetMapping("/admin")
-	public String adminView() {
-		return "Admin";
-	}
-	
 	 @GetMapping("/testAdmin")
 	 public ModelAndView viewAllQuestion(ModelAndView model) {
 		 List<MockEntity> listQuestions = mockService.getAllQuestions();
@@ -67,22 +62,6 @@ public class MockController {
 	 public String addQuestion(@ModelAttribute MockEntity mockEntity) {
 			 mockService.saveQuestion(mockEntity);
 		 return "redirect:/testAdmin";
-	 }
-	 
-	 @GetMapping("/getAllQuestion")
-	 public ModelAndView getAllQuestion(ModelAndView model) {
-		 List<MockEntity> listQuestions = mockService.getAllQuestions();
-		 model.addObject("listQuestions", listQuestions);
-	     model.setViewName("View");
-		 return model;
-	 }
-	 
-	 @GetMapping("/delete")
-	 public ModelAndView deleteQuestion(ModelAndView model) {
-		 List<MockEntity> listQuestions = mockService.getAllQuestions();
-		 model.addObject("listQuestions", listQuestions);
-	     model.setViewName("Delete");
-		 return model;
 	 }
 	 
 	 @GetMapping("/deleteQuestion/{id}")
