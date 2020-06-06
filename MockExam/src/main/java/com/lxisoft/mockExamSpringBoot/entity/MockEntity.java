@@ -83,5 +83,61 @@ public class MockEntity implements Serializable{
 	public void setSelectedOption(String selectedOption) {
 		this.selectedOption = selectedOption;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((option1 == null) ? 0 : option1.hashCode());
+		result = prime * result + ((option2 == null) ? 0 : option2.hashCode());
+		result = prime * result + ((option3 == null) ? 0 : option3.hashCode());
+		result = prime * result + ((option4 == null) ? 0 : option4.hashCode());
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MockEntity other = (MockEntity) obj;
+		if (answer == null) {
+			if (other.answer != null)
+				return false;
+		} else if (!answer.equals(other.answer))
+			return false;
+		if (id != other.id)
+			return false;
+		if (option1 == null) {
+			if (other.option1 != null)
+				return false;
+		} else if (!option1.equals(other.option1))
+			return false;
+		if (option2 == null) {
+			if (other.option2 != null)
+				return false;
+		} else if (!option2.equals(other.option2))
+			return false;
+		if (option3 == null) {
+			if (other.option3 != null)
+				return false;
+		} else if (!option3.equals(other.option3))
+			return false;
+		if (option4 == null) {
+			if (other.option4 != null)
+				return false;
+		} else if (!option4.equals(other.option4))
+			return false;
+		if (question == null) {
+			if (other.question != null)
+				return false;
+		} else if (!question.equals(other.question))
+			return false;
+		return true;
+	}
 
 }
