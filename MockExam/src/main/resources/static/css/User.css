@@ -30,7 +30,7 @@
    
  .questionWrapper {
  	width: 92%;
-    height: 794px;
+    height: 740px;
     position: relative;
     margin: 3% auto;
     box-shadow: 2px 18px 70px 0px #9d9d9d;
@@ -38,9 +38,11 @@
  
  .questionOption{
  	text-align: left;
- 	font-style: italic;
-    font-size: xx-large;
+    font-style: italic;
+    font-size: -webkit-xxx-large;
     padding-left: 33px;
+    padding-top: 32px;
+    font-variant: petite-caps;
  }
  .intro{
  padding-left: 80px;

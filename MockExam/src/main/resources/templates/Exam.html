@@ -11,14 +11,14 @@
 		<div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
 			<br>
 			<br>
-		<h1><font style="font-size:50px;" color="white">Exam Question</font></h1>
+			<h1><font style="font-size:50px;" color="white">Exam Question</font></h1>
 			<br>
 			<br>
 			</div>
 			
 <div style="padding-top: 18px;" align="center">
 <div class = "questionOption">
-<form action="#" th:action = "@{/add}" method="GET" th:object="${listQuestions}">
+<form action="#" th:action = "@{/selectedOption}" method="GET" th:object="${listQuestions}">
 <label>Question : </label>
 <a th:text = "${listQuestions.question}"></a><br>
   <input type="radio" id="option" name="option" value="1">
@@ -28,13 +28,10 @@
   <input type="radio" id="option" name="option" value="3">
   <label th:for="option" th:text="${listQuestions.option3}" ></label><br>
   <input type="radio" id="option" name="option" value="4">
-  <label th:for="option" th:text="${listQuestions.option4}" ></label>
-  
+  <label th:for="option" th:text="${listQuestions.option4}" ></label><br>
+  <div align = "center"><button class="button">NEXT</button></div>
 </form>
 </div>
-<form>
-<button class="button">NEXT</button>
-</form>
 </div>
 </div>
 </body>

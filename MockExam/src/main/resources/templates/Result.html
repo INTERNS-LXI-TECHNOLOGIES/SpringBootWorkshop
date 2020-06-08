@@ -3,33 +3,32 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>ADMIN</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+<title>RESULT</title>
 </head>
 <body>
-<div class = "wrapperAdmin">
+<div class = "wrapper">
 		<div  align="center" style="background-color: darkmagenta;">
 			<br>
 			<br>
-		<h1><font style="font-size:50px;" color="white">WELCOME ADMIN</font></h1>
+		<h1><font style="font-size:50px;" color="white">RESULT VIEW</font></h1>
 			<br>
 			<br>
 			</div>
-    <div class = "adminDiv">
-   		 <br>
+    <div align="center">
+    	<br>
         <table>
  			<tr>
- 			<th>Sl No</th>
+ 			<th>SlNo</th>
             <th>Question</th>
             <th>Answer</th>
             <th>Option1</th>
             <th>Option2</th>
             <th>Option3</th>
             <th>Option4</th>
-            <th>Action</th>
+            <th>Selected</th>
             </tr>
-    			
-                <tr th:each="list,iterationStatus : ${listQuestions}">
+ 
+            <tr th:each="list,iterationStatus : ${listQuestions}">
                 	<td th:text=${iterationStatus.count}></td>
                     <td th:text="${list.question}"></td>
                     <td th:text="${list.answer}"></td>
@@ -37,15 +36,16 @@
                     <td th:text="${list.option2}"></td>
                     <td th:text="${list.option3}"></td>
                     <td th:text="${list.option4}"></td>
-                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a>
-                        <a th:href="@{/updateQuestion/{id}(id=${list.id})}">Update</a></td>
+                    <td th:text="${list.selectedOption}"></td>
+                    
                 </tr>
+            </th:each>
         </table>
+        <a th:text = "${result}"></a>
+        <form >
+        <button formaction="admin" class="button">BACK</button>
+    	</form>
     </DIV>
-    <form style = "text-align: center;">
-        <button formaction="user" class = "button">TEST</button> <button formaction = "addQuestion" class = "button">ADD</button> <button class = "button">LOGOUT</button>
-    </form>
     </div>
-
 </body>
 </html>
