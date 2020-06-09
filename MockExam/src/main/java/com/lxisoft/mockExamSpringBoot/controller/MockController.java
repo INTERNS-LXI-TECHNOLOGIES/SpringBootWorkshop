@@ -4,18 +4,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
+//import java.util.Set;
+//import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.lxisoft.mockExamSpringBoot.entity.MockEntity;
 import com.lxisoft.mockExamSpringBoot.service.*;
@@ -40,11 +43,39 @@ public class MockController {
 		 return model;
 	 }
 	
-//	@GetMapping("/user")
-//	public String userView() {
-//		return "Introduction";
-//	}
-	
+//	 @GetMapping(value = "/loginPage")
+//		public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
+//		@RequestParam(value = "logout",	required = false) String logout) {
+//			
+//			ModelAndView model = new ModelAndView();
+//			if (error != null) {
+//				model.addObject("error", "Invalid Credentials provided.");
+//			}
+//
+//			if (logout != null) {
+//				model.addObject("message", "Logged outsuccessfully.");
+//			}
+//
+//			model.setViewName("Login");
+//			return model;
+//		}
+	 
+//	 	@GetMapping(value = "/authentication")
+//	   	public String userAuthentication() {
+//
+//			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//			boolean hasRole = authentication.getAuthorities().stream()
+//			          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+//			if(hasRole)
+//			{
+//				return "redirect:/testAdmin";
+//			}
+//			else
+//			{
+//				return "redirect:/user";
+//			}
+//	   	}
+	 
 	@GetMapping("/user")
 	public String setQuestionsSession(HttpServletRequest request) {
 		HttpSession sessions = request.getSession(true);
