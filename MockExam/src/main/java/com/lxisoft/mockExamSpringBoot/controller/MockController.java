@@ -58,16 +58,14 @@ public class MockController {
 		HttpSession sessions = request.getSession(true);
 		@SuppressWarnings("unchecked")
 		List<MockEntity> listQuestions = (List<MockEntity>)sessions.getAttribute("listQuestions");
-		
 		ModelAndView model = new ModelAndView();
 		if(testVariable < listQuestions.size()) {
 			model.addObject("listQuestions", listQuestions.get(testVariable));
-			 testVariable++;
-		     model.setViewName("Exam");
+			testVariable++;
+		    model.setViewName("Exam");
 		}
 		else {
 			testVariable=0;
-			//model.addObject("listQuestions",listQuestions);
 			model.setViewName("redirect:/result");
 		}
 		return model;
@@ -85,7 +83,7 @@ public class MockController {
 			   selectedOption =  Integer.parseInt(request.getParameter("option"));
 		  }
 		  
-		  switch(selectedOption) 
+		  switch(selectedOption)
 		  {
 		  case 1 :
 			  listQuestions.get(testVariable-1).setSelectedOption(listQuestions.get(testVariable-1).getOption1());
@@ -135,17 +133,9 @@ public class MockController {
         return model;
     }
 
-	 //@SuppressWarnings("unchecked")
 	@GetMapping("/add")
 	 public String addQuestion(@ModelAttribute MockEntity mockEntity) {
-//		 Set<MockEntity> listQuestions = new TreeSet<MockEntity>();
-//		 listQuestions = (Set<MockEntity>) mockService.getAllQuestions();
-//		 Iterator<MockEntity> list = listQuestions.iterator();
-//			while(list.hasNext()) {
-//				MockEntity testModel = (MockEntity)list.next();
-//				if(!testModel.getQuestion().equals(mockEntity.getQuestion()))
 					mockService.saveQuestion(mockEntity);
-			//}
 		 return "redirect:/testAdmin";
 	 }
 	 
