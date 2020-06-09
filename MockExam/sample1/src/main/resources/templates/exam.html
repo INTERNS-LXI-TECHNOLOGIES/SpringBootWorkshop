@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/exam.css}">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+<section class="container">
+<nav>
+	<label for="check" class="checkbtn"></label>
+	<label class="logo">MockExam</label>
+	<ul>
+		<li><a href="add">ADD</a></li>
+		<li><a href="user">EXAM</a></li>
+		<li><a href="javascript:document.getElementById('logout').submit()">LOGOUT</a></li>
+		<li><a href="/" class="active">HOME</a></li>
+	</ul>
+</nav>
+<br>
+<br>
+  <div class="center">
+        <form action="#" th:action="@{/start}" th:object="${exam}" modelAttribute="exam" method="post">
+		 <table>
+            <tr>
+                <td><div class="login-header1"><h1>Question :</h1></div></td>
+            </tr>
+            <tr>
+                <td class="login-header3" th:text="${exam.qn}"></td>
+            </tr>
+             <tr>
+            
+        <td><div class="login-header2"><h1><input type="radio" name="opt" th:value="1"/>
+          <label th:for="1" th:text="${exam.opt1}"></label></h1></div></td>
+          </tr>
+          <tr>
+           <tr>
+            
+        <td><div class="login-header2"><h1><input type="radio" name="opt" th:value="2"/>
+          <label th:for="2" th:text="${exam.opt2}"></label></h1></div></td>
+          </tr>
+           <tr>
+            
+        <td><div class="login-header2"><h1><input type="radio" name="opt" th:value="3"/>
+          <label th:for="3" th:text="${exam.opt3}"></label></h1></div></td>
+          </tr>
+           <tr>
+            
+        <td><div class="login-header2"><h1><input type="radio" name="opt" th:value="4"/>
+          <label th:for="4" th:text="${exam.opt4}"></label></h1></div></td>
+          </tr>
+         
+            <tr>
+                <td colspan="2" align="center"><input type="submit" class="button button1" value="add"></td>
+            </tr>
+        </table>
+        </form>
+        <script>
+function myFunction() {
+  confirm("successfully added!");
+}
+</script>
+    </div>
+    </section>
+    </div>
+</body>
+</html>

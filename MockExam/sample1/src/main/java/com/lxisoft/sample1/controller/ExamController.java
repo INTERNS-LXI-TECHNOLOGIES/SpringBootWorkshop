@@ -73,11 +73,10 @@ public class ExamController {
     }
     
     @RequestMapping(value = "/exam", method = RequestMethod.GET)
-    public String startExam(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public String startExam(Model theModel) {
     	 List<Exam> listExam =  examService.getExam();
-    	 HttpSession session= request.getSession(true);
-    	 session.setAttribute("exam",listExam );
-    	 return "Exam";
+    	 theModel.addAttribute("exam",listExam.get(0));
+    	 return "exam";
     }
 
     @RequestMapping(value = "/showForm", method = RequestMethod.GET)
@@ -101,11 +100,11 @@ public class ExamController {
 		
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid Credentials provided.");
+			model.addObject("error", "no");
 		}
 
 		if (logout != null) {
-			model.addObject("message", "Logged outsuccessfully.");
+			model.addObject("message", "no");
 		}
 
 		model.setViewName("loginPage");
