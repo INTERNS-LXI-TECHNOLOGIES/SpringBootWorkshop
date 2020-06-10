@@ -9,7 +9,7 @@
     	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 </head>
-<body>
+<body th:style="'background: url(/img/78.png) no-repeat center center fixed;'">
 <div class="wrapper fadeInDown">
 <section class="container">
 <nav>
@@ -23,7 +23,7 @@
   <br>
   <form>
  <input type="submit" formaction="loginPage" class="button button1" name="ADD" value="ADMIN" >
- <input type="submit" formaction="user" class="button button2" name="ADD" value="USER" >
+ <input type="submit" formaction="loginPage" class="button button2" name="ADD" value="USER" >
  </form>
  </div>
  </section>

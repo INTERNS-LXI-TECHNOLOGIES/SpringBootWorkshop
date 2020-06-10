@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" th:href="@{/css/list.css}">
 </head>
-<body>
+<body th:style="'background: url(/img/78.png) no-repeat center center fixed;'">
 <div class="wrapper fadeInDown">
 <section class="container">
 <nav>
@@ -61,6 +61,12 @@
 </tbody>
      </table>
      </div>
+     <th:url value="/logout" var="logoutUrl" />
+<form id="logout" action="${logoutUrl}" method="POST" >
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
+<th:if test="${pageContext.request.userPrincipal.name != null}">
+</th:if>
     </div>
 </section>
 </div>

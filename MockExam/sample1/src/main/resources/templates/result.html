@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/list.css}">
+</head>
+<body th:style="'background: url(/img/78.png) no-repeat center center fixed;'">
+<div class="wrapper fadeInDown">
+<section class="container">
+<nav>
+	<label for="check" class="checkbtn"></label>
+	<label class="logo">MockExam</label>
+	<ul>
+		<li><a href="javascript:document.getElementById('logout').submit()">LOGOUT</a></li>
+		<li><a href="/" class="active">HOME</a></li>
+	</ul>
+</nav>
+<br>
+<div class="center">
+<div class="login-header1">
+    <h2>Welcome To Result Page!!!</h2>
+  </div>
+  <br>
+   <div class="ex1">
+       <table class="table-fill">
+        <thead>
+         <tr>
+            <th class="text-left">Questions</th>
+            <th class="text-left">Selected Answer</th>
+            <th class="text-left">Right Answer</th>
+            </tr>
+            </thead>
+<tbody class="table-hover">
+       <tr th:each="exam : ${listQuestions}">
+        <td class="text-left" th:text="${exam.qn}"></td>
+        <td class="text-left" th:text="${exam.selectedOption}"></td>
+        <td class="text-left" th:text="${exam.ans}"></td>
+       </tr>
+</tbody>
+     </table>
+     <div class="login-header1">
+     <h2>your score :<a th:text="${result}"></a></h2>
+     </div>
+     </div>
+</section>
+</div>
+</body>
+</html>

@@ -11,6 +11,8 @@ html {
 		box-sizing: border-box;
 	}
 	body{
+ background: url{[[@{/img/78.png}]]}
+                    no-repeat center center fixed;
 		font-family: monospace;
     background-position: center;
   background-repeat: no-repeat;

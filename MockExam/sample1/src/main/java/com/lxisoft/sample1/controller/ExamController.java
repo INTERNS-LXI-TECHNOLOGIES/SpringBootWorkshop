@@ -33,6 +33,7 @@ public class ExamController {
 
     @Autowired
     private ExamServiceImpl examService;
+    int count =0;
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
@@ -73,10 +74,19 @@ public class ExamController {
     }
     
     @RequestMapping(value = "/exam", method = RequestMethod.GET)
-    public String startExam(Model theModel) {
+    public String startExam(Model theModel,HttpServletRequest request) {
+    	HttpSession session = request.getSession(true);
     	 List<Exam> listExam =  examService.getExam();
-    	 theModel.addAttribute("exam",listExam.get(0));
+    	 session.setAttribute("exam", listExam);
+    	if(count<listExam.size())
+    	{
+    	 theModel.addAttribute("exam",listExam.get(count));
     	 return "exam";
+    	}
+    	else
+    	{  count=0;
+    		return "redirect:/result";
+    	}
     }
 
     @RequestMapping(value = "/showForm", method = RequestMethod.GET)
@@ -133,36 +143,36 @@ public class ExamController {
     }
     
     @RequestMapping(value = "/start", method = RequestMethod.GET)
-	  public ModelAndView seletedOption(HttpServletRequest request, HttpServletResponse response) throws IOException
+	  public String seletedOption(HttpServletRequest request, HttpServletResponse response,Model models) throws IOException
 	  {
 		  HttpSession sessions = request.getSession(true);
 		  int selectedOption =  Integer.parseInt(request.getParameter("opt"));
-		  int count = Integer.parseInt(request.getParameter("qcount"));
 		  @SuppressWarnings("unchecked")
 		  List<Exam> listQuestions = (List<Exam>)sessions.getAttribute("exam");
 		  
 		  if(selectedOption == 1)
 		  {
-			  listQuestions.get(count-1).setSelectedOption(1);  
+			  listQuestions.get(count).setSelectedOption(1);  
 		  }
 		  else if(selectedOption == 2)
 		  {
-			  listQuestions.get(count-1).setSelectedOption(2);  
+			  listQuestions.get(count).setSelectedOption(2);  
 		  }
 		  else if(selectedOption == 3)
 		  {
-			  listQuestions.get(count-1).setSelectedOption(3);  
+			  listQuestions.get(count).setSelectedOption(3);  
 		  }
 		  else if(selectedOption == 4)
 		  {
-			  listQuestions.get(count-1).setSelectedOption(4);  
+			  listQuestions.get(count).setSelectedOption(4);  
 		  }
 		  sessions.setAttribute("listQuestions", listQuestions);
-		  ModelAndView model = new ModelAndView("Exam");
-		  return model;
+		  count++;
+		  return "redirect:/exam";
+
 	  }
     @RequestMapping(value = "/result", method = RequestMethod.GET)
-	public String resultExam(HttpServletRequest request,Model theModel)
+	public ModelAndView resultExam(HttpServletRequest request,Model theModel)
 	  {
 		  int resultCount = 0;
 		  HttpSession sessions = request.getSession(true);
@@ -178,11 +188,12 @@ public class ExamController {
 				resultCount++;
 			}
 		  }
-		  sessions.setAttribute("Result", resultCount);
 		  session1.setAttribute("select", select);
-		  List < Exam > theExam = examService.getExam();
-	        theModel.addAttribute("exam", theExam);
-		  return "Result";
+		  ModelAndView model = new ModelAndView();
+			model.addObject("result",resultCount);
+			model.addObject("listQuestions",listQuestions);
+			model.setViewName("result");
+			return model;
 	  }
   
 
