@@ -7,46 +7,48 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/User.css}"/>
 </head>
 <body>
-<div class = "wrapper">
-		<div  align="center" style="background-color: darkmagenta;">
+<div class = "wrapperUser">
+		<div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
 			<br>
-			<br>
-		<h1><font style="font-size:50px;" color="white">RESULT VIEW</font></h1>
-			<br>
+		<h1><font style="font-size:50px;" color="white">RESULT</font></h1>
 			<br>
 			</div>
-    <div align="center">
-    	<br>
+			<br>
+			<div style = "padding-left: 100px;">
+    		<h1>Total Mark : <a th:text = "${result}"></a> </h1>
+    		</div>
+    <div class = "adminDiv">
+    	
         <table>
  			<tr>
  			<th>SlNo</th>
             <th>Question</th>
-            <th>Answer</th>
             <th>Option1</th>
             <th>Option2</th>
             <th>Option3</th>
             <th>Option4</th>
+            <th>Answer</th>
             <th>Selected</th>
             </tr>
  
             <tr th:each="list,iterationStatus : ${listQuestions}">
                 	<td th:text=${iterationStatus.count}></td>
                     <td th:text="${list.question}"></td>
-                    <td th:text="${list.answer}"></td>
                     <td th:text="${list.option1}"></td>
                     <td th:text="${list.option2}"></td>
                     <td th:text="${list.option3}"></td>
                     <td th:text="${list.option4}"></td>
+                    <td th:text="${list.answer}"></td>
                     <td th:text="${list.selectedOption}"></td>
                     
                 </tr>
             </th:each>
         </table>
-        <a th:text = "${result}"></a>
-        <form >
+        </DIV>
+        <form style = "text-align: center;">
         <button formaction="user" class="button">Thank You</button>
     	</form>
-    </DIV>
+    
     </div>
 </body>
 </html>
