@@ -10,8 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-//import java.util.Set;
-//import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,10 +53,10 @@ public class MockController {
 			if (logout != null) {
 				model.addObject("message", "Logged outsuccessfully.");
 			}
-
 			model.setViewName("Login");
 			return model;
 		}
+	 //jhipster , jdl , monolithic application
 	 
 	 	@GetMapping(value = "/authentication")
 	   	public String userAuthentication() {
