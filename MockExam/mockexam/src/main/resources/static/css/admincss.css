@@ -9,6 +9,7 @@
     font-size:35px;
     margin-left:45px;
     color:green;
+    text-shadow:2px 2px black;
 }
 
 .dropbtn {
@@ -24,8 +25,8 @@
   position: relative;
   display: inline-block;
   margin:10px;
-  top: -90px;
-  left: -37px;
+  top: -105px;
+  left: -47px;
 }
 
 .dropdown-content {
@@ -58,11 +59,34 @@
 }
 .table-view
 {
-    top:30px;
+    top:20px;
 }
-button
+.dropbtn
 {
     background-color: green;
     color: white;
+    border:2px solid #4CAF50;
+    transition:all 0.5s;
+    font-size:28px;
+}
+.dropbtn span
+{
+    cursor:pointer
+    transition:0.5s;
+    font-size: 23px;
+}
+.dropbtn span:after
+{
+    content:'\00bb';
+    opacity:0;
+    transition:0.5s;
+}
+.dropbtn:hover span:after
+{
+    opacity:1;
+}
+body
+{
+    background-color:cadetblue;
 
 }
