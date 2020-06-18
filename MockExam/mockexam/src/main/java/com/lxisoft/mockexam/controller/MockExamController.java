@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +21,9 @@ public class MockExamController
 {
     @Autowired
     ExamService examService;
+
+    private static int count=0;
+    private ArrayList<String> answerList = new ArrayList<String>();
 
     @RequestMapping(value="/admin")
     public ModelAndView admin(ModelAndView model)
@@ -77,9 +81,46 @@ public class MockExamController
         return "index";
     }
 
-    @RequestMapping(value = "/introduction")
-    public String instruction()
+    @RequestMapping(value = "/getExamData")
+    public String getExamData(HttpServletRequest request)
     {
+        HttpSession session = request.getSession();
+        List<Exam> data = examService.getExamData();
+        session.setAttribute("data",data);
         return "instruction";
     }
+
+    @RequestMapping(value = "/processExam")
+    public ModelAndView loopQuestions(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        List<Exam> questionBank = (List<Exam>) session.getAttribute("data");
+        System.out.println(questionBank.size());
+        if(count < questionBank.size())
+        {
+            System.out.println(count);
+            Exam exam = questionBank.get(count);
+            count++;
+            String answer = request.getParameter("ans");
+            answerList.add(answer);
+            System.out.println(answerList);
+            ModelAndView model = new ModelAndView();
+            model.addObject("quest", exam);
+            model.setViewName("questions");
+            return model;
+
+        }
+        else {
+            return new ModelAndView("instruction");
+        }
+    }
+
+    @RequestMapping(value = "/result")
+    public void viewResult(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession();
+        ArrayList<String> ansList = (ArrayList<String>) session.getAttribute("Ans");
+        System.out.println(ansList.size());
+
+    }
+
 }
