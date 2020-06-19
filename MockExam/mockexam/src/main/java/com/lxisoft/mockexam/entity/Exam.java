@@ -28,6 +28,8 @@ public class Exam implements Serializable
     @Column
     private String answer;
 
+    private String selected;
+
 
     public int getId() {
         return id;

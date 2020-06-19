@@ -24,7 +24,7 @@ public class MockExamController
 
     private static int count=0;
     private ArrayList<String> answerList = new ArrayList<String>();
-
+    private String answers;
     @RequestMapping(value="/admin")
     public ModelAndView admin(ModelAndView model)
     {
@@ -94,33 +94,75 @@ public class MockExamController
     public ModelAndView loopQuestions(HttpServletRequest request) {
         HttpSession session = request.getSession();
         List<Exam> questionBank = (List<Exam>) session.getAttribute("data");
-        System.out.println(questionBank.size());
+        Exam exam = questionBank.get(count);
+        ModelAndView model = new ModelAndView();
+        model.addObject("quest",exam);
+        model.setViewName("questions");
+        return model;
+
+    }
+
+    @RequestMapping(value = "/process")
+    public ModelAndView Questions(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        List<Exam> questionBank = (List<Exam>) session.getAttribute("data");
+        String answer = request.getParameter("ans");
+        answerList.add(answer);
+        count++;
+        session.setAttribute("answers",answerList);
         if(count < questionBank.size())
         {
-            System.out.println(count);
             Exam exam = questionBank.get(count);
-            count++;
-            String answer = request.getParameter("ans");
-            answerList.add(answer);
-            System.out.println(answerList);
             ModelAndView model = new ModelAndView();
-            model.addObject("quest", exam);
+            model.addObject("quest",exam);
             model.setViewName("questions");
             return model;
+        }
+        else
+        {
+            return  new ModelAndView("redirect:/result");
+        }
 
-        }
-        else {
-            return new ModelAndView("instruction");
-        }
     }
 
     @RequestMapping(value = "/result")
-    public void viewResult(HttpServletRequest request)
+    public ModelAndView viewResult(HttpServletRequest request)
     {
+        int mark=0;
         HttpSession session = request.getSession();
-        ArrayList<String> ansList = (ArrayList<String>) session.getAttribute("Ans");
-        System.out.println(ansList.size());
+        List<Exam> questionBank = (List<Exam>) session.getAttribute("data");
+        ArrayList<String> ansList = (ArrayList<String>) session.getAttribute("answers");
 
+        for (int x=0;x<questionBank.size();x++)
+        {
+            for (int y=0;y<ansList.size();y++)
+            {
+                if(questionBank.get(x).getAnswer().equals(ansList.get(y)))
+                {
+                    mark ++;
+                }
+            }
+        }
+        count=0;
+        System.out.println(mark);
+        ModelAndView model = new ModelAndView();
+        model.addObject("listOne",questionBank);
+        model.addObject("listTwo",ansList);
+        model.addObject("result",mark);
+        model.setViewName("result");
+        return model;
+    }
+
+    @RequestMapping(value = "/login")
+    public String loginPage()
+    {
+        return "login";
+    }
+
+    @RequestMapping(value = "/register")
+    public String registerPage()
+    {
+        return "register";
     }
 
 }
