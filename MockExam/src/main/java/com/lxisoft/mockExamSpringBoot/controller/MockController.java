@@ -30,7 +30,7 @@ public class MockController {
 	
 	@GetMapping("/")
 	public String homeView(){
-		return "home";
+		return "redirect:/authentication";
 	}
 	
 	 @GetMapping("/testAdmin")

@@ -16,7 +16,7 @@
       <a href="">Login</a>
       <hr>
       <br>
-      <form method="POST" name='login' action="<c:url value='/login' />">
+      <form th:action = "@{/loginPage}" method="POST" name='login'>
       <input  type="text" placeholder="User Name " name="username">
       <br>
       <input type="password" placeholder="Password" name="password">

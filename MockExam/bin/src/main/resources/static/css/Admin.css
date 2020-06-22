@@ -4,7 +4,7 @@
      width: 186px;
      border: none;
      border-radius: 20px;
-     background: linear-gradient(to left, #ab68ca, #de67a3);
+     background: linear-gradient(to left,navy, mediumblue);
      color: #fff;
      font-weight: bolder;
      margin-top: 30px;
@@ -21,11 +21,34 @@
 }
 
 .wrapper {
-     width: 900px;
-     height: 600px;
+     width: 1000px;
+     height: 747px;
      position: relative;
      margin: 3% auto;
      box-shadow: 2px 18px 70px 0px #9d9d9d;
+}
+.wrapperUpdate {
+     width: 1000px;
+     height: 775px;
+     position: relative;
+     margin: 3% auto;
+     box-shadow: 2px 18px 70px 0px #9d9d9d;
+}
+
+.wrapperAdmin {
+     width: 88%;
+     height: 730px;
+     position: relative;
+     margin: 3% auto;
+     box-shadow: 2px 18px 70px 0px #9d9d9d;
+}
+
+.adminDiv{
+	text-align: -webkit-center;
+	height : 58%;
+	overflow-y: auto;
+	border: outset;
+	padding-bottom: 12px;
 }
 
 input[type=text] {
@@ -51,6 +74,7 @@ input[type=text] {
 }
 
 table{
+	
   border: 1px solid darkmagenta;
   height: 50px;
   width:87%;
@@ -66,7 +90,7 @@ tr{
   border: 1px solid darkmagenta;
   height: 50px;
   font-variant-caps: petite-caps;
-  font-size: 22px;
+  font-size: x-large;
 }
 td{
   text-align: center;

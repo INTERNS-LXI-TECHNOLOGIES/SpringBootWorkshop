@@ -9,14 +9,14 @@
 <body>
 	<div class="wrapper">
         
-		<div align="center" style="background-color: darkmagenta;" >
+		<div align="center" style="background: linear-gradient(to left,navy, mediumblue);" >
             <br>
             <br>
       		<h1><font size="50px" color="white" >Enter Question</font></h1>
             <br>
             <br>
         </div>
-  <div align="center" style="padding-left: 2%;text-align: -webkit-right;">
+  <div align="center" style="padding-top: 12px;">
         <form action="#" th:action = "@{/add}" method="GET" th:object="${mockEntity}">
         <table style="width:84%;" >
             <th:hidden path="id" />
@@ -46,7 +46,7 @@
             </tr>
         </table>
         <div align="center">
-        <button class="button">SAVE</button> <button formaction="admin" class="button">BACK</button>
+        <button class="button">SAVE</button> <button formaction="testAdmin" class="button">BACK</button>
         </div>
         </form>
     </div>

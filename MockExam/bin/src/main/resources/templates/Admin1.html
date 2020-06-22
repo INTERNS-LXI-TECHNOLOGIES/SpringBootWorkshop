@@ -7,18 +7,19 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
 </head>
 <body>
-<div class = "wrapper">
-		<div  align="center" style="background-color: darkmagenta;">
+<div class = "wrapperAdmin">
+		<div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
 			<br>
 			<br>
 		<h1><font style="font-size:50px;" color="white">WELCOME ADMIN</font></h1>
 			<br>
 			<br>
 			</div>
-    <div align="center">
+    <div class = "adminDiv">
    		 <br>
         <table>
  			<tr>
+ 			<th>Sl No</th>
             <th>Question</th>
             <th>Answer</th>
             <th>Option1</th>
@@ -27,20 +28,23 @@
             <th>Option4</th>
             <th>Action</th>
             </tr>
-                <tr th:each="list : ${listQuestions}">
+    			
+                <tr th:each="list,iterationStatus : ${listQuestions}">
+                	<td th:text=${iterationStatus.count}></td>
                     <td th:text="${list.question}"></td>
                     <td th:text="${list.answer}"></td>
                     <td th:text="${list.option1}"></td>
                     <td th:text="${list.option2}"></td>
                     <td th:text="${list.option3}"></td>
                     <td th:text="${list.option4}"></td>
-                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a></td>
+                    <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a>
+                        <a th:href="@{/updateQuestion/{id}(id=${list.id})}">Update</a></td>
                 </tr>
         </table>
-        <form >
-        <button>TEST</button><button>ADD</button><button>LOGOUT</button>
-    	</form>
     </DIV>
+    <form style = "text-align: center;">
+        <button formaction="user" class = "button">TEST</button> <button formaction = "addQuestion" class = "button">ADD</button> <button class = "button">LOGOUT</button>
+    </form>
     </div>
 
 </body>
