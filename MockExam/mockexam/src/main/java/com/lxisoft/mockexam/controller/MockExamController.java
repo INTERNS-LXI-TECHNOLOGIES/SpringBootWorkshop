@@ -92,6 +92,7 @@ public class MockExamController
 
     @RequestMapping(value = "/processExam")
     public ModelAndView loopQuestions(HttpServletRequest request) {
+        answerList.clear();
         HttpSession session = request.getSession();
         List<Exam> questionBank = (List<Exam>) session.getAttribute("data");
         Exam exam = questionBank.get(count);
