@@ -1,18 +1,21 @@
 package com.lxisoft.mockexam.controller;
 
 import com.lxisoft.mockexam.entity.Exam;
+import com.lxisoft.mockexam.entity.User;
 import com.lxisoft.mockexam.service.ExamService;
+import com.lxisoft.mockexam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,9 @@ public class MockExamController
 {
     @Autowired
     ExamService examService;
+
+    @Autowired
+    UserService userService;
 
     private static int count=0;
     private ArrayList<String> answerList = new ArrayList<String>();
@@ -154,16 +160,48 @@ public class MockExamController
         return model;
     }
 
-    @RequestMapping(value = "/login")
+
+
+
+    @RequestMapping(value = "/loginPage")
     public String loginPage()
     {
         return "login";
     }
 
     @RequestMapping(value = "/register")
-    public String registerPage()
+    public ModelAndView registerPage()
     {
-        return "register";
+        User user = new User();
+        ModelAndView model = new ModelAndView();
+        model.addObject("user",user);
+        model.setViewName("register");
+        return model;
     }
+
+    @RequestMapping(value = "/registerUser")
+    public ModelAndView userRegistration(@Valid User user, BindingResult bindingResult)
+    {
+        ModelAndView model = new ModelAndView();
+         User userExists = userService.findUser(user.getUsername());
+         if(userExists != null)
+         {
+             bindingResult.rejectValue("username","error.user","This Username already exists");
+         }
+         if(bindingResult.hasErrors())
+         {
+             model.setViewName("login");
+         }
+         else
+         {
+             userService.saveUser(user);
+             model.addObject("msg","User Has Been Registerd Successfully");
+             model.addObject("user",new User());
+             model.setViewName("login");
+         }
+         return model;
+    }
+
+
 
 }

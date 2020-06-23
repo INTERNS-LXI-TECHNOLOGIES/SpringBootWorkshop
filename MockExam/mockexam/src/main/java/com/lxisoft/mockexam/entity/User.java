@@ -21,15 +21,13 @@ public class User
     @Column
     private int active;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "user_roles",
-                joinColumns = {@JoinColumn(name = "user_id") },
-                inverseJoinColumns = {@JoinColumn(name="role_id")})
-
-    Set<Role> roles = new HashSet<Role>();
-
-    //@ManyToMany
-    //private Set<Role> roles;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn (name = "user_id")},
+            inverseJoinColumns = {@JoinColumn (name = "role_id")}
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public Set<Role> getRoles() {
         return roles;
@@ -38,6 +36,11 @@ public class User
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    //    @ManyToMany
+    //    private Set<Role> roles;
+
+
 
     public int getActive() {
         return active;

@@ -5,10 +5,11 @@ import com.lxisoft.mockexam.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository("RoleRepo")
+import java.util.List;
+
+@Repository("roleRepo")
 public interface RoleRepo extends JpaRepository<Role,Integer> {
 
-
-
+    public Role findByRole(String rolename);
 }
 

@@ -16,13 +16,22 @@ public class Role {
     private int id;
 
     @Column
-    private String roles;
+    private String role;
 
-    @ManyToMany(mappedBy = "user" ,cascade = {CascadeType.ALL})
-    private Set<User> user = new HashSet<User>();
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 
 //    @ManyToMany(mappedBy="roles")
 //    private Set<User> user;
+
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public int getId() {
         return id;
@@ -32,19 +41,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getRolename() {
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public Set<User> getUser() {
-        return user;
-    }
-
-    public void setUser(Set<User> user) {
-        this.user = user;
+    public void setRolename(String rolename) {
+        this.role = rolename;
     }
 }
