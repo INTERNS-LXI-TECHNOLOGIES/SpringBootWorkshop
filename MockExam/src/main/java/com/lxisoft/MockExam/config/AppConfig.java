@@ -1,4 +1,4 @@
-package com.lxisoft.config;
+package com.lxisoft.MockExam.config;
 
 import javax.sql.DataSource;
 
