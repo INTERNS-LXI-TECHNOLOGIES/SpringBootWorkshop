@@ -51,7 +51,7 @@ public class MockController {
 			}
 
 			if (logout != null) {
-				model.addObject("message", "Logged outsuccessfully.");
+				model.addObject("message", "Logged out successfully.");
 			}
 			model.setViewName("Login");
 			return model;

@@ -27,6 +27,14 @@
      margin: 3% auto;
      box-shadow: 2px 18px 70px 0px #9d9d9d;
 }
+
+.wrapperAdd {
+     width: 1000px;
+     height: 747px;
+     position: relative;
+     margin: 0% auto;
+     box-shadow: 2px 18px 70px 0px #9d9d9d;
+}
 .wrapperUpdate {
      width: 1000px;
      height: 775px;
@@ -37,7 +45,7 @@
 
 .wrapperAdmin {
      width: 88%;
-     height: 730px;
+     height: 680px;
      position: relative;
      margin: 3% auto;
      box-shadow: 2px 18px 70px 0px #9d9d9d;
