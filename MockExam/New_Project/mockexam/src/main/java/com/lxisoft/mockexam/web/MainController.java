@@ -31,7 +31,7 @@ public class MainController {
 
     @GetMapping("/user")
     public String userIndex() {
-        return "user/index";
+        return "user";
     }
 
     @GetMapping("/logout")
@@ -46,5 +46,11 @@ public class MainController {
     public String adminView()
     {
         return "admin";
+    }
+
+    @RequestMapping(value = "/back")
+    public String backTo()
+    {
+        return "login";
     }
 }

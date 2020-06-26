@@ -24,6 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    CustomLoginSuccessHandler customLoginSuccessHandler;
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -40,19 +42,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/resources/**", "/registration")
-                .permitAll()
+        http.authorizeRequests()
                 .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/user").access("hasRole('ROLE_USER')")
+                .antMatchers("/resources/**", "/registration")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
+                .formLogin().loginPage("/login")
                 .permitAll()
+                .successHandler(customLoginSuccessHandler)
                 .and()
                 .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
                 .logoutSuccessUrl("/logout")
                 .permitAll();
     }
