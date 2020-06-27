@@ -1,27 +1,33 @@
 package com.lxisoft.controller;
 
-import java.io.IOException;
+//import javax.validation.Valid;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.*;
-import javax.servlet.http.*;
-
-
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import com.lxisoft.model.*;
-import com.lxisoft.service.*;
 
+import com.lxisoft.entity.Exam;
+import com.lxisoft.repository.ExamRepository;
 
 @Controller
+@RequestMapping("/exam/")
 public class ExamController {
 
-}
+    private final ExamRepository examRepository;
+    
+    @Autowired
+    public ExamController(ExamRepository examRepository) {
+        this.examRepository = examRepository;
+    }
+    
+    @GetMapping("adminpage")
+    public String showSignUpForm(Exam exam) {
+        return "add-exam";
+    }
+ }
+
