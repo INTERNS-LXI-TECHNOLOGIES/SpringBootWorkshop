@@ -1,11 +1,11 @@
 package com.lxisoft.MockExam.repository;
 
-import com.lxisoft.MockExam.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepo extends JpaRepository<User,Long> {
+import com.lxisoft.MockExam.model.User;
 
-    User findByName(String name);
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
+
 }
