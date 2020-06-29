@@ -16,7 +16,7 @@ public class Exam implements Serializable
 	 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
  
     @Column
     private String question;
@@ -39,11 +39,11 @@ public class Exam implements Serializable
     @Transient
     private String option;
  
-    public int getId() {
+    public long getId() {
         return id;
     }
  
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
  
