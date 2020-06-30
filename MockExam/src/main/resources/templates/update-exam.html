@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Add User</title>
+<title>Update User</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -13,18 +13,18 @@
 	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
 	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
 	crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
 <body>
 	<div class="container my-5">
-	<h3>Add Question</h3>
+	<h3> Update Question</h3>
 		<div class="card">
 			<div class="card-body">
-				<div class="col-md-10">
-					<form action="#" th:action="@{/exams/add}"
+				<div class="col-md-8">
+					<form action="#"
+						th:action="@{/exams/update/{id}(id=${exam.id})}"
 						th:object="${exam}" method="post">
 						<div class="row">
-							<div class="form-group col-md-8">
+							<div class="form-group col-md-6">
 								<label for="name" class="col-form-label">Question</label> <input
 									type="text" th:field="*{question}" class="form-control" id="question"
 									placeholder="Question"> <span
@@ -38,38 +38,38 @@
 									th:if="${#fields.hasErrors('option1')}" th:errors="*{option1}"
 									class="text-danger"></span>
 							</div>
-
 							<div class="form-group col-md-8">
 								<label for="option2" class="col-form-label">Option2</label> <input
 									type="text" th:field="*{option2}" class="form-control"
-									id="option2" placeholder="Option2"> <span
-									th:if="${#fields.hasErrors('option2')}" th:errors="*{option2}"
+									id="option2" placeholder="option2"> <span
+									th:if="${#fields.hasErrors('option2')}" th:errors="option2"
 									class="text-danger"></span>
 							</div>
-							
 							<div class="form-group col-md-8">
 								<label for="option3" class="col-form-label">Option3</label> <input
-									type="text" th:field="*{option3}" class="form-control"
-									id="option3" placeholder="Option3"> <span
+									type="text" th:field="*{option3}" class="form-control" id="option3"
+									placeholder="Option3"> <span
 									th:if="${#fields.hasErrors('option3')}" th:errors="*{option3}"
 									class="text-danger"></span>
 							</div>
-
 							<div class="form-group col-md-8">
 								<label for="option4" class="col-form-label">Option4</label> <input
-									type="text" th:field="*{option4}" class="form-control"
-									id="option4" placeholder="Option4"> <span
+									type="text" th:field="*{option4}" class="form-control" id="option4"
+									placeholder="Option4"> <span
 									th:if="${#fields.hasErrors('option4')}" th:errors="*{option4}"
 									class="text-danger"></span>
 							</div>
-							
-							
-							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value="Add Question">
+							<div class="form-group col-md-8">
+								<label for="answer" class="col-form-label">Answer</label> <input
+									type="text" th:field="*{answer}" class="form-control" id="answer"
+									placeholder="Answer"> <span
+									th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}"
+									class="text-danger"></span>
 							</div>
-
-							<div class="form-group col-md-8"></div>
-
+							<div class="form-group col-md-8">
+								<input type="submit" class="btn btn-primary"
+									value="Update Exam">
+							</div>
 						</div>
 					</form>
 				</div>

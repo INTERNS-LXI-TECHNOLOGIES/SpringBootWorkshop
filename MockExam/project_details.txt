@@ -1,1 +1,0 @@
-Implment Mock Exam application which conducts exams which can be attended by users as a spring boot project
