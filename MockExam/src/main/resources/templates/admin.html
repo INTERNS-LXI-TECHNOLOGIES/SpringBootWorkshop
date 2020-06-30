@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>MockExam ManageMent</title>
+</head>
+<body>
+
+
+<div align="center">
+	<h1>MockExam</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>QUESTION</th>
+				<th>ANSWER</th>
+				<th>OPTION 1</th>
+				<th>OPTION 2</th>
+				<th>OPTION 3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="question : ${listQuestions}">
+				<td th:text="${question.questions}" ></td>
+				<td th:text="${question.answers}" ></td>
+				<td th:text="${question.option1}" ></td>
+				<td th:text="${question.option2}" ></td>
+				<td th:text="${question.option3}" ></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
