@@ -14,8 +14,8 @@ public class Exam implements Serializable
 {
 	private static final long serialVersionUID = 2209194659595400290L;
 	 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
  
     @Column
@@ -102,11 +102,4 @@ public class Exam implements Serializable
     public void setOption(String option) {
         this.option = option;
     }
-
-
-     @Override
-    public String toString() {
-        return "Exam [id=" + id +",question="+question+",option1="+option1+",option2="+option2+",option3="+option3+",option4="+option4+",answer="+answer+"]";
-    }
- 
 }
