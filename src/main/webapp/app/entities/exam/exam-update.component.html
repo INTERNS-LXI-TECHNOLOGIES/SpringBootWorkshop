@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-exam-heading" jhiTranslate="mockexamApp.exam.home.createOrEditLabel">Create or edit a Exam</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.question" for="field_question">Question</label>
+                    <input type="text" class="form-control" name="question" id="field_question"
+                           formControlName="question"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.opt1" for="field_opt1">Opt 1</label>
+                    <input type="text" class="form-control" name="opt1" id="field_opt1"
+                           formControlName="opt1"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.opt2" for="field_opt2">Opt 2</label>
+                    <input type="text" class="form-control" name="opt2" id="field_opt2"
+                           formControlName="opt2"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.opt3" for="field_opt3">Opt 3</label>
+                    <input type="text" class="form-control" name="opt3" id="field_opt3"
+                           formControlName="opt3"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.opt4" for="field_opt4">Opt 4</label>
+                    <input type="text" class="form-control" name="opt4" id="field_opt4"
+                           formControlName="opt4"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="mockexamApp.exam.answer" for="field_answer">Answer</label>
+                    <input type="text" class="form-control" name="answer" id="field_answer"
+                           formControlName="answer"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "Role",
+  "fields": [
+    {
+      "fieldName": "rolename",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20200629073307",
+  "javadoc": "Role Entity.",
+  "entityTableName": "role",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

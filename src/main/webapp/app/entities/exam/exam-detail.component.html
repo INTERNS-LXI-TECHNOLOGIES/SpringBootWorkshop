@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="exam">
+            <h2><span jhiTranslate="mockexamApp.exam.detail.title">Exam</span> {{ exam.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="mockexamApp.exam.question">Question</span></dt>
+                <dd>
+                    <span>{{ exam.question }}</span>
+                </dd>
+                <dt><span jhiTranslate="mockexamApp.exam.opt1">Opt 1</span></dt>
+                <dd>
+                    <span>{{ exam.opt1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="mockexamApp.exam.opt2">Opt 2</span></dt>
+                <dd>
+                    <span>{{ exam.opt2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="mockexamApp.exam.opt3">Opt 3</span></dt>
+                <dd>
+                    <span>{{ exam.opt3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="mockexamApp.exam.opt4">Opt 4</span></dt>
+                <dd>
+                    <span>{{ exam.opt4 }}</span>
+                </dd>
+                <dt><span jhiTranslate="mockexamApp.exam.answer">Answer</span></dt>
+                <dd>
+                    <span>{{ exam.answer }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/exam', exam.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+
+.admin-brand
+{
+    padding-left:100px;
+}
+.admin-brand h3
+{
+    font-style:italic;
+    font-size:35px;
+    margin-left:45px;
+    color:green;
+    text-shadow:2px 2px black;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin:10px;
+  top: -105px;
+  left: -47px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+   border-radius:15px;
+   border:4px solid green;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropbtn
+{
+    border-radius:15px;
+    width:100px;
+}
+.table-view
+{
+    top:20px;
+}
+.dropbtn
+{
+    background-color: green;
+    color: white;
+    border:2px solid #4CAF50;
+    transition:all 0.5s;
+    font-size:28px;
+}
+.dropbtn span
+{
+    cursor:pointer
+    transition:0.5s;
+    font-size: 23px;
+}
+.dropbtn span:after
+{
+    content:'\00bb';
+    opacity:0;
+    transition:0.5s;
+}
+.dropbtn:hover span:after
+{
+    opacity:1;
+}
+body
+{
+    background-color:cadetblue;
+
+}
+
+    </style>
+</head>
+<body>
+
+<div class="admin-brand">
+    <h3>Admin</h3>
+</div>
+
+<div class="dropdown" style="float:right;">
+    <button class="dropbtn"><span>Menu</span></button>
+    <div class="dropdown-content">
+        <a th:href="@{/add}">Add Question</a>
+        <a th:href="@{/}">Test Exam</a>
+        <a th:href="@{/logout}">Logout</a>
+    </div>
+</div>
+
+<table border="1px solid dark " align="center" width="100%" margin-top="30px">
+    <tr>
+        <th>Sl.No</th>
+        <th>Question</th>
+        <th>Option-1</th>
+        <th>Option-2</th>
+        <th>Option-3</th>
+        <th>Option-4</th>
+        <th>Answer</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="exam,iteration:${data}">
+        <td th:text="${iteration.count}"></td>
+        <td th:text="${exam.question}"></td>
+        <td th:text="${exam.opt1}"></td>
+        <td th:text="${exam.opt2}"></td>
+        <td th:text="${exam.opt3}"></td>
+        <td th:text="${exam.opt4}"></td>
+        <td th:text="${exam.answer}"></td>
+        <td><a th:href="@{/update/{id}(id=${exam.id})}"><button >Update</button></a></td>
+        <td><a th:href="@{/delete/{id}(id=${exam.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete</button></a></td>
+    </tr>
+</table>
+</body>
+</html>
