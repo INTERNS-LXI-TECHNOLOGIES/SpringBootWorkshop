@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lxisoft.MockExam.entity.*;
 import com.lxisoft.MockExam.repository.*;
 
 @Controller
-@RequestMapping("/students/")
+@RequestMapping("/exams/")
 public class ExamController {
 
 	private final ExamRepository examRepository;
@@ -34,29 +37,43 @@ public class ExamController {
 		return "index";
 	}
 
-	/*
-	 * @PostMapping("add") public String addExam(@Valid Exam exam,
-	 * BindingResult result, Model model) { if (result.hasErrors()) { return
-	 * "add-exam"; }
-	 * 
-	 * examRepository.save(exam); return "redirect:list"; }
-	 * 
-	 * @GetMapping("edit/{id}") public String showUpdateForm(@PathVariable("id")
-	 * long id, Model model) { Student student = studentRepository.findById(id)
-	 * .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-	 * model.addAttribute("student", student); return "update-student"; }
-	 * 
-	 * @PostMapping("update/{id}") public String updateStudent(@PathVariable("id")
-	 * long id, @Valid Student student, BindingResult result, Model model) { if
-	 * (result.hasErrors()) { student.setId(id); return "update-student"; }
-	 * 
-	 * studentRepository.save(student); model.addAttribute("students",
-	 * studentRepository.findAll()); return "index"; }
-	 * 
-	 * @GetMapping("delete/{id}") public String deleteStudent(@PathVariable("id")
-	 * long id, Model model) { Student student = studentRepository.findById(id)
-	 * .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-	 * studentRepository.delete(student); model.addAttribute("students",
-	 * studentRepository.findAll()); return "index"; }
-	 */
+	@PostMapping("add")
+	public String addStudent(@Valid Exam exam, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "add-exam";
+		}
+
+		examRepository.save(exam);
+		return "redirect:list";
+	}
+
+	@GetMapping("edit/{id}")
+	public String showUpdateForm(@PathVariable("id") long id, Model model) {
+		Exam exam = examRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid exam Id:" + id));
+		model.addAttribute("exam", exam);
+		return "update-exam";
+	}
+
+	@PatchMapping("update/{id}")
+	public String updateExam(@PathVariable("id") long id, @Valid Exam exam, BindingResult result,
+		Model model) {
+		if (result.hasErrors()) {
+			exam.setId(id);
+			return "update-exam";
+		}
+
+	examRepository.save(exam);
+		model.addAttribute("exams", examRepository.findAll());
+		return "index";
+	}
+
+	@GetMapping("delete/{id}")
+	public String deleteStudent(@PathVariable("id") long id, Model model) {
+		Exam exam = examRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid exam Id:" + id));
+		examRepository.delete(exam);
+		model.addAttribute("exams", examRepository.findAll());
+		return "index";
+	}
 	}
