@@ -18,4 +18,10 @@ public class MockExamServiceImpl implements MockExamService {
 	public List<Question> getAllQuestions() {
 		return questionRepository.findAll();
 	}
+
+	@Override
+	public void save(Question question) {
+		this.questionRepository.save(question);
+		
+	}
 }
