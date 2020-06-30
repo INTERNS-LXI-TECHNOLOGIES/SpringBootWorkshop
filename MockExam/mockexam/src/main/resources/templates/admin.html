@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admincss.css}" />
+</head>
+<body>
+
+   <div class="admin-brand">
+       <h3>Admin</h3>
+   </div>
+
+   <div class="dropdown" style="float:right;">
+       <button class="dropbtn"><span>Menu</span></button>
+       <div class="dropdown-content">
+           <a th:href="@{/add}">Add Question</a>
+           <a th:href="@{/}">Test Exam</a>
+           <a th:href="@{/logout}">Logout</a>
+       </div>
+   </div>
+
+        <table border="1px solid dark " align="center" width="100%" margin-top="30px">
+            <tr>
+                <th>Sl.No</th>
+                <th>Question</th>
+                <th>Option-1</th>
+                <th>Option-2</th>
+                <th>Option-3</th>
+                <th>Option-4</th>
+                <th>Answer</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+
+            <tr th:each="exam,iteration:${data}">
+                <td th:text="${iteration.count}"></td>
+                <td th:text="${exam.question}"></td>
+                <td th:text="${exam.opt1}"></td>
+                <td th:text="${exam.opt2}"></td>
+                <td th:text="${exam.opt3}"></td>
+                <td th:text="${exam.opt4}"></td>
+                <td th:text="${exam.answer}"></td>
+                <td><a th:href="@{/update/{id}(id=${exam.id})}"><button >Update</button></a></td>
+                <td><a th:href="@{/delete/{id}(id=${exam.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete</button></a></td>
+            </tr>
+        </table>
+</body>
+</html>

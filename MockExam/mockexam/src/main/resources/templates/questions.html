@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions</title>
+</head>
+<body th:style="'background:url(/images/49375.jpg) no-repeat center center fixed;'">
+        <div align="right" style="margin-right:90px;margin-top:40px; color:green;font-size:30px;font-style:italic;">
+            <form action="#" method="get">
+                <div id="clock">
+                    <label id="timerclock">Time : <span id="timer"></span></label>
+                </div>
+            </form>
+        </div>
+        <div align="center" style="padding-top:50px;padding-left:0px;">
+
+                <form th:action="@{/process}" method="get" th:object="${quest}">
+                    <div align="left" style="padding-left:300px;">
+                    <table>
+                        <tr>
+                            <td><h3>Question :--></h3></td>
+                            <td class="qq" th:text="${quest.question}" style="font-size:40px;padding-top:5px;"></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="radio" name="ans" th:value="${quest.opt1}" required="required" >
+                                <label th:for="${quest.opt1}" th:text="${quest.opt1}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="radio" name="ans" th:value="${quest.opt2}" required="required">
+                                <label th:for="${quest.opt2}" th:text="${quest.opt2}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="radio" name="ans" th:value="${quest.opt3}" required="required">
+                                <label th:for="${quest.opt3}" th:text="${quest.opt3}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="radio" name="ans" th:value="${quest.opt4}" required="required">
+                                <label th:for="${quest.opt4}" th:text="${quest.opt4}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+                    </table>
+                        <div class="btn"  style="padding-left:350px;padding-top:10px;">
+                            <button  type="submit" style="background-color:green;color:white;height: 50px;width:200px;border-radius: 25px;">Next</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+
+</body>
+</html>
