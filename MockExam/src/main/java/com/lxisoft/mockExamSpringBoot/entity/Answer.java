@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Question")
-public class Question implements Serializable {
+@Table(name = "Answer")
+public class Answer implements Serializable {
 
     @Id
     @Column
@@ -13,8 +13,5 @@ public class Question implements Serializable {
     private int id;
 
     @Column
-    private String question;
-
-    @OneToOne
-    private MockExam mockExam;
+    private String answer;
 }
