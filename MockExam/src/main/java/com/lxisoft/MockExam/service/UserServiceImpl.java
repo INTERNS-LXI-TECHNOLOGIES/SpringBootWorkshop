@@ -1,9 +1,7 @@
 package com.lxisoft.MockExam.service;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +13,6 @@ import com.lxisoft.MockExam.model.Role;
 import com.lxisoft.MockExam.model.User;
 import com.lxisoft.MockExam.repository.UserRepository;
 import com.lxisoft.MockExam.web.dto.UserRegistrationDto;
-
 @Service
 public class UserServiceImpl implements UserService{
 

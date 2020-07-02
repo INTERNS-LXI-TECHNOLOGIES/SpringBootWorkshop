@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.lxisoft.MockExam.service.UserService;
 import com.lxisoft.MockExam.web.dto.UserRegistrationDto;
-
 @Controller
 @RequestMapping("/registration")
 public class UserRegistrationController {
-
 	private UserService userService;
 
 	public UserRegistrationController(UserService userService) {

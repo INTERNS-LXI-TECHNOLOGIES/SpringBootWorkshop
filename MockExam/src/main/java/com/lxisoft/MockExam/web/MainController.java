@@ -17,10 +17,8 @@ import com.lxisoft.MockExam.service.MockExamService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collection;
-
 @Controller
 public class MainController {
-
 	@Autowired
 	private MockExamService mockExamService;
 	
@@ -74,9 +72,5 @@ public class MainController {
     public String saveQuestion(@ModelAttribute("question") Question question) {
     	mockExamService.save(question);
     	return "redirect:/";
-    }
-    
-    
-    
-    
+    }  
 }

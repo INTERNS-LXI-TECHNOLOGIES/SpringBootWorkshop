@@ -1,12 +1,10 @@
 package com.lxisoft.MockExam.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="questions")
 public class Question {
@@ -15,19 +13,19 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="questions")
+	@Column
 	private String question;
 	
-	@Column(name="answers")
+	@Column
 	private String answer;
 	
-	@Column(name="option1")
+	@Column
 	private String option1;
 	
-	@Column(name="option2")
+	@Column
 	private String option2;
 	
-	@Column(name="option3")
+	@Column
 	private String option3;
 	public long getId() {
 		return id;

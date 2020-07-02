@@ -1,13 +1,10 @@
 package com.lxisoft.MockExam.web.dto;
-
 public class UserRegistrationDto {
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
-	
 	public UserRegistrationDto(){
-		
 	}
 	
 	public UserRegistrationDto(String firstName, String lastName, String email, String password) {
@@ -41,6 +38,4 @@ public class UserRegistrationDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
 }

@@ -1,7 +1,5 @@
 package com.lxisoft.MockExam.model;
-
 import java.util.Collection;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 @Entity
 @Table(name="user",uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
