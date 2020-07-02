@@ -53,4 +53,11 @@ public class MainController {
     {
         return "login";
     }
+
+    @RequestMapping(value = "/getExamData")
+    public String getExamData(HttpServletRequest request)
+    {
+
+        return "instruction";
+    }
 }
