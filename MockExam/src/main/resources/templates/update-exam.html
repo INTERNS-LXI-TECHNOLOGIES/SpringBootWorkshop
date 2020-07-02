@@ -22,7 +22,7 @@
 				<div class="col-md-8">
 					<form action="#"
 						th:action="@{/exams/update/{id}(id=${exam.id})}"
-						th:object="${exam}" method="get">
+						th:object="${exam}" method="post">
 						<div class="row">
 							<div class="form-group col-md-6">
 								<label for="name" class="col-form-label">Question</label> <input
