@@ -3,19 +3,25 @@ package com.lxisoft.mockexam.entity;
 import javax.persistence.*;
 
 @Entity
-public class Answer {
+public class Options {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Answer")
-    private String answer;
+    private String opt1;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="question_id")
+    private String opt2;
+
+    private String opt3;
+
+    private String opt4;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
 
-    @OneToOne(mappedBy = "answer")
+    @ManyToOne
+    @JoinColumn(name = "mcq_id")
     private MCQ mcq;
+
 }

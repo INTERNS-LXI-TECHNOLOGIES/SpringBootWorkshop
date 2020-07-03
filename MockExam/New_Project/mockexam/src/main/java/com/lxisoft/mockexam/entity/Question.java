@@ -1,7 +1,8 @@
 package com.lxisoft.mockexam.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -14,11 +15,13 @@ public class Question {
     @Column(name = "Question")
     private String question;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "question",cascade = CascadeType.ALL)
-    private List<Option> options;
+    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
+    private Set<Options> opt = new HashSet<Options>();
 
-    @OneToOne(mappedBy = "question")
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "question")
     private Answer answer;
 
 
+    @OneToOne(mappedBy = "question")
+    private MCQ mcq;
 }
