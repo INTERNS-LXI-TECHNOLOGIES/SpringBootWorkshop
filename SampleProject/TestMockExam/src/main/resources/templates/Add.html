@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add</title>
+    <title>ADD</title>
 </head>
 <body>
+<div class="wrapperAdd">
 
+    <div align="center" style="background: linear-gradient(to left,navy, mediumblue);" >
+        <br>
+        <br>
+        <h1><font size="50px" color="white" >Enter Question</font></h1>
+        <br>
+        <br>
+    </div>
+    <div align="center" style="padding-top: 12px;">
+        <form action="#" th:action = "@{/add}" method="GET" th:object="${examModel}">
+            <table style="width:84%;" >
+                <th:hidden path="id" />
+                <tr>
+                    <td>Question:</td>
+                    <td><input type = "text" th:field = "*{question}" /></td>
+                </tr>
+                <tr>
+                    <td>Answer:</td>
+                    <td><input type = "text" th:field = "*{answer}" /></td>
+                </tr>
+                <tr>
+                    <td>Option1:</td>
+                    <td><input type = "text" th:field = "*{option1}" /></td>
+                </tr>
+                <tr>
+                    <td>Option2:</td>
+                    <td><input type = "text" th:field = "*{option2}" /></td>
+                </tr>
+                <tr>
+                    <td>Option3:</td>
+                    <td><input type = "text" th:field = "*{option3}" /></td>
+                </tr>
+                <tr>
+                    <td>Option4:</td>
+                    <td><input type = "text" th:field = "*{option4}" /></td>
+                </tr>
+            </table>
+            <div align="center">
+                <button class="button">SAVE</button> <button formaction="testAdmin" class="button">BACK</button>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

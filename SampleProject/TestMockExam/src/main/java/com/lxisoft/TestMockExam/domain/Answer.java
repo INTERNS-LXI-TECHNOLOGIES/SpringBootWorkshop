@@ -15,8 +15,9 @@ public class Answer implements Serializable {
     @Column
     private  String answer;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "question_id", nullable = false)
+    @OneToOne
+    @JoinColumn
+    @MapsId
     private Question question;
 
     public int getId() {
@@ -25,6 +26,14 @@ public class Answer implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public String getAnswer() {
@@ -38,9 +47,11 @@ public class Answer implements Serializable {
     public Answer() {
     }
 
-    public Answer(int id, String answer) {
+    public Answer(int id, String answer, Question question) {
         this.id = id;
         this.answer = answer;
+        this.question = question;
+        //this.question.setAnswer(this);
     }
 
     @Override

@@ -5,27 +5,37 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "option")
-public class Option implements Serializable {
+@Table(name = "questionOption")
+public class QuestionOption implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+
     @Column
-    private String option;
+    private String qnOption;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    public Option() {
+    public QuestionOption() {
     }
 
-    public Option(int id, String option, Question question) {
+    public QuestionOption(int id, String qnOption, Question question) {
         this.id = id;
-        this.option = option;
+        this.qnOption = qnOption ;
         this.question = question;
+    }
+
+    public String getQnOption() {
+        return qnOption;
+    }
+
+    public void setQnOption(String qnOption) {
+        this.qnOption = qnOption;
     }
 
     public int getId() {
@@ -34,14 +44,6 @@ public class Option implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getOption() {
-        return option;
-    }
-
-    public void setOption(String option) {
-        this.option = option;
     }
 
     public Question getQuestion() {
@@ -55,10 +57,10 @@ public class Option implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Option)) return false;
-        Option option1 = (Option) o;
+        if (!(o instanceof QuestionOption)) return false;
+        QuestionOption option1 = (QuestionOption) o;
         return getId() == option1.getId() &&
-                Objects.equals(getOption(), option1.getOption());
+                Objects.equals(getQnOption(), option1.getQnOption());
     }
 
     @Override
@@ -70,7 +72,7 @@ public class Option implements Serializable {
     public String toString() {
         return "Option{" +
                 "id=" + id +
-                ", option='" + option + '\'' +
+                ", option='" + qnOption + '\'' +
                 '}';
     }
 }

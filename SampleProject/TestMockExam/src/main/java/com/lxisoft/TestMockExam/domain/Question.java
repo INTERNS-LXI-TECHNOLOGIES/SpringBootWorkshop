@@ -16,20 +16,23 @@ public class Question implements Serializable {
     @Column
     private String question;
 
-    @OneToOne(mappedBy = "question", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private Answer answer;
-
     @OneToMany(mappedBy = "question",
             cascade = CascadeType.ALL)
-    private Set<Option> option = new HashSet<>();
+    private Set<QuestionOption> qnOption;
+
+    @OneToOne(mappedBy = "question", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Answer answer;
 
     public Question(){
 
     }
 
-    public Question(String question){
+    public Question(String question, Answer answer,Set<QuestionOption> qnOption) {
         this.question = question;
+        this.answer = answer;
+        this.answer.setQuestion(this);
+        this.qnOption = qnOption;
     }
 
     public void setId(int id) {
@@ -56,12 +59,12 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public Set<Option> getOptions() {
-        return option;
+    public Set<QuestionOption> getQnOption() {
+        return qnOption;
     }
 
-    public void setOptions(Set<Option> options) {
-        this.option = options;
+    public void setQnOption(Set<QuestionOption> qnOption) {
+        this.qnOption = qnOption;
     }
 
     @Override
