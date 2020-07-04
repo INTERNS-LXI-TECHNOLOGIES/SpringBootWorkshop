@@ -1,9 +1,7 @@
 package com.example.jpa.model;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 @Entity
 @Table(name = "posts")
 public class Post extends AuditModel {
@@ -23,6 +21,4 @@ public class Post extends AuditModel {
     @NotNull
     @Lob
     private String content;
-
-    // Getters and Setters (Omitted for brevity)
 }
