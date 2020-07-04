@@ -30,7 +30,7 @@ public class Employee {
    
    @ManyToOne
    @JoinColumn(name="DPT_ID",foreignKey=@ForeignKey(name="DPT_ID_FK"))
-   private String department;
+   private Department department;
 
    public long getId() {
        return id;
@@ -56,11 +56,11 @@ public class Employee {
        this.designation = designation;
    }
    
-   public String getDepartment() {
+   public Department getDepartment() {
        return department;
    }
 
-   public void setDepartment(String department) {
+   public void setDepartment(Department department) {
        this.department = department;
    }
 }
