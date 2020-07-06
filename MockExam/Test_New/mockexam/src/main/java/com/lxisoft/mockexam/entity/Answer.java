@@ -6,12 +6,14 @@ import javax.persistence.*;
 public class Answer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "ANSWER")
+
     private String answer;
 
-
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "answer")
+    private Question question;
 
     public int getId() {
         return id;
@@ -29,5 +31,22 @@ public class Answer {
         this.answer = answer;
     }
 
+    public Question getQuestion() {
+        return question;
+    }
 
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public Answer(int id, String answer, Question question) {
+        this.id = id;
+        this.answer = answer;
+        this.question = question;
+    }
+
+    public Answer()
+    {
+
+    }
 }

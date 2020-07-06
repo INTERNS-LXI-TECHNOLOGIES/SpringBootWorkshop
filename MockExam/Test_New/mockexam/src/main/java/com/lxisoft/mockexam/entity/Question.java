@@ -1,6 +1,7 @@
 package com.lxisoft.mockexam.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "QUESTION")
 public class Question {
@@ -9,12 +10,14 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int Id;
 
-    @Column(name = "QUESTION")
     private String question;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id",referencedColumnName = "id")
     private Answer answer;
+
+    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
+    private List<Options> opts;
 
     public int getId() {
         return Id;
@@ -38,5 +41,25 @@ public class Question {
 
     public void setAnswer(Answer answer) {
         this.answer = answer;
+    }
+
+    public List<Options> getOpts() {
+        return opts;
+    }
+
+    public void setOpts(List<Options> opts) {
+        this.opts = opts;
+    }
+
+    public Question(int id, String question, Answer answer, List<Options> opts) {
+        Id = id;
+        this.question = question;
+        this.answer = answer;
+        this.opts = opts;
+    }
+
+    public Question()
+    {
+
     }
 }
