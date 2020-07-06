@@ -8,39 +8,9 @@ import java.util.Set;
 
 public class ExamModel {
 
-//    private Question question;
+    private Question question;
 //
-//    private Answer answer;
-//
-//    private Set<QuestionOption> options;
-//
-//    public Question getQuestion() {
-//        return question;
-//    }
-//
-//    public void setQuestion(Question question) {
-//        this.question = question;
-//    }
-//
-//    public Answer getAnswer() {
-//        return answer;
-//    }
-//
-//    public void setAnswer(Answer answer) {
-//        this.answer = answer;
-//    }
-//
-//    public Set<QuestionOption> getOptions() {
-//        return options;
-//    }
-//
-//    public void setOptions(Set<QuestionOption> options) {
-//        this.options = options;
-//    }
-
-    private String question;
-
-    private String answer;
+    private Answer answer;
 
     private String option1;
 
@@ -50,20 +20,20 @@ public class ExamModel {
 
     private  String option4;
 
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getAnswer() {
+    public Answer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(Answer answer) {
         this.answer = answer;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public Question getQuestion() {
+        return question;
     }
 
     public String getOption1() {

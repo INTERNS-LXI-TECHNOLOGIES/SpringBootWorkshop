@@ -11,35 +11,33 @@ public class Question implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private  Long id;
 
     @Column
     private String question;
 
-    @OneToMany(mappedBy = "question",
-            cascade = CascadeType.ALL)
-    private Set<QuestionOption> qnOption;
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<QuestionOption> qnOption;
 
-    @OneToOne(mappedBy = "question", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "question",cascade = CascadeType.ALL)
     private Answer answer;
 
     public Question(){
 
     }
 
-    public Question(String question, Answer answer,Set<QuestionOption> qnOption) {
+    public Question(long id, String question, List<QuestionOption> qnOption, Answer answer) {
+        this.id = id;
         this.question = question;
-        this.answer = answer;
-        this.answer.setQuestion(this);
         this.qnOption = qnOption;
+        this.answer = answer;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,33 +57,33 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public Set<QuestionOption> getQnOption() {
+    public List<QuestionOption> getQnOption() {
         return qnOption;
     }
 
-    public void setQnOption(Set<QuestionOption> qnOption) {
+    public void setQnOption(List<QuestionOption> qnOption) {
         this.qnOption = qnOption;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Question)) return false;
-        Question question1 = (Question) o;
-        return getId() == question1.getId() &&
-                Objects.equals(getQuestion(), question1.getQuestion());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                '}';
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Question)) return false;
+//        Question question1 = (Question) o;
+//        return getId() == question1.getId() &&
+//                Objects.equals(getQuestion(), question1.getQuestion());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getId());
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Question{" +
+//                "id=" + id +
+//                ", question='" + question + '\'' +
+//                '}';
+//    }
 }

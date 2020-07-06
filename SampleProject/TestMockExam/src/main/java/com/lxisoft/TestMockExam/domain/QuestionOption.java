@@ -10,9 +10,7 @@ public class QuestionOption implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-
+    private Long id;
 
     @Column
     private String qnOption;
@@ -24,9 +22,9 @@ public class QuestionOption implements Serializable {
     public QuestionOption() {
     }
 
-    public QuestionOption(int id, String qnOption, Question question) {
+    public QuestionOption(long id, String qnOption, Question question) {
         this.id = id;
-        this.qnOption = qnOption ;
+        this.qnOption = qnOption;
         this.question = question;
     }
 
@@ -38,11 +36,11 @@ public class QuestionOption implements Serializable {
         this.qnOption = qnOption;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,25 +52,25 @@ public class QuestionOption implements Serializable {
         this.question = question;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof QuestionOption)) return false;
-        QuestionOption option1 = (QuestionOption) o;
-        return getId() == option1.getId() &&
-                Objects.equals(getQnOption(), option1.getQnOption());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        return "Option{" +
-                "id=" + id +
-                ", option='" + qnOption + '\'' +
-                '}';
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof QuestionOption)) return false;
+//        QuestionOption option1 = (QuestionOption) o;
+//        return getId() == option1.getId() &&
+//                Objects.equals(getQnOption(), option1.getQnOption());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getId());
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Option{" +
+//                "id=" + id +
+//                ", option='" + qnOption + '\'' +
+//                '}';
+//    }
 }
