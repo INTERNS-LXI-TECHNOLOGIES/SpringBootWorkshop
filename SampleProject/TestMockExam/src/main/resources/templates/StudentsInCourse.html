@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>StudentsInCourse</title>
+</head>
+<body>
+<div class="wrapperAdd">
+
+    <div align="center" style="background: linear-gradient(to left,navy, mediumblue);" >
+        <br>
+        <br>
+        <h1><font size="50px" color="white" >Students In Course</font></h1>
+        <br>
+        <br>
+    </div>
+    <div align="center" style="padding-top: 12px;">
+        <form action="#" th:action = "@{/saveStudentsInCourse}" method="GET" th:object="${setStudentsInCourse}">
+            <table style="width:84%;" >
+                <th:hidden path="id" />
+                <tr>
+                    <td>Title:</td>
+                    <td><input type = "text" th:field = "*{course.title}" /></td>
+                </tr>
+                <tr>
+                    <td>Modules:</td>
+                    <td><input type = "text" th:field = "*{course.modules}" /></td>
+                </tr>
+                <tr>
+                    <td>Fees:</td>
+                    <td><input type = "text" th:field = "*{course.fee}" /></td>
+                </tr>
+                <tr>
+                    <td>Student 1 Name:</td>
+                    <td><input type = "text" th:field = "*{student1.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type = "text" th:field = "*{student1.age}" /></td>
+                </tr>
+                <tr>
+                    <td>Grade:</td>
+                    <td><input type = "text" th:field = "*{student1.grade}" /></td>
+                </tr>
+                <tr>
+                    <td>Student 2 Name:</td>
+                    <td><input type = "text" th:field = "*{student2.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type = "text" th:field = "*{student2.age}" /></td>
+                </tr>
+                <tr>
+                    <td>Grade:</td>
+                    <td><input type = "text" th:field = "*{student2.grade}" /></td>
+                </tr>
+                <tr>
+                    <td>Student 3 Name:</td>
+                    <td><input type = "text" th:field = "*{student3.name}" /></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type = "text" th:field = "*{student3.age}" /></td>
+                </tr>
+                <tr>
+                    <td>Grade:</td>
+                    <td><input type = "text" th:field = "*{student3.grade}" /></td>
+                </tr>
+            </table>
+            <div align="center">
+                <button class="button">SAVE</button> <button formaction="testAdmin" class="button">BACK</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

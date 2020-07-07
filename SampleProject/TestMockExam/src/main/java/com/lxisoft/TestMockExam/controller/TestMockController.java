@@ -1,23 +1,20 @@
 package com.lxisoft.TestMockExam.controller;
 
-import com.lxisoft.TestMockExam.domain.Answer;
-import com.lxisoft.TestMockExam.domain.Question;
-import com.lxisoft.TestMockExam.domain.QuestionOption;
+import com.lxisoft.TestMockExam.domain.*;
+import com.lxisoft.TestMockExam.model.CoursesInStudent;
 import com.lxisoft.TestMockExam.model.ExamModel;
-import com.lxisoft.TestMockExam.repository.AnswerRepository;
-import com.lxisoft.TestMockExam.repository.QuestionOptionRepository;
-import com.lxisoft.TestMockExam.repository.QuestionRepository;
+import com.lxisoft.TestMockExam.model.StudentModel;
+import com.lxisoft.TestMockExam.model.StudentsInCourse;
+import com.lxisoft.TestMockExam.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class TestMockController {
@@ -30,6 +27,12 @@ public class TestMockController {
 
     @Autowired
     private QuestionOptionRepository questionOptionRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @GetMapping(value = "/")
     public String homePage(){
@@ -85,4 +88,99 @@ public class TestMockController {
         //questionOptionRepository.saveAll(questionOptions);
         return "Admin";
     }
+
+    @GetMapping(value = "/setStudentsInCourse")
+    public ModelAndView setStudentsInCourse(ModelAndView modelAndView){
+        StudentsInCourse studentsInCourse = new StudentsInCourse();
+        modelAndView.addObject("setStudentsInCourse",studentsInCourse);
+        modelAndView.setViewName("StudentsInCourse");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/saveStudentsInCourse")
+    public String saveStudentsInCourse(@ModelAttribute StudentsInCourse studentsInCourse){
+        Course course = studentsInCourse.getCourse();
+        Student student1 = studentsInCourse.getStudent1();
+        Student student2 = studentsInCourse.getStudent2();
+        Student student3 = studentsInCourse.getStudent3();
+        //Student student4 = studentsInCourse.getStudent4();
+       // Student student5 = studentsInCourse.getStudent5();
+
+        courseRepository.save(course);
+
+        studentRepository.saveAll(Arrays.asList(student1,student2,student3));
+
+        course.getStudents().addAll(Arrays.asList(student1,student2,student3));
+
+        courseRepository.save(course);
+
+        return "Admin";
+    }
+
+    @GetMapping(value = "/setCoursesInStudent")
+    public ModelAndView setCoursesInStudent(ModelAndView modelAndView){
+        CoursesInStudent coursesInStudent = new CoursesInStudent();
+        modelAndView.addObject("coursesInStudent",coursesInStudent);
+        modelAndView.setViewName("CoursesInStudent");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/saveCoursesInStudent")
+    public String saveCoursesInStudent(@ModelAttribute CoursesInStudent coursesInStudent){
+        Student student = coursesInStudent.getStudent();
+        Course course1 = coursesInStudent.getCourse1();
+        Course course2 = coursesInStudent.getCourse2();
+        Course course3 = coursesInStudent.getCourse3();
+
+        studentRepository.save(student);
+
+        courseRepository.saveAll(Arrays.asList(course1,course2,course3));
+        student.getCourses().addAll(Arrays.asList(course1,course2,course3));
+
+        studentRepository.save(student);
+
+        return "Admin";
+    }
+
+
+    @GetMapping(value = "/setStudent")
+    public ModelAndView setStudent(ModelAndView modelAndView){
+        StudentModel studentModel = new StudentModel();
+        modelAndView.addObject("student",studentModel);
+        modelAndView.setViewName("AddStudent");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/addNewStudent")
+    public String addNewStudent(@ModelAttribute StudentModel studentModel){
+        Student student = studentModel.getStudent();
+        Course course = studentModel.getCourse();
+
+        studentRepository.save(student);
+
+        courseRepository.saveAll(Arrays.asList(course));
+
+        student.getCourses().addAll(Arrays.asList(course));
+
+        studentRepository.save(student);
+
+        return "Admin";
+    }
+
+    @GetMapping(value = "/findAllQuestions")
+    public ModelAndView findAllQuestions(ModelAndView modelAndView){
+        List<Question> questions = questionRepository.findAll();
+        modelAndView.addObject("listQuestions",questions);
+        modelAndView.setViewName("View");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/deleteQuestion/{id}")
+    public String deleteQuestion(@PathVariable("id") int id){
+        Long deleteId = (long)id;
+        questionRepository.deleteById(deleteId);
+    return "redirect:/findAllQuestions";
+    }
+
+
 }
