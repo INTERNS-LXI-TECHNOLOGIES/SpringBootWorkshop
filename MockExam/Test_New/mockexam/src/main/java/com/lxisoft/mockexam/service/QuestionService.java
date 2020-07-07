@@ -15,4 +15,14 @@ public class QuestionService {
     {
             questionRepo.save(question);
     }
+
+    public Question get(int id)
+    {
+        return questionRepo.getOne(id);
+    }
+
+    public Question getAll()
+    {
+        return (Question) questionRepo.findAll();
+    }
 }

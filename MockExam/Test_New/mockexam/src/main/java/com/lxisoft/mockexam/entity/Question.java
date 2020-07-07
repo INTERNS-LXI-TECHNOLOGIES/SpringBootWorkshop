@@ -62,4 +62,14 @@ public class Question {
     {
 
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "Id=" + Id +
+                ", question='" + question + '\'' +
+                ", answer=" + answer +
+                ", opts=" + opts +
+                '}';
+    }
 }

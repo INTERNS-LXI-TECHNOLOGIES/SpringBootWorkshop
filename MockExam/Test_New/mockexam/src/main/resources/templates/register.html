@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  sxmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/addcss.css}">
+</head>
+<body>
+<div class="heading" align="center" >
+    <h3>ADD USER</h3>
+</div>
+<div class="useradd" align="center">
+    <form method="post" th:action="@{/register}" th:object="${user}">
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" th:field="*{username}" /></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center"><button type = "submit">Save</button></td>
+            </tr>
+
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>

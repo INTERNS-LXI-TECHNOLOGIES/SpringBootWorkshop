@@ -48,4 +48,11 @@ public class Options {
         this.opt = opt;
         this.question = question;
     }
+
+    @Override
+    public String toString() {
+        return "Options{" +
+                "opt='" + opt + '\'' +
+                '}';
+    }
 }

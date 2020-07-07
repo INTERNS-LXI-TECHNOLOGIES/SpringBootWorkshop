@@ -15,6 +15,8 @@ public class Answer {
     @OneToOne(fetch = FetchType.LAZY,mappedBy = "answer")
     private Question question;
 
+
+
     public int getId() {
         return id;
     }
@@ -45,8 +47,20 @@ public class Answer {
         this.question = question;
     }
 
-    public Answer()
-    {
+        public Answer()
+        {
 
+        }
+
+    public Answer(String answer)
+    {
+        this.answer = answer;
+    }
+
+    @Override
+        public String toString() {
+        return "Answer{" +
+                "answer='" + answer + '\'' +
+                '}';
     }
 }

@@ -1,20 +1,12 @@
 package com.lxisoft.mockexam.controller;
 
-import com.lxisoft.mockexam.entity.Answer;
-import com.lxisoft.mockexam.entity.MCQ;
-import com.lxisoft.mockexam.entity.Options;
-import com.lxisoft.mockexam.entity.Question;
-import com.lxisoft.mockexam.service.AnswerService;
-import com.lxisoft.mockexam.service.OptionService;
-import com.lxisoft.mockexam.service.QuestionService;
+import com.lxisoft.mockexam.entity.*;
+import com.lxisoft.mockexam.service.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ExamController {
@@ -22,11 +14,15 @@ public class ExamController {
     private QuestionService questionService;
     private AnswerService answerService;
     private OptionService optionService;
-    public ExamController(QuestionService questionService, AnswerService answerService, OptionService optionService)
+    private UserService userService;
+    private RoleService roleService;
+    public ExamController(QuestionService questionService, AnswerService answerService, OptionService optionService,UserService userService,RoleService roleService)
     {
         this.questionService = questionService;
         this.answerService = answerService;
         this.optionService = optionService;
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/start")
@@ -42,41 +38,132 @@ public class ExamController {
     @PostMapping(value = "/add")
     public ModelAndView data(@ModelAttribute("mcq") MCQ mcq)
     {
+        /* Getting Question And Answer from Model*/
         Question question = mcq.getQuest();
         Answer answer = mcq.getAns();
 
+        /* Setting Answer in Question Entity*/
         question.setAnswer(answer);
+
 
         List<Options> op = new ArrayList<Options>();
 
+        /*Four options*/
         Options opt1 = new Options();
-
         Options opt2 = new Options();
-
         Options opt3 = new Options();
-
         Options opt4 = new Options();
 
+        /* Setting Option In Each Object*/
         opt1.setOpt(mcq.getOpt1());
         opt2.setOpt(mcq.getOpt2());
         opt3.setOpt(mcq.getOpt3());
         opt4.setOpt(mcq.getOpt4());
 
+        /*Setting Question in Option Entity*/
         opt1.setQuestion(question);
         opt2.setQuestion(question);
         opt3.setQuestion(question);
         opt4.setQuestion(question);
 
+        /*Adding Each Option to List*/
         op.add(opt1);
         op.add(opt2);
         op.add(opt3);
         op.add(opt4);
 
+        /* Setting Options in Question*/
+        question.setOpts(op);
 
+        /* Saving Questions */
         questionService.saveQuestion(question);
-        answerService.saveAnswer(answer);
-        optionService.saveOptions(op);
+
 
         return new ModelAndView("admin");
     }
+
+    @RequestMapping(value = "/addUser")
+    public ModelAndView addUser()
+    {
+        User user = new User();
+        ModelAndView model = new ModelAndView();
+        model.addObject("user",user);
+        model.setViewName("register");
+        return model;
+    }
+
+    @PostMapping(value = "/register")
+    public ModelAndView register(@ModelAttribute("user") User reg)
+    {
+       Role role = new Role("ROLE_USER");
+       Set<Role> roles = new HashSet<Role>();
+       roles.add(role);
+       reg.setRoles(roles);
+
+       roleService.saveRole(role);
+       userService.saveUser(reg);
+       return new ModelAndView("admin");
+    }
+
+    @RequestMapping(value = "/show")
+    public String  show()
+    {
+
+        return "searchUser";
+    }
+
+    @RequestMapping(value = "/search")
+    public ModelAndView showDetails(@RequestParam("id") int userId)
+    {
+        System.out.println(userId);
+        User user = userService.findUserById(userId);
+        System.out.println(user);
+        return new ModelAndView("admin");
+    }
+
+    @RequestMapping(value = "/showQ")
+    public String  showQ()
+    {
+
+        return "searchQuestion";
+    }
+
+    @RequestMapping(value = "/searchQ")
+    public ModelAndView showQuestion(@RequestParam("id") int qId)
+    {
+        Question question = questionService.get(qId);
+
+        System.out.println(question);
+
+        MCQ mcq = new MCQ();
+
+        Question q1 = new Question();
+        String q = question.getQuestion();
+        q1.setQuestion(q);
+        mcq.setQuest(q1);
+
+        Answer a1 = new Answer();
+        a1 = question.getAnswer();
+        mcq.setAns(a1);
+
+        List<Options> op = question.getOpts();
+
+        Options op1 = op.get(0);
+        Options op2 = op.get(1);
+        Options op3 = op.get(2);
+        Options op4 = op.get(3);
+
+        mcq.setOpt1(op1.getOpt());
+        mcq.setOpt2(op2.getOpt());
+        mcq.setOpt3(op3.getOpt());
+        mcq.setOpt4(op4.getOpt());
+
+
+       System.out.println("Question="+mcq.getQuest()+"\n"+"Answer="+mcq.getAns()+"\n"+"options={[option1="+mcq.getOpt1()+"]\n[option2="+mcq.getOpt2()+"]\noption3=["+mcq.getOpt3()+"]\noption4=["+mcq.getOpt4()+"]}");
+
+        return new ModelAndView("admin");
+    }
+
+
+
 }
