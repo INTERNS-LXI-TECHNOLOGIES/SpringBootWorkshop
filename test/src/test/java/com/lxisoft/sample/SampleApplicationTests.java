@@ -1,11 +1,10 @@
-
-package com.example.Entity;
+package com.lxisoft.sample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EntityApplicationTests {
+class SampleApplicationTests {
 
 	@Test
 	void contextLoads() {
