@@ -5,6 +5,8 @@ import com.lxisoft.mockexam.repo.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleService {
 
@@ -15,4 +17,12 @@ public class RoleService {
     {
         roleRepo.save(role);
     }
+
+    public List<Role> getRole()
+    {
+        return roleRepo.findAll();
+    }
+
+
+
 }

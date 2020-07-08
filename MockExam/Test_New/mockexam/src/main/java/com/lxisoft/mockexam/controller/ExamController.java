@@ -3,9 +3,11 @@ package com.lxisoft.mockexam.controller;
 import com.lxisoft.mockexam.entity.*;
 import com.lxisoft.mockexam.service.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import java.util.*;
 
 @Controller
@@ -95,12 +97,15 @@ public class ExamController {
     @PostMapping(value = "/register")
     public ModelAndView register(@ModelAttribute("user") User reg)
     {
-       Role role = new Role("ROLE_USER");
+       Role role1 = new Role("ROLE_USER");
+        Role role2 = new Role("ROLE_ADMIN");
        Set<Role> roles = new HashSet<Role>();
-       roles.add(role);
+       roles.add(role1);
+        roles.add(role2);
        reg.setRoles(roles);
 
-       roleService.saveRole(role);
+       roleService.saveRole(role1);
+        roleService.saveRole(role2);
        userService.saveUser(reg);
        return new ModelAndView("admin");
     }
@@ -157,13 +162,41 @@ public class ExamController {
         mcq.setOpt2(op2.getOpt());
         mcq.setOpt3(op3.getOpt());
         mcq.setOpt4(op4.getOpt());
-
+        ModelAndView model = new ModelAndView();
+        model.addObject("model",mcq);
 
        System.out.println("Question="+mcq.getQuest()+"\n"+"Answer="+mcq.getAns()+"\n"+"options={[option1="+mcq.getOpt1()+"]\n[option2="+mcq.getOpt2()+"]\noption3=["+mcq.getOpt3()+"]\noption4=["+mcq.getOpt4()+"]}");
 
-        return new ModelAndView("admin");
+         model.setViewName("display");
+         return model;
+    }
+
+    @RequestMapping(value = "/showUser")
+    public ModelAndView show(@RequestParam("id") int uId)
+    {
+        User user = userService.findUserById(uId);
+        ModelAndView model = new ModelAndView();
+        model.addObject("userObj",user);
+        model.setViewName("userInfo");
+        return model;
+    }
+
+    @RequestMapping(value = "/findAllQuestions")
+    public ModelAndView showAllQ()
+    {
+        List<Question> questionList = questionService.getAll();
+        ModelAndView model = new ModelAndView();
+        model.addObject("show",questionList);
+        model.setViewName("questionList");
+        return model;
     }
 
 
+    @RequestMapping(value = "/delete/{id}")
+    public ModelAndView deleteQuestion(@PathVariable("id") int qId)
+    {
+        questionService.deleteById(qId);
+        return new ModelAndView("redirect:/findAllQuestions");
+    }
 
 }

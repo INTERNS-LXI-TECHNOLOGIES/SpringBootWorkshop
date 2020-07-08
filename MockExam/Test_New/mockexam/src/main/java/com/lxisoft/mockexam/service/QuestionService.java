@@ -5,6 +5,8 @@ import com.lxisoft.mockexam.repo.QuestionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuestionService {
 
@@ -21,8 +23,14 @@ public class QuestionService {
         return questionRepo.getOne(id);
     }
 
-    public Question getAll()
+    public List<Question> getAll()
     {
-        return (Question) questionRepo.findAll();
+
+        return  questionRepo.findAll();
+    }
+
+    public void deleteById(int id)
+    {
+        questionRepo.deleteById(id);
     }
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  sxmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/addcss.css}">
+</head>
+<body>
+<div class="heading" align="center" >
+    <h3>ADD QUESTION</h3>
+</div>
+<div class="questadd" align="center">
+    <form method="post" th:action="@{/add}" th:object="${model}">
+        <table>
+            <tr>
+                <td>Question</td>
+                <td><input type="text" th:field="*{quest.question}" /></td>
+            </tr>
+
+            <tr>
+                <td>Answer</td>
+                <td><input type="text" th:field="*{ans.answer}"/></td>
+            </tr>
+
+            <tr>
+                <td>option1</td>
+                <td><input type="text" th:field="*{opt1}"/></td>
+            </tr>
+            <tr>
+                <td>option2</td>
+                <td><input type="text" th:field="*{opt2}"/></td>
+            </tr>
+            <tr>
+                <td>option3</td>
+                <td><input type="text" th:field="*{opt3}"/></td>
+            </tr>
+            <tr>
+                <td>option4</td>
+                <td><input type="text" th:field="*{opt4}"/></td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center"><button type = "submit">Save</button></td>
+            </tr>
+
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>
