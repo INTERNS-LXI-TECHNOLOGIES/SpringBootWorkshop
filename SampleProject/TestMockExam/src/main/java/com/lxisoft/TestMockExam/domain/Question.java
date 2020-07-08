@@ -16,7 +16,7 @@ public class Question implements Serializable {
     @Column
     private String question;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question")
     private List<QuestionOption> qnOption;
 
     @OneToOne(mappedBy = "question",cascade = CascadeType.ALL)

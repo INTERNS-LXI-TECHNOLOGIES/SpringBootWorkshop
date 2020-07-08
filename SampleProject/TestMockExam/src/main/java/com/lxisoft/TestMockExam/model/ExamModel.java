@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class ExamModel {
 
+    private Long id;
+
     private Question question;
 //
     private Answer answer;
@@ -19,6 +21,14 @@ public class ExamModel {
     private String option3;
 
     private  String option4;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Answer getAnswer() {
         return answer;
