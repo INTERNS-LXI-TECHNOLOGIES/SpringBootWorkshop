@@ -1,66 +1,83 @@
 package com.lxisoft.MockExam.model;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-@Entity
-@Table(name="questions")
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import java.util.List;
+
+@Entity(name = "QUESTION")
 public class Question {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column
-	private String question;
-	
-	@Column
-	private String answer;
-	
-	@Column
-	private String option1;
-	
-	@Column
-	private String option2;
-	
-	@Column
-	private String option3;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getQuestion() {
-		return question;
-	}
-	public void setQuestion(String question) {
-		this.question = question;
-	}
-	public String getAnswer() {
-		return answer;
-	}
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-	public String getOption1() {
-		return option1;
-	}
-	public void setOption1(String option1) {
-		this.option1 = option1;
-	}
-	public String getOption2() {
-		return option2;
-	}
-	public void setOption2(String option2) {
-		this.option2 = option2;
-	}
-	public String getOption3() {
-		return option3;
-	}
-	public void setOption3(String option3) {
-		this.option3 = option3;
-	}
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Id;
+
+    private String question;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id",referencedColumnName = "id")
+    private Answer answer;
+
+    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
+    private List<Options> options;
+
+    public Question(long id, String question, Answer answer, List<Options> options) {
+        Id = id;
+        this.question = question;
+        this.answer = answer;
+        this.options = options;
+    }
+
+    public Question()
+    {
+
+    }
+    
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public List<Options> getOption() {
+        return options;
+    }
+
+    public void setOption(List<Options> options) {
+        this.options = options;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "Id=" + Id +
+                ", question='" + question + '\'' +
+                ", answer=" + answer +
+                ", options=" + options +
+                '}';
+    }
 }
