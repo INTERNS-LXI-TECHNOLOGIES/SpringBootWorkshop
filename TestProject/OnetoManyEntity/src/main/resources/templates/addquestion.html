@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+	<title>Mock Exam</title>
+	</head>
+	<body>
+	    <h2>Question</h2>
+	     <form action="#" th:action = "@{/addNewQuestion}" method="GET" th:object="${exam}">
+          <input type = "text" th:field = "*{question}" />
+          <input type = "text" th:field = "*{answer}" />
+          <input type="submit" value="submit">
+          </form>
+	   	    
+	</body>
+	</html>
