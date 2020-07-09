@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 public interface QuestionRepo extends JpaRepository<Question,Integer> {
 
+
+
 }

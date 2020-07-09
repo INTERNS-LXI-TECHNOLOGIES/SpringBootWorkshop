@@ -199,4 +199,78 @@ public class ExamController {
         return new ModelAndView("redirect:/findAllQuestions");
     }
 
+    @RequestMapping(value = "/update/{id}")
+    public ModelAndView questById(@ModelAttribute("id") int qId)
+    {
+        Question question = questionService.get(qId);
+        MCQ mcq = new MCQ();
+
+        System.out.println(question.getId());
+        mcq.setId(question.getId());
+        System.out.println(mcq.getId());
+
+
+        String quest = question.getQuestion();
+        question.setQuestion(quest);
+        mcq.setQuest(question);
+
+        mcq.setAns(question.getAnswer());
+
+        List<Options> ops = question.getOpts();
+        Options op1 = ops.get(0);
+        String opts1 = op1.getOpt();
+        mcq.setOpt1(opts1);
+
+        Options op2 = ops.get(1);
+        String opts2 = op2.getOpt();
+        mcq.setOpt2(opts2);
+
+        Options op3 = ops.get(2);
+        String opts3 = op3.getOpt();
+        mcq.setOpt3(opts3);
+
+
+        Options op4 = ops.get(3);
+        String opts4 = op4.getOpt();
+        mcq.setOpt4(opts4);
+
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("questById",mcq);
+        model.setViewName("update");
+        return model;
+    }
+
+    @RequestMapping(value = "/updateQuestion")
+    public ModelAndView update(@ModelAttribute("questById") MCQ  mcq)
+    {
+
+        System.out.println(mcq.getId());
+        Question question = questionService.get(mcq.getId());
+
+        Question q = mcq.getQuest();
+
+        question.setQuestion(q.getQuestion());
+
+
+        question.getAnswer().setAnswer(mcq.getAns().getAnswer());
+
+        List<Options> opts  = new ArrayList<Options>();
+        opts = question.getOpts();
+
+        opts.get(0).setOpt(mcq.getOpt1());
+        opts.get(1).setOpt(mcq.getOpt2());
+        opts.get(2).setOpt(mcq.getOpt3());
+        opts.get(3).setOpt(mcq.getOpt4());
+
+        question.setOpts(opts);
+
+
+        questionService.saveQuestion(question);
+
+        return new ModelAndView("redirect:/findAllQuestions");
+
+    }
+
+
 }
