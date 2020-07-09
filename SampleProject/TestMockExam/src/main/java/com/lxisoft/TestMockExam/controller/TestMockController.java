@@ -1,10 +1,7 @@
 package com.lxisoft.TestMockExam.controller;
 
 import com.lxisoft.TestMockExam.domain.*;
-import com.lxisoft.TestMockExam.model.CoursesInStudent;
-import com.lxisoft.TestMockExam.model.ExamModel;
-import com.lxisoft.TestMockExam.model.StudentModel;
-import com.lxisoft.TestMockExam.model.StudentsInCourse;
+import com.lxisoft.TestMockExam.model.*;
 import com.lxisoft.TestMockExam.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -196,12 +193,11 @@ public class TestMockController {
     public ModelAndView setUpdateQuestion(@PathVariable("id") long id){
         ModelAndView modelAndView = new ModelAndView();
         Question question = questionRepository.getOne(id);
-        Answer answer = question.getAnswer();
-        ExamModel examModel = new ExamModel();
+        Exam examModel = new Exam();
 
         examModel.setId(question.getId());
-        examModel.setQuestion(question);
-        examModel.setAnswer(answer);
+        examModel.setQuestion(question.getQuestion());
+        examModel.setAnswer(question.getAnswer().getAnswer());
         examModel.setOption1(question.getQnOption().get(0).getQnOption());
         examModel.setOption2(question.getQnOption().get(1).getQnOption());
         examModel.setOption3(question.getQnOption().get(2).getQnOption());
@@ -213,44 +209,15 @@ public class TestMockController {
     }
 
     @GetMapping(value = "/updateQuestion")
-    public String updateQuestion(@ModelAttribute ExamModel examModel){
-        List<QuestionOption> questionOptions = new ArrayList<>();
-        Question question = examModel.getQuestion();
-        question.setId(examModel.getId());
-        Answer answer = examModel.getAnswer();
-        answer.setId(examModel.getId());
-        answer.setQuestion(question);
-
-        question.setAnswer(answer);
-
-        QuestionOption option1 = new QuestionOption();
-        QuestionOption option2 = new QuestionOption();
-        QuestionOption option3 = new QuestionOption();
-        QuestionOption option4 = new QuestionOption();
-
-        option1.setQnOption(examModel.getOption1());
-        option1.setId(examModel.getId());
-        option2.setQnOption(examModel.getOption2());
-        option2.setId(examModel.getId());
-        option3.setQnOption(examModel.getOption3());
-        option3.setId(examModel.getId());
-        option4.setQnOption(examModel.getOption4());
-        option4.setId(examModel.getId());
-
-        option1.setQuestion(examModel.getQuestion());
-        option2.setQuestion(examModel.getQuestion());
-        option3.setQuestion(examModel.getQuestion());
-        option4.setQuestion(examModel.getQuestion());
-
-        questionOptions.add(option1);
-        questionOptions.add(option2);
-        questionOptions.add(option3);
-        questionOptions.add(option4);
-
-        question.setQnOption(questionOptions);
-        //questionOptionRepository.deleteById(examModel.getId());
+    public String updateQuestion(@ModelAttribute Exam exam){
+        Question question = questionRepository.getOne(exam.getId());
+        question.setQuestion(exam.getQuestion());
+        question.getAnswer().setAnswer(exam.getAnswer());
+        question.getQnOption().get(0).setQnOption(exam.getOption1());
+        question.getQnOption().get(1).setQnOption(exam.getOption2());
+        question.getQnOption().get(2).setQnOption(exam.getOption3());
+        question.getQnOption().get(3).setQnOption(exam.getOption4());
         questionRepository.save(question);
-        questionOptionRepository.saveAll(questionOptions);
         return "Admin";
     }
 }
