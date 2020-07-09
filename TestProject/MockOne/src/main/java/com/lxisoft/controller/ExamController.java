@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.*;
 
 
@@ -67,7 +69,15 @@ public class ExamController {
         question.setOptions(qnOptions);
         
         questionRepository.save(question);
-        return "index";
+        return "read";
+    }
+    
+    @RequestMapping(value = "/viewAll")
+    public ModelAndView listExam(ModelAndView model) throws IOException {
+        List<Question> listExam = questionRepository.findAll();
+        model.addObject("listExam", listExam);
+        model.setViewName("read");
+        return model;
     }
     
 
