@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>MOCKEXAM</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		
+		<h1>MockExam</h1>
+		<hr>
+		<h2>Add Question</h2>
+		<form th:action="@{/saveQuestion}" th:object="${question}" method="POST">
+			<input type="text" th:field="*{question}" placeholder="Question" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{answer}" placeholder="Answer" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{option1}" placeholder="Option1" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{option2}" placeholder="Option2" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{option3}" placeholder="Option3" class="form-control mb-4 col-4">
+
+			<button type="submit" class="btn btn-info col-2"> Add question </button>
+		</form>
+	</div>
+</body>
+</html>
