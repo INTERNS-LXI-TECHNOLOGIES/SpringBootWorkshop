@@ -1,20 +1,8 @@
 package com.lxisoft.OnetoOneEntity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.lxisoft.OnetoOneEntity.entity.Answer;
-import com.lxisoft.OnetoOneEntity.entity.Question;
-import com.lxisoft.OnetoOneEntity.model.ExamModel;
-import com.lxisoft.OnetoOneEntity.repository.AnswerRepository;
+import org.springframework.stereotype.Controller;
 import com.lxisoft.OnetoOneEntity.repository.QuestionRepository;
 
 @Controller
@@ -27,7 +15,7 @@ public class ExamController {
 	public ExamController(QuestionRepository questionRepository) {
 		this.questionRepository = questionRepository;
 	}
-	@GetMapping(value="/")
+	/*@GetMapping(value="/")
 	public String showSignUpForm(ExamModel exam) {
 		return "first";
 	}
@@ -37,7 +25,7 @@ public class ExamController {
 	        modelAndView.addObject("exam",examModel);
 	        modelAndView.setViewName("addquestion");
 	        return modelAndView;
-	    }
+	    }*/
 	 
 
 	

@@ -1,38 +1,37 @@
 package com.lxisoft.OnetoOneEntity.entity;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@Table(name = "Optiontb")
-public class Option implements Serializable {
+@Table(name = "optiontb")
+public class AnsOption implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String option;
+    private String ansOption;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    public Option() {
+    public AnsOption() {
     }
 
-    public Option(long id, String option, Question question) {
+    public AnsOption(long id, String ansOption, Question question) {
         this.id = id;
-        this.option = option;
+        this.ansOption = ansOption;
         this.question = question;
     }
 
-    public String getOption() {
-        return option;
+    public String getAnsOption() {
+        return ansOption;
     }
 
     public void setOption(String option) {
-        this.option = option;
+        this.ansOption = ansOption;
     }
 
     public Long getId() {

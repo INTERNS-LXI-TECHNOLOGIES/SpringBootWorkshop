@@ -1,10 +1,11 @@
 package com.lxisoft.OnetoOneEntity.entity;
 import java.io.Serializable;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Questiontb")
+@Table(name = "questiontb")
 public class Question implements Serializable {
 
     @Id
@@ -18,17 +19,17 @@ public class Question implements Serializable {
     private Answer answer;
     
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Option> option;
+    private List<AnsOption> ansOption;
 
     
     public Question(){
 
     }
 
-    public Question(long id, String question,List<Option> options, Answer answer) {
+    public Question(long id, String question,List<AnsOption> ansOption, Answer answer) {
         this.id = id;
         this.question = question;
-        this.option = option;
+        this.ansOption = ansOption;
         this.answer = answer;
     }
 
@@ -56,11 +57,11 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public void setOptions(List<Option> options) {
-        this.option = option;
+    public void setOptions(List<AnsOption> ansOption) {
+        this.ansOption = ansOption;
     }
-    public List<Option> getOption() {
-        return option;
+    public List<AnsOption> getAnsOption() {
+        return ansOption;
     }
     
 }

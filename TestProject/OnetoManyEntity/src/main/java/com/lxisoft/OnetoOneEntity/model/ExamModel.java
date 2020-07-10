@@ -20,7 +20,7 @@ import javax.persistence.Id;
  private String answer;
  
  @Column
- private String option;
+ private String ansOption;
 
 public long getId() {
 	return id;
@@ -46,12 +46,12 @@ public void setAnswer(String answer) {
 	this.answer = answer;
 }
 
-public String getOption() {
-	return option;
+public String getAnsOption() {
+	return ansOption;
 }
 
-public void setOption(String option) {
-	this.option = option;
+public void setAnsOption(String ansOption) {
+	this.ansOption = ansOption;
 }
 
  
