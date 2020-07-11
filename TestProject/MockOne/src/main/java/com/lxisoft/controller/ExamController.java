@@ -69,10 +69,10 @@ public class ExamController {
         question.setOptions(qnOptions);
         
         questionRepository.save(question);
-        return "read";
+        return "index";
     }
     
-    @RequestMapping(value = "/viewAll")
+    @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
         List<Question> listExam = questionRepository.findAll();
         model.addObject("listExam", listExam);
@@ -80,5 +80,12 @@ public class ExamController {
         return model;
     }
     
+    
+    @GetMapping(value = "/delete/{id}")
+    public String deleteQuest(@PathVariable("id") int id) {
+    	long examId = (long)id;
+    	questionRepository.deleteById(examId);
+    	return "Delete";   
+  }
 
 }
