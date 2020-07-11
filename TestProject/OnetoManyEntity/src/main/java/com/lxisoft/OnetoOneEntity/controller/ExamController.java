@@ -41,7 +41,7 @@ public class ExamController {
 	    }
 	 @GetMapping(value = "/addNewQuestion")
 	 public String addNewQuestion(@ModelAttribute ExamModel examModel){
-	    //	List<AnsOption> ansOptions = new ArrayList<>();
+	    	List<AnsOption> ansOptions = new ArrayList<>();
 	       /* String question = examModel.getQuestion();
 	        String answer = examModel.getAnswer();
 	        answer.setQuestion(question);
@@ -52,7 +52,7 @@ public class ExamController {
 		       Answer answer=new Answer();
 		       answer.setAnswer(examModel.getAnswer());
 		       question.setAnswer(answer);
-		  /*    
+		     
 	        AnsOption option1 = new AnsOption();
 	        AnsOption option2 = new AnsOption();
 	        AnsOption option3 = new AnsOption();
@@ -74,7 +74,7 @@ public class ExamController {
 	        ansOptions.add(option3);
 	        ansOptions.add(option4);
 
-	        question.setOptions(ansOptions);*/
+	        question.setOptions(ansOptions);
 	        
 	        questionRepository.save(question);
 	        return "first";
