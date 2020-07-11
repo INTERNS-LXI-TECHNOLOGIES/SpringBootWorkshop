@@ -5,18 +5,13 @@ import com.lxisoft.OnetoOneEntity.entity.Question;
 
 public class ExamModel 
 {
-    private Question question;
+    private String question;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
-    private Answer answer;
-	public Question getQuestion() {
-		return question;
-	}
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
+    private String answer;
+	
 	public String getOption1() {
 		return option1;
 	}
@@ -41,12 +36,19 @@ public class ExamModel
 	public void setOption4(String option4) {
 		this.option4 = option4;
 	}
-	public Answer getAnswer() {
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	public String getAnswer() {
 		return answer;
 	}
-	public void setAnswer(Answer answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	
    
     
    

@@ -30,7 +30,7 @@ public class AnsOption implements Serializable {
         return ansOption;
     }
 
-    public void setOption(String option) {
+    public void setAnsOption(String option) {
         this.ansOption = ansOption;
     }
 
