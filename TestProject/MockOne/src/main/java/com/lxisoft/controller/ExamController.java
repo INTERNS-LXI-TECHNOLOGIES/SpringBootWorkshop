@@ -72,7 +72,7 @@ public class ExamController {
         return "index";
     }
     
-    @GetMapping(value = "/viewAll")
+    @GetMapping(value = "/read")
     public ModelAndView listExam(ModelAndView model) throws IOException {
         List<Question> listExam = questionRepository.findAll();
         model.addObject("listExam", listExam);
