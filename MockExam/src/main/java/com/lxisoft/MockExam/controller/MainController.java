@@ -78,17 +78,17 @@ public class MainController {
         return "login";
     }
     
-    @GetMapping("/admin")
+    @GetMapping("/addQuest")
     public ModelAndView get()
     {
         MockQuestion mockExam = new MockQuestion();
         ModelAndView model = new ModelAndView();
         model.addObject("mockExam",mockExam);
-        model.setViewName("start");
+        model.setViewName("add");
         return model;
     }
     
-    @PostMapping(value = "/start")
+    @PostMapping(value = "/add")
     public ModelAndView mockData(@ModelAttribute("mockExam") MockQuestion mockExam)
     {
         
@@ -118,7 +118,6 @@ public class MainController {
         return new ModelAndView("admin");
     }
     
-    
     @RequestMapping(value = "/displayQues")
     public ModelAndView displayQuestions(@RequestParam("id") long questId)
     {
@@ -126,8 +125,8 @@ public class MainController {
         MockQuestion mockQuestion = new MockQuestion();
 
         Question question = new Question();
-        String q = quest.getQuestion();
-        question.setQuestion(q);
+        String ques = quest.getQuestion();
+        question.setQuestion(ques);
         mockQuestion.setQuestion(question);
 
         Answer answer = new Answer();
@@ -145,13 +144,23 @@ public class MainController {
         mockQuestion.setOption3(option3.getOption());
        
         ModelAndView model = new ModelAndView();
-        model.addObject("model",mockQuestion);
-        model.setViewName("display");
+        model.addObject("mockQuestion",mockQuestion);
+        model.setViewName("admin");
         return model;
     }
     
     
-
+    @RequestMapping(value = "/getAllQuestions")
+    public ModelAndView showAllQuest()
+    {
+        List<Question> questionList = questionService.getAll();
+        ModelAndView model = new ModelAndView();
+        model.addObject("show",questionList);
+        model.setViewName("questionList");
+        return model;
+    }
+    
+    
     @GetMapping("/addNewQuestion")
     public String addnewQuestion(Model model) {
     	Question question=new Question();
