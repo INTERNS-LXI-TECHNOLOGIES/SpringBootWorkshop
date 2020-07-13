@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.lxisoft.MockExam.model.Answer;
 import com.lxisoft.MockExam.model.MockQuestion;
 import com.lxisoft.MockExam.model.Options;
@@ -155,8 +154,6 @@ public class MainController {
         model.setViewName("display");
         return model;
     }
-    
-    
     @RequestMapping(value = "/getAllQuestions")
     public ModelAndView showAllQuest()
     {
@@ -166,12 +163,20 @@ public class MainController {
         model.setViewName("questionList");
         return model;
     }
-    
     @RequestMapping(value = "/delete/{id}")
     public ModelAndView deleteQuestion(@PathVariable("id") int questId)
     {
         questionService.deleteById(questId);
         return new ModelAndView("redirect:/admin");
+    }
+    @GetMapping("/updateQuest")
+    public ModelAndView get()
+    {
+        MockQuestion mockExam = new MockQuestion();
+        ModelAndView model = new ModelAndView();
+        model.addObject("mockExam",mockExam);
+        model.setViewName("addQuestion");
+        return model;
     }
 
     @RequestMapping(value = "/update/{id}")
@@ -208,6 +213,4 @@ public class MainController {
         model.setViewName("update");
         return model;
     }
-    
-    
 }
