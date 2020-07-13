@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lxisoft.OnetoOneEntity.entity.AnsOption;
@@ -42,16 +47,16 @@ public class ExamController {
 	 @GetMapping(value = "/addNewQuestion")
 	 public String addNewQuestion(@ModelAttribute ExamModel examModel){
 	    	List<AnsOption> ansOptions = new ArrayList<>();
-	       /* String question = examModel.getQuestion();
-	        String answer = examModel.getAnswer();
-	        answer.setQuestion(question);
-	        question.setAnswer(answer);*/
+	      
 	        
-	    	Question question=new Question();
+	    	   Question question=new Question();
 		       question.setQuestion(examModel.getQuestion());
 		       Answer answer=new Answer();
 		       answer.setAnswer(examModel.getAnswer());
+		       answer.setQuestion(question);
 		       question.setAnswer(answer);
+		       
+		       
 		     
 	        AnsOption option1 = new AnsOption();
 	        AnsOption option2 = new AnsOption();
@@ -79,7 +84,33 @@ public class ExamController {
 	        questionRepository.save(question);
 	        return "first";
 	    }
-	 	
+	 
+	 @RequestMapping(value = "/findAllQuestions")
+	    public ModelAndView showAllQ()
+	    {
+	        List<Question> questionList = questionRepository.findAll();
+	        ModelAndView model = new ModelAndView();
+	        model.addObject("show",questionList);
+	        model.setViewName("viewExam.html");
+	        return model;
+	    }
+
+	 @RequestMapping("update/{id}") public String updateExam(@PathVariable("id")
+	 long id, Question question, BindingResult result, Model model) { if
+	 (result.hasErrors()) { question.setId(id); return "update-exam"; }
+	 
+	 questionRepository.save(question); model.addAttribute("questions",
+	 questionRepository.findAll()); return "first"; }
+	 
+	 @GetMapping("delete/{id}")
+		public String deleteQuestion(@PathVariable("id") long id, Model model) {
+			Question question = questionRepository.findById(id)
+					.orElseThrow(() -> new IllegalArgumentException("Invalid exam Id:" + id));
+			questionRepository.delete(question);
+			model.addAttribute("exams", questionRepository.findAll());
+			return "first";
+	
+	 }
 }
 
 
