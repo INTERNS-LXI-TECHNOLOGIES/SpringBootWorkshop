@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
 	<title>MockExam ManageMent</title>
@@ -20,19 +20,32 @@
 				<th>OPTION 1</th>
 				<th>OPTION 2</th>
 				<th>OPTION 3</th>
+				<th>OPTION 4</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="question : ${mockQuestion}">
-				<td th:text="${question.question}" ></td>
-				<td th:text="${question.answer}" ></td>
-				<td th:text="${question.option1}" ></td>
-				<td th:text="${question.option2}" ></td>
-				<td th:text="${question.option3}" ></td>
-			</tr>
+		<tr th:each="mockExam,iteration:${listQuestions}">
+        <td th:text="${iteration.count}"></td>
+        <td th:text="${mockExam.question}"></td>
+
+        <th:block th:each="options:${mockExam.option}">
+            <td th:text="${options.option}"></td>
+        </th:block>
+
+        <th:block th:each="answer:${mockExam.answer}">
+            <td th:text="${answer.answer}"></td>
+        </th:block>
+
+
+        <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td>
+        <td><a th:href="@{/delete/{id}(id=${mockExam.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete
+
+        </button></a></td>
+    	</tr>
+
 		</tbody>
 	</table>
-	<a th:href="@{/addNewQuestion}" class="btn btn-primary btn-sm mb-3"> ADD Question </a>
+	<a th:href="@{/addQuest}"><button >ADD Question</button></a>
 </div>
 </body>
 </html>

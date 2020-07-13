@@ -11,10 +11,10 @@
 		<h1>MockExam</h1>
 		<hr>
 		<h2>Add Question</h2>
-		<form th:action="@{/saveQuestion}" th:object="${question}" method="POST">
-			<input type="text" th:field="*{question}" placeholder="Question" class="form-control mb-4 col-4">
+		<form th:action="@{/add}" th:object="${mockExam}" method="POST">
+			<input type="text" th:field="*{question.question}" placeholder="Question" class="form-control mb-4 col-4">
 
-			<input type="text" th:field="*{answer}" placeholder="Answer" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{answer.answer}" placeholder="Answer" class="form-control mb-4 col-4">
 
 			<input type="text" th:field="*{option1}" placeholder="Option1" class="form-control mb-4 col-4">
 
@@ -22,7 +22,7 @@
 
 			<input type="text" th:field="*{option3}" placeholder="Option3" class="form-control mb-4 col-4">
 
-			<button type="submit" class="btn btn-info col-2"> Add question </button>
+			<button type="submit" class="btn btn-info col-2"> Save question </button>
 		</form>
 	</div>
 </body>

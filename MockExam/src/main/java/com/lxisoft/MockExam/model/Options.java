@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 public class Options {
@@ -13,9 +14,9 @@ public class Options {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id ;
+	private int id ;
 	
-	private String option;
+	private String opt;
 	
 	@ManyToOne
 	@JoinColumn(name = "question_id")
@@ -24,23 +25,23 @@ public class Options {
 	 public Options() {
 	    }
 
-	 public Options(long id, String option, Question question) {
+	 public Options(int id, String opt, Question question) {
 		super();
 		this.id = id;
-		this.option = option;
+		this.opt = opt;
 		this.question = question;
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getOption() {
-		return option;
+		return opt;
 	}
-	public void setOption(String option) {
-		this.option = option;
+	public void setOption(String opt) {
+		this.opt = opt;
 	}
 	public Question getQuestion() {
 		return question;
@@ -52,7 +53,7 @@ public class Options {
 	 @Override
 	    public String toString() {
 	        return "Options{" +
-	                "option='" + option + '\'' +
+	                "opt='" + opt + '\'' +
 	                '}';
 	    }
 	

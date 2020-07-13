@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,11 +53,17 @@ public class MainController {
 		return "login";
 	}
 	
-	@GetMapping("/")
-	public String home(Model model)
+	@GetMapping("/admin")
+	public ModelAndView home()
 	{
-		model.addAttribute("listQuestions",mockExamService.getAllQuestions());
-		return "admin";
+        MockQuestion mockExam = new MockQuestion();
+        ModelAndView model = new ModelAndView();
+        List<Question> question= questionService.getAll();
+        //System.out.println("size : " + question.size());
+     //   model.addObject("mockExam",mockExam);
+		model.addObject("listQuestions",question);
+        model.setViewName("admin");
+		return model;
 	}
 
 	 @GetMapping("/user")
@@ -84,7 +91,7 @@ public class MainController {
         MockQuestion mockExam = new MockQuestion();
         ModelAndView model = new ModelAndView();
         model.addObject("mockExam",mockExam);
-        model.setViewName("add");
+        model.setViewName("addQuestion");
         return model;
     }
     
@@ -119,7 +126,7 @@ public class MainController {
     }
     
     @RequestMapping(value = "/displayQues")
-    public ModelAndView displayQuestions(@RequestParam("id") long questId)
+    public ModelAndView displayQuestions(@RequestParam("id") int questId)
     {
         Question quest = questionService.get(questId);
         MockQuestion mockQuestion = new MockQuestion();
@@ -145,7 +152,7 @@ public class MainController {
        
         ModelAndView model = new ModelAndView();
         model.addObject("mockQuestion",mockQuestion);
-        model.setViewName("admin");
+        model.setViewName("display");
         return model;
     }
     
@@ -160,17 +167,47 @@ public class MainController {
         return model;
     }
     
-    
-    @GetMapping("/addNewQuestion")
-    public String addnewQuestion(Model model) {
-    	Question question=new Question();
-    	model.addAttribute("question",question);
-    	return "addQuestion";
+    @RequestMapping(value = "/delete/{id}")
+    public ModelAndView deleteQuestion(@PathVariable("id") int questId)
+    {
+        questionService.deleteById(questId);
+        return new ModelAndView("redirect:/admin");
+    }
+
+    @RequestMapping(value = "/update/{id}")
+    public ModelAndView questById(@ModelAttribute("id") int questId)
+    {
+        Question question = questionService.get(questId);
+        MockQuestion mockQuestion = new MockQuestion();
+
+        System.out.println(question.getId());
+        mockQuestion.setId(question.getId());
+        System.out.println(mockQuestion.getId());
+
+
+        String quest = question.getQuestion();
+        question.setQuestion(quest);
+        mockQuestion.setQuestion(question);
+        mockQuestion.setAnswer(question.getAnswer());
+
+        List<Options> ops = question.getOption();
+        Options option1 = ops.get(0);
+        String opts1 = option1.getOption();
+        mockQuestion.setOption1(opts1);
+
+        Options option2 = ops.get(1);
+        String opts2 = option2.getOption();
+        mockQuestion.setOption2(opts2);
+
+        Options option3 = ops.get(2);
+        String opts3 = option3.getOption();
+        mockQuestion.setOption3(opts3);
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("questById",mockQuestion);
+        model.setViewName("update");
+        return model;
     }
     
-    @PostMapping("/saveQuestion")
-    public String saveQuestion(@ModelAttribute("question") Question question) {
-    	mockExamService.save(question);
-    	return "redirect:/";
-    }  
+    
 }

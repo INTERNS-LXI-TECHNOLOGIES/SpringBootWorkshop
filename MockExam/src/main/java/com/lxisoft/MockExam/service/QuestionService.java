@@ -1,9 +1,12 @@
 package com.lxisoft.MockExam.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.lxisoft.MockExam.model.Question;
 import com.lxisoft.MockExam.repository.QuestionRepository;
 
+@Service
 public class QuestionService {
 
 	    @Autowired
@@ -13,8 +16,8 @@ public class QuestionService {
 	    {
 	            questionRepository.save(question);
 	    }
-
-	    public Question get(long id)
+	    
+	    public Question get(int id)
 	    {
 	        return questionRepository.getOne(id);
 	    }
@@ -25,7 +28,7 @@ public class QuestionService {
 	        return  questionRepository.findAll();
 	    }
 
-	    public void deleteById(long id)
+	    public void deleteById(int id)
 	    {
 	        questionRepository.deleteById(id);
 	    }

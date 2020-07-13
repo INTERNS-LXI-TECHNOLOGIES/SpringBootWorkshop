@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.lxisoft.MockExam.model.Question;
 
 @EnableJpaRepositories
-public interface QuestionRepository extends JpaRepository<Question,Long>{
+public interface QuestionRepository extends JpaRepository<Question,Integer>{
 
 }

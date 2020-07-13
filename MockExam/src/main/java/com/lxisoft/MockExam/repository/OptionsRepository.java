@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.lxisoft.MockExam.model.Options;
 
 @EnableJpaRepositories
-public interface OptionsRepository extends JpaRepository<Options,Long> {
+public interface OptionsRepository extends JpaRepository<Options,Integer> {
 
 }

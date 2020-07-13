@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import java.util.List;
 
-@Entity(name = "QUESTION")
+@Entity
+@Table(name = "QUESTION")
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private int Id;
 
     private String question;
 
@@ -27,7 +29,7 @@ public class Question {
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     private List<Options> options;
 
-    public Question(long id, String question, Answer answer, List<Options> options) {
+    public Question(int id, String question, Answer answer, List<Options> options) {
         Id = id;
         this.question = question;
         this.answer = answer;
@@ -39,11 +41,11 @@ public class Question {
 
     }
     
-    public long getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         Id = id;
     }
 
