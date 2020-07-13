@@ -18,17 +18,17 @@ public class Question implements Serializable {
     private Answer answer;
     
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<QnOption> options;
+    public List<QnOption> qnOption;
 
     
     public Question(){
 
     }
 
-    public Question(long id, String question,List<QnOption> options, Answer answer) {
+    public Question(long id, String question,List<QnOption> qnOption, Answer answer) {
         this.id = id;
         this.question = question;
-        this.options = options;
+        this.qnOption = qnOption;
         this.answer = answer;
     }
 
@@ -56,11 +56,11 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public void setOptions(List<QnOption> options) {
-        this.options = options;
+    public void setOptions(List<QnOption> qnOption) {
+        this.qnOption = qnOption;
     }
     public List<QnOption> getOptions() {
-        return options;
+        return qnOption;
     }
     
 }

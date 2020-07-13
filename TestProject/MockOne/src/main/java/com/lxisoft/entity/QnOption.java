@@ -12,7 +12,7 @@ public class QnOption implements Serializable {
     private Long id;
 
     @Column
-    private String qOption;
+    public String qnOption;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
@@ -21,18 +21,18 @@ public class QnOption implements Serializable {
     public QnOption() {
     }
 
-    public QnOption(long id, String qOption, Question question) {
+    public QnOption(long id, String qnOption, Question question) {
         this.id = id;
-        this.qOption = qOption;
+        this.qnOption = qnOption;
         this.question = question;
     }
 
     public String getQOption() {
-        return qOption;
+        return qnOption;
     }
 
-    public void setQOption(String qOption) {
-        this.qOption = qOption;
+    public void setQOption(String qnOption) {
+        this.qnOption = qnOption;
     }
 
     public Long getId() {
