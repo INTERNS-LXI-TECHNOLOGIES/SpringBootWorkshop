@@ -8,8 +8,9 @@ import com.lxisoft.repository.AnswerRepository;
 import com.lxisoft.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -87,5 +88,36 @@ public class ExamController {
     	questionRepository.deleteById(examId);
     	return "read";   
   }
+    
+    
+    @GetMapping(value = "/update/{id}")
+	public String updateStudent(@PathVariable("id") long id,  Question question, BindingResult result,
+			Model model) {
+		if (result.hasErrors()) {
+			question.setId(id);
+			return "update";
+		}
+
+		questionRepository.save(question);
+		model.addAttribute("exams", questionRepository.findAll());
+		return "read";
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
