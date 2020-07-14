@@ -1,6 +1,7 @@
 package com.lxisoft.OnetoOneEntity.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,11 +92,12 @@ public class ExamController {
 	        List<Question> questionList = questionRepository.findAll();
 	        ModelAndView model = new ModelAndView();
 	        model.addObject("show",questionList);
-	        model.setViewName("viewExam.html");
+	        model.setViewName("viewExam");
 	        return model;
 	    }
 
-	 @RequestMapping("update/{id}") public String updateExam(@PathVariable("id")
+	 @RequestMapping("update/{id}") 
+	 public String updateExam(@PathVariable("id")
 	 long id, Question question, BindingResult result, Model model) { if
 	 (result.hasErrors()) { question.setId(id); return "update-exam"; }
 	 
