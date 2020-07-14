@@ -178,9 +178,8 @@ public class MainController {
         model.setViewName("addQuestion");
         return model;
     }
-
     @RequestMapping(value = "/update/{id}")
-    public ModelAndView questById(@ModelAttribute("id") int questId)
+    public ModelAndView questById(@PathVariable("id") int questId)
     {
         Question question = questionService.get(questId);
         MockQuestion mockQuestion = new MockQuestion();
