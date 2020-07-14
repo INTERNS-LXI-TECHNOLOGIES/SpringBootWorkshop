@@ -17,12 +17,12 @@ public class QuestionService {
 	            questionRepository.save(question);
 	    }
 	    
-	    public Question get(int id)
+	    public List<Question> findById(int id)
 	    {
-	        return questionRepository.getOne(id);
+	        return  questionRepository.findById(id);
 	    }
 
-	    public List<Question> getAll()
+	   public List<Question> getAll()
 	    {
 
 	        return  questionRepository.findAll();
