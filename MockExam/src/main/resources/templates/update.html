@@ -13,9 +13,9 @@
         <hr>
         <h2>Update Question</h2>
 
-        <form action="#" th:action="@{/update" th:object="${mockExam}" method="POST">
+        <form action="#" th:action="@{/update}" th:object="${mockExam}" method="POST">
             
-            <!-- <input type="hidden" th:field="*{id}" /> -->
+            <input type="hidden" th:field="*{id}" />
 
             <input type="text" th:field="*{question.question}" placeholder="Question" class="form-control mb-4 col-4">
 
@@ -26,8 +26,6 @@
             <input type="text" th:field="*{option2}" placeholder="Option2" class="form-control mb-4 col-4">
 
             <input type="text" th:field="*{option3}" placeholder="Option3" class="form-control mb-4 col-4">
-
-            <input type="text" th:field="*{option4}" placeholder="Option4" class="form-control mb-4 col-4">
 
             <td><!-- <a th:href="@{/update}" -->><button >Save Question</button></a></td>
         </form>

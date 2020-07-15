@@ -10,6 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.util.List;
 
 @Entity
@@ -23,10 +26,12 @@ public class Question {
     private String question;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "answer_id",referencedColumnName = "id")
     private Answer answer;
 
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
+    @NotFound(action = NotFoundAction.IGNORE)
     private List<Options> options;
 
     public Question(int id, String question, Answer answer, List<Options> options) {

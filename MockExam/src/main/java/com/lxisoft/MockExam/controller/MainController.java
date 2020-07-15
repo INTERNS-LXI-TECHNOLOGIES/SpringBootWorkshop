@@ -175,7 +175,28 @@ public class MainController {
         Question question = questionService.findById(questId);
 
         MockQuestion mockExam = new MockQuestion();
+        
+        
         mockExam.setId(question.getId());
+        
+        Question quest = new Question();
+        String ques = question.getQuestion();
+        quest.setQuestion(ques);
+        mockExam.setQuestion(quest);
+        mockExam.setAnswer(question.getAnswer());
+        
+        List<Options> option = question.getOption();
+        Options option1 = option.get(0);
+        Options option2 = option.get(1);
+        Options option3 = option.get(2);
+        
+   
+        mockExam.setOption1(option1.getOption());
+        mockExam.setOption2(option2.getOption());
+        mockExam.setOption3(option3.getOption());
+       
+        
+        
         ModelAndView model = new ModelAndView();
         model.addObject("mockExam",mockExam);
         model.setViewName("update");
@@ -187,25 +208,33 @@ public class MainController {
     {
         
         Question question = questionService.findById(mockExam.getId());
+        
+        Question ques = new Question();
         Answer answer = mockExam.getAnswer();
+        ques = mockExam.getQuestion();
+        question.setQuestion(ques.getQuestion());
         question.setAnswer(answer);
         List<Options> options = new ArrayList<Options>();   
         Options option1 = new Options();
         Options option2 = new Options();
         Options option3 = new Options();
+        
    
         option1.setOption(mockExam.getOption1());
         option2.setOption(mockExam.getOption2());
         option3.setOption(mockExam.getOption3());
+        
       
         option1.setQuestion(question);
         option2.setQuestion(question);
         option3.setQuestion(question);
+        
    
         options.add(option1);
         options.add(option2);
         options.add(option3);
-  
+        
+        
         question.setOption(options);
         questionService.saveQuestion(question);
 
