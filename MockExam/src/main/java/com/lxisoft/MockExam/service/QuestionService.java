@@ -18,16 +18,15 @@ public class QuestionService {
 	    {
 	            questionRepository.save(question);
 	    }
-	    
-	    public Optional<Question> findById (int id)
-	    {
-	        return  questionRepository.findById(id);
-	    }
 
-	   public List<Question> getAll()
+	    public List<Question> getAll()
 	    {
-
 	        return  questionRepository.findAll();
+	    }
+	    
+	    public Question findById(int id)
+	    {
+	        return  questionRepository.getOne(id);
 	    }
 
 	    public void deleteById(int id)
