@@ -58,35 +58,6 @@ public class SampleApplication implements CommandLineRunner {
 		 this.mainPostRepository.save(mainPost);
 		 
 		
-		/*
-		 * User user =new User(); user.setName("ammu");
-		 * user.setEmail("ammucse123@gmail.com");
-		 * 
-		 * UserProfile userProfile = new UserProfile();
-		 * userProfile.setAddress("palakkad");
-		 * userProfile.setBirthOfDate(LocalDate.of(1997, 07, 02));
-		 * userProfile.setGender(Gender.FEMALE);
-		 * userProfile.setPhoneNumber("123456789");
-		 * 
-		 * user.setUserProfile(userProfile); userProfile.setUser(user);
-		 * userRepository.save(user);
-		 */
-		 
-		
-		
-		/*
-		 * Post post = new Post("Today is my engagement", "comment it");
-		 * 
-		 * Comment comment1 = new Comment("Heartly wishe"); Comment comment2 = new
-		 * Comment("Happy married life"); Comment comment3 = new Comment("Happy life");
-		 * 
-		 * post.getComments().add(comment1); post.getComments().add(comment2);
-		 * post.getComments().add(comment3);
-		 * 
-		 * this.postRepository.save(post);
-		 */
-		 
-		
 		
 	}
 }

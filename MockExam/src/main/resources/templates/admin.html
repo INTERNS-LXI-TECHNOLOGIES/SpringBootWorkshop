@@ -21,6 +21,7 @@
 				<th>OPTION 1</th>
 				<th>OPTION 2</th>
 				<th>OPTION 3</th>
+				<th>PREFERENCE</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,12 +29,12 @@
         <td th:text="${iteration.count}"></td>
         <td th:text="${mockExam.question}"></td>
 
-        <th:block th:each="options:${mockExam.option}">
-            <td th:text="${options.option}"></td>
+		<th:block th:each="answer:${mockExam.answer}">
+            <td th:text="${answer.answer}"></td>
         </th:block>
 
-        <th:block th:each="answer:${mockExam.answer}">
-            <td th:text="${answer.answer}"></td>
+        <th:block th:each="options:${mockExam.option}">
+            <td th:text="${options.option}"></td>
         </th:block>
 
 

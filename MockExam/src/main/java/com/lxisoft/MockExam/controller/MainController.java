@@ -121,7 +121,7 @@ public class MainController {
         question.setOption(options);
         questionService.saveQuestion(question);
 
-        return new ModelAndView("admin");
+        return new ModelAndView("redirect:/admin");
     }
     
     @RequestMapping(value = "/displayQues")
@@ -214,30 +214,27 @@ public class MainController {
         ques = mockExam.getQuestion();
         question.setQuestion(ques.getQuestion());
         question.setAnswer(answer);
-        List<Options> options = new ArrayList<Options>();   
-        Options option1 = new Options();
-        Options option2 = new Options();
-        Options option3 = new Options();
+        List<Options> options = question.getOption() ;  
         
-   
-        option1.setOption(mockExam.getOption1());
-        option2.setOption(mockExam.getOption2());
-        option3.setOption(mockExam.getOption3());
+		/*
+		 * option1.setOption(mockExam.getOption1());
+		 * option2.setOption(mockExam.getOption2());
+		 * option3.setOption(mockExam.getOption3());
+		 */
+        options.get(0).setOption(mockExam.getOption1());
+        options.get(1).setOption(mockExam.getOption2());
+        options.get(2).setOption(mockExam.getOption3());
         
-      
-        option1.setQuestion(question);
-        option2.setQuestion(question);
-        option3.setQuestion(question);
         
-   
-        options.add(option1);
-        options.add(option2);
-        options.add(option3);
-        
+       
+		/*
+		 * options.add(mockExam.getOption1()); options.add(mockExam.getOption2());
+		 * options.add(mockExam.getOption3());
+		 */
         
         question.setOption(options);
         questionService.saveQuestion(question);
 
-        return new ModelAndView("update");
+        return new ModelAndView("redirect:/admin");
     }
 }
