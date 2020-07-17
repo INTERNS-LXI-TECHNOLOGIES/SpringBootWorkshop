@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>SOCIAL MEDIA</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		
+		<h1>socialMedia</h1>
+		<hr>
+		<form th:action="@{/send}" th:object="${post}" method="POST">
+			<input type="text" th:field="*{post}" placeholder="Post" class="form-control mb-4 col-4">
+
+			<input type="text" th:field="*{description}" placeholder="Description" class="form-control mb-4 col-4">
+			
+			<button type="submit" class="btn btn-info col-2"> Send Post </button>
+		</form>
+	</div>
+</body>
+</html>
