@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Library ManageMent</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="container my-2">
+
+	<h1 align="center">LIBRARY</h1>
+	<table border="1" class="table table-striped table-responsive-md">
+		<thead>
+			<tr>
+				<th>Q.No</th>
+				<th>USER</th>
+				<th>ADDRESS</th>
+				<th>BOOK1</th>
+				<th>BOOK2</th>
+				<th>BOOK3</th>
+				<th>BOOK4</th>
+				<th>PREFERENCE</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr th:each="user,iteration:${users}">
+        <td th:text="${iteration.count}"></td>
+        <td th:text="${users.name}"></td>
+
+		<th:block th:each="address:${user.address}">
+            <td th:text="${address.address}"></td>
+        </th:block>
+
+        <th:block th:each="books:${user.books}">
+            <td th:text="${books.book}"></td>
+        </th:block>
+
+
+        <!-- <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td> -->
+        <td><a th:href="@{/update/{id}(id=${user.id})}"><button >Update</button></a></td>
+        <td><a th:href="@{/delete/{id}(id=${user.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete
+
+        </button></a></td>
+    	</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/addUser}"><button >ADD Question</button></a>
+</div>
+</body>
+</html>
