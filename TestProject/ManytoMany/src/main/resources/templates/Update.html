@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+</head>
+<body>
+        <br>
+        <br>
+        <center><h1><font size="20px" color="blue" >Student</font></h1></center>
+        <br>
+        <br>
+    </div>
+  
+    <div align="center" style="padding-top: 12px;">
+        <form action= th:action = "@{/add}" method="GET" th:object="${examModel}">
+            <table style="width:84%;" >
+            
+                <th:hidden path="id" />
+                <tr>
+                    <td>Name of Student:<input type = "text" id="name" value="Amritha"/></td>
+                </tr>
+                 
+                
+                <tr>
+                    <td>Course Id:<input type = "text" id="course" value="CS01"/></td>
+                </tr>
+                <tr>
+                    <td>Course Name:<input type = "text" id="coursename" value="CS" /></td>
+                </tr>
+                
+               
+                     </table>
+            <div align="center">
+                <button class="button">Done</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
