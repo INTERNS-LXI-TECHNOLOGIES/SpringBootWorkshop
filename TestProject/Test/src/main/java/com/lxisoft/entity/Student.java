@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,18 +20,32 @@ import javax.persistence.Table;
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
-	@SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "age")
+	private int age;
 
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinTable(name = "STUDENT_COURSE", joinColumns = { @JoinColumn(name = "STUDENT_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "COURSE_ID") })
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+	@JoinTable(name = "STUDENT_COURSE", joinColumns = { @JoinColumn(name = "STUDENT_ID", referencedColumnName = "id",
+    nullable = false, updatable = false) }, inverseJoinColumns = {
+			@JoinColumn(name = "COURSE_ID", referencedColumnName = "id",
+                    nullable = false, updatable = false) })
 	private Set<Course> courses;
+    
+    public Student() {
+    }
 
+    public Student(Integer id, String name, int age, Set<Course> courses) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.courses = courses;
+    }
 	
 	public void setCourses(Set<Course> courses) {
         this.courses = courses;
@@ -56,6 +71,13 @@ public class Student {
         this.id = id;
     }
 	
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 	
 	public void addCourse(Course course) {
 		this.courses.add(course);
