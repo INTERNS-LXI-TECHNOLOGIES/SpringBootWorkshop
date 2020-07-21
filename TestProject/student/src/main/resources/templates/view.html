@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>viewAll</title>
+</head>
+<body>
+<div>
+        <h1 align=center>View All Students</h1>
+        <br>
+        <br>
+    </div>
+    <table align=center border=1px >
+	<tr>
+                <th>Student</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Chapter</th>
+	</tr>
+
+            <tr th:each="list,iterationStatus : ${students}">
+                <td th:text="${list.name}"></td>
+                <td th:text="${list.age}"></td>
+                
+            </tr>
+        </table>
+    
+<form action="index.html">
+    <center><button>Back</button></center>
+</form>
+</body>
+</html>
+
