@@ -34,10 +34,11 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
-	 @GetMapping("/")
-	    public String root() {
-	        return "first";
-	    }
+	
+	@GetMapping("/")
+	public String firstPage() {
+	return "first";
+	}
 	 
 	@GetMapping(value ="/viewAll")
 	public ModelAndView getAllStudents(ModelAndView modelAndView) {
@@ -46,11 +47,9 @@ public class StudentController {
 		modelAndView.setViewName("view");
         return modelAndView;
 	}
-	
-	 
-	
+		
     
-    @RequestMapping(value = "/newstd", method = RequestMethod.GET)
+    @RequestMapping(value = "/newstudent", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
       StudentDto studentDto = new StudentDto();
       model.addObject("studentDto", studentDto);
@@ -72,12 +71,12 @@ public class StudentController {
         return "index";
     }
 	
-	@PutMapping("/student/{id}")
+	/*@PutMapping("/student/{id}")
 	public ResponseEntity<StudentDto> updateEmployee(@PathVariable(name = "id") Integer id,
 			@RequestBody StudentDto student) {
 		StudentDto std = studentService.updateStudent(id, student);
 		return new ResponseEntity<>(std, HttpStatus.CREATED);
-	}
+	}*/
 
 	@DeleteMapping("/student/{id}")
 	public ResponseEntity<String> deleteStudent(@PathVariable(name = "id") Integer studentId) {
