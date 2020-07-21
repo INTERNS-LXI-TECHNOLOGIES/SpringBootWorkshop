@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-	<title>Registration</title>
+	<title>ADD USER</title>
 	<link rel="stylesheet" 
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
@@ -20,7 +20,6 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span>
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Library</a>
 			</div>
 		</div>
 	</nav>
@@ -30,52 +29,46 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				
-				<!-- <div th:if="${param.success}">
-					<div class="alert alert-info">You've successfully registered
-					to MockExam</div>
-				</div> -->
+				<h1>Add</h1>
 
-				<h1>Registration</h1>
-
-				<form th:action="@{/addUsers}" method="post" th:object = "${user}">
+				<form th:action="@{/add}" method="GET" th:object = "${library}">
 					<div class="form-group">
 						<label class="control-label" for="name">
 							Name
 						</label>
-						<input id="name" class="form-control" th:field="*{name}" required autofocus="autofocus"/>
+						<input id="name" class="form-control" th:field="*{user.name}" required autofocus="autofocus"/>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="address">
 							address
 						</label>
-						<input id="address" class="form-control" th:field="*{address}" required autofocus="autofocus"/>
+						<input id="address" class="form-control" th:field="*{user.address}" required autofocus="autofocus"/>
 					</div>
 
 					<div class="form-group">
-						<label class="control-label" for="book">
+						<label class="control-label" for="book1">
 							book1
 						</label>
-						<input id="book1" class="form-control" th:field="*{book1}" required autofocus="autofocus"/>
+						<input id="book1" class="form-control" th:field="*{user.book1}" required autofocus="autofocus"/>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="book2">
 							book2
 						</label>
-						<input id="book2" class="form-control" type="book2" th:field="*{book2}" required autofocus="autofocus"/>
+						<input id="book2" class="form-control" type="book2" th:field="*{user.book2}" required autofocus="autofocus"/>
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="book3">
 							book3
 						</label>
-						<input id="book3" class="form-control" type="book3" th:field="*{book3}" required autofocus="autofocus"/>
+						<input id="book3" class="form-control" type="book3" th:field="*{user.book3}" required autofocus="autofocus"/>
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Register</button>
-						<span>Already registered? <a href="/" th:herf="@{/login}">Login </a></span>						
+						<button type="submit" class="btn btn-success">Add</button>					
 					</div>
 				</form>
 			</div>			

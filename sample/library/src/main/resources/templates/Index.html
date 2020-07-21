@@ -26,19 +26,15 @@
 			</tr>
 		</thead>
 		<tbody>
-		<tr th:each="user,iteration:${users}">
+		<tr th:each="user,iteration:${listUser}">
         <td th:text="${iteration.count}"></td>
-        <td th:text="${users.name}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
 
-		<th:block th:each="address:${user.address}">
-            <td th:text="${address.address}"></td>
+		<th:block th:each="book:${user.books}">
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.author}"></td>
         </th:block>
-
-        <th:block th:each="books:${user.books}">
-            <td th:text="${books.book}"></td>
-        </th:block>
-
-
         <!-- <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td> -->
         <td><a th:href="@{/update/{id}(id=${user.id})}"><button >Update</button></a></td>
         <td><a th:href="@{/delete/{id}(id=${user.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete

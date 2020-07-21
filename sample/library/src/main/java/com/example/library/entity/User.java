@@ -1,10 +1,14 @@
 package com.example.library.entity;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,41 +19,41 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User implements Serializable {
 
 		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+	    private long id;
 	 
-	    @Column(name = "name")
+	    @Column
 	    private String name;
 	    
-	    @Column(name = "addrress")
+	    @Column
 	    private String addrress;
 	 
 	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	    @JoinTable(
-	    	name = "USER_BOOK", joinColumns =
-	    	@JoinColumn(name = "USER_ID", referencedColumnName="id"),
-	    	inverseJoinColumns = 
-	            @JoinColumn(name = "BOOK_ID",referencedColumnName="id")
-	    )
-
+	    	name = "USER_BOOK", joinColumns = {
+	    	@JoinColumn(name = "USER_ID", referencedColumnName="id", nullable = false, updatable = false)},
+	    	inverseJoinColumns = {
+	            @JoinColumn(name = "BOOK_ID",referencedColumnName="id", nullable = false, updatable = false)})
+	    
+	    private Set<Book> books= new HashSet<>();
 	    public User() {
 	    }
-	    
-	    public User(String name, String addrress, Set<Book> books) {
-			super();
+
+		public User(Long id,String name, String addrress, Set<Book> books) {
+			this.id=id;
 			this.name = name;
 			this.addrress = addrress;
 			this.books = books;
 		}
-	    
-		public Integer getId() {
+
+		public long getId() {
 			return id;
 		}
 
-		public void setId(Integer id) {
+		public void setId(long id) {
 			this.id = id;
 		}
 
@@ -76,24 +80,33 @@ public class User {
 		public void setBooks(Set<Book> books) {
 			this.books = books;
 		}
-
-
-	    private Set<Book> books;
-	 
-	    public void addBook(Book book) {
-	        this.books.add(book);
-	        book.getUsers().add(this);
+		
+		@Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (!(o instanceof User)) return false;
+	        User user = (User) o;
+	        return getName() == user.getName() &&
+	                Objects.equals(getId(), user.getId()) &&
+	                Objects.equals(getName(), user.getName()) &&
+	                Objects.equals(getAddrress(), user.getAddrress()) &&
+	                Objects.equals(getBooks(), user.getBooks());
 	    }
-	 
-	    public void removeBook(Book book) {
-	        this.getBooks().remove(book);
-	        book.getUsers().remove(this);
+		
+		@Override
+	    public int hashCode() {
+	        return Objects.hash(getId());
 	    }
-	 
-	    public void removeBooks() {
-	        for (Book book : new HashSet<>(books)) {
-	        	removeBook(book);
-	        }
-	    }
+		  @Override
+		    public String toString() {
+		        return "User{" +
+		                "id=" + id +
+		                ", name='" + name + '\'' +
+		                ", address=" + addrress +
+		                ", books='" + books + '\'' +
+		                '}';
+		    }
+		
+		
 	
 }

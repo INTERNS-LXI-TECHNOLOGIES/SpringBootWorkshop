@@ -1,7 +1,11 @@
 package com.example.library.entity;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,34 +16,38 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "BOOK")
-public class Book {
+public class Book implements Serializable {
 
 	
-	 @Id
+	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+	    private long id;
 	 
-	    @Column(name = "name")
+	    @Column
 	    private String name;
 	 
-	    @Column(name = "author")
+	    @Column
 	    private String author;
 	    
-	    public Book(String name, String author, Set<User> users) {
-			super();
+	    @ManyToMany(mappedBy = "books",fetch = FetchType.LAZY)
+	    private Set<User> users = new HashSet<>();
+	    
+	    public Book() {
+	    	
+	    }
+	    
+	    public Book(Long id,String name, String author, Set<User> users) {
+	    	this.id = id;
 			this.name = name;
 			this.author = author;
 			this.users = users;
 		}
-
-		@ManyToMany(mappedBy = "books")
-	    private Set<User> users;
 	    
-		public Integer getId() {
+		public long getId() {
 			return id;
 		}
 
-		public void setId(Integer id) {
+		public void setId(long id) {
 			this.id = id;
 		}
 
@@ -67,6 +75,29 @@ public class Book {
 			this.users = users;
 		}
 
-		
-	
+		@Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (!(o instanceof Book)) return false;
+	        Book book = (Book) o;
+	        return getName() == book.getName() &&
+	                Objects.equals(getId(), book.getId()) &&
+	                Objects.equals(getName(), book.getName()) &&
+	                Objects.equals(getAuthor(), book.getAuthor()) &&
+	                Objects.equals(getUsers(), book.getUsers());
+	    }
+		@Override
+	    public int hashCode() {
+	        return Objects.hash(getId());
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "Course{" +
+	                "id=" + id +
+	                ", name='" + name + '\'' +
+	                ", author='" + author + '\'' +
+	                ", users=" + users +
+	                '}';
+	    }	
 }
