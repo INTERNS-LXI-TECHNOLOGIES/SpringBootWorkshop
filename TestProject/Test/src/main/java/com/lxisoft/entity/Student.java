@@ -1,4 +1,5 @@
 package com.lxisoft.entity;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "STUDENT")
-public class Student {
+public class Student implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ public class Student {
 	private String name;
 	
 	@Column(name = "age")
-	private int age;
+	private String age;
 
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
@@ -35,22 +36,22 @@ public class Student {
     nullable = false, updatable = false) }, inverseJoinColumns = {
 			@JoinColumn(name = "COURSE_ID", referencedColumnName = "id",
                     nullable = false, updatable = false) })
-	private Set<Course> courses;
+	private List<Course> courses;
     
     public Student() {
     }
 
-    public Student(Integer id, String name, int age, Set<Course> courses) {
+    public Student(Integer id, String name, String age, List<Course> courses) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.courses = courses;
     }
 	
-	public void setCourses(Set<Course> courses) {
+	public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    public Set<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
     
@@ -71,11 +72,11 @@ public class Student {
         this.id = id;
     }
 	
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 	

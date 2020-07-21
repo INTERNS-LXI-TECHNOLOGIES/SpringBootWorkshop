@@ -1,7 +1,6 @@
 package com.lxisoft.entity;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.io.Serializable;
+import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "COURSE")
-public class Course {
+public class Course implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,22 +28,22 @@ public class Course {
 
 	
 	@ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
-    private Set<Student> students = new HashSet<>();
+    private List<Student> students = new ArrayList<>();
 
     public Course() {
     }
 
-    public Course(Integer id, String name, String chapter,Set<Student> students) {
+    public Course(Integer id, String name, String chapter,List<Student> students) {
         this.id = id;
         this.name = name;
         this.chapter = chapter;
         this.students = students;
     }
 	
-	public void setStudents(Set<Student> students) {
+	public void setStudents(List<Student> students) {
         this.students = students;
     }
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
     

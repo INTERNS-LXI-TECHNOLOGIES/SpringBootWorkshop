@@ -10,7 +10,7 @@ import com.lxisoft.entity.Student;
 public class StudentDto {
 	private Integer id;
 	private String name;
-	private int age;
+	private String age;
 	private Set<String> courses = new HashSet<>();
 	private Student student;
     private Course course;
@@ -108,11 +108,11 @@ public class StudentDto {
     public void setStudent3(Student student3) {
         this.student3 = student3;
     }
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

@@ -45,9 +45,6 @@ public class StudentController {
         return modelAndView;
 	}
 	
-	 
-	
-    
     @RequestMapping(value = "/newstd", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
       StudentDto studentDto = new StudentDto();
@@ -69,17 +66,40 @@ public class StudentController {
         courseRepository.save(course);
         return "index";
     }
-	
-	@PutMapping("/student/{id}")
-	public ResponseEntity<StudentDto> updateEmployee(@PathVariable(name = "id") Integer id,
-			@RequestBody StudentDto student) {
-		StudentDto std = studentService.updateStudent(id, student);
-		return new ResponseEntity<>(std, HttpStatus.CREATED);
-	}
+    
+    
 
-	@DeleteMapping("/student/{id}")
-	public ResponseEntity<String> deleteStudent(@PathVariable(name = "id") Integer studentId) {
-		String message = studentService.deleteStudent(studentId);
-		return new ResponseEntity<>(message, HttpStatus.OK);
+    @RequestMapping(value = "/newcrs", method = RequestMethod.GET)
+    public ModelAndView newCourse(ModelAndView model) {
+      StudentDto studentDto = new StudentDto();
+      model.addObject("studentDto", studentDto);
+      model.setViewName("addcourse");
+      return model;
+  }
+
+    @GetMapping(value = "/addcourse")
+    public String saveCoursesInStudent(@ModelAttribute StudentDto std){
+        Student student = std.getStudent();
+        Course course1 = std.getCourse1();
+        Course course2 = std.getCourse2();
+        Course course3 = std.getCourse3();
+
+        studentRepository.save(student);
+
+        courseRepository.saveAll(Arrays.asList(course1,course2,course3));
+        student.getCourses().addAll(Arrays.asList(course1,course2,course3));
+
+        studentRepository.save(student);
+
+        return "index";
+    }
+    
+    
+	
+    @GetMapping(value = "/update/{id}")
+	public String updateEmployee(@PathVariable(name = "id") Integer id,
+			 StudentDto student) {
+		StudentDto std = studentService.updateStudent(id, student);
+		return "update";
 	}
 }

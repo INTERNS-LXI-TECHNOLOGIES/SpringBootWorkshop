@@ -16,12 +16,17 @@
                 <th>Age</th>
                 <th>Course</th>
                 <th>Chapter</th>
+                <th>Edit</th>
 	</tr>
 
             <tr th:each="list,iterationStatus : ${students}">
                 <td th:text="${list.name}"></td>
                 <td th:text="${list.age}"></td>
-                
+                <th:block th:each ="course : ${list.courses}">
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.chapter}"></td>
+                </th:block>
+                <td><a th:href="@{/update/{id}(id=${list.id})}">Edit</a></td>
             </tr>
         </table>
     

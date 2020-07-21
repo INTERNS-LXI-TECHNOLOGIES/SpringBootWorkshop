@@ -63,13 +63,13 @@ public class StudentServiceImpl implements StudentService {
 	private void mapDtoToEntity(StudentDto studentDto, Student student) {
 		student.setName(studentDto.getName());
 		if (null == student.getCourses()) {
-			student.setCourses(new HashSet<>());
+			student.setCourses(new ArrayList<>());
 		}
 		studentDto.getCourses().stream().forEach(courseName -> {
 			Course course = courseRepository.findByName(courseName);
 			if (null == course) {
 				course = new Course();
-				course.setStudents(new HashSet<>());
+				course.setStudents(new  ArrayList<>());
 			}
 			course.setName(courseName);
 			student.addCourse(course);
