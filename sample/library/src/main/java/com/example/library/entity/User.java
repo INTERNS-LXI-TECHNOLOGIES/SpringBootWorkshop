@@ -29,7 +29,7 @@ public class User implements Serializable {
 	    private String name;
 	    
 	    @Column
-	    private String addrress;
+	    private String address;
 	 
 	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	    @JoinTable(
@@ -38,14 +38,14 @@ public class User implements Serializable {
 	    	inverseJoinColumns = {
 	            @JoinColumn(name = "BOOK_ID",referencedColumnName="id", nullable = false, updatable = false)})
 	    
-	    private Set<Book> books= new HashSet<>();
+	    private Set<Book> books;
 	    public User() {
 	    }
 
-		public User(Long id,String name, String addrress, Set<Book> books) {
+		public User(Long id,String name, String address, Set<Book> books) {
 			this.id=id;
 			this.name = name;
-			this.addrress = addrress;
+			this.address = address;
 			this.books = books;
 		}
 
@@ -65,12 +65,12 @@ public class User implements Serializable {
 			this.name = name;
 		}
 
-		public String getAddrress() {
-			return addrress;
+		public String getAddress() {
+			return address;
 		}
 
-		public void setAddrress(String addrress) {
-			this.addrress = addrress;
+		public void setAddress(String address) {
+			this.address = address;
 		}
 
 		public Set<Book> getBooks() {
@@ -81,28 +81,20 @@ public class User implements Serializable {
 			this.books = books;
 		}
 		
-		@Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (!(o instanceof User)) return false;
-	        User user = (User) o;
-	        return getName() == user.getName() &&
-	                Objects.equals(getId(), user.getId()) &&
-	                Objects.equals(getName(), user.getName()) &&
-	                Objects.equals(getAddrress(), user.getAddrress()) &&
-	                Objects.equals(getBooks(), user.getBooks());
-	    }
-		
-		@Override
-	    public int hashCode() {
-	        return Objects.hash(getId());
-	    }
+		/*
+		 * @Override public boolean equals(Object o) { if (this == o) return true; if
+		 * (!(o instanceof User)) return false; User user = (User) o; return getName()
+		 * == user.getName() && Objects.equals(getId(), user.getId()) &&
+		 * Objects.equals(getName(), user.getName()) && Objects.equals(getAddress(),
+		 * user.getAddress()) && Objects.equals(getBooks(), user.getBooks()); }
+		 */
+	
 		  @Override
 		    public String toString() {
 		        return "User{" +
 		                "id=" + id +
 		                ", name='" + name + '\'' +
-		                ", address=" + addrress +
+		                ", address=" + address +
 		                ", books='" + books + '\'' +
 		                '}';
 		    }

@@ -33,7 +33,6 @@
 
 		<th:block th:each="book:${user.books}">
             <td th:text="${book.name}"></td>
-            <td th:text="${book.author}"></td>
         </th:block>
         <!-- <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td> -->
         <td><a th:href="@{/update/{id}(id=${user.id})}"><button >Update</button></a></td>
@@ -43,7 +42,7 @@
     	</tr>
 		</tbody>
 	</table>
-	<a th:href="@{/addUser}"><button >ADD Question</button></a>
+	<a th:href="@{/addUser}"><button >ADD UserDetail</button></a>
 </div>
 </body>
 </html>

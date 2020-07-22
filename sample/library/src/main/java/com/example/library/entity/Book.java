@@ -30,7 +30,7 @@ public class Book implements Serializable {
 	    private String author;
 	    
 	    @ManyToMany(mappedBy = "books",fetch = FetchType.LAZY)
-	    private Set<User> users = new HashSet<>();
+	    private Set<User> users;
 	    
 	    public Book() {
 	    	
@@ -75,21 +75,13 @@ public class Book implements Serializable {
 			this.users = users;
 		}
 
-		@Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (!(o instanceof Book)) return false;
-	        Book book = (Book) o;
-	        return getName() == book.getName() &&
-	                Objects.equals(getId(), book.getId()) &&
-	                Objects.equals(getName(), book.getName()) &&
-	                Objects.equals(getAuthor(), book.getAuthor()) &&
-	                Objects.equals(getUsers(), book.getUsers());
-	    }
-		@Override
-	    public int hashCode() {
-	        return Objects.hash(getId());
-	    }
+		/*
+		 * @Override public boolean equals(Object o) { if (this == o) return true; if
+		 * (!(o instanceof Book)) return false; Book book = (Book) o; return getName()
+		 * == book.getName() && Objects.equals(getId(), book.getId()) &&
+		 * Objects.equals(getName(), book.getName()) && Objects.equals(getAuthor(),
+		 * book.getAuthor()) && Objects.equals(getUsers(), book.getUsers()); }
+		 */
 
 	    @Override
 	    public String toString() {
