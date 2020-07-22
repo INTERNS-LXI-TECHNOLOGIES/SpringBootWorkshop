@@ -1,77 +1,65 @@
 package com.lxisoft.student.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "STUDENT")
-public class Student {
+@Table(name = "studenttable")
+public class Student implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "age")
-	private int age;
+    @Column
+    private String name;
 
+    @Column
+    private int age;
+
+    @Column
+    private String grade;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
-	@JoinTable(name = "STUDENT_COURSE", joinColumns = { @JoinColumn(name = "STUDENT_ID", referencedColumnName = "id",
-    nullable = false, updatable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "COURSE_ID", referencedColumnName = "id",
-                    nullable = false, updatable = false) })
-	private Set<Course> courses;
-    
+    @JoinTable(name = "students_courses",
+            joinColumns = {
+                    @JoinColumn(name = "student_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "course_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)})
+    private Set<Course> courses = new HashSet<>();
+
     public Student() {
     }
 
-    public Student(Integer id, String name, int age, Set<Course> courses) {
+    public Student(Long id, String name, int age, String grade, Set<Course> courses) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.grade = grade;
         this.courses = courses;
     }
-	
-	public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+
+    public Long getId() {
+        return id;
     }
-    public Set<Course> getCourses() {
-        return courses;
-    }
-    
-    
-    public void setName(String name) {
-        this.name = name;
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
-    
-    public Integer getId() {
-        return id;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-	
     public int getAge() {
         return age;
     }
@@ -79,20 +67,22 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
-	
-	public void addCourse(Course course) {
-		this.courses.add(course);
-		course.getStudents().add(this);
-	}
 
-	public void removeCourse(Course course) {
-		this.getCourses().remove(course);
-		course.getStudents().remove(this);
-	}
+    public String getGrade() {
+        return grade;
+    }
 
-	public void removeCourses() {
-		for (Course course : new HashSet<>(courses)) {
-			removeCourse(course);
-		}
-	}
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
+   
 }

@@ -1,68 +1,81 @@
 package com.lxisoft.student.entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
-
 @Entity
-@Table(name = "COURSE")
-public class Course {
+@Table(name = "coursetable")
+public class Course implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "chapter")
-	private String chapter;
+    @Column
+    private String title;
 
-	
-	@ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
+    @Column
+    private String modules;
+
+    @Column
+    private double fee;
+
+    @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
     private Set<Student> students = new HashSet<>();
 
     public Course() {
     }
 
-    public Course(Integer id, String name, String chapter,Set<Student> students) {
+    public Course(Long id, String title, String modules, double fee, Set<Student> students) {
         this.id = id;
-        this.name = name;
-        this.chapter = chapter;
+        this.title = title;
+        this.modules = modules;
+        this.fee = fee;
         this.students = students;
     }
-	
-	public void setStudents(Set<Student> students) {
-        this.students = students;
+
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getModules() {
+        return modules;
+    }
+
+    public void setModules(String modules) {
+        this.modules = modules;
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
     public Set<Student> getStudents() {
         return students;
     }
-    
-    
-    public void setName(String name) {
-        this.name = name;
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 
-    public String getName() {
-        return name;
-    }
-    
-    public String getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
-    }	
-	
+   
 }
