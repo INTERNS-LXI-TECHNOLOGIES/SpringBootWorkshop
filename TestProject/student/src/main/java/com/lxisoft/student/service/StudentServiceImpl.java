@@ -1,6 +1,7 @@
 package com.lxisoft.student.service;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.student.dto.StudentDto;
+
+import com.lxisoft.student.dto.StudentModel;
 import com.lxisoft.student.entity.Course;
 import com.lxisoft.student.entity.Student;
 import com.lxisoft.student.repository.CourseRepository;
@@ -26,7 +28,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Transactional
 	@Override
-	public StudentDto addStudent(StudentDto studentDto) {
+	public StudentModel addStudent(StudentModel studentDto) {
 		Student student = new Student();
 		mapDtoToEntity(studentDto, student);
 		Student savedStudent = studentRepository.save(student);
@@ -34,11 +36,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<StudentDto> getAllStudents() {
-		List<StudentDto> studentDtos = new ArrayList<>();
+	public List<StudentModel> getAllStudents() {
+		List<StudentModel> studentDtos = new ArrayList<>();
 		List<Student> students = studentRepository.findAll();
 		students.stream().forEach(student -> {
-			StudentDto studentDto = mapEntityToDto(student);
+			StudentModel studentDto = mapEntityToDto(student);
 			studentDtos.add(studentDto);
 		});
 		return studentDtos;
@@ -46,7 +48,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Transactional
 	@Override
-	public StudentDto updateStudent(Integer id, StudentDto studentDto) {
+	public StudentModel updateStudent(Integer id, StudentModel studentDto) {
 		Student std = studentRepository.getOne(id);
 		std.getCourses().clear();
 		mapDtoToEntity(studentDto, std);
@@ -64,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
 		return "Student with id: " + studentId + " deleted successfully!";
 	}
 
-	private void mapDtoToEntity(StudentDto studentDto, Student student) {
+	private void mapDtoToEntity(StudentModel studentDto, Student student) {
 		student.setName(studentDto.getName());
 		if (null == student.getCourses()) {
 			student.setCourses(new HashSet<>());
@@ -80,8 +82,8 @@ public class StudentServiceImpl implements StudentService {
 		});
 	}
 
-	private StudentDto mapEntityToDto(Student student) {
-		StudentDto responseDto = new StudentDto();
+	private StudentModel mapEntityToDto(Student student) {
+		StudentModel responseDto = new StudentModel();
 		responseDto.setName(student.getName());
 		responseDto.setId(student.getId());
 		responseDto.setCourses(student.getCourses().stream().map(Course::getName).collect(Collectors.toSet()));

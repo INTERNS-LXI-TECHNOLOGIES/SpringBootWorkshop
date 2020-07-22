@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VIEW</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+</head>
+<body>
+<div class = "wrapperAdmin">
+    <div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
+        <br>
+        <br>
+        <h1><font style="font-size:50px;" color="white">View Questions</font></h1>
+        <br>
+        <br>
+    </div>
+    <div class = "adminDiv">
+        <br>
+        <table>
+            <tr>
+                <th>Sl No</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Option1</th>
+                <th>Option2</th>
+                <th>Option3</th>
+                <th>Option4</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="list,iterationStatus : ${listQuestions}">
+                <td th:text=${iterationStatus.count}></td>
+                <td th:text="${list.question}"></td>
+                <th:block th:each ="answer : ${list.answer}">
+                    <td th:text="${answer.answer}"></td>
+                </th:block>
+                <th:block th:each ="options : ${list.qnOption}">
+                  <td th:text="${options.qnOption}"></td>
+                </th:block>
+                <td><a th:href="@{/deleteQuestion/{id}(id=${list.id})}">Delete</a>
+                    <a th:href="@{/setUpdate/{id}(id=${list.id})}">Update</a></td>
+            </tr>
+        </table>
+    </DIV>
+    <form style = "text-align: center;">
+        <button formaction="user" class = "button">TEST</button> <button formaction = "addQuestion" class = "button">ADD</button> <button formaction = "logout" class = "button">LOGOUT</button>
+    </form>
+</div>
+
+</body>
+</html>

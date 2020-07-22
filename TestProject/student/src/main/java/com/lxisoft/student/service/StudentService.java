@@ -2,15 +2,17 @@ package com.lxisoft.student.service;
 
 import java.util.List;
 
-import com.lxisoft.student.dto.StudentDto;
+import com.lxisoft.student.dto.StudentModel;
+
+
 
 public interface StudentService {
 
-	public StudentDto addStudent(StudentDto studentDto);
+	public StudentModel addStudent(StudentModel studentDto);
 
-	public List<StudentDto> getAllStudents();
+	public List<StudentModel> getAllStudents();
 
-	public StudentDto updateStudent(Integer studentId, StudentDto student);
+	public StudentModel updateStudent(Integer studentId, StudentModel student);
 
 	public String deleteStudent(Integer studentId);
 }

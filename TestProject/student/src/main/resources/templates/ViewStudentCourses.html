@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student Courses</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+</head>
+<body>
+<div class = "wrapperAdmin">
+        
+        <h1><font style="font-size:50px;" color="black">View Student Courses</font></h1>
+    
+    </div>
+    <div class = "adminDiv">
+        <br>
+        <table>
+            <tr>
+                <th>Sl No</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Subject</th>
+                
+            </tr>
+
+            <tr th:each="list,iterationStatus : ${listStudent}">
+                <td th:text=${iterationStatus.count}></td>
+                <td th:text="${list.name}"></td>
+                 <th:block th:each ="course : ${list.courses}">
+                    <td th:text="${course.title}"></td>
+                </th:block>
+            </tr>
+        </table>
+    </DIV>
+    <form style = "text-align: center;">
+        <button formaction="user" class = "button"></button> <button formaction = "addQuestion" class = "button"></button> <button formaction = "logout" class = "button">Back</button>
+    </form>
+</div>
+</body>
+</html>
+
+   
