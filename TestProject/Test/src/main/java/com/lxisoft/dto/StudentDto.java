@@ -1,8 +1,6 @@
 package com.lxisoft.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.*;
 import com.lxisoft.entity.Course;
 import com.lxisoft.entity.Student;
 
@@ -11,7 +9,8 @@ public class StudentDto {
 	private Integer id;
 	private String name;
 	private String age;
-	private Set<String> courses = new HashSet<>();
+	private String chapter;
+	private List<String> courses = new ArrayList<>();
 	private Student student;
     private Course course;
     private Student student1;
@@ -70,10 +69,10 @@ public class StudentDto {
     }
 	
 	
-	public void setCourses(Set<String> courses) {
+	public void setCourses(List<String> courses) {
         this.courses = courses;
     }
-    public Set<String> getCourses() {
+    public List<String> getCourses() {
         return courses;
     }
     
@@ -111,9 +110,17 @@ public class StudentDto {
     public String getAge() {
         return age;
     }
-
     public void setAge(String age) {
         this.age = age;
     }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
+    }
+    public String getChapter() {
+        return chapter;
+    }
+
+   
 
 }

@@ -28,7 +28,7 @@ public class Course implements Serializable{
 
 	
 	@ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
-    private List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<Student>();
 
     public Course() {
     }

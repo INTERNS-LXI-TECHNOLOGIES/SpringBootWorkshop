@@ -67,8 +67,6 @@ public class StudentController {
         return "index";
     }
     
-    
-
     @RequestMapping(value = "/newcrs", method = RequestMethod.GET)
     public ModelAndView newCourse(ModelAndView model) {
       StudentDto studentDto = new StudentDto();
@@ -85,18 +83,14 @@ public class StudentController {
         Course course3 = std.getCourse3();
 
         studentRepository.save(student);
-
         courseRepository.saveAll(Arrays.asList(course1,course2,course3));
         student.getCourses().addAll(Arrays.asList(course1,course2,course3));
-
         studentRepository.save(student);
-
         return "index";
     }
     
     
-	
-    @GetMapping(value = "/update/{id}")
+    @GetMapping(value = "update/{id}")
 	public String updateEmployee(@PathVariable(name = "id") Integer id,
 			 StudentDto student) {
 		StudentDto std = studentService.updateStudent(id, student);

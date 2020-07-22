@@ -1,8 +1,6 @@
 package com.lxisoft.entity;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +34,7 @@ public class Student implements Serializable {
     nullable = false, updatable = false) }, inverseJoinColumns = {
 			@JoinColumn(name = "COURSE_ID", referencedColumnName = "id",
                     nullable = false, updatable = false) })
-	private List<Course> courses;
+	private List<Course> courses= new ArrayList<Course>();
     
     public Student() {
     }

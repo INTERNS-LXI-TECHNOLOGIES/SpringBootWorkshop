@@ -12,25 +12,25 @@
     </div>
     <table align=center border=1px >
 	<tr>
-                <th>Student</th>
-                <th>Age</th>
-                <th>Course</th>
-                <th>Chapter</th>
-                <th>Edit</th>
+        <th>Student</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Chapter</th>
+        <th>Edit</th>
 	</tr>
 
             <tr th:each="list,iterationStatus : ${students}">
                 <td th:text="${list.name}"></td>
                 <td th:text="${list.age}"></td>
                 <th:block th:each ="course : ${list.courses}">
-                    <td th:text="${student.name}"></td>
-                    <td th:text="${student.chapter}"></td>
+                 	<td th:text="${course.name}"></td>
+                 	<td th:text="${course.chapter}"></td>
                 </th:block>
                 <td><a th:href="@{/update/{id}(id=${list.id})}">Edit</a></td>
             </tr>
         </table>
     
-<form action="index.html">
+<form action="/">
     <center><button>Back</button></center>
 </form>
 </body>

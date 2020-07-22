@@ -80,7 +80,7 @@ public class StudentServiceImpl implements StudentService {
 		StudentDto responseDto = new StudentDto();
 		responseDto.setName(student.getName());
 		responseDto.setId(student.getId());
-		responseDto.setCourses(student.getCourses().stream().map(Course::getName).collect(Collectors.toSet()));
+		responseDto.setCourses(student.getCourses().stream().map(Course::getName).collect(Collectors.toList()));
 		return responseDto;
 	}
 }
