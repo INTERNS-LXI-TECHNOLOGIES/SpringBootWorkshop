@@ -89,7 +89,6 @@ public class StudentController {
         return "index";
     }
     
-    
     @GetMapping(value = "update/{id}")
 	public String updateEmployee(@PathVariable(name = "id") Integer id,
 			 StudentDto student) {
