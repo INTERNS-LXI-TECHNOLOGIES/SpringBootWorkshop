@@ -6,29 +6,27 @@
 </head>
 <body>
 <div>
-        <h1 align=center>View Questions</h1>
+        <h1 align=center>View All</h1>
         <br>
         <br>
     </div>
     <table align=center border=1px >
 	<tr>
-		<th>Question</th>
-		<th>Answer</th>
-		<th>Option1</th>
-		<th>Option2</th>
-		<th>Option3</th>
-		<th>Option4</th>
+		<th>Student</th>
+		
+		<th>Course1</th>
+		<th>Course2</th>
+		<th>Course3</th>
+		<th>Course4</th>
 		<th>Delete</th>
 		<th>Edit</th>
 	</tr>
 
             <tr th:each="list,iterationStatus : ${listExam}"> 
-                <td th:text="${list.question}"></td>
-                <th:block th:each ="answer : ${list.answer}">
-                <td th:text="${answer.answer}"></td>
-              </th:block>
-                <th:block th:each ="options : ${list.qnOption}">
-                  <td th:text="${options.qnOption}"></td>
+                <td th:text="${list.student}"></td>
+               
+                <th:block th:each ="options : ${list.courses}">
+                  <td th:text="${options.courses}"></td>
                 </th:block>
                 <td><a th:href="@{/delete/{id}(id=${list.id})}">Delete</a></td>
                 <td><a th:href="@{/update/{id}(id=${list.id})}">Edit</a></td>
@@ -36,7 +34,7 @@
             </tr>
         </table>
     
-<form action="index.html">
+<form action="/">
     <center><button>Back</button></center>
 </form>
 </body>

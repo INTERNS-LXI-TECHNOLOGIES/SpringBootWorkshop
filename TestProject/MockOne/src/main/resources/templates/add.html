@@ -17,47 +17,43 @@
 </head>
 <body>
 	<div class="container my-5">
-	<h3> Add Question</h3>
+	<h3> Add Student</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
 					<form action="#" th:action="@{/add}"
-						th:object="${exam}" method="GET">
+						th:object="${school}" method="GET">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="question" class="col-form-label">Question</label> <input
-									type="text" th:field="*{question.question}" class="form-control" 
-									placeholder="Question"> 
+								<label for="student" class="col-form-label">Name</label> <input
+									type="text" th:field="*{student.student}" class="form-control" 
+									placeholder="Student Name"> 
 							</div>
 							
 							<div class="form-group col-md-8">
-								<label for="answer" class="col-form-label">Option1</label> <input
-									type="text" th:field="*{option1}" class="form-control" 
-									placeholder="Option1"> 
+								<label for="course1" class="col-form-label">Course1</label> <input
+									type="text" th:field="*{course1}" class="form-control" 
+									placeholder="Course1"> 
 							</div>
 							<div class="form-group col-md-8">
-								<label for="option1" class="col-form-label">Option2</label> <input
-									type="text" th:field="*{option2}" class="form-control" 
-									placeholder="Option2"> 
+								<label for="course2" class="col-form-label">Course2</label> <input
+									type="text" th:field="*{course2}" class="form-control" 
+									placeholder="Course2"> 
 							</div>
 							<div class="form-group col-md-8">
-								<label for="answer" class="col-form-label">Option3</label> <input
-									type="text" th:field="*{option3}" class="form-control" 
-									placeholder="Option3"> 
+								<label for="course3" class="col-form-label">Course3</label> <input
+									type="text" th:field="*{course3}" class="form-control" 
+									placeholder="Course3"> 
 							</div>
 							<div class="form-group col-md-8">
-								<label for="answer" class="col-form-label">Option4</label> <input
-									type="text" th:field="*{option4}" class="form-control" 
-									placeholder="Option4"> 
+								<label for="course4" class="col-form-label">Course4</label> <input
+									type="text" th:field="*{course4}" class="form-control" 
+									placeholder="Course4"> 
 							</div>
 							
-							<div class="form-group col-md-8">
-								<label for="answer" class="col-form-label">Answer</label> <input
-									type="text" th:field="*{answer.answer}" class="form-control" 
-									placeholder="Answer"> 
-							</div>
+							
 							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value="Add Question">
+								<input type="submit" class="btn btn-primary" value="Add">
 							</div>
 
 							<div class="form-group col-md-8"></div>

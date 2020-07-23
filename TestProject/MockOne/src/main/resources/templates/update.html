@@ -16,48 +16,48 @@
 </head>
 <body>
 	<div class="container my-5">
-	<h3> Update Question</h3>
+	<h3> Update</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-8">
-					<form action="#"
-						th:action="@{/exams/update/{id}(id=${exam.id})}"
-						th:object="${exam}" method="post">
+						<form action="#" th:action = "@{/updateQ}" method="GET" th:object="${updateQ}">
 						<div class="row">
+                
+                <div class="form-group col-md-6">
+								<label for="id" class="col-form-label">ID</label> <input
+									type="text" th:field="*{id}" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+						
 							<div class="form-group col-md-6">
-								<label for="question" class="col-form-label">Question</label> <input
-									type="text" th:field="*{question.question}" class="form-control" id="question"
-									placeholder="New Question">
+								<label for="student" class="col-form-label">Student</label> <input
+									type="text" th:field="*{student}" class="form-control" id="question"
+									placeholder="New Name">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="option1" class="col-form-label">Option1</label> <input
-									type="text" th:field="*{option1}" class="form-control" id="option1"
-									placeholder="New Option1"> 
+								<label for="{course1" class="col-form-label">Course1</label> <input
+									type="text" th:field="*{course1}" class="form-control" id="{course1"
+									placeholder="New course1"> 
 							</div>
 							<div class="form-group col-md-6">
-								<label for="option2" class="col-form-label">Option2</label> <input
-									type="text" th:field="*{option2}" class="form-control" id="option2"
-									placeholder="New Option2"> 
+								<label for="{course2" class="col-form-label">Course2</label> <input
+									type="text" th:field="*{course2}" class="form-control" id="{course2"
+									placeholder="New course2"> 
 							</div>
 							<div class="form-group col-md-6">
-								<label for="option3" class="col-form-label">Option3</label> <input
-									type="text" th:field="*{option3}" class="form-control" id="option3"
-									placeholder="New Option3"> 
+								<label for="{course3" class="col-form-label">Course3</label> <input
+									type="text" th:field="*{course3}" class="form-control" id="{course3"
+									placeholder="New course3"> 
 							</div>
 							<div class="form-group col-md-6">
-								<label for="option4" class="col-form-label">Option4</label> <input
-									type="text" th:field="*{option4}" class="form-control" id="option4"
-									placeholder="New Option4"> 
-							</div>
-							<div class="form-group col-md-6">
-								<label for="answer" class="col-form-label">Answer</label> <input
-									type="text" th:field="*{answer.answer}" class="form-control" id="answer"
-									placeholder="New Answer"> 
+								<label for="{course4" class="col-form-label">Course4</label> <input
+									type="text" th:field="*{course4}" class="form-control" id="{course4"
+									placeholder="New course4"> 
 							</div>
 							
 							<div class="form-group col-md-8">
 								<input type="submit" class="btn btn-primary"
-									value="Update Question">
+									value="Update">
 							</div>
 						</div>
 					</form>
