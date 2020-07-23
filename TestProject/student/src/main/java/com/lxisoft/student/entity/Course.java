@@ -1,10 +1,11 @@
 package com.lxisoft.student.entity;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.ArrayList;
+
+import java.util.List;
 
 @Entity
 @Table(name = "coursetable")
@@ -24,12 +25,13 @@ public class Course implements Serializable {
     private double fee;
 
     @ManyToMany(mappedBy = "courses",fetch = FetchType.LAZY)
-    private Set<Student> students = new HashSet<>();
+  //  private Set<Student> students = new HashSet<>();
+    private List<Student> students = new ArrayList<>();
 
     public Course() {
     }
 
-    public Course(Long id, String title, String modules, double fee, Set<Student> students) {
+    public Course(Long id, String title, String modules, double fee, List<Student> students) {
         this.id = id;
         this.title = title;
         this.modules = modules;
@@ -69,11 +71,11 @@ public class Course implements Serializable {
         this.fee = fee;
     }
 
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 

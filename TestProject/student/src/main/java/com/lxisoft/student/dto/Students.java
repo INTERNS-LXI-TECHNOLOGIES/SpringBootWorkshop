@@ -3,7 +3,7 @@ package com.lxisoft.student.dto;
 import com.lxisoft.student.entity.Course;
 import com.lxisoft.student.entity.Student;
 
-public class StudentsModel {
+public class Students {
 
     private Student student;
 
@@ -24,4 +24,6 @@ public class StudentsModel {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+	
 }

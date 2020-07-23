@@ -1,10 +1,12 @@
 package com.lxisoft.student.entity;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "studenttable")
@@ -31,12 +33,13 @@ public class Student implements Serializable {
             inverseJoinColumns = {
                     @JoinColumn(name = "course_id", referencedColumnName = "id",
                             nullable = false, updatable = false)})
-    private Set<Course> courses = new HashSet<>();
-
+   // private Set<Course> courses = new HashSet<>();
+    private List<Course> courses = new ArrayList<>();
+    
     public Student() {
     }
 
-    public Student(Long id, String name, int age, String grade, Set<Course> courses) {
+    public Student(Long id, String name, int age, String grade, List<Course> courses) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -76,13 +79,12 @@ public class Student implements Serializable {
         this.grade = grade;
     }
 
-    public Set<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Set<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-
    
 }
