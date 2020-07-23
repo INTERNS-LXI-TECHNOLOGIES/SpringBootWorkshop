@@ -6,5 +6,5 @@ import com.example.library.entity.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> 
 {
-	public Book findByName(String bookName);
+	
 }

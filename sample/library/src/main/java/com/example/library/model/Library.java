@@ -4,24 +4,26 @@ import com.example.library.entity.Book;
 import com.example.library.entity.User;
 
 public class Library {
-
+	private long id;
 	private User user;
 	//private Address address;
 	private Book book1;
 	private Book book2;
 	private Book book3;
+	public long getId()
+	{
+		return id;
+	}
+	public void setId(long id)
+	{
+		this.id=id;
+	}
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	/*
-	 * public void setAddress(Address address) { this.address = address; }
-	 * 
-	 * public Address getAddress() { return address; }
-	 */
 	public Book getBook1() {
 		return book1;
 	}

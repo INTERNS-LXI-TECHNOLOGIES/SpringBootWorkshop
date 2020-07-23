@@ -3,6 +3,7 @@ package com.example.library.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -30,7 +31,9 @@ public class User implements Serializable {
 	    
 	    @Column
 	    private String address;
-	 
+	 	
+	    private String user;
+
 	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	    @JoinTable(
 	    	name = "USER_BOOK", joinColumns = {
@@ -38,12 +41,13 @@ public class User implements Serializable {
 	    	inverseJoinColumns = {
 	            @JoinColumn(name = "BOOK_ID",referencedColumnName="id", nullable = false, updatable = false)})
 	    
-	    private Set<Book> books;
+	    private List<Book> books;
 	    public User() {
 	    }
 
-		public User(Long id,String name, String address, Set<Book> books) {
+		public User(Long id,String user,String name, String address, List<Book> books) {
 			this.id=id;
+			this.user=user;
 			this.name = name;
 			this.address = address;
 			this.books = books;
@@ -56,6 +60,17 @@ public class User implements Serializable {
 		public void setId(long id) {
 			this.id = id;
 		}
+
+		public String getUser() {
+        	return user;
+ 	  	}
+
+
+		public void setUser(String user) {
+        this.user = user;
+	    }
+
+	    
 
 		public String getName() {
 			return name;
@@ -73,22 +88,31 @@ public class User implements Serializable {
 			this.address = address;
 		}
 
-		public Set<Book> getBooks() {
+		public List<Book> getBooks() {
 			return books;
 		}
 
-		public void setBooks(Set<Book> books) {
+		public void setBooks(List<Book> books) {
 			this.books = books;
 		}
 		
-		/*
-		 * @Override public boolean equals(Object o) { if (this == o) return true; if
-		 * (!(o instanceof User)) return false; User user = (User) o; return getName()
-		 * == user.getName() && Objects.equals(getId(), user.getId()) &&
-		 * Objects.equals(getName(), user.getName()) && Objects.equals(getAddress(),
-		 * user.getAddress()) && Objects.equals(getBooks(), user.getBooks()); }
-		 */
-	
+		
+		 @Override public boolean equals(Object o) { if (this == o) return true; if
+		 (!(o instanceof User)) return false; User user = (User) o; return getName()
+		  == user.getName() && Objects.equals(getId(), user.getId()) &&
+		 Objects.equals(getName(), user.getName()) && Objects.equals(getAddress(),
+		 user.getAddress()) && Objects.equals(getBooks(), user.getBooks()); }
+		 
+		public void removeBook(Book book) {
+			this.getBooks().remove(book);
+			book.getUsers().remove(this);
+		}
+
+		public void removeBooks() {
+			for (Book book : new HashSet<>(books)) {
+				removeBook(book);
+			}
+		}
 		  @Override
 		    public String toString() {
 		        return "User{" +

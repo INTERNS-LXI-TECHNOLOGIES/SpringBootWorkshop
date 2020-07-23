@@ -21,7 +21,6 @@
 				<th>BOOK1</th>
 				<th>BOOK2</th>
 				<th>BOOK3</th>
-				<th>BOOK4</th>
 				<th>PREFERENCE</th>
 			</tr>
 		</thead>
@@ -35,14 +34,14 @@
             <td th:text="${book.name}"></td>
         </th:block>
         <!-- <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td> -->
-        <td><a th:href="@{/update/{id}(id=${user.id})}"><button >Update</button></a></td>
+        <td><a th:href="@{/updateUser/{id}(id=${user.id})}"><button >Update</button></a></td>
         <td><a th:href="@{/delete/{id}(id=${user.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete
 
         </button></a></td>
     	</tr>
 		</tbody>
 	</table>
-	<a th:href="@{/addUser}"><button >ADD UserDetail</button></a>
+	<a th:href="@{/addUser}"><button >ADD User</button></a> <a th:href="@{/addUser}"><button >ADD Book</button></a>
 </div>
 </body>
 </html>

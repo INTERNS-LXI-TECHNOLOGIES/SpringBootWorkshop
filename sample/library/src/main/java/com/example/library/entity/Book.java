@@ -1,8 +1,11 @@
 package com.example.library.entity;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,17 +32,19 @@ public class Book implements Serializable {
 	    @Column
 	    private String author;
 	    
-	    @ManyToMany(mappedBy = "books",fetch = FetchType.LAZY)
-	    private Set<User> users;
+	    private String bok;
+	    @ManyToMany(mappedBy = "books",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	    private List<User> users;
 	    
 	    public Book() {
 	    	
 	    }
 	    
-	    public Book(Long id,String name, String author, Set<User> users) {
+	    public Book(Long id,String name, String author,String bok, List<User> users) {
 	    	this.id = id;
 			this.name = name;
 			this.author = author;
+			this.bok = bok;
 			this.users = users;
 		}
 	    
@@ -66,22 +71,30 @@ public class Book implements Serializable {
 		public void setAuthor(String author) {
 			this.author = author;
 		}
-
-		public Set<User> getUsers() {
+		public String getBook()
+		{
+			return bok;
+		}
+		public void setBook(String bok)
+		{
+			this.bok=bok;
+		}
+		
+		public List<User> getUsers() {
 			return users;
 		}
 
-		public void setUsers(Set<User> users) {
+		public void setUsers(List<User> users) {
 			this.users = users;
 		}
 
-		/*
-		 * @Override public boolean equals(Object o) { if (this == o) return true; if
-		 * (!(o instanceof Book)) return false; Book book = (Book) o; return getName()
-		 * == book.getName() && Objects.equals(getId(), book.getId()) &&
-		 * Objects.equals(getName(), book.getName()) && Objects.equals(getAuthor(),
-		 * book.getAuthor()) && Objects.equals(getUsers(), book.getUsers()); }
-		 */
+		
+		  @Override public boolean equals(Object o) { if (this == o) return true; if
+		  (!(o instanceof Book)) return false; Book book = (Book) o; return getName()
+		  == book.getName() && Objects.equals(getId(), book.getId()) &&
+		  Objects.equals(getName(), book.getName()) && Objects.equals(getAuthor(),
+		  book.getAuthor()) && Objects.equals(getUsers(), book.getUsers()); }
+		 
 
 	    @Override
 	    public String toString() {

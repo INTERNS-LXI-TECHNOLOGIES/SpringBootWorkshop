@@ -1,7 +1,9 @@
 package com.example.library.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -21,10 +25,13 @@ import com.example.library.entity.User;
 import com.example.library.model.Library;
 import com.example.library.repository.BookRepository;
 import com.example.library.repository.UserRepository;
+//import com.example.library.service.UserService;
 
 
 @Controller
 public class LibraryController {
+
+	/*private UserService userService;*/
 
     @Autowired
     private UserRepository userRepository;
@@ -75,7 +82,7 @@ public class LibraryController {
         return "Admin";
     }*/
 
-    @GetMapping(value = "/addUser")
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     public ModelAndView setBooksInUser(ModelAndView modelAndView){
         Library library = new Library();
         modelAndView.addObject("library",library);
@@ -84,46 +91,95 @@ public class LibraryController {
     }
 
     @GetMapping(value = "/add")
-    public String saveCoursesInStudent(@ModelAttribute Library library){
+    public ModelAndView saveBooksInUser(@ModelAttribute Library library){
+        List<Book> books = new ArrayList<Book>(); 
+        List<User> users = new ArrayList<User>(); 
         User user = library.getUser();
         Book book1 = library.getBook1();
         Book book2 = library.getBook2();
         Book book3 = library.getBook3();
-
+        users.add(user);
+        book1.setUsers(users);
+        book2.setUsers(users);
+        book3.setUsers(users);
+   
+        books.add(book1);
+        books.add(book2);
+        books.add(book3);
+  
+        user.setBooks(books);
+        /*bookRepository.saveAll(book1,book2,book3);
+        user.getBooks().addAll(book1,book2,book3);
+*/
         userRepository.save(user);
-
-        bookRepository.saveAll(Arrays.asList(book1,book2,book3));
-        user.getBooks().addAll(Arrays.asList(book1,book2,book3));
-
-        userRepository.save(user);
-
-        return "Index";
+        return new ModelAndView("redirect:/start");
     }
 
+    @RequestMapping(value = "/delete/{id}")
+    public ModelAndView deleteUser(@PathVariable("id") long userId)
+    {
+        userRepository.deleteById(userId);
+        bookRepository.deleteById(userId);
+        return new ModelAndView("redirect:/start");
+    }
+   
+   @GetMapping("/updateUser/{id}")
+    public ModelAndView updateUser(@PathVariable("id") long userId)
+    {
+	   User user = userRepository.getOne(userId);
 
-   /* @GetMapping(value = "/setStudent")
-    public ModelAndView setStudent(ModelAndView modelAndView){
-        StudentModel studentModel = new StudentModel();
-        modelAndView.addObject("student",studentModel);
-        modelAndView.setViewName("AddStudent");
-        return modelAndView;
+        Library library = new Library();
+        
+        
+        library.setId(user.getId());
+        library.setUser(user);
+        
+        List<Book> books = user.getBooks();
+        Book book1 = books.get(0);
+        Book book2 = books.get(1);
+        Book book3 = books.get(2);
+        
+   
+        library.setBook1(book1);
+        library.setBook2(book2);
+        library.setBook3(book3);
+       
+        
+        
+        ModelAndView model = new ModelAndView();
+        model.addObject("library",library);
+        model.setViewName("UpdateUser");
+        return model;
     }
 
-    @GetMapping(value = "/addNewStudent")
-    public String addNewStudent(@ModelAttribute StudentModel studentModel){
-        Student student = studentModel.getStudent();
-        Course course = studentModel.getCourse();
+    @RequestMapping(value = "/update")
+    public ModelAndView questionById(@ModelAttribute("library") Library library/*@PathVariable("id") int questId*/)
+    {
+        
+        User user = userRepository.getOne(library.getId());
+        //List<Book> books = user.getBooks() ;  
+        user.setName(library.getUser().getName());
+        user.setAddress(library.getUser().getAddress());
+        /*
+         * option1.setOption(mockExam.getOption1());
+         * option2.setOption(mockExam.getOption2());
+         * option3.setOption(mockExam.getOption3());
+         */
+        
+        user.getBooks().get(0).setName(library.getBook1().getName());
+        user.getBooks().get(0).setAuthor(library.getBook1().getAuthor());
+        user.getBooks().get(1).setName(library.getBook2().getName());
+        user.getBooks().get(1).setAuthor(library.getBook2().getAuthor());
+        user.getBooks().get(2).setName(library.getBook3().getName());
+        user.getBooks().get(2).setAuthor(library.getBook3().getAuthor());
+        /*
+         * options.add(mockExam.getOption1()); options.add(mockExam.getOption2());
+         * options.add(mockExam.getOption3());
+         */
+        userRepository.save(user);
 
-        studentRepository.save(student);
-
-        courseRepository.saveAll(Arrays.asList(course));
-
-        student.getCourses().addAll(Arrays.asList(course));
-
-        studentRepository.save(student);
-
-        return "Admin";
-    }*/
+        return new ModelAndView("redirect:/start");
+    }
 
 
    
