@@ -3,10 +3,7 @@ package com.lxisoft.MockExamProject.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.lxisoft.MockExamProject.model.User;
+import com.lxisoft.MockExamProject.entity.AnsOption;
 
-
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-	User findByEmail(String email);
+public interface AnsOptionRepository extends JpaRepository<AnsOption,Long> {
 }

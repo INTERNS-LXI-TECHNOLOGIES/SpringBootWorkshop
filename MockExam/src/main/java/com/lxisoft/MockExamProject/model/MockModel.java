@@ -1,17 +1,14 @@
 package com.lxisoft.MockExamProject.model;
 
-import com.lxisoft.MockExamProject.entity.Answer;
-import com.lxisoft.MockExamProject.entity.Question;
-
-public class ExamModel 
+public class MockModel 
 {
 	private long id;
-    private Question question;
+    private String question;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
-    private Answer answer;
+    private String answer;
    
     public long getId() {
         return id;
@@ -21,11 +18,11 @@ public class ExamModel
         this.id = id;
     }
  
-    public Question getQuestion() {
+    public String getQuestion() {
         return question;
     }
  
-    public void setQuestion(Question question) {
+    public void setQuestion(String question) {
         this.question = question;
     }
  
@@ -61,11 +58,11 @@ public class ExamModel
         this.option4 = option4;
     }
  
-    public Answer getAnswer() {
+    public String getAnswer() {
         return answer;
     }
  
-    public void setAnswer(Answer answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 }

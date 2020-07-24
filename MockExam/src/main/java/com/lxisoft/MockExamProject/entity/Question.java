@@ -31,4 +31,36 @@ public class Question implements Serializable {
         this.ansOption = ansOption;
         this.answer = answer;
     }
+
+    public void setId(long id) {
+        this.id = id;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setOptions(List<AnsOption> ansOption) {
+        this.ansOption = ansOption;
+    }
+    public List<AnsOption> getOptions() {
+        return ansOption;
+    }
+    
+}

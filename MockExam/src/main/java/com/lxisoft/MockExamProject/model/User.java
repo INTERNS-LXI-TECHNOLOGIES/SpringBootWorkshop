@@ -1,7 +1,6 @@
 package com.lxisoft.MockExamProject.model;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 
 @Entity
