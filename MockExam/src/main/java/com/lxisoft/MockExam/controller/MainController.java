@@ -21,10 +21,8 @@ import com.lxisoft.MockExam.service.MockExamService;
 import com.lxisoft.MockExam.service.OptionService;
 import com.lxisoft.MockExam.service.QuestionService;
 import com.lxisoft.MockExam.service.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -51,15 +49,12 @@ public class MainController {
 	{
 		return "login";
 	}
-	
 	@GetMapping("/admin")
 	public ModelAndView home()
 	{
         MockQuestion mockExam = new MockQuestion();
         ModelAndView model = new ModelAndView();
         List<Question> question= questionService.getAll();
-        //System.out.println("size : " + question.size());
-     //   model.addObject("mockExam",mockExam);
 		model.addObject("listQuestions",question);
         model.setViewName("admin");
 		return model;
@@ -173,12 +168,8 @@ public class MainController {
     public ModelAndView updateQuest(@PathVariable("id") int questId)
     {
         Question question = questionService.findById(questId);
-
         MockQuestion mockExam = new MockQuestion();
-        
-        
         mockExam.setId(question.getId());
-        
         Question quest = new Question();
         String ques = question.getQuestion();
         quest.setQuestion(ques);
@@ -190,47 +181,29 @@ public class MainController {
         Options option2 = option.get(1);
         Options option3 = option.get(2);
         
-   
         mockExam.setOption1(option1.getOption());
         mockExam.setOption2(option2.getOption());
         mockExam.setOption3(option3.getOption());
        
-        
-        
         ModelAndView model = new ModelAndView();
         model.addObject("mockExam",mockExam);
         model.setViewName("update");
         return model;
     }
-
     @RequestMapping(value = "/update")
     public ModelAndView questionById(@ModelAttribute("mockExam") MockQuestion mockExam/*@PathVariable("id") int questId*/)
     {
         
         Question question = questionService.findById(mockExam.getId());
-        
         Question ques = new Question();
         Answer answer = mockExam.getAnswer();
         ques = mockExam.getQuestion();
         question.setQuestion(ques.getQuestion());
         question.setAnswer(answer);
         List<Options> options = question.getOption() ;  
-        
-		/*
-		 * option1.setOption(mockExam.getOption1());
-		 * option2.setOption(mockExam.getOption2());
-		 * option3.setOption(mockExam.getOption3());
-		 */
         options.get(0).setOption(mockExam.getOption1());
         options.get(1).setOption(mockExam.getOption2());
         options.get(2).setOption(mockExam.getOption3());
-        
-        
-       
-		/*
-		 * options.add(mockExam.getOption1()); options.add(mockExam.getOption2());
-		 * options.add(mockExam.getOption3());
-		 */
         
         question.setOption(options);
         questionService.saveQuestion(question);

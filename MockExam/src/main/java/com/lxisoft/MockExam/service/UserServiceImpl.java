@@ -15,7 +15,6 @@ import com.lxisoft.MockExam.repository.UserRepository;
 import com.lxisoft.MockExam.web.dto.UserRegistrationDto;
 @Service
 public class UserServiceImpl implements UserService{
-
 	
 	private UserRepository userRepository;
 	

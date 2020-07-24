@@ -9,10 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-
 import java.util.List;
 
 @Entity
@@ -29,7 +27,6 @@ public class Question {
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "answer_id",referencedColumnName = "id")
     private Answer answer;
-
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     @NotFound(action = NotFoundAction.IGNORE)
     private List<Options> options;
