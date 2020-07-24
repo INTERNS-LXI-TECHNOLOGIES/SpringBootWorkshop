@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student Courses</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Admin.css}"/>
+</head>
+<body>
+<div class = "wrapperAdmin">
+    <div  align="center" style="background: linear-gradient(to left,navy, mediumblue);">
+        <br>
+        <br>
+        <h1><font style="font-size:50px;" color="white">View Student Courses</font></h1>
+        <br>
+        <br>
+    </div>
+    <div class = "adminDiv">
+        <br>
+        <table>
+            <tr>
+                <th>Sl No</th>
+                <th>Student</th>
+                <th>Age</th>
+                <th>Grade</th>
+                <th>Title</th>
+                <th>Module</th>
+                <th>Fees</th>
+            </tr>
+
+            <tr th:each="list,iterationStatus : ${listStudent}">
+                <td th:text=${iterationStatus.count}></td>
+                <td th:text="${list.name}"></td>
+                <td th:text="${list.age}"></td>
+                <td th:text="${list.grade}"></td>
+                <th:block th:each ="course : ${list.courses}">
+                    <td th:text="${course.title}"></td>
+                    <td th:text="${course.modules}"></td>
+                    <td th:text="${course.fee}"></td>
+                </th:block>
+            </tr>
+        </table>
+    </DIV>
+    <form style = "text-align: center;">
+        <button formaction="user" class = "button">TEST</button> <button formaction = "addQuestion" class = "button">ADD</button> <button formaction = "logout" class = "button">LOGOUT</button>
+    </form>
+</div>
+</body>
+</html>

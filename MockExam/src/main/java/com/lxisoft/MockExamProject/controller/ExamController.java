@@ -1,4 +1,4 @@
-package com.lxisoft.MockExamProject.controller;
+/*package com.lxisoft.MockExamProject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,3 +13,4 @@ public class ExamController {
         return "Home";
     }
 }
+*/
