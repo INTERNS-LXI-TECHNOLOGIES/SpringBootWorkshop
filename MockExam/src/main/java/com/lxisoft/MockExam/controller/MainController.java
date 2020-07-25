@@ -164,50 +164,5 @@ public class MainController {
         questionService.deleteById(questId);
         return new ModelAndView("redirect:/admin");
     }
-    @GetMapping("/updateQuest/{id}")
-    public ModelAndView updateQuest(@PathVariable("id") int questId)
-    {
-        Question question = questionService.findById(questId);
-        MockQuestion mockExam = new MockQuestion();
-        mockExam.setId(question.getId());
-        Question quest = new Question();
-        String ques = question.getQuestion();
-        quest.setQuestion(ques);
-        mockExam.setQuestion(quest);
-        mockExam.setAnswer(question.getAnswer());
-        
-        List<Options> option = question.getOption();
-        Options option1 = option.get(0);
-        Options option2 = option.get(1);
-        Options option3 = option.get(2);
-        
-        mockExam.setOption1(option1.getOption());
-        mockExam.setOption2(option2.getOption());
-        mockExam.setOption3(option3.getOption());
-       
-        ModelAndView model = new ModelAndView();
-        model.addObject("mockExam",mockExam);
-        model.setViewName("update");
-        return model;
-    }
-    @RequestMapping(value = "/update")
-    public ModelAndView questionById(@ModelAttribute("mockExam") MockQuestion mockExam/*@PathVariable("id") int questId*/)
-    {
-        
-        Question question = questionService.findById(mockExam.getId());
-        Question ques = new Question();
-        Answer answer = mockExam.getAnswer();
-        ques = mockExam.getQuestion();
-        question.setQuestion(ques.getQuestion());
-        question.setAnswer(answer);
-        List<Options> options = question.getOption() ;  
-        options.get(0).setOption(mockExam.getOption1());
-        options.get(1).setOption(mockExam.getOption2());
-        options.get(2).setOption(mockExam.getOption3());
-        
-        question.setOption(options);
-        questionService.saveQuestion(question);
-
-        return new ModelAndView("redirect:/admin");
-    }
+  
 }
