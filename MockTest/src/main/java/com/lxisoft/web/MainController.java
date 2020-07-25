@@ -1,5 +1,6 @@
 package com.lxisoft.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,5 +79,12 @@ public class MainController {
         
         questionRepository.save(question);
         return "index";
+    }
+    @GetMapping(value = "/viewAll")
+    public ModelAndView listExam(ModelAndView model) throws IOException {
+        List<Question> listExam = questionRepository.findAll();
+        model.addObject("listExam", listExam);
+        model.setViewName("read");
+        return model;
     }
 }
