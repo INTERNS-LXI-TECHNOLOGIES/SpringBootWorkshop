@@ -1,4 +1,4 @@
-package com.lxisoft.MockexamSecurity.web.dto;
+package com.lxisoft.MockexamProject.web.dto;
 
 public class UserRegistrationDto {
 

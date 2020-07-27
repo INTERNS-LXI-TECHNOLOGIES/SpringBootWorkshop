@@ -1,7 +1,6 @@
-package com.lxisoft.MockexamSecurity.model;
+package com.lxisoft.MockexamProject.model;
 
 import javax.persistence.*;
-
 import java.util.Collection;
 
 @Entity

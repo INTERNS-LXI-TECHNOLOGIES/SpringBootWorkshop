@@ -1,6 +1,6 @@
-package com.lxisoft.MockexamSecurity.service;
-
+package com.lxisoft.MockexamProject.service;
 import java.util.Arrays;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -12,10 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.lxisoft.MockexamSecurity.model.Role;
-import com.lxisoft.MockexamSecurity.model.User;
-import com.lxisoft.MockexamSecurity.repository.UserRepository;
-import com.lxisoft.MockexamSecurity.web.dto.UserRegistrationDto;
+import com.lxisoft.MockexamProject.model.Role;
+import com.lxisoft.MockexamProject.model.User;
+import com.lxisoft.MockexamProject.repository.UserRepository;
+import com.lxisoft.MockexamProject.web.dto.UserRegistrationDto;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,4 +58,3 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 }
-

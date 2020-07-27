@@ -1,4 +1,4 @@
-package com.lxisoft.MockexamSecurity;
+package com.lxisoft.MockexamProject;
 
 import org.springframework.boot.SpringApplication;
 
