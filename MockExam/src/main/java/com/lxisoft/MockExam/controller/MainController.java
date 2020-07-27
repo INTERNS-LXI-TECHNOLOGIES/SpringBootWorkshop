@@ -35,7 +35,6 @@ public class MainController {
 	    private AnswerService answerService;
 	    private OptionService optionService;
 	    private UserService userService;
-		/* private RoleService roleService; */
 	
 	 public MainController(QuestionService questionService, AnswerService answerService, OptionService optionService,UserService userService)
 	    {
@@ -119,50 +118,5 @@ public class MainController {
         return new ModelAndView("redirect:/admin");
     }
     
-    @RequestMapping(value = "/displayQues")
-    public ModelAndView displayQuestions(@RequestParam("id") int questId)
-    {
-        Question quest = questionService.findById(questId);
-        MockQuestion mockQuestion = new MockQuestion();
-
-        Question question = new Question();
-        String ques = quest.getQuestion();
-        question.setQuestion(ques);
-        mockQuestion.setQuestion(question);
-
-        Answer answer = new Answer();
-        answer = question.getAnswer();
-        mockQuestion.setAnswer(answer);
-
-        List<Options> option = question.getOption();
-
-        Options option1 = option.get(0);
-        Options option2 = option.get(1);
-        Options option3 = option.get(2);
    
-        mockQuestion.setOption1(option1.getOption());
-        mockQuestion.setOption2(option2.getOption());
-        mockQuestion.setOption3(option3.getOption());
-       
-        ModelAndView model = new ModelAndView();
-        model.addObject("mockQuestion",mockQuestion);
-        model.setViewName("display");
-        return model;
-    }
-    @RequestMapping(value = "/getAllQuestions")
-    public ModelAndView showAllQuest()
-    {
-        List<Question> questionList = questionService.getAll();
-        ModelAndView model = new ModelAndView();
-        model.addObject("show",questionList);
-        model.setViewName("questionList");
-        return model;
-    }
-    @RequestMapping(value = "/delete/{id}")
-    public ModelAndView deleteQuestion(@PathVariable("id") int questId)
-    {
-        questionService.deleteById(questId);
-        return new ModelAndView("redirect:/admin");
-    }
-  
 }

@@ -3,12 +3,9 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>MockExam ManageMent</title>
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-
-
 <div class="container my-2">
 
 	<h1 align="center">MockExam</h1>
@@ -28,17 +25,12 @@
 		<tr th:each="mockExam,iteration:${listQuestions}">
         <td th:text="${iteration.count}"></td>
         <td th:text="${mockExam.question}"></td>
-
 		<th:block th:each="answer:${mockExam.answer}">
-            <td th:text="${answer.answer}"></td>
+        <td th:text="${answer.answer}"></td>
         </th:block>
-
         <th:block th:each="options:${mockExam.option}">
-            <td th:text="${options.option}"></td>
+        <td th:text="${options.option}"></td>
         </th:block>
-
-
-        <!-- <td><a th:href="@{/update/{id}(id=${mockExam.id})}"><button >Update</button></a></td> -->
         <td><a th:href="@{/updateQuest/{id}(id=${mockExam.id})}"><button >Update</button></a></td>
         <td><a th:href="@{/delete/{id}(id=${mockExam.id})}"><button onclick="if(!(confirm('Are You Sure..?'))) return false">Delete
 
