@@ -118,25 +118,26 @@ public class MainController {
     @GetMapping(value = "/updateQ")
     public String updateQuestion(@ModelAttribute Exam exam)
     {
-
-        System.out.println(exam.getId());
         Question question = questionService.get(exam.getId());
-
         Question q = exam.getQuestion();
-
         question.setQuestion(q.getQuestion());
-
         question.getAnswer().setAnswer(exam.getAnswer().getAnswer());
-
         question.getOptions().get(0).setQOption(exam.getOption1());
         question.getOptions().get(1).setQOption(exam.getOption2());
         question.getOptions().get(2).setQOption(exam.getOption3());
         question.getOptions().get(3).setQOption(exam.getOption4());
-
         questionService.saveQuestion(question);
-
         return "index";
-
     } 
+    
+    @GetMapping(value = "/delete/{id}")
+    public ModelAndView deleteQuest(@PathVariable("id") int id,ModelAndView model) {
+    	long examId = (long)id;
+    	questionService.deleteById(examId);
+    	List<Question> listExam = questionService.getAll();
+    	model.addObject("listExam", listExam);
+        model.setViewName("read");
+        return model;  
+  }
     
 }

@@ -29,8 +29,10 @@ public class QuestionService {
         return  questionRepository.findAll();
     }
 
-    public void deleteById(long id)
+    public long deleteById(long id)
     {
     	questionRepository.deleteById(id);
+    	return id;
     }
+    
 }
