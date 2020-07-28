@@ -3,6 +3,7 @@ import com.lxisoft.entity.*;
 
 public class Exam 
 {
+	private long id;
     private Question question;
     private String option1;
     private String option2;
@@ -10,6 +11,14 @@ public class Exam
     private String option4;
     private Answer answer;
    
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
     
     public Question getQuestion() {
         return question;

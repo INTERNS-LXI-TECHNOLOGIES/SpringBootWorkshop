@@ -3,19 +3,17 @@ package com.lxisoft.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.lxisoft.entity.Answer;
-import com.lxisoft.entity.QnOption;
-import com.lxisoft.entity.Question;
+import com.lxisoft.service.*;
+import com.lxisoft.entity.*;
 import com.lxisoft.model.Exam;
 import com.lxisoft.repository.QuestionRepository;
 
@@ -23,6 +21,13 @@ import com.lxisoft.repository.QuestionRepository;
 public class MainController {
 	@Autowired
     private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuestionService questionService;
+	@Autowired
+    private AnswerService answerService;
+	@Autowired
+    private OptionService optionService;
 	
     @GetMapping("/")
     public String root() {
@@ -75,16 +80,63 @@ public class MainController {
         qnOptions.add(option3);
         qnOptions.add(option4);
 
-        question.setOptions(qnOptions);
-        
-        questionRepository.save(question);
+        question.setOptions(qnOptions);        
+        questionService.saveQuestion(question);
+//        answerService.saveAnswer(answer);
+//        optionService.saveOptions(qnOptions);
         return "index";
     }
     @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
-        List<Question> listExam = questionRepository.findAll();
+        List<Question> listExam = questionService.getAll();
         model.addObject("listExam", listExam);
         model.setViewName("read");
         return model;
     }
+    
+    @GetMapping(value = "/update/{id}")
+    public ModelAndView updateQuestion(@PathVariable("id") long id)
+    {
+    	ModelAndView modelAndView = new ModelAndView();
+        Question question = questionService.get(id);
+        Exam exam = new Exam();
+        exam.setId(question.getId());
+        String quest = question.getQuestion();
+        question.setQuestion(quest);
+        exam.setQuestion(question);
+        exam.setAnswer(question.getAnswer());
+        exam.setOption1(question.getOptions().get(0).getQOption());
+        exam.setOption2(question.getOptions().get(1).getQOption());
+        exam.setOption3(question.getOptions().get(2).getQOption());
+        exam.setOption4(question.getOptions().get(3).getQOption());
+
+        modelAndView.addObject("updateQ",exam);
+        modelAndView.setViewName("update");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/updateQ")
+    public String updateQuestion(@ModelAttribute Exam exam)
+    {
+
+        System.out.println(exam.getId());
+        Question question = questionService.get(exam.getId());
+
+        Question q = exam.getQuestion();
+
+        question.setQuestion(q.getQuestion());
+
+        question.getAnswer().setAnswer(exam.getAnswer().getAnswer());
+
+        question.getOptions().get(0).setQOption(exam.getOption1());
+        question.getOptions().get(1).setQOption(exam.getOption2());
+        question.getOptions().get(2).setQOption(exam.getOption3());
+        question.getOptions().get(3).setQOption(exam.getOption4());
+
+        questionService.saveQuestion(question);
+
+        return "index";
+
+    } 
+    
 }

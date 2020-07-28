@@ -63,4 +63,14 @@ public class Question implements Serializable {
         return qnOption;
     }
     
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", answer=" + answer +
+                ", qnOption=" + qnOption +
+                '}';
+    }
+    
 }
