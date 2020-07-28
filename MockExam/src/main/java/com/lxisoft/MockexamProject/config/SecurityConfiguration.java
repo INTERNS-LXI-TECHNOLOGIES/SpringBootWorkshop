@@ -15,7 +15,6 @@ import com.lxisoft.MockexamProject.service.UserService;
 
 
 
-
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -26,12 +25,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers(
+                            
+                   .antMatchers(
                             "/registration**",
+                            "/",
                             "/js/**",
                             "/css/**",
                             "/img/**",
-                            "/webjars/**").permitAll()
+                            "/webjars/**").access("hasRole('ROLE_USER')")
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

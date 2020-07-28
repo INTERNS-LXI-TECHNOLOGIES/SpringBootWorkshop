@@ -29,7 +29,7 @@ public class MainController {
 	
     @GetMapping("/")
     public String root() {
-        return "index";
+        return "first";
     }
 
     @GetMapping("/login")
@@ -39,7 +39,7 @@ public class MainController {
 
     @GetMapping("/user")
     public String userIndex() {
-        return "user/index";
+        return "first";
     }
     
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
