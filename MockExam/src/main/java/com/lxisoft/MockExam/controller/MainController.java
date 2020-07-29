@@ -58,10 +58,7 @@ public class MainController {
 		return model;
 	}
 
-	 @GetMapping("/user")
-    public String userIndex() {
-        return "user";
-    }
+	
 
 	@GetMapping("/logout")
     public String logout(HttpServletRequest request)
@@ -71,11 +68,7 @@ public class MainController {
         return "login";
     }
 
-    @RequestMapping(value = "/back")
-    public String backTo()
-    {
-        return "login";
-    }
+   
     
     @GetMapping("/addQuest")
     public ModelAndView get()
