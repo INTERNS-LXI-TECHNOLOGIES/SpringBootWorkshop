@@ -21,39 +21,7 @@ public class Question implements Serializable {
     public List<AnsOption> ansOption;
 
     
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(String question) {
-		this.question = question;
-	}
-
-	public Answer getAnswer() {
-		return answer;
-	}
-
-	public void setAnswer(Answer answer) {
-		this.answer = answer;
-	}
-
-	public List<AnsOption> getAnsOption() {
-		return ansOption;
-	}
-
-	public void setAnsOption(List<AnsOption> ansOption) {
-		this.ansOption = ansOption;
-	}
-
-	public Question(){
+    public Question(){
 
     }
 
@@ -64,7 +32,36 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-  
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setOptions(List<AnsOption> ansOption) {
+        this.ansOption = ansOption;
+    }
+    public List<AnsOption> getOptions() {
+        return ansOption;
+    }
     
     @Override
     public String toString() {
@@ -77,4 +74,3 @@ public class Question implements Serializable {
     }
     
 }
-

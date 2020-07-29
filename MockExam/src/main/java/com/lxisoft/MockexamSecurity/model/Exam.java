@@ -3,7 +3,7 @@ package com.lxisoft.MockexamSecurity.model;
 import com.lxisoft.MockexamSecurity.entity.Answer;
 import com.lxisoft.MockexamSecurity.entity.Question;
 
-public class ExamModel 
+public class Exam 
 {
 	private long id;
     private Question question;

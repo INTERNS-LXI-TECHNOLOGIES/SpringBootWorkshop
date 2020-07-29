@@ -1,10 +1,11 @@
 package com.lxisoft.MockexamSecurity.entity;
 import javax.persistence.*;
+
 import java.io.Serializable;
-import java.util.Objects;
+
 
 @Entity
-@Table(name = "AnsOption")
+@Table(name = "AnOption")
 public class AnsOption implements Serializable {
 
     @Id
@@ -27,32 +28,28 @@ public class AnsOption implements Serializable {
         this.question = question;
     }
 
-	public Long getId() {
-		return id;
-	}
+    public String getAOption() {
+        return ansOption;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setAOption(String ansOption) {
+        this.ansOption = ansOption;
+    }
 
-	public String getAnsOption() {
-		return ansOption;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setAnsOption(String ansOption) {
-		this.ansOption = ansOption;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public Question getQuestion() {
-		return question;
-	}
+    public Question getQuestion() {
+        return question;
+    }
 
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-    
-
-   
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
 
 }
-
