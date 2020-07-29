@@ -51,8 +51,9 @@ public class MainController {
         model.setViewName("add");
         return model;
     }
+    
     @GetMapping(value = "/add")
-    public String addNewQuestion(@ModelAttribute Exam exam){
+    public ModelAndView addNewQuestion(@ModelAttribute Exam exam,ModelAndView model){
     	List<QnOption> qnOptions = new ArrayList<>();
         Question question = exam.getQuestion();
         Answer answer = exam.getAnswer();
@@ -82,9 +83,11 @@ public class MainController {
 
         question.setOptions(qnOptions);        
         questionService.saveQuestion(question);
-//        answerService.saveAnswer(answer);
-//        optionService.saveOptions(qnOptions);
-        return "index";
+
+        List<Question> listExam = questionService.getAll();
+    	model.addObject("listExam", listExam);
+        model.setViewName("read");
+        return model;
     }
     @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
@@ -139,5 +142,5 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }
-    
+   
 }

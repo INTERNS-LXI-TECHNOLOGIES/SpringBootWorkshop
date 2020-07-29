@@ -3,15 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>viewAll</title>
+    <style>
+	.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ff0080;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #ff0040}
+
+.button:active {
+  background-color: #ff0040;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+	div
+	{
+		padding-top: 40px;
+		padding-right: 30px;
+		padding-left: 80px;
+		padding-bottom: 20px;
+	}
+	
+	.header {
+  background-color: #ff0080;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
 </head>
 <body>
-<div>
-        <h1 align=center>View Questions</h1>
-        <br>
-        <br>
-    </div>
+<div class="header">
+        <h1>MOCK EXAM</h1>
+        <h3>
+            <a href="newquestion">ADD</a>
+        </h3>
+		</div>
+		<br>
     <table align=center border=1px >
-	<tr>
 		<th>Question</th>
 		<th>Answer</th>
 		<th>Option1</th>
@@ -20,7 +58,6 @@
 		<th>Option4</th>
 		<th>Delete</th>
 		<th>Edit</th>
-	</tr>
 
 <tr th:each="list,iterationStatus : ${listExam}"> 
                 <td th:text="${list.question}"></td>
@@ -31,15 +68,10 @@
                   <td th:text="${options.qnOption}"></td>
                 </th:block>
                 <td><a th:href="@{/delete/{id}(id=${list.id})}">Delete</a></td>
-                <td><a th:href="@{/update/{id}(id=${list.id})}">Edit</a></td>
-                  
-            </tr>
-            
-             
+                <td><a th:href="@{/update/{id}(id=${list.id})}">Edit</a></td>              
+            </tr>   
         </table>
-    
-<form action="/">
-    <center><button>Back</button></center>
-</form>
+    <br>
+<center><a href="/"><input type="submit" class="button" value=Back></button></center>
 </body>
 </html>
