@@ -83,7 +83,8 @@ public class MainController {
 
         question.setOptions(qnOptions);        
         questionService.saveQuestion(question);
-
+//        answerService.saveAnswer(answer);
+//        optionService.saveOptions(qnOptions);
         List<Question> listExam = questionService.getAll();
     	model.addObject("listExam", listExam);
         model.setViewName("read");
@@ -130,10 +131,19 @@ public class MainController {
         question.getOptions().get(2).setQOption(exam.getOption3());
         question.getOptions().get(3).setQOption(exam.getOption4());
         questionService.saveQuestion(question);
-        return "index";
+        return "/SuccUpdate";
     } 
     
-    @GetMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView ditContact(@PathVariable("id") int id,ModelAndView model) {
+        Exam exam = new Exam();
+        questionService.deleteById(id);
+        model.addObject("exam", exam);
+        model.setViewName("delete");
+        return model;
+    }
+    
+    @GetMapping(value = "/delete")
     public ModelAndView deleteQuest(@PathVariable("id") int id,ModelAndView model) {
     	long examId = (long)id;
     	questionService.deleteById(examId);
