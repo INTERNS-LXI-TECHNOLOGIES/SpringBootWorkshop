@@ -100,7 +100,7 @@ public class MainController {
 
         question.setOptions(ansOptions);        
         questionService.saveQuestion(question);
-       return "home";
+       return "index";
     }
     @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
@@ -142,7 +142,7 @@ public class MainController {
         question.getOptions().get(2).setAOption(exam.getOption3());
         question.getOptions().get(3).setAOption(exam.getOption4());
         questionService.saveQuestion(question);
-        return "home";
+        return "index";
     } 
     @GetMapping(value = "/delete/{id}")
     public ModelAndView deleteQuest(@PathVariable("id") int id,ModelAndView model) {
