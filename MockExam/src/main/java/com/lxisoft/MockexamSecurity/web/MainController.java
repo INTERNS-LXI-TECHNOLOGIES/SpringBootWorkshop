@@ -144,7 +144,18 @@ public class MainController {
         questionService.saveQuestion(question);
         return "index";
     } 
-    @GetMapping(value = "/delete/{id}")
+    
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView ditContact(@PathVariable("id") int id,ModelAndView model) {
+        Exam exam = new Exam();
+        questionService.deleteById(id);
+        model.addObject("exam", exam);
+        model.setViewName("deleteConfirmation");
+        return model;
+    }    
+    
+    @GetMapping(value = "/delete")
     public ModelAndView deleteQuest(@PathVariable("id") int id,ModelAndView model) {
     	long examId = (long)id;
     	questionService.deleteById(examId);
@@ -152,8 +163,7 @@ public class MainController {
     	model.addObject("listExam", listExam);
         model.setViewName("read");
         return model;  
-  }
-       
+  }       
 
 }
 
