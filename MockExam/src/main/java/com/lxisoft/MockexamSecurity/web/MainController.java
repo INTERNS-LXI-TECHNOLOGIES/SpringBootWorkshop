@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class MainController {
     private AnswerService answerService;
 	@Autowired
     private OptionService optionService;
-	    
+	  
 
     @GetMapping("/")
     public String root() {
@@ -81,8 +82,7 @@ public class MainController {
         AnsOption option2 = new AnsOption();
         AnsOption option3 = new AnsOption();
         AnsOption option4 = new AnsOption();
-        
-       
+             
         option1.setAOption(exam.getOption1());
         option2.setAOption(exam.getOption2());
         option3.setAOption(exam.getOption3());
@@ -143,8 +143,7 @@ public class MainController {
         question.getOptions().get(3).setAOption(exam.getOption4());
         questionService.saveQuestion(question);
         return "index";
-    } 
-    
+    }     
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ModelAndView ditContact(@PathVariable("id") int id,ModelAndView model) {
@@ -164,7 +163,20 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }       
-
+    @GetMapping(value = "/authentication")
+    public String userAuthentication()
+    {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	boolean hasRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+    	if(hasRole)
+    	{
+    		return "redirect:/admin";
+    	}
+    	else
+    	{
+    		return "redirect:/user";
+    	}
+    }
 }
 
 
