@@ -3,6 +3,10 @@ package com.lxisoft.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -152,6 +156,23 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }
+    @GetMapping("/view")
+    public String viewQuestion(HttpServletRequest request) {
+    	HttpSession session = request.getSession(true);
+		@SuppressWarnings("unchecked")
+		List<Exam> listExam = (List<Exam>)session.getAttribute("listExam");
+		int selectedOption = 0;
+		  if(request.getParameter("option")!= null)
+		  {
+			   selectedOption =  Integer.parseInt(request.getParameter("option"));
+		  }
+		  session.setAttribute("listExam", listExam);
+        return "view";
+    }
     
+    @GetMapping("/result")
+    public String examResult() {
+        return "result";
+    }
    
 }
