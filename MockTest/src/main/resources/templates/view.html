@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+     <style>
+	.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ff0080;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #ff0040}
+
+.button:active {
+  background-color: #ff0040;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+	div
+	{
+		padding-top: 40px;
+		padding-right: 30px;
+		padding-left: 80px;
+		padding-bottom: 20px;
+	}
+	
+	.header {
+  background-color: #ff0080;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
+</head>
+<script>
+<%
+String clock = request.getParameter( "clock" );
+if( clock == null ) clock = "20";
+%>
+var timeout = <%=clock%>;
+function timer()
+{
+  if( --timeout > 0 )
+  {
+    document.forma.clock.value = timeout;
+    window.setTimeout( "timer()", 1000 );
+  }
+  else
+  {
+    document.forma.clock.value = "Time over";
+    // window.location.href = "index.jsp";
+  }
+}
+</script>
+<body>
+<div class="header">
+	<h1 align="center">Questions</h1>
+	<form action="<%=request.getRequestURL()%>" name="forma">
+		<h2 align="right">Seconds remaining:<input type="text" name="clock"  style="border:0px solid white"></h2></form>
+</div>
+<script>
+        timer();
+      </script>
+<br>
+<br>	
+<form action="result">
+    <center><input type="submit" class="button" value="Next"/></center>
+</form>
+</body>
+</html>
