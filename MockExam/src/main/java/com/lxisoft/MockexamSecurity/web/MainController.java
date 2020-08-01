@@ -177,12 +177,12 @@ public class MainController {
     		return "redirect:/user";
     	}
     }
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String displayInstructions(Model theModel) {
         List < Exam > theExam = questionService.getExam();
         theModel.addAttribute("exam", theExam);
         return "instructions";
-    }
+    }*/
 }
 
 

@@ -18,7 +18,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
-
+    
+    @Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+			.antMatchers("/").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') ")
+			.and()
+				.formLogin().loginPage("/loginPage")
+				.defaultSuccessUrl("/authentication")
+				.failureUrl("/loginPage?error")
+				.usernameParameter("username").passwordParameter("password")
+			.and()
+				.logout().logoutSuccessUrl("/loginPage?logout");
+		http.csrf().disable();
+	}
+/*
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -42,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
-
+*/
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
