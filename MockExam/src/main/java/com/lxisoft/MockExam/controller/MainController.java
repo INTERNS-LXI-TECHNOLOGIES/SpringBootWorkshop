@@ -33,6 +33,7 @@ public class MainController {
 	    private AnswerService answerService;
 	    private OptionService optionService;
 	    private UserService userService;
+		/* private RoleService roleService; */
 	
 	 public MainController(QuestionService questionService, AnswerService answerService, OptionService optionService,UserService userService)
 	    {
@@ -56,24 +57,18 @@ public class MainController {
         model.setViewName("admin");
 		return model;
 	}
-
-	@GetMapping("/user")
-    public ModelAndView userHome()
+    
+    @GetMapping("/exam")
+    public ModelAndView exam()
     {
         MockQuestion mockExam = new MockQuestion();
         ModelAndView model = new ModelAndView();
         List<Question> question= questionService.getAll();
-        model.addObject("listQuestions",question);
-        model.setViewName("userView");
+        model.addObject("questionList",question);
+        model.setViewName("admin");
         return model;
     }
-
-    @GetMapping("/result")
-    public ModelAndView result()
-    {
-        model.setViewName("result");
-        return model;
-    }
+	
 
 	@GetMapping("/logout")
     public String logout(HttpServletRequest request)
