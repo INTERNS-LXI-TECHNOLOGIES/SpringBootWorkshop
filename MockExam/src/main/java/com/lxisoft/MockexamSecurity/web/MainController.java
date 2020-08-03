@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,6 +83,21 @@ public class MainController {
 		model.setViewName("loginn");
 		return model;
 	}
+    @GetMapping(value = "/authentication")
+    public String userAuthentication()
+    {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	boolean hasRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+    	if(hasRole)
+    	{
+    		return "redirect:/admin";
+    	}
+    	else
+    	{
+    		return "redirect:/user";
+    	}
+    }
+   
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
         Exam exam = new Exam();
@@ -180,20 +198,7 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }       
-    @GetMapping(value = "/authentication")
-    public String userAuthentication()
-    {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	boolean hasRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-    	if(hasRole)
-    	{
-    		return "redirect:/admin";
-    	}
-    	else
-    	{
-    		return "redirect:/user";
-    	}
-    }
+    
   /*  @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String displayInstructions(Model theModel) {
         List < Exam > theExam = questionService.getExam();
