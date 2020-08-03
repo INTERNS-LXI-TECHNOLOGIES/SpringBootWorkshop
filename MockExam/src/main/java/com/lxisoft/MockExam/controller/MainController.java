@@ -58,13 +58,13 @@ public class MainController {
 		return model;
 	}
     
-    @GetMapping("/exam")
+    @GetMapping("/user")
     public ModelAndView exam()
     {
         MockQuestion mockExam = new MockQuestion();
         ModelAndView model = new ModelAndView();
         List<Question> question= questionService.getAll();
-        model.addObject("questionList",question);
+        model.addObject("listExam",question);
         model.setViewName("admin");
         return model;
     }
@@ -211,4 +211,39 @@ public class MainController {
 
         return new ModelAndView("redirect:/admin");
     }
+
+
+      @RequestMapping(value = "/selectOption", method = RequestMethod.GET)
+      public ModelAndView seletedOption(HttpServletRequest request,HttpServletResponse res)
+      {
+
+        ModelAndView model=null;
+          HttpSession sessions = request.getSession(true);
+          //int selected =  Integer.parseInt(request.getParameter("option"));
+          String quest=request.getParameter("option");
+          int count = Integer.parseInt(request.getParameter("count"));
+          @SuppressWarnings("unchecked")
+          int mark=0;
+          List<MockModel> listQuestions = (List<MockModel>)sessions.getAttribute("listQuestions");
+
+            if(count<listQuestions.size())  
+            {
+
+                if(quest.equals(listQuestions.get(count-1).getAnswer()));
+                {
+                    mark=mark+1;
+
+                }
+
+                model = new ModelAndView("Exam");
+            }
+            else
+            {
+                model = new ModelAndView("Exam");
+            }
+
+            sessions.setAttribute("listQuestions", listQuestions);
+            sessions.setAttribute("Mark", mark);
+            return model;
+      }
 }
