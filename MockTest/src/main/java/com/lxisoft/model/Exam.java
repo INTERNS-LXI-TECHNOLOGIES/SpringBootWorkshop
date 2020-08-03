@@ -10,6 +10,7 @@ public class Exam
     private String option3;
     private String option4;
     private Answer answer;
+    private String selectedOption;
    
     
     public void setId(long id) {
@@ -67,4 +68,11 @@ public class Exam
     public void setAnswer(Answer answer) {
         this.answer = answer;
     }
+    
+    public String getSelectedOption() {
+		return selectedOption;
+	}
+	public void setSelectedOption(String selectedOption) {
+		this.selectedOption = selectedOption;
+	}
 }

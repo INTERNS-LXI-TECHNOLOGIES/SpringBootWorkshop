@@ -25,6 +25,7 @@ import com.lxisoft.repository.QuestionRepository;
 public class MainController {
 	@Autowired
     private QuestionRepository questionRepository;
+	private int i=0;
 	
 	@Autowired
 	private QuestionService questionService;
@@ -166,8 +167,28 @@ public class MainController {
 		  {
 			   selectedOption =  Integer.parseInt(request.getParameter("option"));
 		  }
+		  
+		  switch(selectedOption)
+		  {
+		  case 1 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
+			  break;
+		  case 2 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
+			  break;
+		  case 3 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
+			  break;
+		  case 4 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
+			  break;
+		  default :
+			  listExam.get(i-1).setSelectedOption("");
+			  break;
+		  }
+			
 		  session.setAttribute("listExam", listExam);
-        return "view";
+		  return "view";
     }
     
     @GetMapping("/result")
