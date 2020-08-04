@@ -158,37 +158,27 @@ public class MainController {
         return model;  
   }
     @GetMapping("/view")
-    public String viewQuestion(HttpServletRequest request) {
-    	HttpSession session = request.getSession(true);
-		@SuppressWarnings("unchecked")
-		List<Exam> listExam = (List<Exam>)session.getAttribute("listExam");
+    public ModelAndView viewQuestion(HttpServletRequest request,ModelAndView model, Question question) {
+//		List<Question> listQuestion = questionService.getAll();
 		int selectedOption = 0;
 		  if(request.getParameter("option")!= null)
 		  {
 			   selectedOption =  Integer.parseInt(request.getParameter("option"));
 		  }
-		  
-		  switch(selectedOption)
-		  {
-		  case 1 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
-			  break;
-		  case 2 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
-			  break;
-		  case 3 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
-			  break;
-		  case 4 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
-			  break;
-//		  default :
-//			  listExam.get(i-1).setSelectedOption("");
-//			  break;
-		  }
-			
-		  session.setAttribute("listExam", listExam);
-		  return "view";
+		List<QnOption> qnOptions = new ArrayList<>();
+		Exam exam = new Exam();
+        exam.setId(question.getId());
+        String quest = question.getQuestion();
+        question.setQuestion(quest);
+        exam.setQuestion(question);
+        exam.setOption1(question.getOptions().get(0).getQOption());
+        exam.setOption2(question.getOptions().get(1).getQOption());
+        exam.setOption3(question.getOptions().get(2).getQOption());
+        exam.setOption4(question.getOptions().get(3).getQOption());  
+        List<Question> listQuestion = questionService.getAll();
+        model.addObject("exam", exam);
+        model.setViewName("view");
+        return model;
     }
     
     @GetMapping("/result")

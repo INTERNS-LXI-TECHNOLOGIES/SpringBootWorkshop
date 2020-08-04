@@ -73,17 +73,10 @@ function timer()
 <br>
 <br>
 
-<form action="#" th:action = "@{/view}" method="GET" th:object="${listExam}">
+<form action="#" th:action = "@{/view}" method="GET" th:object="${listexam}">
 
 <a th:text = "${question}"></a><br>
-  <input type="radio" id="option" name="option" value="1">
-  <label th:for="option" th:text="${option1}" ></label><br>
-  <input type="radio" id="option" name="option" value="2">
-  <label th:for="option" th:text="${option2}" ></label><br>
-  <input type="radio" id="option" name="option" value="3">
-  <label th:for="option" th:text="${option3}" ></label><br>
-  <input type="radio" id="option" name="option" value="4">
-  <label th:for="option" th:text="${option4}" ></label><br>
+  
   <br>
   <br>
   <div align = "center"><button class="button">NEXT</button></div>
