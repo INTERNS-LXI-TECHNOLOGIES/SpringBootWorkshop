@@ -65,7 +65,7 @@ function timer()
 <div class="header">
 	<h1 align="center">Questions</h1>
 	<form action="<%=request.getRequestURL()%>" name="forma">
-		<h2 align="right">Seconds remaining:<input type="text" name="clock" value="clock"  style="border:0px solid white"></h2></form>
+		<h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
 </div>
 <script>
         timer();
@@ -73,8 +73,21 @@ function timer()
 <br>
 <br>
 
-<div th:each="list,iterationStatus : ${listExam}"> 
-                < th:text="${list.question}">
+<form action="#" th:action = "@{/view}" method="GET" th:object="${listExam}">
+
+<a th:text = "${question}"></a><br>
+  <input type="radio" id="option" name="option" value="1">
+  <label th:for="option" th:text="${option1}" ></label><br>
+  <input type="radio" id="option" name="option" value="2">
+  <label th:for="option" th:text="${option2}" ></label><br>
+  <input type="radio" id="option" name="option" value="3">
+  <label th:for="option" th:text="${option3}" ></label><br>
+  <input type="radio" id="option" name="option" value="4">
+  <label th:for="option" th:text="${option4}" ></label><br>
+  <br>
+  <br>
+  <div align = "center"><button class="button">NEXT</button></div>
+</form>
                 
               
                 

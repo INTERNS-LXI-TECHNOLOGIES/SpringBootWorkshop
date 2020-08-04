@@ -182,9 +182,9 @@ public class MainController {
 		  case 4 :
 			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
 			  break;
-		  default :
-			  listExam.get(i-1).setSelectedOption("");
-			  break;
+//		  default :
+//			  listExam.get(i-1).setSelectedOption("");
+//			  break;
 		  }
 			
 		  session.setAttribute("listExam", listExam);
