@@ -58,13 +58,22 @@ public class MainController {
     public String userIndex() {
         return "user/index";
     }
-    
-    @GetMapping("/home")
-    public String homeIndex() {
-        return "home";
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ModelAndView adminView(ModelAndView model) {
+             
+        model.setViewName("admin");
+        return model;
     }
+    
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    public ModelAndView userView(ModelAndView model) {
+             
+        model.setViewName("StartExam");
+        return model;
+    }
+    
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
-    public ModelAndView newContact(ModelAndView model) {
+    public ModelAndView newQuestion(ModelAndView model) {
         Exam exam = new Exam();
         model.addObject("exam", exam);
         model.setViewName("add");
@@ -100,7 +109,7 @@ public class MainController {
 
         question.setOptions(ansOptions);        
         questionService.saveQuestion(question);
-       return "index";
+       return "admin";
     }
     @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
