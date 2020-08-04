@@ -65,7 +65,7 @@ public class MainController {
         ModelAndView model = new ModelAndView();
         List<Question> question= questionService.getAll();
         model.addObject("listExam",question);
-        model.setViewName("admin");
+        model.setViewName("user");
         return model;
     }
 	
