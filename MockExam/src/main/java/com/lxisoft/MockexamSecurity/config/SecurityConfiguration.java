@@ -1,8 +1,6 @@
 package com.lxisoft.MockexamSecurity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import javax.sql.DataSource;
-
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,19 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
-    @Autowired
-	DataSource dataSource;
     
- /*   @Autowired
-	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-				.dataSource(dataSource)
-				.usersByUsernameQuery("select username, password, enabled from users where username=?")
-				.authoritiesByUsernameQuery("select username, role from users where username=?")
-		;
-	}
-*/
-	@Override
+   /* @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') ")
@@ -45,9 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.logout().logoutSuccessUrl("/loginPage?logout");
 		http.csrf().disable();
 	}
-    
-   
-/*
+*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -70,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login?logout")
                 .permitAll();
-    }*/
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){

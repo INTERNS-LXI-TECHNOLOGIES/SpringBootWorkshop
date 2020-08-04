@@ -1,13 +1,10 @@
 package com.lxisoft.MockexamSecurity.web;
 
-import java.io.IOException; 
+import java.io.IOException;
 
 import java.util.ArrayList;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lxisoft.MockexamSecurity.entity.AnsOption;
@@ -67,37 +63,6 @@ public class MainController {
     public String homeIndex() {
         return "home";
     }
-    
-    @GetMapping(value = "/loginPage")
-	public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
-	@RequestParam(value = "logout",	required = false) String logout) {
-		
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid Credentials provided.");
-		}
-
-		if (logout != null) {
-			model.addObject("message", "Logged out successfully.");
-		}
-		model.setViewName("loginn");
-		return model;
-	}
-    @GetMapping(value = "/authentication")
-    public String userAuthentication()
-    {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	boolean hasRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-    	if(hasRole)
-    	{
-    		return "redirect:/admin";
-    	}
-    	else
-    	{
-    		return "redirect:/user";
-    	}
-    }
-   
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
     public ModelAndView newContact(ModelAndView model) {
         Exam exam = new Exam();
@@ -198,7 +163,20 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }       
-    
+ /*   @GetMapping(value = "/authentication")
+    public String userAuthentication()
+    {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	boolean hasRole = auth.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+    	if(hasRole)
+    	{
+    		return "redirect:/admin";
+    	}
+    	else
+    	{
+    		return "redirect:/user";
+    	}
+    }
   /*  @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String displayInstructions(Model theModel) {
         List < Exam > theExam = questionService.getExam();
