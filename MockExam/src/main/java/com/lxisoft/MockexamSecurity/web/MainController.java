@@ -2,9 +2,13 @@ package com.lxisoft.MockexamSecurity.web;
 
 import java.io.IOException;
 
+
 import java.util.ArrayList;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,6 +31,7 @@ import com.lxisoft.MockexamSecurity.repository.QuestionRepository;
 import com.lxisoft.MockexamSecurity.service.AnswerService;
 import com.lxisoft.MockexamSecurity.service.OptionService;
 import com.lxisoft.MockexamSecurity.service.QuestionService;
+import com.lxisoft.MockexamSecurity.service.ExamService;
 
 
 
@@ -184,12 +189,21 @@ public class MainController {
     	}
     }
   */
-    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public ModelAndView userView(ModelAndView model) {
              
         model.setViewName("instructions");
         return model;
-    }
+    }*/
+    
+    @GetMapping("/userPage")
+	public String setQuestionsSession(HttpServletRequest request) {
+		HttpSession sessions = request.getSession(true);
+		List<Exam> listQuestions = examService.getAllQuestions();
+		sessions.setAttribute("listQuestions", listQuestions);
+		return "Introduction";
+	}
+    
 }
 
 
