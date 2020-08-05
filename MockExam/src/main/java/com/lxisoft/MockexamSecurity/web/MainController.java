@@ -65,12 +65,7 @@ public class MainController {
         return model;
     }
     
-    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
-    public ModelAndView userView(ModelAndView model) {
-             
-        model.setViewName("StartExam");
-        return model;
-    }
+   
     
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
     public ModelAndView newQuestion(ModelAndView model) {
@@ -171,7 +166,9 @@ public class MainController {
     	model.addObject("listExam", listExam);
         model.setViewName("read");
         return model;  
-  }       
+  }    
+      
+    
  /*   @GetMapping(value = "/authentication")
     public String userAuthentication()
     {
@@ -186,12 +183,13 @@ public class MainController {
     		return "redirect:/user";
     	}
     }
-  /*  @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String displayInstructions(Model theModel) {
-        List < Exam > theExam = questionService.getExam();
-        theModel.addAttribute("exam", theExam);
-        return "instructions";
-    }*/
+  */
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    public ModelAndView userView(ModelAndView model) {
+             
+        model.setViewName("instructions");
+        return model;
+    }
 }
 
 
