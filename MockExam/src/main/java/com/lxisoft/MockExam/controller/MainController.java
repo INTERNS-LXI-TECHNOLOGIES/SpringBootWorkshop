@@ -213,6 +213,31 @@ public class MainController {
     }
 
 
+     @GetMapping("/view")
+    public ModelAndView viewQuestion(HttpServletRequest request,ModelAndView model, Question question) {
+//      List<Question> listQuestion = questionService.getAll();
+        int selectedOption = 0;
+          if(request.getParameter("option")!= null)
+          {
+               selectedOption =  Integer.parseInt(request.getParameter("option"));
+          }
+        List<QnOption> qnOptions = new ArrayList<>();
+        Exam exam = new Exam();
+        exam.setId(question.getId());
+        String quest = question.getQuestion();
+        question.setQuestion(quest);
+        exam.setQuestion(question);
+        exam.setOption1(question.getOptions().get(0).getQOption());
+        exam.setOption2(question.getOptions().get(1).getQOption());
+        exam.setOption3(question.getOptions().get(2).getQOption());
+        exam.setOption4(question.getOptions().get(3).getQOption());  
+        List<Question> listQuestion = questionService.getAll();
+        model.addObject("exam", exam);
+        model.setViewName("view");
+        return model;
+    }
+
+
       @RequestMapping(value = "/selectOption", method = RequestMethod.GET)
       public ModelAndView seletedOption(HttpServletRequest request,HttpServletResponse res)
       {

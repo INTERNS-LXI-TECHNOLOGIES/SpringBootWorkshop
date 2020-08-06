@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>add</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     
 </head>
 <script>
 <%
@@ -28,17 +28,27 @@ function timer()
 </script>
 <body>
 <div class="header">
-    <h1 align="center">Questions</h1>
-    <form action="<%=request.getRequestURL()%>" name="forma">
-        <h2 align="right">Seconds remaining:<input type="text" name="clock" value="clock"  style="border:0px solid white"></h2></form>
+  <h1 align="center">Questions</h1>
+  <form action="<%=request.getRequestURL()%>" name="forma">
+    <h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
 </div>
 <script>
         timer();
       </script>
 <br>
 <br>
-<form action="#" th:action = "@{/view}" method="GET" th:object="${listExam}">   
-<a th:text = "${listExam.question}"></a><br>
+
+<form action="#" th:action = "@{/view}" method="GET" th:object="${listexam}">
+
+<a th:text = "${question}"></a><br>
+  
+  <br>
+  <br>
+  <div align = "center"><button class="button">NEXT</button></div>
+</form>
+                
+              
+                
   
     
 </form>
