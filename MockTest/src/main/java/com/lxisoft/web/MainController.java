@@ -3,6 +3,7 @@ package com.lxisoft.web;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,12 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lxisoft.service.*;
 import com.lxisoft.entity.*;
 import com.lxisoft.model.Exam;
+import com.lxisoft.model.Mock;
 import com.lxisoft.repository.QuestionRepository;
 
 @Controller
 public class MainController {
-	@Autowired
-    private QuestionRepository questionRepository;
 	private int i=0;
 	
 	@Autowired
@@ -34,8 +34,9 @@ public class MainController {
 	@Autowired
     private OptionService optionService;
 	
-    @GetMapping("/")
-    public String root() {
+	@RequestMapping(value="/")
+    public String home(Map<String, Object> model) {
+        model.put("message", "HowToDoInJava Reader !!");
         return "index";
     }
 
@@ -157,33 +158,67 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }
+
+    
+    
+    @GetMapping(value="viewQuestion")
+    public ModelAndView viewQuestion(ModelAndView model) {
+    	List<Question> listQuestion = questionService.getAll();
+    	Question question=listQuestion.get(0);
+    	Mock exam=new Mock();       
+    	exam.setQuestion(question.getQuestion());
+    	exam.setAnswer(question.getAnswer().getAnswer());
+    	exam.setOption1(question.getOptions().get(0).getQOption());
+        exam.setOption2(question.getOptions().get(1).getQOption());
+        exam.setOption3(question.getOptions().get(2).getQOption());
+        exam.setOption4(question.getOptions().get(3).getQOption());
+        List<Mock> listExam = new ArrayList<>();
+        listExam.add(exam);
+    	model.addObject("listExam", listExam);
+    	model.setViewName("view");
+    	return model;
+    }
+    
     @GetMapping("/view")
-    public ModelAndView viewQuestion(HttpServletRequest request,ModelAndView model, Question question) {
-//		List<Question> listQuestion = questionService.getAll();
+    public String viewQuestion(HttpServletRequest request) {
+    	HttpSession session = request.getSession(true);
+		@SuppressWarnings("unchecked")
+		List<Mock> listExam = (List<Mock>)session.getAttribute("listExam");
 		int selectedOption = 0;
 		  if(request.getParameter("option")!= null)
 		  {
 			   selectedOption =  Integer.parseInt(request.getParameter("option"));
 		  }
-		List<QnOption> qnOptions = new ArrayList<>();
-		Exam exam = new Exam();
-        exam.setId(question.getId());
-        String quest = question.getQuestion();
-        question.setQuestion(quest);
-        exam.setQuestion(question);
-        exam.setOption1(question.getOptions().get(0).getQOption());
-        exam.setOption2(question.getOptions().get(1).getQOption());
-        exam.setOption3(question.getOptions().get(2).getQOption());
-        exam.setOption4(question.getOptions().get(3).getQOption());  
-        List<Question> listQuestion = questionService.getAll();
-        model.addObject("exam", exam);
-        model.setViewName("view");
-        return model;
+		  
+		  switch(selectedOption)
+		  {
+		  case 1 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
+			  break;
+		  case 2 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
+			  break;
+		  case 3 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
+			  break;
+		  case 4 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
+			  break;
+		  default :
+			  listExam.get(i-1).setSelectedOption("");
+			  break;
+		  }	
+		  session.setAttribute("listExam", listExam);
+		  return "view";
     }
+    
+    
+    
     
     @GetMapping("/result")
     public String examResult() {
         return "result";
     }
+    
    
 }
