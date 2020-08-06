@@ -199,7 +199,7 @@ public class MainController {
     @GetMapping("/userPage")
 	public String setQuestionsSession(HttpServletRequest request) {
 		HttpSession sessions = request.getSession(true);
-		List<Exam> listQuestions = examService.getAllQuestions();
+		List<Question> listQuestions = questionService.getAll();
 		sessions.setAttribute("listQuestions", listQuestions);
 		return "Introduction";
 	}
