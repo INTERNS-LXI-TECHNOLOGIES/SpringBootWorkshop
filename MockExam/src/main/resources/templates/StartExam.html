@@ -1,62 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
-<title>Registration</title>
+    <meta charset="UTF-8">
+    <title>Questions</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-								
-				
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+        <div align="right" style="margin-right:90px;margin-top:40px; color:green;font-size:30px;font-style:italic;">
+            <form action="#" method="get">
+                <div id="clock">
+                    <label id="timerclock">Time : <span id="timer"></span></label>
+                </div>
+            </form>
+        </div>
+        <div align="center" style="padding-top:50px;padding-left:0px;">
 
-	<br>
-	<br>
-	<div class="container">
-		<h1 align="center">Instructions</h1>
-		<h2>Read The Instructions Carefully !!!</h2>
-  </div>
-  <br>
-  <br>
-  <ol>
- <h2><font color="midnightblue"><li>mobile phones are not allowed</li></font> </h2>
- <h2><font color="MidnightBlue"><li>any malpractice wil lead to debar</li></font></h2>
- <h2><font color="MidnightBlue"><li>helps will be provided by invigilatores</li></font></h2>
- <h2><font color="MidnightBlue"><li>total time allowed is 20 minutes</li></font></h2>
- <h2><font color="MidnightBlue"><li>keep calm and be quiet</li></font></h2>
-</ol>
- <form>
-  <input type="hidden" name = "qcount" value = "0" >
-  <input type="submit" formaction="exam" class="button button1" name="next" value="NEXT" >
-</form>
+                <form th:action="@{/process}" method="get" th:object="${questions}">
+                    <div align="left" style="padding-left:300px;">
+                    <table>
+                        <tr>
+                            <td><h3>Question :--></h3></td>
+                            <td class="qq" th:text="${questions.question}" style="font-size:40px;padding-top:5px;"></td>
+                        </tr>
 
-</center>
-</div>
-<div>
+                        <tr>
+                            <td>
+                                <input type="radio" name="answer" th:value="${questions.option1}" required="required" >
+                                <label th:for="${questions.option1}" th:text="${questions.option1}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
 
-	</div>
+                        <tr>
+                            <td>
+                                <input type="radio" name="answer" th:value="${questions.option2}" required="required">
+                                <label th:for="${questions.option2}" th:text="${questions.option2}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
 
-	<script type="text/javascript"
-		th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-	<script type="text/javascript"
-		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+                        <tr>
+                            <td>
+                                <input type="radio" name="answer" th:value="${questions.option3}" required="required">
+                                <label th:for="${questions.option3}" th:text="${questions.option3}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="radio" name="answer" th:value="${questions.option4}" required="required">
+                                <label th:for="${questions.option4}" th:text="${questions.option4}" style="font-size:25px;"></label>
+                            </td>
+                        </tr>
+                    </table>
+                        <div class="btn"  style="padding-left:350px;padding-top:10px;">
+                            <button  type="submit" style="background-color:green;color:white;height: 50px;width:200px;border-radius: 25px;">Next</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
 
 </body>
 </html>
-

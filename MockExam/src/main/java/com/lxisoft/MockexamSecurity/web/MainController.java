@@ -3,11 +3,13 @@ package com.lxisoft.MockexamSecurity.web;
 import java.io.IOException;
 
 
+
 import java.util.ArrayList;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,6 @@ import com.lxisoft.MockexamSecurity.repository.QuestionRepository;
 import com.lxisoft.MockexamSecurity.service.AnswerService;
 import com.lxisoft.MockexamSecurity.service.OptionService;
 import com.lxisoft.MockexamSecurity.service.QuestionService;
-import com.lxisoft.MockexamSecurity.service.ExamService;
 
 
 
@@ -48,7 +49,7 @@ public class MainController {
 	@Autowired
     private OptionService optionService;
 	  
-
+	private static int count=0;
     @GetMapping("/")
     public String root() {
         return "index";
@@ -189,6 +190,7 @@ public class MainController {
     	}
     }
   */
+    
     /*@RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public ModelAndView userView(ModelAndView model) {
              
@@ -201,9 +203,21 @@ public class MainController {
 		HttpSession sessions = request.getSession(true);
 		List<Question> listQuestions = questionService.getAll();
 		sessions.setAttribute("listQuestions", listQuestions);
-		return "Introduction";
+		return "instructions";
 	}
-    
+ 
+    @RequestMapping(value = "/startExam", method = RequestMethod.GET)
+    public ModelAndView startExam(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    	 List<Question> listExam =  questionService.getAll();
+    	 HttpSession session= request.getSession(true);
+    	 session.setAttribute("exam",listExam );
+    	 List<Exam> examList = (List<Exam>) session.getAttribute("listQuestions");
+         Exam exam = examList.get(count);
+         ModelAndView model = new ModelAndView();
+         model.addObject("exam",exam);
+         model.setViewName("StartExam");
+         return model;
+    }
 }
 
 
