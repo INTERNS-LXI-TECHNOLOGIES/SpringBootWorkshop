@@ -162,8 +162,10 @@ public class MainController {
     
     
     @GetMapping(value="viewQuestion")
-    public ModelAndView viewQuestion(ModelAndView model) {
+    public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {
     	List<Question> listQuestion = questionService.getAll();
+    	if(i<listQuestion.size())
+    	{
     	Question question=listQuestion.get(i);
     	Mock exam=new Mock();       
     	exam.setQuestion(question.getQuestion());
@@ -178,40 +180,46 @@ public class MainController {
     	model.setViewName("view");
     	i++;
     	return model;
+    	}
+    	else
+    	{
+    		model.setViewName("result");
+    	return model;
+    	}
     }
     
-    @GetMapping("/view")
-    public String viewQuestion(HttpServletRequest request) {
-    	HttpSession session = request.getSession(true);
-		@SuppressWarnings("unchecked")
-		List<Mock> listExam = (List<Mock>)session.getAttribute("listExam");
-		int selectedOption = 0;
-		  if(request.getParameter("option")!= null)
-		  {
-			   selectedOption =  Integer.parseInt(request.getParameter("option"));
-		  }
-		  
-		  switch(selectedOption)
-		  {
-		  case 1 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
-			  break;
-		  case 2 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
-			  break;
-		  case 3 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
-			  break;
-		  case 4 :
-			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
-			  break;
-		  default :
-			  listExam.get(i-1).setSelectedOption("");
-			  break;
-		  }	
-		  session.setAttribute("listExam", listExam);
-		  return "view";
-    }
+//    @GetMapping("/view")
+//    public String viewQuestion(HttpServletRequest request) {
+//    	HttpSession session = request.getSession(true);
+//		@SuppressWarnings("unchecked")
+//		List<Mock> listExam = (List<Mock>)session.getAttribute("listExam");
+//		int selectedOption = 0;
+//		  if(request.getParameter("option")!= null)
+//		  {
+//			   selectedOption =  Integer.parseInt(request.getParameter("option"));
+//		  }
+//		  
+//		  switch(selectedOption)
+//		  {
+//		  case 1 :
+//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
+//			  break;
+//		  case 2 :
+//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
+//			  break;
+//		  case 3 :
+//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
+//			  break;
+//		  case 4 :
+//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
+//			  break;
+//		  default :
+//			  listExam.get(i-1).setSelectedOption("");
+//			  break;
+//		  }	
+//		  session.setAttribute("listExam", listExam);
+//		  return "view";
+//    }
     
     
     
