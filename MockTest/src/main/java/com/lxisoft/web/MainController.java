@@ -164,18 +164,19 @@ public class MainController {
     @GetMapping(value="viewQuestion")
     public ModelAndView viewQuestion(ModelAndView model) {
     	List<Question> listQuestion = questionService.getAll();
-    	Question question=listQuestion.get(0);
+    	Question question=listQuestion.get(i);
     	Mock exam=new Mock();       
     	exam.setQuestion(question.getQuestion());
     	exam.setAnswer(question.getAnswer().getAnswer());
     	exam.setOption1(question.getOptions().get(0).getQOption());
         exam.setOption2(question.getOptions().get(1).getQOption());
         exam.setOption3(question.getOptions().get(2).getQOption());
-        exam.setOption4(question.getOptions().get(3).getQOption());
-        List<Mock> listExam = new ArrayList<>();
-        listExam.add(exam);
-    	model.addObject("listExam", listExam);
+        exam.setOption4(question.getOptions().get(3).getQOption());        
+//        List<Mock> listExam = new ArrayList<>();
+//        listExam.add(exam);
+      	model.addObject("exam", exam); 	
     	model.setViewName("view");
+    	i++;
     	return model;
     }
     
