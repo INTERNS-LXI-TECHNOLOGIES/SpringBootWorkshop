@@ -156,7 +156,7 @@ public class MainController {
     }     
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView ditContact(@PathVariable("id") int id,ModelAndView model) {
+    public ModelAndView deletetQuestion(@PathVariable("id") int id,ModelAndView model) {
         Exam exam = new Exam();
         questionService.deleteById(id);
         model.addObject("exam", exam);
@@ -206,18 +206,29 @@ public class MainController {
 		return "instructions";
 	}
  
-    @RequestMapping(value = "/startExam", method = RequestMethod.GET)
-    public ModelAndView startExam(HttpServletRequest request,HttpServletResponse response) throws IOException {
-    	 List<Question> listExam =  questionService.getAll();
-    	 HttpSession session= request.getSession(true);
-    	 session.setAttribute("exam",listExam );
-    	 List<Exam> examList = (List<Exam>) session.getAttribute("listQuestions");
-         Exam exam = examList.get(count);
-         ModelAndView model = new ModelAndView();
+    @RequestMapping(value = "/startExam")
+    public ModelAndView startExam(HttpServletRequest request,HttpServletResponse response) {
+    	List<Question> listExam =  questionService.getAll();
+    	 Question quest=listExam.get(0);  	     	
+         Exam exam = new Exam();
+         exam.setQuestion(quest.getQuestion());
+         exam.getAnswer().setAnswer(exam.getAnswer().getAnswer());
+         exam.getOptions().get(0).setAOption(exam.getOption1());
+         exam.getOptions().get(1).setAOption(exam.getOption2());
+         exam.getOptions().get(2).setAOption(exam.getOption3());
+         exam.getOptions().get(3).setAOption(exam.getOption4());
+                          
          model.addObject("exam",exam);
          model.setViewName("StartExam");
          return model;
     }
+    
+       
+    
+    
+    
+    
+  
 }
 
 

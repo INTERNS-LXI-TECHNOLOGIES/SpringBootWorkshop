@@ -14,39 +14,39 @@
         </div>
         <div align="center" style="padding-top:50px;padding-left:0px;">
 
-                <form th:action="@{/process}" method="get" th:object="${questions}">
+                <form th:action="@{/startExam}" method="get" th:object="${exam}">
                     <div align="left" style="padding-left:300px;">
                     <table>
                         <tr>
                             <td><h3>Question :--></h3></td>
-                            <td class="qq" th:text="${questions.question}" style="font-size:40px;padding-top:5px;"></td>
+                            <td class="qq" th:text="${exam.question}" style="font-size:40px;padding-top:5px;"></td>
                         </tr>
 
                         <tr>
                             <td>
                                 <input type="radio" name="answer" th:value="${questions.option1}" required="required" >
-                                <label th:for="${questions.option1}" th:text="${questions.option1}" style="font-size:25px;"></label>
+                                <label th:for="${exam.option1}" th:text="${questions.option1}" style="font-size:25px;"></label>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
                                 <input type="radio" name="answer" th:value="${questions.option2}" required="required">
-                                <label th:for="${questions.option2}" th:text="${questions.option2}" style="font-size:25px;"></label>
+                                <label th:for="${exam.option2}" th:text="${questions.option2}" style="font-size:25px;"></label>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
                                 <input type="radio" name="answer" th:value="${questions.option3}" required="required">
-                                <label th:for="${questions.option3}" th:text="${questions.option3}" style="font-size:25px;"></label>
+                                <label th:for="${exam.option3}" th:text="${questions.option3}" style="font-size:25px;"></label>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
                                 <input type="radio" name="answer" th:value="${questions.option4}" required="required">
-                                <label th:for="${questions.option4}" th:text="${questions.option4}" style="font-size:25px;"></label>
+                                <label th:for="${exam.option4}" th:text="${questions.option4}" style="font-size:25px;"></label>
                             </td>
                         </tr>
                     </table>
