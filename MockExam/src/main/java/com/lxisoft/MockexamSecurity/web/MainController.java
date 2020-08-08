@@ -153,7 +153,7 @@ public class MainController {
         question.getOptions().get(2).setAOption(exam.getOption3());
         question.getOptions().get(3).setAOption(exam.getOption4());
         questionService.saveQuestion(question);
-        return "index";
+        return "success";
     }     
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
@@ -174,8 +174,7 @@ public class MainController {
         model.setViewName("read");
         return model;  
   }    
-      
-    
+          
  /*   @GetMapping(value = "/authentication")
     public String userAuthentication()
     {
@@ -228,9 +227,14 @@ public class MainController {
     	else
     	{
     		model.setViewName("result");
-    	return model;
+    		return model;
     	}
     }
+    @GetMapping("/result")
+    public String examResult() {
+        return "result";
+    }
+    
 }
     
        
