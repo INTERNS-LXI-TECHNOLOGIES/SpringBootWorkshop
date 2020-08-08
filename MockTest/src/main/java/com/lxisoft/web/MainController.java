@@ -29,14 +29,9 @@ public class MainController {
 	
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-    private AnswerService answerService;
-	@Autowired
-    private OptionService optionService;
 	
-	@RequestMapping(value="/")
-    public String home(Map<String, Object> model) {
-        model.put("message", "HowToDoInJava Reader !!");
+	@GetMapping("/")
+    public String root() {
         return "index";
     }
 
@@ -89,8 +84,7 @@ public class MainController {
 
         question.setOptions(qnOptions);        
         questionService.saveQuestion(question);
-//        answerService.saveAnswer(answer);
-//        optionService.saveOptions(qnOptions);
+        
         List<Question> listExam = questionService.getAll();
     	model.addObject("listExam", listExam);
         model.setViewName("read");
@@ -157,76 +151,100 @@ public class MainController {
     	model.addObject("listExam", listExam);
         model.setViewName("read");
         return model;  
-  }
-
-    
+    }
     
     @GetMapping(value="viewQuestion")
     public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {
     	List<Question> listQuestion = questionService.getAll();
     	if(i<listQuestion.size())
     	{
-    	Question question=listQuestion.get(i);
-    	Mock exam=new Mock();       
-    	exam.setQuestion(question.getQuestion());
-    	exam.setAnswer(question.getAnswer().getAnswer());
-    	exam.setOption1(question.getOptions().get(0).getQOption());
-        exam.setOption2(question.getOptions().get(1).getQOption());
-        exam.setOption3(question.getOptions().get(2).getQOption());
-        exam.setOption4(question.getOptions().get(3).getQOption());        
-//        List<Mock> listExam = new ArrayList<>();
-//        listExam.add(exam);
-      	model.addObject("exam", exam); 	
-    	model.setViewName("view");
-    	i++;
-    	return model;
-    	}
-    	else
-    	{
-    		model.setViewName("result");
-    	return model;
-    	}
+	    	Question question=listQuestion.get(i);
+	    	Mock exam=new Mock();       
+	    	exam.setQuestion(question.getQuestion());
+	    	exam.setAnswer(question.getAnswer().getAnswer());
+	    	exam.setOption1(question.getOptions().get(0).getQOption());
+	        exam.setOption2(question.getOptions().get(1).getQOption());
+	        exam.setOption3(question.getOptions().get(2).getQOption());
+	        exam.setOption4(question.getOptions().get(3).getQOption());        
+	        //        List<Mock> listExam = new ArrayList<>();
+	        //        listExam.add(exam);
+	        model.addObject("exam", exam); 	
+	        model.setViewName("view");
+	        i++;
+	        return model;
+    		}
+    		else
+    		{
+    			model.setViewName("result");
+    			return model;
+    		}
     }
     
-//    @GetMapping("/view")
-//    public String viewQuestion(HttpServletRequest request) {
-//    	HttpSession session = request.getSession(true);
-//		@SuppressWarnings("unchecked")
-//		List<Mock> listExam = (List<Mock>)session.getAttribute("listExam");
-//		int selectedOption = 0;
-//		  if(request.getParameter("option")!= null)
-//		  {
-//			   selectedOption =  Integer.parseInt(request.getParameter("option"));
-//		  }
-//		  
-//		  switch(selectedOption)
-//		  {
-//		  case 1 :
-//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
-//			  break;
-//		  case 2 :
-//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
-//			  break;
-//		  case 3 :
-//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
-//			  break;
-//		  case 4 :
-//			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
-//			  break;
-//		  default :
-//			  listExam.get(i-1).setSelectedOption("");
-//			  break;
-//		  }	
-//		  session.setAttribute("listExam", listExam);
-//		  return "view";
-//    }
+    @GetMapping("/view")
+    public String viewQuestion(HttpServletRequest request) {
+    	HttpSession session = request.getSession(true);
+		@SuppressWarnings("unchecked")
+		List<Mock> listExam = (List<Mock>)session.getAttribute("listExam");
+		int selectedOption = 0;
+		  if(request.getParameter("option")!= null)
+		  {
+			   selectedOption =  Integer.parseInt(request.getParameter("option"));
+		  }
+		  
+		  switch(selectedOption)
+		  {
+		  case 1 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption1());
+			  break;
+		  case 2 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption2());
+			  break;
+		  case 3 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption3());
+			  break;
+		  case 4 :
+			  listExam.get(i-1).setSelectedOption(listExam.get(i-1).getOption4());
+			  break;
+		  default :
+			  listExam.get(i-1).setSelectedOption("");
+			  break;
+		  }	
+		  session.setAttribute("listExam", listExam);
+		  return "view";
+    }
     
     
     
     
     @GetMapping("/result")
-    public String examResult() {
-        return "result";
+    public ModelAndView examResult(ModelAndView model) {
+    	int mark=0;
+    	List<Question> ql =questionService.getAll();
+    	
+    	for(int i=0;i<ql.size();i++)
+    	{
+    		Question question=ql.get(i);
+	    	Mock exam=new Mock();       
+	    	exam.setQuestion(question.getQuestion());
+	    	exam.setAnswer(question.getAnswer().getAnswer());
+	    	exam.setOption1(question.getOptions().get(0).getQOption());
+	        exam.setOption2(question.getOptions().get(1).getQOption());
+	        exam.setOption3(question.getOptions().get(2).getQOption());
+	        exam.setOption4(question.getOptions().get(3).getQOption());
+	        exam.getSelectedOption();
+	        List<Mock> listExam = new ArrayList<>();
+	        listExam.add(exam);
+//	        model.addObject("listExam", listExam);
+    		
+    		if(listExam.get(i).getAnswer().equals(listExam.get(i).getSelectedOption()))
+    		{
+    			mark++;
+    		}
+    				
+    	}
+    	model.addObject("mark", mark);
+    	model.setViewName("result");
+		return model;
     }
     
    
