@@ -1,43 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>viewAll</title>
-</head>
-<body>
-<div>
-        <h1 align=center>View Questions</h1>
-        <br>
-        <br>
-    </div>
-    <table align=center border=1px >
-	<tr>
-		<th>Question</th>
-		<th>Answer</th>
-		<th>Option1</th>
-		<th>Option2</th>
-		<th>Option3</th>
-		<th>Option4</th>
-		<th>Delete</th>
-		<th>Edit</th>
-	</tr>
+    <title>add</title>
+     <style>
+	.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #ff0080;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
 
-<tr th:each="list,iterationStatus : ${listExam}"> 
-                <td th:text="${list.question}"></td>
-                <th:block th:each ="answer : ${list.answer}">
-                <td th:text="${answer.answer}"></td>
-              </th:block>
-                <th:block th:each ="options : ${list.ansOption}">
-                  <td th:text="${options.ansOption}"></td>
-                </th:block>
-                  
-            </tr>
-            
-             
-        </table>
+.button:hover {background-color: #ff0040}
+
+.button:active {
+  background-color: #ff0040;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+	div
+	{
+		padding-top: 40px;
+		padding-right: 30px;
+		padding-left: 80px;
+		padding-bottom: 20px;
+	}
+	
+	.header {
+  background-color: #ff0080;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
+</head>
+<script>
+<%
+String clock = request.getParameter( "clock" );
+if( clock == null ) clock = "20";
+%>
+var timeout =clock;
+function timer()
+{
+  if( --timeout > 0 )
+  {
+    document.forma.clock.value = timeout;
+    window.setTimeout( "timer()", 1000 );
+  }
+  else
+  {
+    document.forma.clock.value = "Time over";
+    // window.location.href = "index.jsp";
+  }
+}
+</script>
+<body>
+<div class="header">
+	<h1 align="center">Questions</h1>
+	<form action="<%=request.getRequestURL()%>" name="forma">
+		<h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
+</div>
+<script>
+        timer();
+      </script>
+<br>
+<br>
+
+<form action="#" th:action = "@{/startExam}" method="GET" th:object="${exam}">   
+
+<a th:text = "${exam.question}"></a><br>
+  <input type="radio" id="option" name="option" value="1">
+  <label th:for="option" th:text="${exam.option1}" ></label><br>
+  <input type="radio" id="option" name="option" value="2">
+  <label th:for="option" th:text="${exam.option2}" ></label><br>
+  <input type="radio" id="option" name="option" value="3">
+  <label th:for="option" th:text="${exam.option3}" ></label><br>
+  <input type="radio" id="option" name="option" value="4">
+  <label th:for="option" th:text="${exam.option4}" ></label><br>
+  <br>
+  <br>
+  <div align = "center"><button class="button">NEXT</button></div>
+</form>
+                
+              
+                
+  
     
-<form action="/">
-    <center><button>Back</button></center>
 </form>
 </body>
 </html>

@@ -29,6 +29,7 @@ import com.lxisoft.MockexamSecurity.entity.AnsOption;
 import com.lxisoft.MockexamSecurity.entity.Answer;
 import com.lxisoft.MockexamSecurity.entity.Question;
 import com.lxisoft.MockexamSecurity.model.Exam;
+import com.lxisoft.MockexamSecurity.model.MockExam;
 import com.lxisoft.MockexamSecurity.repository.QuestionRepository;
 import com.lxisoft.MockexamSecurity.service.AnswerService;
 import com.lxisoft.MockexamSecurity.service.OptionService;
@@ -206,29 +207,35 @@ public class MainController {
 		return "instructions";
 	}
  
-    @RequestMapping(value = "/startExam")
-    public ModelAndView startExam(HttpServletRequest request,HttpServletResponse response) {
-    	List<Question> listExam =  questionService.getAll();
-    	 Question quest=listExam.get(0);  	     	
-         Exam exam = new Exam();
-         exam.setQuestion(quest.getQuestion());
-         exam.getAnswer().setAnswer(exam.getAnswer().getAnswer());
-         exam.getOptions().get(0).setAOption(exam.getOption1());
-         exam.getOptions().get(1).setAOption(exam.getOption2());
-         exam.getOptions().get(2).setAOption(exam.getOption3());
-         exam.getOptions().get(3).setAOption(exam.getOption4());
-                          
-         model.addObject("exam",exam);
-         model.setViewName("StartExam");
-         return model;
+    @GetMapping(value="startExam")
+    public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {
+    	List<Question> listQuestion = questionService.getAll();
+    	if(count<listQuestion.size())
+    	{
+    	Question question=listQuestion.get(count);
+    	MockExam exam=new MockExam();       
+    	exam.setQuestion(question.getQuestion());
+    	exam.setAnswer(question.getAnswer().getAnswer());
+    	exam.setOption1(question.getOptions().get(0).getAOption());
+        exam.setOption2(question.getOptions().get(1).getAOption());
+        exam.setOption3(question.getOptions().get(2).getAOption());
+        exam.setOption4(question.getOptions().get(3).getAOption());        
+      	model.addObject("exam", exam); 	
+    	model.setViewName("view");
+    	count++;
+    	return model;
+    	}
+    	else
+    	{
+    		model.setViewName("result");
+    	return model;
+    	}
     }
+}
     
        
     
     
     
     
-  
-}
-
 

@@ -1,66 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Questions</title>
+    <title>add</title>
+     <style>
+	.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: grey;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: black}
+
+.button:active {
+  background-color: #ff0040;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+	div
+	{
+		padding-top: 40px;
+		padding-right: 30px;
+		padding-left: 80px;
+		padding-bottom: 20px;
+	}
+	
+	.header {
+  background-color: #ff0080;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
 </head>
+<script>
+<%
+String clock = request.getParameter( "clock" );
+if( clock == null ) clock = "20";
+%>
+var timeout =clock;
+function timer()
+{
+  if( --timeout > 0 )
+  {
+    document.forma.clock.value = timeout;
+    window.setTimeout( "timer()", 1000 );
+  }
+  else
+  {
+    document.forma.clock.value = "Time over";
+    // window.location.href = "index.jsp";
+  }
+}
+</script>
 <body>
-        <div align="right" style="margin-right:90px;margin-top:40px; color:green;font-size:30px;font-style:italic;">
-            <form action="#" method="get">
-                <div id="clock">
-                    <label id="timerclock">Time : <span id="timer"></span></label>
-                </div>
-            </form>
-        </div>
-        <div align="center" style="padding-top:50px;padding-left:0px;">
+<div class="header">
+	<h1 align="center">Questions</h1>
+	<form action="<%=request.getRequestURL()%>" name="forma">
+		<h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
+</div>
+<script>
+        timer();
+      </script>
+<br>
+<br>
 
-                <form th:action="@{/startExam}" method="get" th:object="${exam}">
-                    <div align="left" style="padding-left:300px;">
-                    <table>
-                        <tr>
-                            <td><h3>Question :--></h3></td>
-                            <td class="qq" th:text="${exam.question}" style="font-size:40px;padding-top:5px;"></td>
-                        </tr>
+<form action="#" th:action = "@{/viewQuestion}" method="GET" th:object="${exam}">   
 
-                        <tr>
-                            <td>
-                                <input type="radio" name="answer" th:value="${questions.option1}" required="required" >
-                                <label th:for="${exam.option1}" th:text="${questions.option1}" style="font-size:25px;"></label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="radio" name="answer" th:value="${questions.option2}" required="required">
-                                <label th:for="${exam.option2}" th:text="${questions.option2}" style="font-size:25px;"></label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="radio" name="answer" th:value="${questions.option3}" required="required">
-                                <label th:for="${exam.option3}" th:text="${questions.option3}" style="font-size:25px;"></label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="radio" name="answer" th:value="${questions.option4}" required="required">
-                                <label th:for="${exam.option4}" th:text="${questions.option4}" style="font-size:25px;"></label>
-                            </td>
-                        </tr>
-                    </table>
-                        <div class="btn"  style="padding-left:350px;padding-top:10px;">
-                            <button  type="submit" style="background-color:green;color:white;height: 50px;width:200px;border-radius: 25px;">Next</button>
-                        </div>
-
-                    </div>
-
-
-                </form>
-            </div>
-
-        </div>
-
+<a th:text = "${exam.question}"></a><br>
+  <input type="radio" id="option" name="option" value="1">
+  <label th:for="option" th:text="${exam.option1}" ></label><br>
+  <input type="radio" id="option" name="option" value="2">
+  <label th:for="option" th:text="${exam.option2}" ></label><br>
+  <input type="radio" id="option" name="option" value="3">
+  <label th:for="option" th:text="${exam.option3}" ></label><br>
+  <input type="radio" id="option" name="option" value="4">
+  <label th:for="option" th:text="${exam.option4}" ></label><br>
+  <br>
+  <br>
+  <div align = "center"><button class="button">NEXT</button></div>
+</form>
+                
+              
+                
+  
+    
+</form>
 </body>
 </html>
