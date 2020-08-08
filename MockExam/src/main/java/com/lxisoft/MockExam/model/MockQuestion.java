@@ -3,7 +3,7 @@ package com.lxisoft.MockExam.model;
 public class MockQuestion {
 	
 	private int id;
-	private Question question;
+	private String question;
 	private Answer answer;
 	private String option1;
 	private String option2;
@@ -15,10 +15,10 @@ public class MockQuestion {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Question getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
-	public void setQuestion(Question question) {
+	public void setQuestion(String question) {
 		this.question = question;
 	}
 	public Answer getAnswer() {

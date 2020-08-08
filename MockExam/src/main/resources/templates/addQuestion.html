@@ -9,7 +9,7 @@
 		<hr>
 		<h2>Add Question</h2>
 		<form th:action="@{/add}" th:object="${mockExam}" method="POST">
-			<input type="text" th:field="*{question.question}" placeholder="Question" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{question}" placeholder="Question" class="form-control mb-4 col-4">
 
 			<input type="text" th:field="*{answer.answer}" placeholder="Answer" class="form-control mb-4 col-4">
 
