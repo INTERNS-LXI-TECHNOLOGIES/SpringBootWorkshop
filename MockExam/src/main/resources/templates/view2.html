@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     
+</head>
+<script>
+<%
+String clock = request.getParameter( "clock" );
+if( clock == null ) clock = "20";
+%>
+var timeout =clock;
+function timer()
+{
+  if( --timeout > 0 )
+  {
+    document.forma.clock.value = timeout;
+    window.setTimeout( "timer()", 1000 );
+  }
+  else
+  {
+    document.forma.clock.value = "Time over";
+    // window.location.href = "index.jsp";
+  }
+}
+</script>
+<body>
+<div class="header">
+  <h1 align="center">Questions</h1>
+  <form action="<%=request.getRequestURL()%>" name="forma">
+    <h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
+</div>
+<script>
+        timer();
+      </script>
+<br>
+<br>
+
+<form action="#" th:action = "@{/user}" method="GET" th:object="${mockExam}">
+
+<a th:text = "${mockExam.question}"></a><br>
+
+
+<ul>
+  <li th:each="ty : ${allTypes}">
+    <input type="radio" th:field="*{type}" th:value="${ty}" />
+    <label th:for="${#ids.prev('type')}" th:text="#{${'seedstarter.type.' + ty}}">Wireframe</label>
+  </li>
+</ul>
+
+  <input type="radio" id="option" name="option" value="${mockExam.option1}">
+  <label th:for="option" th:text="${mockExam.option1}" ></label><br>
+  
+  <input type="radio" id="option" name="option" value="${mockExam.answer}">
+  <label th:for="option" th:text="${mockExam.answer}" ></label><br>
+
+  <input type="radio" id="option" name="option" value="${mockExam.option2}">
+  <label th:for="option" th:text="${mockExam.option2}" ></label><br>
+  <input type="radio" id="option" name="option" value="${mockExam.option3}">
+  <label th:for="option" th:text="${mockExam.option3}" ></label><br>
+  <br>
+  <br>
+  <div align = "center"><button class="button">NEXT</button></div>
+</form>
+                
+              
+                
+  
+    
+</form>
+</body>
+</html>

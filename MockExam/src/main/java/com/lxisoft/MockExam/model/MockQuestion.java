@@ -4,7 +4,7 @@ public class MockQuestion {
 	
 	private int id;
 	private String question;
-	private Answer answer;
+	private String answer;
 	private String option1;
 	private String option2;
 	private String option3;
@@ -21,10 +21,10 @@ public class MockQuestion {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public Answer getAnswer() {
+	public String getAnswer() {
 		return answer;
 	}
-	public void setAnswer(Answer answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 	public String getOption1() {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>MockExam ManageMent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container my-2">
+<h1 align="center">MOCKEXAM</h1>
+<center><a href="viewAll"><input type="submit" class="button" value="Opertions"/></a></center>
+
+<form th:action = "@{/view}" method="GET" th:object="${mockExam}">
+<h2 align="center">Instructions</h2>
+</div>
+<div>
+<h4>1. You have got 10 minutes to complete the exam</h4>
+<h4>2. Answer all questions</h4>
+<h4>3. Read questions carefully and select the answer given below</h4>
+<h4>4. Any malpractice will lead to debar</h4>
+<h4>5. The questions can be answered in any order. Each question carries 1 mark.</h4>
+</div>
+<div align = "center"><button class="button">NEXT</button></div>
+</form>
+
+
+</body>
+</html>

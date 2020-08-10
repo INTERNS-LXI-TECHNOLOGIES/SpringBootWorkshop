@@ -1,61 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>add</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-     
+    <meta charset="ISO-8859-1">
+    <title>MockExam ManageMent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<script>
-<%
-String clock = request.getParameter( "clock" );
-if( clock == null ) clock = "20";
-%>
-var timeout =clock;
-function timer()
-{
-  if( --timeout > 0 )
-  {
-    document.forma.clock.value = timeout;
-    window.setTimeout( "timer()", 1000 );
-  }
-  else
-  {
-    document.forma.clock.value = "Time over";
-    // window.location.href = "index.jsp";
-  }
-}
-</script>
 <body>
-<div class="header">
-  <h1 align="center">Questions</h1>
-  <form action="<%=request.getRequestURL()%>" name="forma">
-    <h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
-</div>
-<script>
-        timer();
-      </script>
-<br>
-<br>
+<div class="container my-2">
 
-<form action="#" th:action = "@{/user}" method="GET" th:object="${mockExam}">
+  <form th:action = "@{/view}" method="GET" th:object="${mockExam}">
 
-<a th:text = "${mockExam.question}"></a><br>
-  <input type="radio" id="option" name="option" value="1">
+  <a th:text = "${mockExam.question}"></a><br>
+  <br>
+  <br>
+  <br>
+
+
+  <input type="radio" required="required" name="option" th:value="1" class="form-control mb col">
+  <label th:for="option" th:text="${mockExam.option1}" ></label>
+  
+  <input type="radio" required="required" name="option" th:value="2" class="form-control mb col">
+  <label th:for="option" th:text="${mockExam.answer}" ></label>
+
+  <input type="radio" required="required" name="option" th:value="3" class="form-control mb col">
+  <label th:for="option" th:text="${mockExam.option2}" ></label>
+
+  <input type="radio" required="required" name="option" th:value="4" class="form-control mb col">
+  <label th:for="option" th:text="${mockExam.option3}" ></label>
+  <br>
+  <br>
+
+ <!--  <input type="radio" id="option" name="option" value="${mockExam.option1}">
   <label th:for="option" th:text="${mockExam.option1}" ></label><br>
-  <input type="radio" id="option" name="option" value="2">
+  
+  <input type="radio" id="option" name="option" value="${mockExam.answer}">
+  <label th:for="option" th:text="${mockExam.answer}" ></label><br>
+
+  <input type="radio" id="option" name="option" value="${mockExam.option2}">
   <label th:for="option" th:text="${mockExam.option2}" ></label><br>
-  <input type="radio" id="option" name="option" value="3">
+  <input type="radio" id="option" name="option" value="${mockExam.option3}">
   <label th:for="option" th:text="${mockExam.option3}" ></label><br>
   <br>
-  <br>
+  <br> -->
   <div align = "center"><button class="button">NEXT</button></div>
 </form>
-                
-              
-                
-  
-    
-</form>
+
+
 </body>
 </html>
+

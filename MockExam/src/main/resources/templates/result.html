@@ -1,41 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+	<meta charset="ISO-8859-1">
+	<title>MockExam ManageMent</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <title>Result</title>
 </head>
 <body>
-<div class = "wrapper">
+	<div class="container my-2">
 		<div  align="center" >
 			<br>
 			<br>
-		<h1><font style="font-size:50px;" color="white">MOCK EXAM RESULT</font></h1>
+			<h1 align="center">MockExam</h1>
 			<br>
 			<br>
 			</div>
 <div style="padding-left: 40px;" align="left">
-<%
-List<MockModel> listQuestions = (List<MockModel>)session.getAttribute("listQuestions");
-int mark = Integer.parseInt(session.getAttribute("Mark").toString());
-%>
+
+<form action="#" th:action = "@{/login}" method="GET" th:object="${mark}">
+	<h2 align="center">Your Mark</h2>
 <br>
 <br>
 <div class ="resultDiv">
-<h1><label>RESULT : <%out.println(mark); %></label></h1><br><%
-if(mark<=2)
-{
-	%><h1><label>FAILED BETTER LUCK NEXT TIME </label></h1><br><%	
-}
-else 
-{
-	%><h1><label>CONGRADULATIONS YOU PASS </label></h1><br><%
-}
-%>
+<label th:for="mark" th:text="${mark}" ></label><br>
+
 </div>
 </div>
-<div align="center">
-<form action="">
 <button class="button">done</button>
 </form>
+<div align="center">
+
 </body>
 </html>

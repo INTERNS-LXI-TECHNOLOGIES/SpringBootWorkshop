@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.lxisoft.MockExam.model.Answer;
@@ -34,6 +35,7 @@ public class MainController {
 	    private OptionService optionService;
 	    private UserService userService;
         private int i=0;
+        private int mark=1;
 		/* private RoleService roleService; */
 	 public MainController(QuestionService questionService, AnswerService answerService, OptionService optionService,UserService userService)
 	    {
@@ -58,6 +60,12 @@ public class MainController {
 		return model;
 	}
     
+
+    @GetMapping("/user")
+    public String userInstruction(Model model)
+    {
+        return "instruction";
+    }
     /*@GetMapping("/user")
     public ModelAndView exam()
     {
@@ -100,7 +108,8 @@ public class MainController {
         question.setQuestion(ques);
 
        // Question question = mockExam.getQuestion();
-        Answer answer = mockExam.getAnswer();
+        Answer answer = new Answer();
+        answer.setAnswer(mockExam.getAnswer());
         question.setAnswer(answer);
         List<Options> options = new ArrayList<Options>();   
         Options option1 = new Options();
@@ -138,7 +147,8 @@ public class MainController {
 
         Answer answer = new Answer();
         answer = quest.getAnswer();
-        mockQuestion.setAnswer(answer);
+        
+        mockQuestion.setAnswer(answer.getAnswer());
 
         List<Options> option = quest.getOption();
 
@@ -180,7 +190,10 @@ public class MainController {
         String ques = question.getQuestion();
         quest.setQuestion(ques);*/
         mockExam.setQuestion(question.getQuestion());
-        mockExam.setAnswer(question.getAnswer());
+        Answer answer = question.getAnswer();
+        String ans= answer.getAnswer();
+        answer.setAnswer(ans);
+        mockExam.setAnswer(answer.getAnswer());
         
         List<Options> option = question.getOption();
         Options option1 = option.get(0);
@@ -205,7 +218,9 @@ public class MainController {
         Answer answer = mockExam.getAnswer();
         ques = mockExam.getQuestion();*/
         question.setQuestion(mockExam.getQuestion());
-        Answer answer = mockExam.getAnswer();
+        Answer answer = new Answer();
+        String ans=mockExam.getAnswer();
+        answer.setAnswer(ans);
         question.setAnswer(answer);
         List<Options> options = question.getOption() ;  
         options.get(0).setOption(mockExam.getOption1());
@@ -219,23 +234,31 @@ public class MainController {
     }
 
 
-     @GetMapping("/user")
-    public ModelAndView viewQuestion(ModelAndView model) {
+    @RequestMapping(value ="/view")
+    public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) 
+    {
         List<Question> questions= questionService.getAll();
+        
+        //String optn=request.getParameter("option");
+        MockQuestion mockExam = new MockQuestion();
         //ModelAndView model = new ModelAndView();
         if(i<questions.size())
         {
          
         Question question = questions.get(i);
-        MockQuestion mockExam = new MockQuestion();
+        
         mockExam.setId(question.getId());
         /*Question quest = new Question();
         String ques = question.getQuestion();
         quest.setQuestion(ques);
         mockExam.setQuestion(quest);
-*/
+*/         
+        Answer answer = question.getAnswer();
+        String ans= answer.getAnswer();
+        answer.setAnswer(ans);
+        mockExam.setAnswer(answer.getAnswer());
+
         mockExam.setQuestion(question.getQuestion());
-        mockExam.setAnswer(question.getAnswer());
         
         List<Options> option = question.getOption();
         Options option1 = option.get(0);
@@ -246,59 +269,83 @@ public class MainController {
         mockExam.setOption2(option2.getOption());
         mockExam.setOption3(option3.getOption());
             
+           
+            i++;
+            if(request.getParameter("option")!= null)
+            {
+            	int optn = Integer.parseInt(request.getParameter("option")); 
+            if(optn == 1)  
+            {
+            	
+            	
+                if(mockExam.getOption1().equals(mockExam.getAnswer()))
+                    {
+                        mark=mark+1;
+                       
+                    }
+                    
+            }
+
+            if(optn == 2)  
+            {
+                
+                
+                if(mockExam.getAnswer().equals(mockExam.getAnswer()))
+                    {
+                        mark=mark+1;
+                        
+                    }
+                    
+            }
+
+            if(optn == 3)  
+            {
+                
+                
+                if(mockExam.getOption2().equals(mockExam.getAnswer()))
+                    {
+                        mark=mark+1;
+                        
+                    }
+                    
+            }
+
+            if(optn == 4)  
+            {
+                
+                
+                if(mockExam.getOption3().equals(mockExam.getAnswer()))
+                    {
+                        mark=mark+1;
+                        
+                    }
+                    
+            }
+            }
+
             model.addObject("mockExam",mockExam);
             model.setViewName("view");
-            i++;
-
-            if(quest.equals(question.getAnswer()));
-                {
-                    mark=mark+1;
-
-                }
-
-            return model;
+           
         }
 
          else
         {
+        	model.addObject("mark",mark);
             model.setViewName("result");
-            return model;
+            
         }
-
+       
+        return model;
         
     }
+       /* @GetMapping(value="/option")
+        public void option(ModelAndView model,HttpServletRequest request) 
+        {
+            String optn=request.getParameter("option");
+            System.out.println("option : "+optn);
+
+        }*/
 }
-
-
-
-
-   /*     @GetMapping(value="/user")
-    public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {
-        List<Question> listQuestion = questionService.getAll();
-        if(i<listQuestion.size())
-        {
-        Question question=listQuestion.get(i);
-        Mock exam=new Mock();       
-        exam.setQuestion(question.getQuestion());
-        exam.setAnswer(question.getAnswer().getAnswer());
-        exam.setOption1(question.getOptions().get(0).getQOption());
-        exam.setOption2(question.getOptions().get(1).getQOption());
-        exam.setOption3(question.getOptions().get(2).getQOption());
-        exam.setOption4(question.getOptions().get(3).getQOption());        
-//        List<Mock> listExam = new ArrayList<>();
-//        listExam.add(exam);
-        model.addObject("exam", exam);  
-        model.setViewName("view");
-        i++;
-        return model;
-        }
-        else
-        {
-            model.setViewName("result");
-        return model;
-        }
-    }*/
-
 
 
 
