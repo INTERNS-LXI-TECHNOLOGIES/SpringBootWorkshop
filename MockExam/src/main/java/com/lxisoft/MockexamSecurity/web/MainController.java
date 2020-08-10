@@ -189,13 +189,7 @@ public class MainController {
     	}
     }
   */
-    
-    /*@RequestMapping(value = "/userPage", method = RequestMethod.GET)
-    public ModelAndView userView(ModelAndView model) {
-             
-        model.setViewName("instructions");
-        return model;
-    }*/
+      
     
     @GetMapping("/userPage")
 	public String setQuestionsSession(HttpServletRequest request) {
@@ -210,9 +204,9 @@ public class MainController {
     	List<Question> listQuestion = questionService.getAll();
     	List<MockExam> listExam = new ArrayList<>();
     	HttpSession session = request.getSession(true);
-    	for(int j=0;j<listQuestion.size();j++)
+    	for(int i=0;i<listQuestion.size();i++)
     	{
-	    	Question question=listQuestion.get(j);
+	    	Question question=listQuestion.get(i);
 	    	MockExam exam=new MockExam();       
 	    	exam.setQuestion(question.getQuestion());
 	    	exam.setAnswer(question.getAnswer().getAnswer());
@@ -226,7 +220,6 @@ public class MainController {
     	session.setAttribute("listExam", listExam); 
     	return "redirect:/view";
     }
-    
     
     @GetMapping("/view")
     public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {

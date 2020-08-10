@@ -3,59 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>add</title>
-</head>
-<script>
-<%
-String clock = request.getParameter( "clock" );
-if( clock == null ) clock = "20";
-%>
-var timeout =clock;
-function timer()
-{
-  if( --timeout > 0 )
-  {
-    document.forma.clock.value = timeout;
-    window.setTimeout( "timer()", 1000 );
-  }
-  else
-  {
-    document.forma.clock.value = "Time over";
-    // window.location.href = "index.jsp";
-  }
+     <style>
+	.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: blue;
+  background-color: grey;
+  border: none;
+  border-radius: 15px;
+  
 }
-</script>
+
+.button:hover {background-color: grey}
+
+.button:active {
+  background-color: grey;
+    transform: translateY(4px);
+}
+	div
+	{
+		padding-top: 40px;
+		padding-right: 30px;
+		padding-left: 80px;
+		padding-bottom: 20px;
+	}
+	
+	.header {
+  background-color: grey;
+  padding: 20px;
+  text-align: center;
+}
+  </style>
+</head>
 <body>
 <div class="header">
 	<h1 align="center">Questions</h1>
-	<form action="<%=request.getRequestURL()%>" name="forma">
-		<h2 align="right">Seconds remaining:<input type="text" name="clock" value=""  style="border:0px solid white"></h2></form>
+	<script th:inline="javascript">
+    var endDate = [[${#calendars.format(endDate,'yyyy/MM/dd')}]];
+
+    $('#clock').countdown(endDate).on('update.countdown', function (event) {
+        var $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+            + '<span class="h1 font-weight-bold">%H</span> Hr'
+            + '<span class="h1 font-weight-bold">%M</span> Min'
+            + '<span class="h1 font-weight-bold">%S</span> Sec'));
+    });
+</script>
+	
 </div>
-<script>
-        timer();
-      </script>
 <br>
 <br>
-
-<form action="#" th:action = "@{/startExam}" method="GET" th:object="${exam}">   
-
-<a th:text = "${exam.question}"></a><br>
+<form action="#" th:action = "@{/selectedOption}" method="GET" th:object="${listExam}">   
+<a th:text = "${listExam.question}"></a><br>
   <input type="radio" id="option" name="option" value="1">
-  <label th:for="option" th:text="${exam.option1}" ></label><br>
+  <label th:for="option" th:text="${listExam.option1}" ></label><br>
   <input type="radio" id="option" name="option" value="2">
-  <label th:for="option" th:text="${exam.option2}" ></label><br>
+  <label th:for="option" th:text="${listExam.option2}" ></label><br>
   <input type="radio" id="option" name="option" value="3">
-  <label th:for="option" th:text="${exam.option3}" ></label><br>
+  <label th:for="option" th:text="${listExam.option3}" ></label><br>
   <input type="radio" id="option" name="option" value="4">
-  <label th:for="option" th:text="${exam.option4}" ></label><br>
+  <label th:for="option" th:text="${listExam.option4}" ></label><br>
   <br>
   <br>
   <div align = "center"><button class="button">NEXT</button></div>
-</form>
-                
-              
-                
-  
-    
 </form>
 </body>
 </html>
