@@ -44,13 +44,22 @@
 <body>
 <div class="header">
 	<h1 align="center">Questions</h1>
+	<script th:inline="javascript">
+    var endDate = [[${#calendars.format(endDate,'yyyy/MM/dd')}]];
+
+    $('#clock').countdown(endDate).on('update.countdown', function (event) {
+        var $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+            + '<span class="h1 font-weight-bold">%H</span> Hr'
+            + '<span class="h1 font-weight-bold">%M</span> Min'
+            + '<span class="h1 font-weight-bold">%S</span> Sec'));
+    });
+</script>
+	
 </div>
-
 <br>
 <br>
-
 <form action="#" th:action = "@{/selectedOption}" method="GET" th:object="${listExam}">   
-
 <a th:text = "${listExam.question}"></a><br>
   <input type="radio" id="option" name="option" value="1">
   <label th:for="option" th:text="${listExam.option1}" ></label><br>
@@ -63,12 +72,6 @@
   <br>
   <br>
   <div align = "center"><button class="button">NEXT</button></div>
-</form>
-                
-              
-                
-  
-    
 </form>
 </body>
 </html>

@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.lxisoft.service.*;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import com.lxisoft.entity.*;
 import com.lxisoft.model.Exam;
 import com.lxisoft.model.Mock;
-import com.lxisoft.repository.QuestionRepository;
 
 @Controller
 public class MainController {
@@ -51,7 +51,7 @@ public class MainController {
     }
     
     @GetMapping(value = "/add")
-    public ModelAndView addNewQuestion(@ModelAttribute Exam exam,ModelAndView model){
+    public String addNewQuestion(@ModelAttribute Exam exam){
     	List<QnOption> qnOptions = new ArrayList<>();
         Question question = exam.getQuestion();
         Answer answer = exam.getAnswer();
@@ -82,10 +82,7 @@ public class MainController {
         question.setOptions(qnOptions);        
         questionService.saveQuestion(question);
         
-        List<Question> listExam = questionService.getAll();
-    	model.addObject("listExam", listExam);
-        model.setViewName("read");
-        return model;
+        return "redirect:/viewAll";
     }
     @GetMapping(value = "/viewAll")
     public ModelAndView listExam(ModelAndView model) throws IOException {
@@ -141,13 +138,10 @@ public class MainController {
     }
     
     @GetMapping(value = "/delete")
-    public ModelAndView deleteQuest(@PathVariable("id") int id,ModelAndView model) {
+    public String deleteQuest(@PathVariable("id") int id) {
     	long examId = (long)id;
     	questionService.deleteById(examId);
-    	List<Question> listExam = questionService.getAll();
-    	model.addObject("listExam", listExam);
-        model.setViewName("read");
-        return model;  
+    	return "redirect:/viewAll";  
     }
     
     @GetMapping(value="viewQuestion")
@@ -172,6 +166,11 @@ public class MainController {
     	return "redirect:/view";
     }
     
+    @GetMapping("/in")
+    public String main(Model model) throws ParseException {
+        model.addAttribute("endDate", new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01"));
+        return "sample";
+    }
     
     @GetMapping("/view")
     public ModelAndView viewQuestion(ModelAndView model,HttpServletRequest request) {

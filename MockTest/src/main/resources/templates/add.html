@@ -47,10 +47,6 @@
   </style>
 </head>
 <body>
-<div th:if="${param.success}">
-					<div class="alert alert-info">You've successfully registered
-					to MockExam</div>
-				</div>
 <div class="header">
         <br><h1> Add Question</h1><br>
 		</div>
@@ -88,7 +84,6 @@
 									type="text" th:field="*{option4}" class="form-control" 
 									placeholder="Option4"> 
 							</div>
-							
 							<div class="form-group col-md-8">
 								<label for="answer" class="col-form-label">Answer</label> <input
 									type="text" th:field="*{answer.answer}" class="form-control" 
@@ -97,9 +92,7 @@
 							<div class="col-md-6">
 								<input type="submit" class="button" value=Add></button></center>
 							</div>
-
 							<div class="form-group col-md-8"></div>
-
 						</div>
 					</form>
 				</div>
