@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>add</title>
-     <style>
+<meta charset="UTF-8">
+<title>RESULT</title>
+<style>
 	.button {
   display: inline-block;
   padding: 10px 20px;
@@ -18,37 +19,18 @@
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
-
-.button:hover {background-color: #ff0040}
-
-.button:active {
-  background-color: #ff0040;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-	div
-	{
-		padding-top: 40px;
-		padding-right: 30px;
-		padding-left: 80px;
-		padding-bottom: 20px;
-	}
-	
-	.header {
-  background-color: #ff0080;
-  padding: 20px;
-  text-align: center;
-}
-  </style>
+</style>
 </head>
 <body>
-<div class="header">
-<font color="white">
-	<h1 align="center">Result</h1></div>
-	<br>
-	<br>
-    <form action="/">
-    <center><input type="submit" class="button" value="Back"/></center>
-</form>
+		<div  align="center" style="background: linear-gradient(to left, #ff0080,  #ff0080);">
+			<br>
+			<h1><font color="white">RESULT</font></h1>
+			<br>
+		</div>
+		<br>
+		<div style = "padding-left: 100px;">
+    		<h1 align="center">Total Mark : <a th:text = "${mark}"></a> </h1>
+    	</div> 
+        <center><a href="/"><input type="submit" class="button" value=Back></a></center>
 </body>
 </html>

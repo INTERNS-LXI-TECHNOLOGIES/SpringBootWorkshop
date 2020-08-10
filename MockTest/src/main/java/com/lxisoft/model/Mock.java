@@ -1,5 +1,4 @@
 package com.lxisoft.model;
-import com.lxisoft.entity.*;
 
 public class Mock 
 {
