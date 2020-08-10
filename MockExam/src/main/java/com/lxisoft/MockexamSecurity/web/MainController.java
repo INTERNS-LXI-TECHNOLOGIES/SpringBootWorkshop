@@ -5,7 +5,7 @@ import java.io.IOException;
 
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,8 +70,7 @@ public class MainController {
              
         model.setViewName("admin");
         return model;
-    }
-    
+    }   
    
     
     @RequestMapping(value = "/newquestion", method = RequestMethod.GET)
@@ -234,7 +233,78 @@ public class MainController {
     public String examResult() {
         return "result";
     }
-    
+   /* @GetMapping("/startExams")
+	public ModelAndView startExam(HttpServletRequest request) {
+		HttpSession sessions = request.getSession(true);
+		@SuppressWarnings("unchecked")
+		List<MockExam> listQuestions = (List<MockExam>)sessions.getAttribute("listQuestions");
+		ModelAndView model = new ModelAndView();
+		if(count < listQuestions.size()) {
+			model.addObject("listQuestions", listQuestions.get(count));
+			count++;
+		    model.setViewName("Exam");
+		}
+		else {
+			count=0;
+			model.setViewName("redirect:/result");
+		}
+		return model;
+	}
+	
+	@GetMapping("/selectedOption")
+	public String selectedOption(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession(true);
+		@SuppressWarnings("unchecked")
+		List<MockExam> listQuestions = (List<MockExam>)session.getAttribute("listQuestions");
+		int selectedOption = 0;
+		  if(request.getParameter("option")!= null)
+		  {
+			   selectedOption =  Integer.parseInt(request.getParameter("option"));
+		  }
+		  
+		  switch(selectedOption)
+		  {
+		  case 1 :
+			  listQuestions.get(count-1).setSelectedOption(listQuestions.get(count-1).getOption1());
+			  break;
+		  case 2 :
+			  listQuestions.get(count-1).setSelectedOption(listQuestions.get(count-1).getOption2());
+			  break;
+		  case 3 :
+			  listQuestions.get(count-1).setSelectedOption(listQuestions.get(count-1).getOption3());
+			  break;
+		  case 4 :
+			  listQuestions.get(count-1).setSelectedOption(listQuestions.get(count-1).getOption4());
+			  break;
+		  default :
+			  listQuestions.get(count-1).setSelectedOption("");
+			  break;
+		  }
+		  
+		  session.setAttribute("listQuestions", listQuestions);
+			
+		return "redirect:/startExam";
+	}
+	
+	@GetMapping("/result")
+	public ModelAndView calculateResult(HttpSession session) {
+		@SuppressWarnings("unchecked")
+		List<MockExam> listQuestions = (List<MockExam>)session.getAttribute("listQuestions");
+		int mark = 0;
+		Iterator<MockExam> list = listQuestions.iterator();
+		while(list.hasNext()) {
+			MockExam mockEntity = (MockExam)list.next();
+			if(mockEntity.getAnswer().equals(mockEntity.getSelectedOption()))
+				mark++;
+		}
+		ModelAndView model = new ModelAndView();
+		model.addObject("result", mark);
+		model.addObject("listQuestions",listQuestions);
+		model.setViewName("Result");
+		return model;
+	}*/
+		
 }
     
        
