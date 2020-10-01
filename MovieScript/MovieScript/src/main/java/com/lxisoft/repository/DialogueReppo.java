@@ -6,8 +6,8 @@ import com.lxisoft.model.Actor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-@Repository("ActorReppo")
-public interface ActorReppo extends JpaRepository<Actor,Integer>
+@Repository("DialogueReppo")
+public interface DialogueReppo extends JpaRepository<Actor,Integer>
 {
 
 

@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User implements Serializable {
+public class Dialogue implements Serializable {
 
 
     private static final long serialVersionUID = 875002956757661492L;
@@ -22,7 +22,7 @@ public class User implements Serializable {
     private String name;
 
     @Column
-    private String place;
+    private String dialogue;
 
     public int getId() {
         return id;
@@ -40,11 +40,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPlace() {
-        return place;
+    public String getDialogue() {
+        return dialogue;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setDialogue(String dialogue) {
+        this.dialogue = dialogue;
     }
 }
