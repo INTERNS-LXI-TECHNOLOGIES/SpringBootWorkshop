@@ -1,8 +1,9 @@
 package com.lxisoft.model;
-
+@Entity
 public class Movie {
 	private String movieName;
 	private String releaseDate;
+	@Id
 	private int movieCode;
 	public String getMovieName() {
 		return movieName;
