@@ -29,7 +29,8 @@ public class ActorService {
     @Transactional
     public  void deleteUser(int userId)
     {
-        actorReppo.delete(userId);
+        actorReppo.deleteById(userId);
+
     }
 
 }

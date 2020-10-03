@@ -27,7 +27,7 @@ public class UserService {
     @Transactional
     public  void deleteUser(int userId)
     {
-        userReppo.delete(userId);
+        userReppo.deleteById(userId);
     }
 
 }
