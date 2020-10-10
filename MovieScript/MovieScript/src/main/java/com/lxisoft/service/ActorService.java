@@ -16,20 +16,20 @@ public class ActorService {
     private ActorReppo actorReppo;
 
     @Transactional
-    public List<Actor> getAllUsers()
+    public List<Actor> getAllActors()
     {
         return actorReppo.findAll();
     }
 
     @Transactional
-    public void saveUser(Actor actor)
+    public void saveActor(Actor actor)
     {
         actorReppo.save(actor);
     }
     @Transactional
-    public  void deleteUser(int userId)
+    public  void deleteActor(int actorId)
     {
-        actorReppo.deleteById(userId);
+        actorReppo.deleteById(actorId);
 
     }
 
