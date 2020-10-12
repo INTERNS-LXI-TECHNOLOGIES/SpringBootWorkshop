@@ -1,5 +1,6 @@
 package com.lxisoft.controller;
 import com.lxisoft.model.Actor;
+import com.lxisoft.model.Dialogue;
 import com.lxisoft.model.User;
 import com.lxisoft.service.ActorService;
 import com.lxisoft.service.DialogueService;
@@ -60,7 +61,7 @@ public class controller
     }
 
     @RequestMapping(value="/deleteuser")
-    public ModelAndView cancelUser(HttpServletRequest request)
+    public ModelAndView deleteUser(HttpServletRequest request)
     {
         int userid = Integer.parseInt(request.getParameter("id"));
         userService.deleteUser(userid);
@@ -68,14 +69,7 @@ public class controller
 
     }
 
-    @RequestMapping(value="/delete")
-    public ModelAndView delete(HttpServletRequest request)
-    {
-        int userid = Integer.parseInt(request.getParameter("id"));
-        userService.deleteUser(userid);
-        return new ModelAndView("redirect:/admin");
 
-    }
 
     @RequestMapping(value = "/newActor" ,method= RequestMethod.GET)
     public ModelAndView addActor(ModelAndView model)
@@ -88,9 +82,45 @@ public class controller
     }
 
     @RequestMapping(value = "/saveActor",method = RequestMethod.GET)
-    public ModelAndView saveActor(@ModelAttribute User user)
+    public ModelAndView saveActor(@ModelAttribute Actor actor)
     {
-        userService.saveUser(user);
-        return new ModelAndView("redirect:/home");
+        actorService.saveActor(actor);
+        return new ModelAndView("redirect:/admin");
     }
+
+    @RequestMapping(value="/deleteActor")
+    public ModelAndView deleteActor(HttpServletRequest request)
+    {
+        int actorid = Integer.parseInt(request.getParameter("id"));
+        userService.deleteUser(actorid);
+        return new ModelAndView("redirect:/admin");
+
+    }
+
+    @RequestMapping(value = "/newDialogue" ,method= RequestMethod.GET)
+    public ModelAndView addDialogue(ModelAndView model)
+    {
+
+        Dialogue dialogue = new Dialogue();
+        model.addObject("dialogue",dialogue);
+        model.setViewName("addDialogue");
+        return model;
+    }
+
+    @RequestMapping(value = "/saveDialogue",method = RequestMethod.GET)
+    public ModelAndView saveDialogue(@ModelAttribute Dialogue dialogue)
+    {
+        dialogueService.saveDialogue(dialogue);
+        return new ModelAndView("redirect:/admin");
+    }
+
+    @RequestMapping(value="/deleteDialogue")
+    public ModelAndView deleteDialogue(HttpServletRequest request)
+    {
+        int dilgid = Integer.parseInt(request.getParameter("id"));
+        dialogueService.deleteDialogue(dilgid);
+        return new ModelAndView("redirect:/admin");
+
+    }
+
 }
