@@ -17,8 +17,8 @@ import java.util.List;
 @RestController
 public class controller
 {
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     private ActorService actorService;
@@ -53,21 +53,21 @@ public class controller
         return model;
     }
 
-    @RequestMapping(value = "/addUser",method = RequestMethod.GET)
-    public ModelAndView saveUser(@ModelAttribute User user)
-    {
-        userService.saveUser(user);
-        return new ModelAndView("redirect:/home");
-    }
-
-    @RequestMapping(value="/deleteuser")
-    public ModelAndView deleteUser(HttpServletRequest request)
-    {
-        int userid = Integer.parseInt(request.getParameter("id"));
-        userService.deleteUser(userid);
-        return new ModelAndView("redirect:/admin");
-
-    }
+//    @RequestMapping(value = "/addUser",method = RequestMethod.GET)
+//    public ModelAndView saveUser(@ModelAttribute User user)
+//    {
+//        userService.saveUser(user);
+//        return new ModelAndView("redirect:/home");
+//    }
+//
+//    @RequestMapping(value="/deleteuser")
+//    public ModelAndView deleteUser(HttpServletRequest request)
+//    {
+//        int userid = Integer.parseInt(request.getParameter("id"));
+//        userService.deleteUser(userid);
+//        return new ModelAndView("redirect:/admin");
+//
+//    }
 
 
 
@@ -92,7 +92,7 @@ public class controller
     public ModelAndView deleteActor(HttpServletRequest request)
     {
         int actorid = Integer.parseInt(request.getParameter("id"));
-        userService.deleteUser(actorid);
+        actorService.deleteActor(actorid);
         return new ModelAndView("redirect:/admin");
 
     }
