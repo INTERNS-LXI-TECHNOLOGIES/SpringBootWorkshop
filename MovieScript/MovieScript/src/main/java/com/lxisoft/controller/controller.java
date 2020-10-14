@@ -31,17 +31,22 @@ public class controller
         return "index";
     }
 
-    @GetMapping(value = "/admin")
-    public ModelAndView adminView(HttpServletRequest request, HttpServletResponse response)
-    {
-        HttpSession session = request.getSession();
-        List<Actor> actorList = actorService.getAllActors();
-        session.setAttribute("actList",actorList);
-        ModelAndView model = new ModelAndView();
-        model.addObject("Actorlist",actorList);
-        model.setViewName("admin");
-        return model;
+    @GetMapping(value = {"/adminpage"})
+    public String adminPage() {
+        return "admin";
     }
+
+//    @GetMapping(value = "/adminpage")
+//    public ModelAndView adminView(HttpServletRequest request, HttpServletResponse response)
+//    {
+//        HttpSession session = request.getSession();
+//        List<Actor> actorList = actorService.getAllActors();
+//        session.setAttribute("actList",actorList);
+//        ModelAndView model = new ModelAndView();
+//        model.addObject("Actorlist",actorList);
+//        model.setViewName("admin");
+//        return model;
+//    }
 
     @RequestMapping(value = "/new" ,method= RequestMethod.GET)
     public ModelAndView addUser(ModelAndView model)

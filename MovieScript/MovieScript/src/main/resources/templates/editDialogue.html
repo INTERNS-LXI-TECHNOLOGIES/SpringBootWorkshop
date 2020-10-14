@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<head>
+    <title>Home page</title>
+
+</head>
+<body>
+<h2>Edit Script Dialogues</h2>
+<form action="editDialogue" method="GET" modelAttribute="Dialogue">
+    <table>
+        <tr>
+            <td>Name :</td>
+            <td><input path = "name" /></td>
+        </tr>
+        <tr>
+            <td>Dialogue:</td>
+            <td><input path="dialogue"/></td>
+        </tr>
+
+        <button class="button" type="submit">Save</button>
+</body>
+</html>
