@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lxisoft.entity.Actor;
 
 @Controller
-@RequestMapping("/actors/")
+//@RequestMapping("/actors/")
 public class StudentController {
 
 	private final ActorRepository actorRepository;
@@ -27,7 +27,8 @@ public class StudentController {
 	}
 
 	@GetMapping("signup")
-	public String showSignUpForm(Actor actor) {
+	public String showSignUpForm(Actor actor)
+	{
 		return "add-student";
 	}
 
