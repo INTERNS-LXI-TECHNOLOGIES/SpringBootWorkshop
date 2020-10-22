@@ -26,6 +26,18 @@ public class StudentController {
 		this.actorRepository = actorRepository;
 	}
 
+	@GetMapping("adminpg")
+	public String showAdminPage()
+	{
+		return "admin";
+	}
+
+	@GetMapping("userpg")
+	public String showUserPage()
+	{
+		return "user";
+	}
+
 	@GetMapping("signup")
 	public String showSignUpForm(Actor actor)
 	{
