@@ -2,7 +2,9 @@ package com.lxisoft.controller;
 
 import javax.validation.Valid;
 
+import com.lxisoft.entity.Dialogue;
 import com.lxisoft.repository.ActorRepository;
+import com.lxisoft.repository.DialogueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lxisoft.entity.Actor;
 
@@ -20,10 +21,13 @@ public class StudentController {
 
 	private final ActorRepository actorRepository;
 
+	private final DialogueRepository dialogueRepository;
+
 	@Autowired
-	public StudentController(ActorRepository actorRepository)
+	public StudentController(ActorRepository actorRepository, DialogueRepository dialogueRepository)
 	{
 		this.actorRepository = actorRepository;
+		this.dialogueRepository = dialogueRepository;
 	}
 
 	@GetMapping("adminpg")
@@ -61,7 +65,7 @@ public class StudentController {
 	}
 
 	@GetMapping("edit/{id}")
-	public String showUpdateForm(@PathVariable("id") long id, Model model) {
+	public String showUpdateForm(@PathVariable("id") int id, Model model) {
 		Actor actor = actorRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 		model.addAttribute("actor", actor);
@@ -69,7 +73,7 @@ public class StudentController {
 	}
 
 	@PostMapping("update/{id}")
-	public String updateStudent(@PathVariable("id") long id, @Valid Actor actor, BindingResult result,
+	public String updateStudent(@PathVariable("id") int id, @Valid Actor actor, BindingResult result,
 			Model model) {
 		if (result.hasErrors()) {
 			actor.setId(id);
@@ -82,11 +86,27 @@ public class StudentController {
 	}
 
 	@GetMapping("delete/{id}")
-	public String deleteStudent(@PathVariable("id") long id, Model model) {
+	public String deleteStudent(@PathVariable("id") int id, Model model) {
 		Actor actor = actorRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Actor Id:" + id));
 		actorRepository.delete(actor);
-		model.addAttribute("students", actorRepository.findAll());
+		model.addAttribute("actors", actorRepository.findAll());
 		return "index";
+	}
+
+	@GetMapping("addDialogue")
+	public String showDialogueForm(Dialogue dialogue)
+	{
+		return "add-Dialogue";
+	}
+
+	@PostMapping("add")
+	public String addDialogue(@Valid Dialogue dialogue, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "add-Dialogue";
+		}
+
+		dialogueRepository.save(dialogue);
+		return "admin";
 	}
 }
