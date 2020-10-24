@@ -1,7 +1,6 @@
 package com.lxisoft.controller;
 
-import javax.validation.Valid;
-
+import com.lxisoft.entity.Actor;
 import com.lxisoft.entity.Dialogue;
 import com.lxisoft.repository.ActorRepository;
 import com.lxisoft.repository.DialogueRepository;
@@ -9,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.lxisoft.entity.Actor;
+import javax.validation.Valid;
 
 @Controller
 //@RequestMapping("/actors/")
@@ -42,10 +40,10 @@ public class StudentController {
 		return "user";
 	}
 
-	@GetMapping("signup")
+	@GetMapping("newActor")
 	public String showSignUpForm(Actor actor)
 	{
-		return "add-student";
+		return "add-actor";
 	}
 
 	@GetMapping("list")
@@ -54,10 +52,10 @@ public class StudentController {
 		return "index";
 	}
 
-	@PostMapping("add")
+	@PostMapping("addActor")
 	public String addActor(@Valid Actor actor, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "add-student";
+			return "add-actor";
 		}
 
 		actorRepository.save(actor);
@@ -100,13 +98,13 @@ public class StudentController {
 		return "add-Dialogue";
 	}
 
-	@PostMapping("add")
+	@PostMapping("addDlg")
 	public String addDialogue(@Valid Dialogue dialogue, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "add-Dialogue";
+			return "add-dialogue";
 		}
 
 		dialogueRepository.save(dialogue);
-		return "admin";
+		return "redirect:index";
 	}
 }
