@@ -45,15 +45,15 @@ public class Actor {
         this.name = name;
     }
     
-    public void setEmail(String email) {
-        this.charactor = email;
+    public void setCharactor(String charactor) {
+        this.charactor = charactor;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
+    public String getCharactor() {
         return charactor;
     }
 
