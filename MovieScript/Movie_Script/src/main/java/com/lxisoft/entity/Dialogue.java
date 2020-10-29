@@ -19,11 +19,14 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-    @NotBlank(message = "Charactor is mandatory")
+    @NotBlank(message = "Dialogue is mandatory")
     @Column(name = "dialogue")
     private String dialogue;
 
-    public Dialogue() {}
+//    @Column(name = "dialogue")
+//    private String dialogue;
+
+     public Dialogue() {}
 
     public Dialogue(String name, String dialogue) {
         this.name = name;
@@ -54,5 +57,11 @@ public class Dialogue {
         return dialogue;
     }
 
+//    public void setDialogue(String dialogue) {
+//        this.dialogue = dialogue;
+//    }
+//    public String getDialogue() {
+//        return dialogue;
+//    }
 
 }
