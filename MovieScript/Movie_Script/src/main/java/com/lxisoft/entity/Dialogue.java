@@ -19,18 +19,19 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-    @NotBlank(message = "Dialogue is mandatory")
+  //  @NotBlank(message = "Dialogue is mandatory")
     @Column(name = "dialogue")
     private String dialogue;
 
-//    @Column(name = "dialogue")
-//    private String dialogue;
+    @NotBlank(message = "Dialogue is mandatory")
+    @Column(name = "word")
+    private String word;
 
      public Dialogue() {}
 
-    public Dialogue(String name, String dialogue) {
+    public Dialogue(String name, String word) {
         this.name = name;
-        this.dialogue = dialogue;
+        this.word = word;
     }
 
     public void setId(long id) {
@@ -45,16 +46,16 @@ public class Dialogue {
         this.name = name;
     }
 
-    public void setDialogue(String dialogue) {
-        this.dialogue = dialogue;
+    public void setWord(String dialogue) {
+        this.word = word;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDialogue() {
-        return dialogue;
+    public String getWord() {
+        return word;
     }
 
 //    public void setDialogue(String dialogue) {
