@@ -19,9 +19,9 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-  //  @NotBlank(message = "Dialogue is mandatory")
-    @Column(name = "dialogue")
-    private String dialogue;
+//    @NotBlank(message = "Dialogue is mandatory")
+//    @Column(name = "dialogue")
+//    private String dialogue;
 
     @NotBlank(message = "Dialogue is mandatory")
     @Column(name = "word")

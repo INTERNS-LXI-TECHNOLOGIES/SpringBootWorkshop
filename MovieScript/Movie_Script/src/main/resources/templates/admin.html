@@ -19,7 +19,14 @@
 	<div class="container my-2">
 		<div class="card">
 			<div class="card-body">
+				<h2 th:case="null">Welcome to Admin Page</h2>
 				<div th:switch="${actors}" class="container my-5">
+
+					<p class="my-5">
+						<a href="  /newMovie" class="btn btn-primary"><i
+								class="fas fa-user-plus ml-2"> Add Movie</i></a>
+					</p>
+
 					<p class="my-5">
 						<a href="  /newActor" class="btn btn-primary"><i
 							class="fas fa-user-plus ml-2"> Add Actors</i></a>
@@ -36,7 +43,7 @@
 					<div class="col-md-10">
 						<h2 th:case="null">No Actors yet!</h2>
 						<div th:case="*">
-							<h2 th:case="null">Actors Details</h2>
+							<h2>Actors Details</h2>
 							<table class="table table-striped table-responsive-md">
 								<thead>
 									<tr>
@@ -52,12 +59,39 @@
 										<td th:text="${actor.name}"></td>
 										<td th:text="${actor.charactor}"></td>
 										<td th:text="${actor.phoneNo}"></td>
-										<td><a th:href="@{/actors/edit/{id}(id=${actor.id})}"
+										<td><a th:href="@{/edit/{id}(id=${actor.id})}"
 											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 										<td><a
-											th:href="@{/actors/delete/{id}(id=${actor.id})}"
+											th:href="@{/delete/{id}(id=${actor.id})}"
 											class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
 									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div th:switch="${dialoges}" class="container my-5">
+						<h2 th:case="null">No Dialoges yet!</h2>
+						<div th:case="*">
+							<h2 >Dialogues</h2>
+							<table class="table table-striped table-responsive-md">
+								<thead>
+								<tr>
+									<th>Name</th>
+									<th>Dialogue</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:each="dialogue : ${dialogues}">
+									<td th:text="${dialogue.name}"></td>
+									<td th:text="${dialogue.word}"></td>
+									<td><a th:href="@{/editdlg/{id}(id=${actor.id})}"
+										   class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+									<td><a
+											th:href="@{/deletedlg/{id}(id=${actor.id})}"
+											class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+								</tr>
 								</tbody>
 							</table>
 						</div>

@@ -21,7 +21,7 @@
 			<div class="card-body">
 				<div class="col-md-8">
 					<form action="#"
-						th:action="@{/actors/update/{id}(id=${actor.id})}"
+						th:action="@{/update/{id}(id=${actor.id})}"
 						th:object="${actor}" method="post">
 						<div class="row">
 							<div class="form-group col-md-6">
@@ -33,7 +33,7 @@
 							</div>
 							<div class="form-group col-md-8">
 								<label for="charactor" class="col-form-label">Charactor</label> <input
-									type="text" th:field="*{email}" class="form-control" id="email"
+									type="text" th:field="*{email}" class="form-control" id="charactor"
 									placeholder="Charactor"> <span
 									th:if="${#fields.hasErrors('charactor')}" th:errors="*{email}"
 									class="text-danger"></span>
