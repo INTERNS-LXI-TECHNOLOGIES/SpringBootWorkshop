@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DialogueRepository extends JpaRepository<Dialogue,Integer>
+public interface DialogueRepository extends JpaRepository<Dialogue,Long>
 {
     
     List<Dialogue> findByName(String name);

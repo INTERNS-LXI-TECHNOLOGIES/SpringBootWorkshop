@@ -69,7 +69,7 @@ public class MovieController {
 	}
 
 	@GetMapping("edit/{id}")
-	public String showUpdateForm(@PathVariable("id") int id, Model model) {
+	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Actor actor = actorRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 		model.addAttribute("actor", actor);
@@ -77,7 +77,7 @@ public class MovieController {
 	}
 
 	@PostMapping("update/{id}")
-	public String updateStudent(@PathVariable("id") int id, @Valid Actor actor, BindingResult result,
+	public String updateStudent(@PathVariable("id") long id, @Valid Actor actor, BindingResult result,
 								Model model) {
 		if (result.hasErrors()) {
 			actor.setId(id);
@@ -106,7 +106,7 @@ public class MovieController {
 	}
 
 	@GetMapping("editdlg/{id}")
-	public String editDialogue(@PathVariable("id") int id, Model model) {
+	public String editDialogue(@PathVariable("id") long id, Model model) {
 		Dialogue dialogue = dialogueRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 		model.addAttribute("dialogue", dialogue);
@@ -114,7 +114,7 @@ public class MovieController {
 	}
 
 	@PostMapping("updatedlg/{id}")
-	public String updateDialogue(@PathVariable("id") int id, @Valid Dialogue dialogue, BindingResult result,
+	public String updateDialogue(@PathVariable("id") long id, @Valid Dialogue dialogue, BindingResult result,
 								Model model) {
 		if (result.hasErrors()) {
 			dialogue.setId(id);

@@ -19,7 +19,7 @@
 	<div class="container my-2">
 		<div class="card">
 			<div class="card-body">
-				<h2 th:case="null">Welcome to Admin Page</h2>
+				<h2>Welcome to Admin Page</h2>
 				<div th:switch="${actors}" class="container my-5">
 
 					<p class="my-5">
@@ -69,8 +69,8 @@
 							</table>
 						</div>
 					</div>
-					<div th:switch="${dialoges}" class="container my-5">
-						<h2 th:case="null">No Dialoges yet!</h2>
+					<div th:switch="${dialogues}" class="container my-5">
+						<h2 th:case="null">No Dialoges  yet!</h2>
 						<div th:case="*">
 							<h2 >Dialogues</h2>
 							<table class="table table-striped table-responsive-md">
@@ -86,10 +86,10 @@
 								<tr th:each="dialogue : ${dialogues}">
 									<td th:text="${dialogue.name}"></td>
 									<td th:text="${dialogue.word}"></td>
-									<td><a th:href="@{/editdlg/{id}(id=${actor.id})}"
+									<td><a th:href="@{/editdlg/{id}(id=${dialogue.id})}"
 										   class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 									<td><a
-											th:href="@{/deletedlg/{id}(id=${actor.id})}"
+											th:href="@{/deletedlg/{id}(id=${dialogue.id})}"
 											class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
 								</tr>
 								</tbody>

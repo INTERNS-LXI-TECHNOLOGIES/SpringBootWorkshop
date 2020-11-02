@@ -23,7 +23,7 @@ public class Dialogue {
 //    @Column(name = "dialogue")
 //    private String dialogue;
 
-    @NotBlank(message = "Dialogue is mandatory")
+//    @NotBlank(message = "Dialogue is mandatory")
     @Column(name = "word")
     private String word;
 
