@@ -16,6 +16,34 @@
 <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
 <body>
+	<h2>Welcome To You</h2>
+	<h3>You Are Watching MovieOne </h3>
+<td> 
+	<h4>Scene One: Scene in Home</h4>
+	<tr th:each="dialogue: ${dialogues}">
+
+		<span th:if="${dialogue.name} == 'afsal'" th:text="${dialogue.name}"/>:
+		<span th:text="${dialogue.word}"/>
+		<span th:if="${dialogue.name} == 'spiderMan'" th:text="${dialogue.name}"/>:
+		<span th:text="${dialogue.word}"/>
+
+	</tr>
+
+</td>
+
+	<td>
+		<h4>Scene Two: Scene outside</h4>
+		<tr th:each="dialogue: ${dialogues}">
+
+			<span th:if="${dialogue.name} == 'ironman'" th:text="${dialogue.name}"/>:
+			<span th:text="${dialogue.word}"/>
+			<span th:if="${dialogue.name} == 'thor'" th:text="${dialogue.name}"/>:
+			<span th:text="${dialogue.word}"/>
+		</tr>
+
+	</td>
+
+
 	<div class="container my-2">
 		<div class="card">
 			<div class="card-body">
@@ -30,7 +58,7 @@
 
 
 
-
+				<h3>Actors </h3>
 					<table class="table table-striped table-responsive-md">
 						<thead>
 						<tr>
@@ -42,8 +70,6 @@
 						<tr th:each="actor : ${actors}">
 							<td th:text="${actor.name}"></td>
 							<td th:text="${actor.charactor}"></td>
-
-
 						</tr>
 						</tbody>
 					</table>

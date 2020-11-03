@@ -125,6 +125,15 @@ public class MovieController {
 		return "adminpg";
 	}
 
+	@GetMapping("deletedlg/{id}")
+	public String deletDialogue(@PathVariable("id") long id, Model model) {
+		Dialogue dialogue = dialogueRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Actor Id:" + id));
+		dialogueRepository.delete(dialogue);
+
+		return "index";
+	}
+
 	@GetMapping("newMovie")
 	public String newMovie(Movie movie)
 	{

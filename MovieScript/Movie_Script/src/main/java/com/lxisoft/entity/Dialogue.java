@@ -46,7 +46,7 @@ public class Dialogue {
         this.name = name;
     }
 
-    public void setWord(String dialogue) {
+    public void setWord(String word) {
         this.word = word;
     }
 
