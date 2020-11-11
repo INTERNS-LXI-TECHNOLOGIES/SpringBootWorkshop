@@ -47,6 +47,11 @@ public class MovieController {
 		return "admin";
 	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "/login";
+	}
+
 	@GetMapping("adminintro")
 	public String showAdminPage()
 	{
