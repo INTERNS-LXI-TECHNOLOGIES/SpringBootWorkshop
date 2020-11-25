@@ -58,11 +58,11 @@ public class Dialogue {
         return word;
     }
 
-//    public void setDialogue(String dialogue) {
-//        this.dialogue = dialogue;
-//    }
-//    public String getDialogue() {
-//        return dialogue;
-//    }
+//    public void setWord(String word) {
+//        this.word = word;
+  //  }
 
+ //   public String getWord() {
+ //       return word;
+    //}
 }

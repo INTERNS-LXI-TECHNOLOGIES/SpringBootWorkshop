@@ -28,6 +28,9 @@ public class Movie {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Actor actor;
 
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Actor actor;
+
     public Movie() {}
 
     public Movie(String name, String scene1,String scene2,String scene3) {
@@ -77,4 +80,12 @@ public class Movie {
     public void setScene3(String scene3) {
         this.scene3 = scene3;
     }
+
+//    public void setScene1(String scene1) {
+//        this.scene1 = scene1;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
 }

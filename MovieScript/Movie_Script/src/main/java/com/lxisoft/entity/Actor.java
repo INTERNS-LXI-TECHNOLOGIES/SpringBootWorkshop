@@ -25,6 +25,9 @@ public class Actor {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Dialogue dialogue;
 
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Dialogue dialogue;
+//
     public Actor() {}
 
     public Actor(String name, String charactor) {
@@ -63,4 +66,12 @@ public class Actor {
 	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
+
+//    public long getPhoneNo() {
+//        return phoneNo;
+//    }
+//
+//    public void setPhoneNo(long phoneNo) {
+//        this.phoneNo = phoneNo;
+//    }
 }
