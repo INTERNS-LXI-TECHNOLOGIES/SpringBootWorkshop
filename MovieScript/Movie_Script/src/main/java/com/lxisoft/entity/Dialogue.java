@@ -1,11 +1,7 @@
 package com.lxisoft.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -19,11 +15,9 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-//    @NotBlank(message = "Dialogue is mandatory")
-//    @Column(name = "dialogue")
-//    private String dialogue;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Actor actor;
 
-//    @NotBlank(message = "Dialogue is mandatory")
     @Column(name = "word")
     private String word;
 
@@ -58,11 +52,5 @@ public class Dialogue {
         return word;
     }
 
-//    public void setWord(String word) {
-//        this.word = word;
-  //  }
 
- //   public String getWord() {
- //       return word;
-    //}
 }

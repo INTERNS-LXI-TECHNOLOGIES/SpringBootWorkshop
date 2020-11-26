@@ -67,11 +67,5 @@ public class Actor {
 		this.phoneNo = phoneNo;
 	}
 
-//    public long getPhoneNo() {
-//        return phoneNo;
-//    }
-//
-//    public void setPhoneNo(long phoneNo) {
-//        this.phoneNo = phoneNo;
-//    }
+
 }
