@@ -22,12 +22,13 @@ public class Actor {
     @Column(name = "phone_no")
     private long phoneNo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "actor",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Dialogue dialogue;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Dialogue dialogue;
-//
+
+    //
     public Actor() {}
 
     public Actor(String name, String charactor) {

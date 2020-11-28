@@ -25,11 +25,12 @@ public class Movie {
     @Column(name = "scene3")
     private String scene3;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Actor actor;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Actor actor;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Dialogue dialogue;
+
 
     public Movie() {}
 
