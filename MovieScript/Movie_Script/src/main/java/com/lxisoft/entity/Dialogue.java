@@ -15,8 +15,7 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Actor actor;
+
 
     @Column(name = "word")
     private String word;

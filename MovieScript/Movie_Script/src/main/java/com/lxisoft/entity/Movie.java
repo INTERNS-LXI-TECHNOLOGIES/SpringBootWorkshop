@@ -3,6 +3,7 @@ package com.lxisoft.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -25,11 +26,11 @@ public class Movie {
     @Column(name = "scene3")
     private String scene3;
 
-    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Actor actor;
+    @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
+    private List<Actor> actors;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Dialogue dialogue;
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Dialogue dialogue;
 
 
     public Movie() {}
@@ -82,11 +83,4 @@ public class Movie {
         this.scene3 = scene3;
     }
 
-//    public void setScene1(String scene1) {
-//        this.scene1 = scene1;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
 }
