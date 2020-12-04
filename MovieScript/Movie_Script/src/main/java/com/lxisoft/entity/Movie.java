@@ -29,10 +29,6 @@ public class Movie {
     @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
     private List<Actor> actors;
 
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Dialogue dialogue;
-
-
     public Movie() {}
 
     public Movie(String name, String scene1,String scene2,String scene3) {

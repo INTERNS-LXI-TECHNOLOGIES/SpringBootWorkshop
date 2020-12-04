@@ -15,7 +15,9 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
-
+    @ManyToMany
+    @JoinColumn(name = "id")
+    private Actor actor;
 
     @Column(name = "word")
     private String word;
