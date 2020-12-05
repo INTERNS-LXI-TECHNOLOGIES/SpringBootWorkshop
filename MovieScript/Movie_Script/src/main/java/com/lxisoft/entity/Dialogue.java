@@ -16,6 +16,10 @@ public class Dialogue {
     @Column(name = "name")
     private String name;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "chrtr_id")
+    private Actor actor;
+
 //    @ManyToMany
 //    @JoinColumn(name = "id")
 //    private Actor actor;

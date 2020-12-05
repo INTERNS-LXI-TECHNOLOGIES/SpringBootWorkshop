@@ -24,6 +24,9 @@ public class Actor {
     @Column(name = "phone_no")
     private long phoneNo;
 
+    @OneToMany(mappedBy = "actor",cascade = CascadeType.ALL)
+    private List<Dialogue> dialogue;
+
 //    @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
 //    private List<Dialogue> dialogue;
 

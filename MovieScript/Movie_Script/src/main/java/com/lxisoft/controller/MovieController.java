@@ -77,7 +77,7 @@ public class MovieController {
 		}
 
 		actorRepository.save(actor);
-		return "redirect:adminpg";
+		return "redirect:adminintro";
 	}
 
 	@GetMapping("edit/{id}")
@@ -114,7 +114,7 @@ public class MovieController {
 		}
 
 		dialogueRepository.save(dialogue);
-		return "redirect:adminpg";
+		return "redirect:adminintro";
 	}
 
 	@GetMapping("editdlg/{id}")
@@ -134,7 +134,7 @@ public class MovieController {
 		}
 
 		dialogueRepository.save(dialogue);
-		return "adminpg";
+		return "adminintro";
 	}
 
 	@GetMapping("deletedlg/{id}")
@@ -159,7 +159,7 @@ public class MovieController {
 		}
 
 		movieRepository.save(movie);
-		return "redirect:adminpg";
+		return "redirect:adminintro";
 	}
 
 
