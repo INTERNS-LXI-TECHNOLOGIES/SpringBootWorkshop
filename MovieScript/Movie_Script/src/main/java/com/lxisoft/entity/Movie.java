@@ -10,6 +10,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "movie_id")
     private long id;
 
     @NotBlank(message = "Name is mandatory")
@@ -26,7 +27,7 @@ public class Movie {
     @Column(name = "scene3")
     private String scene3;
 
-    @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
     private List<Actor> actors;
 
     public Movie() {}

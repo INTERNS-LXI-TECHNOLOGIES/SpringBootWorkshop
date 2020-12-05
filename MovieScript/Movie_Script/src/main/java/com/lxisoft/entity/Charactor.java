@@ -5,29 +5,22 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Dialogue {
+public class Charactor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "dialoge_id")
+    @Column(name = "charactor_id")
     private long id;
 
     @NotBlank(message = "Name is mandatory")
-    @Column(name = "name")
+    @Column(name = "charactor_Name")
     private String name;
 
-//    @ManyToMany
-//    @JoinColumn(name = "id")
-//    private Actor actor;
+    public Charactor() {}
 
-    @Column(name = "word")
-    private String word;
-
-     public Dialogue() {}
-
-    public Dialogue(String name, String word) {
+    public Charactor(String name, String word) {
         this.name = name;
-        this.word = word;
+
     }
 
     public void setId(long id) {
@@ -42,17 +35,8 @@ public class Dialogue {
         this.name = name;
     }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
     public String getName() {
         return name;
     }
 
-    public String getWord() {
-        return word;
-    }
-
-
-}
+   }

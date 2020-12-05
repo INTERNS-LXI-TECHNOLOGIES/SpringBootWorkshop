@@ -10,6 +10,7 @@ public class Actor {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "actor_id")
     private long id;
     
     @NotBlank(message = "Name is mandatory")
@@ -23,11 +24,11 @@ public class Actor {
     @Column(name = "phone_no")
     private long phoneNo;
 
-    @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
-    private List<Dialogue> dialogue;
+//    @OneToMany(mappedBy = "name",cascade = CascadeType.ALL)
+//    private List<Dialogue> dialogue;
 
-    @ManyToMany
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
