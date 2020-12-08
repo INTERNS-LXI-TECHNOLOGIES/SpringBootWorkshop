@@ -80,4 +80,11 @@ public class Movie {
         this.scene3 = scene3;
     }
 
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
 }

@@ -16,6 +16,10 @@ public class Charactor {
     @Column(name = "charactor_Name")
     private String name;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agent_id")
+    private Actor actor;
+
     public Charactor() {}
 
     public Charactor(String name, String word) {
@@ -39,4 +43,11 @@ public class Charactor {
         return name;
     }
 
-   }
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
+    }
+}

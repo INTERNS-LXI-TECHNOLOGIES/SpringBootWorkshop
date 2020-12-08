@@ -20,10 +20,6 @@ public class Dialogue {
     @JoinColumn(name = "chrtr_id")
     private Actor actor;
 
-//    @ManyToMany
-//    @JoinColumn(name = "id")
-//    private Actor actor;
-
     @Column(name = "word")
     private String word;
 

@@ -77,5 +77,19 @@ public class Actor {
 		this.phoneNo = phoneNo;
 	}
 
+    public Movie getMovie() {
+        return movie;
+    }
 
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public List<Dialogue> getDialogue() {
+        return dialogue;
+    }
+
+    public void setDialogue(List<Dialogue> dialogue) {
+        this.dialogue = dialogue;
+    }
 }
