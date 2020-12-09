@@ -65,8 +65,9 @@ public class MovieController {
 	}
 
 	@GetMapping("newActor")
-	public String newActor(Actor actor)
+	public String newActor(Actor actor,Model model)
 	{
+		model.addAttribute("movies", movieRepository.findAll());
 		return "add-actor";
 	}
 
@@ -102,8 +103,9 @@ public class MovieController {
 	}
 
 	@GetMapping("newDialogue")
-	public String newDialogue(Dialogue dialogue)
+	public String newDialogue(Dialogue dialogue,Model model)
 	{
+		model.addAttribute("actors", actorRepository.findAll());
 		return "add-dialogue";
 	}
 
