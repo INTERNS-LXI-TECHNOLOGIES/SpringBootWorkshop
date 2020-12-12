@@ -23,6 +23,9 @@ public class Room {
     @Column(name = "phno")
     private String phno;
 
+    @Column(name = "booking")
+    private Boolean booking;
+
      public Room() {}
 
     public Room(String ownerName, String adress,String phno) {
@@ -61,5 +64,13 @@ public class Room {
 
     public void setPhno(String phno) {
         this.phno = phno;
+    }
+
+    public Boolean getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Boolean booking) {
+        this.booking = booking;
     }
 }

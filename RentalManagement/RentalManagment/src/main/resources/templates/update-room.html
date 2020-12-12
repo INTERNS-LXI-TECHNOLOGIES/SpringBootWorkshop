@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Add_User</title>
+<title>update_room</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -21,14 +21,14 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
- 					<form action="#" th:action="@{/newUser}"
-						th:object="${user}" method="post">
+ 					<form action="#" th:action="@{/update/{id}(id=${room.id})}"
+						th:object="${room}" method=" ">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Name</label> <input
-									type="text" th:field="*{name}" class="form-control" id="name"
+								<label for="ownerName" class="col-form-label">Name</label> <input
+									type="text" th:field="*{ownerName}" class="form-control" id="ownerName"
 									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									th:if="${#fields.hasErrors('ownerName')}" th:errors="*{ownerName}"
 									class="text-danger"></span>
 							</div>
 							<div class="form-group col-md-8">
@@ -40,11 +40,11 @@
 							</div>
 
 							<div class="form-group col-md-8">
-								<label for="password" class="col-form-label">Password</label> <input
-									type="text" th:field="*{password}" class="form-control"
-									id="password" placeholder="password">
+								<label for="phno" class="col-form-label">Phone Number</label> <input
+									type="text" th:field="*{phno}" class="form-control"
+									id="phno" placeholder="phoneNumber">
 									<span
-									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+									th:if="${#fields.hasErrors('phno')}" th:errors="*{phno}"
 									class="text-danger"></span>
 							</div>
 

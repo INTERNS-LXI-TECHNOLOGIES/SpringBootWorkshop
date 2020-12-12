@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -77,9 +78,8 @@ public class SystemController {
 
 
 	@GetMapping("newRoom")
-	public String newRoom(Room room, Model model)
+	public String newRoom(Room room)
 	{
-
 		return "add-room";
 	}
 
@@ -93,4 +93,34 @@ public class SystemController {
 		return "redirect:adminintro";
 	}
 
+	@GetMapping("edit/{id}")
+	public String showUpdateForm(@PathVariable("id") long id, Model model) {
+		Room room = roomRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid room Id:" + id));
+		model.addAttribute("room", room);
+		return "update-room";
+	}
+
+	@PostMapping("update/{id}")
+	public String rupdateRoom(@PathVariable("id") long id, @Valid Room room, BindingResult result,
+								Model model) {
+		if (result.hasErrors()) {
+			room.setId(id);
+			return "update-student";
+		}
+
+		roomRepository.save(room);
+
+		return "adminintro";
+	}
+
+
+	@GetMapping("deleteroom/{id}")
+	public String deletDialogue(@PathVariable("id") long id, Model model) {
+		Room room = roomRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid Room Id:" + id));
+		roomRepository.delete(room);
+
+		return "adminintro";
+	}
 }
