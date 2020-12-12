@@ -1,0 +1,71 @@
+     <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Users</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+	<h2>Welcome To You</h2>
+	<h3>You Are Watching MovieOne </h3>
+<td>
+	<h4>Scene One: Scene in Home</h4>
+	<tr th:each="dialogue: ${dialogues}">
+
+		<span th:if="${dialogue.name} == 'afsal'" th:text="${dialogue.name}"/>:
+		<span th:text="${dialogue.word}"/>
+		<span th:if="${dialogue.name} == 'spiderMan'" th:text="${dialogue.name}"/>:
+		<span th:text="${dialogue.word}"/>
+
+	</tr>
+
+</td>
+
+	<td>
+		<h4>Scene Two: Scene outside</h4>
+		<tr th:each="dialogue: ${dialogues}">
+
+			<span th:if="${dialogue.name} == 'ironman'" th:text="${dialogue.name}"/>:
+			<span th:text="${dialogue.word}"/>
+			<span th:if="${dialogue.name} == 'thor'" th:text="${dialogue.name}"/>:
+			<span th:text="${dialogue.word}"/>
+		</tr>
+
+	</td>
+
+
+	<div class="container my-2">
+		<div class="card">
+			<div class="card-body">
+				<h3>Actors </h3>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+						<tr>
+							<th>Name</th>
+							<th>Charactor</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="actor : ${actors}">
+							<td th:text="${actor.name}"></td>
+							<td th:text="${actor.charactor}"></td>
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
