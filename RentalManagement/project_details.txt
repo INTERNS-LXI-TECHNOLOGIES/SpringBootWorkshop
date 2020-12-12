@@ -1,0 +1,5 @@
+The proposed Application is online webApplication of house/building rent management scheme.
+the owner can add the details of building like room details rent details address etc, and also can manage the details(CRUD)
+the customer serach and view the details and if they like to take rent then the customer will need to be added in the system and later owner can view customer details like name and contact details also.
+
+
