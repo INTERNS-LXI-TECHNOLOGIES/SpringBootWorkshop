@@ -123,4 +123,27 @@ public class SystemController {
 
 		return "adminintro";
 	}
+
+	@GetMapping("booking/{id}")
+	public String bookingRoom(@PathVariable("id") long id, Model model) {
+		Room room = roomRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid room Id:" + id));
+		room.setBooking(Boolean.TRUE);
+		roomRepository.save(room);
+		return "index";
+
+	}
+
+	@GetMapping("cancel/{id}")
+	public String cancelBooling(@PathVariable("id") long id, Model model) {
+		Room room = roomRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid room Id:" + id));
+		room.setBooking(Boolean.FALSE);
+		roomRepository.save(room);
+		return "index";
+
+	}
+
+
+
 }

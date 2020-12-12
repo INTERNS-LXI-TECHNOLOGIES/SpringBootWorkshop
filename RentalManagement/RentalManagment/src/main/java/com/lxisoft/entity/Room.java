@@ -28,10 +28,11 @@ public class Room {
 
      public Room() {}
 
-    public Room(String ownerName, String adress,String phno) {
+    public Room(String ownerName, String adress,String phno,Boolean booking) {
         this.ownerName = ownerName;
         this.adress = adress;
         this.phno = phno;
+        this.booking=booking;
     }
 
     public void setId(long id) {
