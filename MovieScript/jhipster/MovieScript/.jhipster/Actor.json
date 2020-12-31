@@ -1,0 +1,47 @@
+{
+  "name": "Actor",
+  "fields": [
+    {
+      "fieldName": "actorName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phNumber",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "character",
+      "otherEntityRelationshipName": "actor",
+      "relationshipName": "character",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dialogue",
+      "otherEntityRelationshipName": "actor",
+      "relationshipName": "dialogue"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "movie",
+      "otherEntityRelationshipName": "actor",
+      "relationshipName": "movie",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201231054003",
+  "entityTableName": "actor",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
