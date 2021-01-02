@@ -107,48 +107,48 @@ body.activeForm .overlay-form {
 <body>
 <div class="overlay-form">
 
-<form action="#" th:action="@{/saveExam}" th:object="${exam}" modelAttribute="exam" method="post">
+    <form action="#" th:action="@{/saveExam}" th:object="${exam}" modelAttribute="exam" method="post">
 
-    <table align="center">
-        <input type="hidden" th:field="*{slno}"/>
+        <table align="center">
+            <input type="hidden" th:field="*{slno}"/>
             <div class="form-element">
 
-        <tr>
-            <td><font size="5" style="color:LightGray;">Question : </font></td>
-            <td><input type="text" th:field="*{qn}"/></td>
-        </tr>
+                <tr>
+                    <td><font size="5" style="color:LightGray;">Question : </font></td>
+                    <td><input type="text" th:field="*{qn}"/></td>
+                </tr>
             </div>
-        <tr>
-            <td><font size="5" style="color:LightGray;">Option 1 : </font></td>
-            <td><input type="text" th:field="*{opt1}"/></td>
-        </tr>
-        <tr>
-            <td><font size="5" style="color:LightGray;">Option 2 : </font></td>
-            <td><input type="text" th:field="*{opt2}"/></td>
-        </tr>
-        <tr>
-            <td><font size="5" style="color:LightGray;">Option 3 : </font></td>
-            <td><input type="text" th:field="*{opt3}"/></td>
-        </tr>
-        <tr>
-            <td><font size="5" style="color:LightGray;">Option 4 : </font></td>
-            <td><input type="text" th:field="*{opt4}"/></td>
-        </tr>
-        <tr>
-            <td><font size="5" style="color:LightGray;">Ans : </font></td>
-            <td><input type="text" th:field="*{ans}"/></td>
-        </tr>
-        <div class="center">
             <tr>
-                <td colspan="2" align="center"><button type="submit" onclick="myFunction()" class="button button1" value="add">Add</button></td>
+                <td><font size="5" style="color:LightGray;">Option 1 : </font></td>
+                <td><input type="text" th:field="*{opt1}"/></td>
             </tr>
-        </div>
-    </table>
-</form>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 2 : </font></td>
+                <td><input type="text" th:field="*{opt2}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 3 : </font></td>
+                <td><input type="text" th:field="*{opt3}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 4 : </font></td>
+                <td><input type="text" th:field="*{opt4}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Ans : </font></td>
+                <td><input type="text" th:field="*{ans}"/></td>
+            </tr>
+            <div class="center">
+                <tr>
+                    <td colspan="2" align="center"><button type="submit" onclick="myFunction()" class="button button1" value="add">Add</button></td>
+                </tr>
+            </div>
+        </table>
+    </form>
 </div>
 
 <div class="center">
-    <button onclick="toggleForm()">Add Question</button>
+    <button onclick="toggleForm()">Update Question</button>
 </div>
 <script>
     function toggleForm(){
