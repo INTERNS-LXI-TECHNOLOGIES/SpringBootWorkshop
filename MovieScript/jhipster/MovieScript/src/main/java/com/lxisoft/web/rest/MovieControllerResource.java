@@ -24,9 +24,7 @@ public class MovieControllerResource {
 
     private final Logger log = LoggerFactory.getLogger(MovieControllerResource.class);
     private final ActorRepository actorRepository;
-
     private final DialogueRepository dialogueRepository;
-
     private final MovieRepository movieRepository;
 
 

@@ -1,6 +1,9 @@
 package com.lxisoft.web.rest;
 
 import com.lxisoft.MovieScriptApp;
+import com.lxisoft.repository.ActorRepository;
+import com.lxisoft.repository.DialogueRepository;
+import com.lxisoft.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -18,13 +21,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = MovieScriptApp.class)
 public class MovieControllerResourceIT {
 
+    private final ActorRepository actorRepository;
+    private final DialogueRepository dialogueRepository;
+    private final MovieRepository movieRepository;
+
     private MockMvc restMockMvc;
+
+    public MovieControllerResourceIT(ActorRepository actorRepository, DialogueRepository dialogueRepository, MovieRepository movieRepository) {
+        this.actorRepository = actorRepository;
+        this.dialogueRepository = dialogueRepository;
+        this.movieRepository = movieRepository;
+    }
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        MovieControllerResource movieControllerResource = new MovieControllerResource();
+        MovieControllerResource movieControllerResource = new MovieControllerResource(actorRepository,dialogueRepository,movieRepository);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(movieControllerResource)
             .build();
