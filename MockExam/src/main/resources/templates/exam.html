@@ -292,7 +292,7 @@ $(document).ready(function(){
                     <div  align="center">
 <!--                        <a href="add" class="btn btn-success" ><i class="material-icons"></i> <span>home</span></a>-->
 
-                        <a id="button" href="/" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
+                        <a href="javascript:document.getElementById('logout').submit()" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
 
                         <div class="center">
                         <form  action="#" th:action="@{/start}" th:object="${exam}" method="get">
