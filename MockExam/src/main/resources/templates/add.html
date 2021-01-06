@@ -105,9 +105,13 @@ body.activeForm .overlay-form {
     </style>
 </head>
 <body>
+
 <div class="overlay-form">
 
-<form action="#" th:action="@{/saveExam}" th:object="${exam}" modelAttribute="exam" method="post">
+
+    <form action="#" th:action="@{/saveExam}" th:object="${exam}" modelAttribute="exam" method="post">
+    <a id="button" href="list" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Home</span></a>
+
 
     <table align="center">
         <input type="hidden" th:field="*{slno}"/>
@@ -144,6 +148,10 @@ body.activeForm .overlay-form {
             </tr>
         </div>
     </table>
+    <script>
+    function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}</script>
 </form>
 </div>
 
@@ -157,6 +165,7 @@ body.activeForm .overlay-form {
 function myFunction() {
   confirm("successfully added!");
 }
+
 </script>
 </body>
 </html>

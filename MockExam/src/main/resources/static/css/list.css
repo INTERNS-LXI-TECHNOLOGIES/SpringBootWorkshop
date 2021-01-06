@@ -1,6 +1,7 @@
 @charset "ISO-8859-1";
 html {
   background-color:white;
+  scroll-behavior: smooth;
 
 }
 	*{
@@ -17,12 +18,11 @@ html {
   background-size: cover;
   height: 100%
 	}
-	
-		
+
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -43,6 +43,13 @@ html {
    overflow:hidden;
 }
 
+.login-header {
+  color:#56baed;
+  font-family: 'Helvetica Neue', sans-serif;
+  letter-spacing: -1px;
+  text-align:center;
+  font-size:250%;
+}
 .login-header1 {
   color:#56baed;
   font-family: 'Helvetica Neue', sans-serif;
@@ -50,23 +57,6 @@ html {
   text-align:center;
   font-size:290%;
 }
-
-.login-header2 {
-  color:#00ccff;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: -1px;
-  text-align:left;
-  font-size:115%;
-}
-
-.login-header3 {
-  color:#65529f;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: -1px;
-  text-align:center;
-  font-size:210%;
-}
-
 	nav{
 		background: #56baed;
 		height: 100px;
@@ -82,7 +72,7 @@ html {
 		margin-left: : 60px;
 
 	}
-	
+
 	@media (max-width: 952px)
 	{
 		label.logo{
@@ -91,11 +81,11 @@ html {
 		}
 	}
 
-	
+
 .center {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -115,20 +105,20 @@ html {
 }
 
 .button1 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid midnightblue;
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
   border-radius: 12px;
 }
 
 .button1:hover {
-  background-color: #56baed;
+  background-color: #4CAF50;
   color: white;
 }
 
 .button2 {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
   border: 2px solid #008CBA;
   border-radius: 12px;
 }
@@ -142,19 +132,6 @@ input[type=text] {
   padding: 12px 20px;
   border: 2px solid red;
   border-radius: 4px;
-}
-table, td, th {
-  border: none;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td {
-  height: 50px;
-  vertical-align: bottom;
 }
 nav ul{
 		float: right;
@@ -305,7 +282,7 @@ nav ul{
 
 *:focus {
     outline: none;
-} 
+}
 
 #icon {
   width:60%;
@@ -313,4 +290,129 @@ nav ul{
 
 * {
   box-sizing: border-box;
+}
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3);
+  animation: float 5s infinite;
+}
+
+th {
+  color:white;
+  background:#65529f;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:black;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+  background:white;
+  color:black;
+  border-top: 1px solid #22262e;
+}
+
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+  background: white;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+td {
+  background:#EBEBEB;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+div.ex1 {
+  background-color: white;
+  width: 1130px;
+  height: 430px;
+  overflow: auto;
+}
+.ex1::-webkit-scrollbar {
+    display: none;
+}
+.ex1 {
+    -ms-overflow-style: none;
 }

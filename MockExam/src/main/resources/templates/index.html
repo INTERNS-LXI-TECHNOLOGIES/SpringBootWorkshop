@@ -29,22 +29,28 @@
 <!--                                <p>Dont Have an Account? <span>Create your Account</span> </p>-->
                             </div>
 
-<form action="/add">
-                            <div class="text-box-cont">
+<!--<form action="/add">--><th:block th:if="${error=='no'}">invalid credentials provided</th:block>
+                            <th:block th:if="${message=='no'}">logged out successfully </th:block>
+
+                            <form name='login' th:action = "@{/index}" method='post' modelAttribute="exam">
+                                <div class="text-box-cont">
                                 <div  class="input-group mb-3" >
                                    
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control"  placeholder="Username" name="username" id="login" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                  <div class="input-group mb-3">
                                     
-                                    <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                                 </div>
+
                                 <div class="row no-margin">
 <!--                                    <p class="forget-p">Forget Password ?</p>-->
                                 </div>
                                 <div class="right-bkij mb-3">
                                     <button type="submit" class="btn btn-success btn-round">sign In</button>
-                                </div>  
+                                    <input type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                                </div>
                             </div>
 
 </form>
