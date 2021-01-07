@@ -36,6 +36,8 @@ public class Exam implements Serializable {
     @Transient
     private int selectedOption;
 
+
+
     public int getSlno() {
         return slno;
     }
@@ -90,4 +92,7 @@ public class Exam implements Serializable {
         return selectedOption;
     }
 
-}
+
+
+
+    }

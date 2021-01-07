@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+  margin:0px;
+  font-family:"Open Sans",sans-serif;
+  background:#ddd;
+}
+.overlay-form {
+  position:absolute;
+  top:50vh;
+  left:0px;
+  width:100vw;
+  height:0vh;
+  background:rgba(0,0,0,0.8);
+  z-index:-1;
+  opacity:0;
+  padding:80px 100px;
+  overflow:hidden;
+  box-sizing:border-box;
+  transition: top 500ms ease-in-out,
+              opacity 500ms ease-in-out,
+              height 0ms ease-in-out 500ms;
+}
+.overlay-form .close-btn {
+  position:absolute;
+  top:20px;
+  right:40px;
+  color:#fff;
+  font-size:40px;
+  font-weight:600;
+  cursor:pointer;
+}
+.overlay-form h1 {
+  font-size:32px;
+  color:#fff;
+}
+.overlay-form p {
+  font-size:16px;
+  color:#eee;
+  margin:-15px 0px 30px;
+}
+.overlay-form .form-element {
+  margin:20px 0px;
+}
+.overlay-form label {
+  display:block;
+  font-size:17px;
+  color:#eee;
+  margin-bottom:5px;
+}
+.overlay-form input {
+  width:100%;
+  padding:6px;
+  font-size:17px;
+  border:2px solid #eee;
+  background:transparent;
+  outline:none;
+  border-radius:10px;
+}
+.overlay-form button,
+.center button {
+  margin-top:10px;
+  width:100px;
+  height:35px;
+  font-size:15px;
+  text-transform:uppercase;
+  background:#fff;
+  color:#222;
+  border:none;
+  outline:none;
+  border-radius:10px;
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.center button {
+  width:150px;
+  height:40px;
+  font-weight:600;
+  box-shadow:3px 3px 2px 1px rgba(0,0,0,0.1);
+  cursor:pointer;
+}
+
+body.activeForm .overlay-form {
+  z-index:2;
+  opacity:1;
+  top:0px;
+  height:100vh;
+  transition: top 500ms ease-in-out,
+              opacity 500ms ease-in-out,
+              height 0ms ease-in-out 0ms;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="overlay-form">
+
+
+    <form action="#" th:action="@{/saveExamHard}" th:object="${exam}" modelAttribute="exam" method="post">
+        <a id="button" href="listHard" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Home</span></a>
+
+
+        <table align="center">
+            <input type="hidden" th:field="*{slno}"/>
+            <div class="form-element">
+
+                <tr>
+                    <td><font size="5" style="color:LightGray;">Question : </font></td>
+                    <td><input type="text" th:field="*{qnh}"/></td>
+                </tr>
+            </div>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 1 : </font></td>
+                <td><input type="text" th:field="*{opt1h}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 2 : </font></td>
+                <td><input type="text" th:field="*{opt2h}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 3 : </font></td>
+                <td><input type="text" th:field="*{opt3h}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Option 4 : </font></td>
+                <td><input type="text" th:field="*{opt4h}"/></td>
+            </tr>
+            <tr>
+                <td><font size="5" style="color:LightGray;">Ans : </font></td>
+                <td><input type="text" th:field="*{ansh}"/></td>
+            </tr>
+            <div class="center">
+                <tr>
+                    <td colspan="2" align="center"><button type="submit" onclick="myFunction()" class="button button1" value="add">Add</button></td>
+                </tr>
+            </div>
+        </table>
+        <script>
+    function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}</script>
+    </form>
+</div>
+
+<div class="center">
+    <button onclick="toggleForm()">Add Question</button>
+</div>
+<script>
+    function toggleForm(){
+  document.body.classList.toggle('activeForm');
+}
+function myFunction() {
+  confirm("successfully added!");
+}
+
+</script>
+</body>
+</html>
