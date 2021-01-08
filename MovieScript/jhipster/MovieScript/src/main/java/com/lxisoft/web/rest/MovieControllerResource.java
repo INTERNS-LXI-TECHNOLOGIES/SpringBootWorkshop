@@ -9,6 +9,7 @@ import com.lxisoft.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 /**
  * MovieControllerResource controller
  */
-@RestController
+@Controller
 @RequestMapping("/api/movie-controller")
 public class MovieControllerResource {
 
@@ -49,17 +50,27 @@ public class MovieControllerResource {
         return "/login";
     }
 
-    @GetMapping("/api/adminintro")
-    public String showAdminPage()
+    @GetMapping("/adminintro")
+    public void showAdminPage()
     {
-       // System.out.println("Working");
-        return "admin-intro";
+       System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");
+       // return "admin-intro";
     }
 
-    @GetMapping("/api/userpg")
-    public String showUserPage()
+    @GetMapping("/userpg")
+    public void showUserPage()
     {
-         return "user";
+        System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");System.out.println("Working");
+        System.out.println("Working");
+        System.out.println("Working");
+         //return "user";
     }
 
     @GetMapping("newActor")
