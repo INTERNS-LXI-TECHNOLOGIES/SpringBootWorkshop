@@ -22,9 +22,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MovieControllerResourceIT {
 
     private final ActorRepository actorRepository;
-    private final DialogueRepository dialogueRepository;
-    private final MovieRepository movieRepository;
 
+    private final DialogueRepository dialogueRepository;
+
+    private final MovieRepository movieRepository;
     private MockMvc restMockMvc;
 
     public MovieControllerResourceIT(ActorRepository actorRepository, DialogueRepository dialogueRepository, MovieRepository movieRepository) {
@@ -37,7 +38,7 @@ public class MovieControllerResourceIT {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        MovieControllerResource movieControllerResource = new MovieControllerResource(actorRepository,dialogueRepository,movieRepository);
+        MovieControllerResource movieControllerResource = new MovieControllerResource(actorRepository, dialogueRepository, movieRepository);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(movieControllerResource)
             .build();
