@@ -25,17 +25,17 @@
 						th:object="${movie}" method="post">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Movie Name</label> <input
-									type="text" th:field="*{name}" class="form-control" id="name"
+								<label for="movieName" class="col-form-label">Movie Name</label> <input
+									type="text" th:field="*{movieName}" class="form-control" id="movieName"
 									placeholder="Movie Name"> <span
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									th:if="${#fields.hasErrors('movieName')}" th:errors="*{movieName}"
 									class="text-danger"></span>
 							</div>
 							<div class="form-group col-md-8">
-								<label for="scene1" class="col-form-label">First Scene</label> <input
-									type="text" th:field="*{scene1}" class="form-control" id="scene1"
-									placeholder="Scene 1"> <span
-									th:if="${#fields.hasErrors('scene1')}" th:errors="*{scene1}"
+								<label for="movieDetails" class="col-form-label">Discription </label> <input
+									type="text" th:field="*{movieDetails}" class="form-control" id="movieDetails"
+									placeholder="movieDetails"> <span
+									th:if="${#fields.hasErrors('movieDetails')}" th:errors="*{movieDetails}"
 									class="text-danger"></span>
 							</div>
 

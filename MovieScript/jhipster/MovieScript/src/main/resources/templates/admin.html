@@ -22,23 +22,7 @@
 				<h2>Welcome to Admin Page</h2>
 				<div th:switch="${actors}" class="container my-5">
 
-<!--					<p class="my-5">-->
-<!--						<a href="  /newMovie" class="btn btn-primary"><i-->
-<!--								class="fas fa-user-plus ml-2"> Add Movie</i></a>-->
-<!--					</p>-->
 
-<!--					<p class="my-5">-->
-<!--						<a href="  /newActor" class="btn btn-primary"><i-->
-<!--							class="fas fa-user-plus ml-2"> Add Actors</i></a>-->
-<!--					</p>-->
-<!--					<p class="my-5">-->
-<!--						<a href="  /newDialogue" class="btn btn-primary"><i-->
-<!--								class="fas fa-user-plus ml-2"> Add Dialogues</i></a>-->
-<!--					</p>-->
-<!--					<p class="my-5">-->
-<!--						<a href="  /addDialogue" class="btn btn-primary"><i-->
-<!--								class="fas fa-user-plus ml-2">View Script</i></a>-->
-<!--					</p>-->
 
 					<div class="col-md-10">
 						<h2 th:case="null">No Actors yet!</h2>
@@ -56,9 +40,9 @@
 								</thead>
 								<tbody>
 									<tr th:each="actor : ${actors}">
-										<td th:text="${actor.name}"></td>
-										<td th:text="${actor.charactor}"></td>
-										<td th:text="${actor.phoneNo}"></td>
+										<td th:text="${actor.actorName}"></td>
+										<td th:text="${actor.character}"></td>
+										<td th:text="${actor.phNumber}"></td>
 										<td><a th:href="@{/edit/{id}(id=${actor.id})}"
 											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 										<td><a
@@ -84,8 +68,8 @@
 								</thead>
 								<tbody>
 								<tr th:each="dialogue : ${dialogues}">
-									<td th:text="${dialogue.name}"></td>
-									<td th:text="${dialogue.word}"></td>
+									<td th:text="${dialogue.actor}"></td>
+									<td th:text="${dialogue.dialogue}"></td>
 									<td><a th:href="@{/editdlg/{id}(id=${dialogue.id})}"
 										   class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
 									<td><a

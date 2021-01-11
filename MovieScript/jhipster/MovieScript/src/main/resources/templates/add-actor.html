@@ -25,28 +25,27 @@
 						th:object="${actor}" method=" ">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Name</label> <input
-									type="text" th:field="*{name}" class="form-control" id="name"
+								<label for="actorName" class="col-form-label">Name</label> <input
+									type="text" th:field="*{actorName}" class="form-control" id="actorName"
 									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									th:if="${#fields.hasErrors('actorName')}" th:errors="*{actorName}"
 									class="text-danger"></span>
 							</div>
-							<div class="form-group col-md-8">
-								<label for="charactor" class="col-form-label">Charactor</label> <input
-									type="text" th:field="*{charactor}" class="form-control" id="charactor"
-									placeholder="Charactor Name"> <span
-									th:if="${#fields.hasErrors('charactor')}" th:errors="*{charactor}"
-									class="text-danger"></span>
-							</div>
+<!--							<div class="form-group col-md-8">-->
+<!--								<label for="charactor" class="col-form-label">Charactor</label> <input-->
+<!--									type="text" th:field="*{charactor}" class="form-control" id="charactor"-->
+<!--									placeholder="Charactor Name"> <span-->
+<!--									th:if="${#fields.hasErrors('charactor')}" th:errors="*{charactor}"-->
+<!--									class="text-danger"></span>-->
+<!--							</div>-->
 
 							<div class="form-group col-md-8">
-								<label for="phoneNo" class="col-form-label">Phone No</label> <input
-									type="text" th:field="*{phoneNo}" class="form-control"
-									id="phoneNo" placeholder="PhoneNo">
-<!--									th:field="*{movie}" class="form-control"-->
-<!--									id="movie" placeholder="movie"-->
+								<label for="phNumber" class="col-form-label">Phone No</label> <input
+									type="text" th:field="*{phNumber}" class="form-control"
+									id="phNumber" placeholder="phNumber">
+
 									<span
-									th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{phoneNo}"
+									th:if="${#fields.hasErrors('phNumber')}" th:errors="*{phNumber}"
 									class="text-danger"></span>
 							</div>
 
