@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,19 +39,36 @@ public class examController {
     @Autowired
     private examServiceHard examServiceHard;
 
-    @GetMapping(value = {"/", "/home"})
-    public ModelAndView index()
-    {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-        return model;
-    }
+//    @GetMapping(value = {"/", "/home"})
+//    public String index()
+//    {
+////        ModelAndView model = new ModelAndView();
+////        model.setViewName("index");
+////        return model;
+//        return "index";
+//    }
+
     @RequestMapping(value = "/notice")
     public ModelAndView notice() {
         ModelAndView model = new ModelAndView();
         model.setViewName("notice");
         return model;
     }
+@GetMapping("/")
+public String root() {
+    return "index";
+}
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/user")
+    public String userIndex() {
+        return "user/index";
+    }
+
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String add(Model theModel) {
 
@@ -384,39 +403,40 @@ public class examController {
         theModel.addAttribute("exam", theExam);
         return "redirect:/listHard";
     }
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
-    public String checkPage() {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean hasRole = authentication.getAuthorities().stream()
-                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-        if(hasRole)
-        {
-            return "redirect:/list";
-        }
-        else
-        {
-            return "redirect:/notice";
-        }
-    }
-
-
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
-                                  @RequestParam(value = "logout",	required = false) String logout) {
-
-        ModelAndView model = new ModelAndView();
-        if (error != null) {
-            model.addObject("error", "no");
-        }
-
-        if (logout != null) {
-            model.addObject("message", "no");
-        }
-
-        model.setViewName("index");
-        return model;
-    }
+//    @RequestMapping(value = "/check", method = RequestMethod.GET)
+//    public String checkPage() {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        boolean hasRole = authentication.getAuthorities().stream()
+//                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+//        if(hasRole)
+//        {
+//            return "redirect:/list";
+//        }
+//        else
+//        {
+//            return "redirect:/notice";
+//        }
+//    }
+//
+//
+//    @RequestMapping(value = "/index", method = RequestMethod.GET)
+//    public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
+//                                  @RequestParam(value = "logout",	required = false) String logout) {
+//
+//        ModelAndView model = new ModelAndView();
+//        if (error != null) {
+//            model.addObject("error", "no");
+//        }
+//
+//        if (logout != null) {
+//            model.addObject("message", "no");
+//        }
+//
+//        model.setViewName("index");
+//        return model;
+//    }
 //    @RequestMapping(value="/logout", method = RequestMethod.POST)
 //    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
