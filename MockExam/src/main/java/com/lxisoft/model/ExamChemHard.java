@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "examHard")
-public class ExamHard implements Serializable {
+@Table(name = "examChemHard")
+public class ExamChemHard implements Serializable {
 
     // private static final long serialVersionUID = -3465813074586302847L;
 
@@ -39,7 +39,7 @@ public class ExamHard implements Serializable {
 
 
 
-//hard get and setter
+    //hard get and setter
     public int getSlno() {
         return slno;
     }

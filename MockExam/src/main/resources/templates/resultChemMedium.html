@@ -250,11 +250,6 @@ table.table .avatar {
      top:0;
      right:0;
  }
- p {
-  display: inline;
-  font-size: 40px;
-  margin-top: 0px;
-}
 </style>
     <script>
 $(document).ready(function(){
@@ -282,33 +277,6 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<!-- Modify this according to your requirement -->
-<h3>
-    Redirecting after <span id="countdown">10</span> seconds
-</h3>
-<!-- JavaScript part -->
-<script type="text/javascript">
-
-    // Total seconds to wait
-    var seconds = 10;
-
-    function countdown() {
-        seconds = seconds - 1;
-        if (seconds < 0) {
-            // Chnage your redirection link here
-            window.location = "/result";
-        } else {
-            // Update remaining seconds
-            document.getElementById("countdown").innerHTML = seconds;
-            // Count down using javascript
-            window.setTimeout("countdown()", 1000);
-        }
-    }
-
-    // Run countdown function
-    countdown();
-
-</script>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -320,69 +288,41 @@ $(document).ready(function(){
                         <h2>Online <b>Exam</b></h2>
                     </div>
 
-
-<!--                    <div  class="col-sm-6">-->
-                    <div  align="center">
-<!--                        <a href="add" class="btn btn-success" ><i class="material-icons"></i> <span>home</span></a>-->
+                    <!--                    <div class="col-sm-6">-->
+                    <div align="center">
 
                         <a id="button" href="/" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
 
-                        <div class="center">
-                        <form  action="#" th:action="@{/start}" th:object="${exam}" method="get">
 
-                            <table>
-                            <input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <div>
-                                <tr align="center">
-                                    <td align="center"><div class="login-header1"><h1>Question :</h1></div></td>
-                                </tr>
-                                <tr >
-<!--                                     <td class="login-header3" th:text="${exam.qn}"></td>-->
-                                  <td >  <h2><label class="login-header3" th:text="${exam.qn}"></label></h2></td>
-
-                                </tr>
-                                <tr>
-
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="1"/>
-                                        <label th:for="1" th:text="${exam.opt1}"></label></h2></div></td>
-                                </tr>
-                                <tr>
-                                <tr>
-
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="2"/>
-                                        <label th:for="2" th:text="${exam.opt2}"></label></h2></div></td>
-                                </tr>
-                                <tr>
-
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="3"/>
-                                        <label th:for="3" th:text="${exam.opt3}"></label></h2></div></td>
-                                </tr>
-                                <tr>
-
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="4"/>
-                                        <label th:for="4" th:text="${exam.opt4}"></label></h2></div></td>
-                                </tr>
-
-                                <tr>
-<!--                                    <td colspan="2" align="center"><input type="submit" class="button button1" value="next"></td>-->
-                                    <td colspan="2" align="center"><input class="btn btn-primary" type="submit" value="next">
-                                    </td>
-
-                                </tr>
-                            </div></table>
-                        </form>
-                        </div>
-<!--                    </div>-->
-
+                    </div>
                 </div>
             </div>
-            <script>
-function myFunction() {
-  confirm("successfully added!");
-}
-</script>
+            <div>
+                <table class="table table-striped table-hover">
 
+                    <thead>
+                    <tr>
 
+                        <th class="text-left">Questions</th>
+                        <th class="text-left">Selected Answer</th>
+                        <th class="text-left">Right Answer</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="exam : ${listQuestions}">
+                        <td class="text-left" th:text="${exam.qnm}"></td>
+                        <td class="text-left" th:text="${exam.selectedOptionm}"></td>
+                        <td class="text-left" th:text="${exam.ansm}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div class="login-header1">
+                    <h2>your score :<a th:text="${result}"></a></h2>
+                </div>
+            </div>
 
         </div>
 

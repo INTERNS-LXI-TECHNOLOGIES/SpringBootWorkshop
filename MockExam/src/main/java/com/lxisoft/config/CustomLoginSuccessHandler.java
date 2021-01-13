@@ -36,9 +36,10 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
             }
         }
         if (isAdmin) {
-            response.sendRedirect("/list");
+//            response.sendRedirect("/list");
+            response.sendRedirect("/subjects");
         } else {
-            response.sendRedirect("/notice");
+            response.sendRedirect("/subjectStudent");
         }
     }
 }

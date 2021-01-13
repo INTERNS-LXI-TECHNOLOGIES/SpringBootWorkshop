@@ -250,11 +250,6 @@ table.table .avatar {
      top:0;
      right:0;
  }
- p {
-  display: inline;
-  font-size: 40px;
-  margin-top: 0px;
-}
 </style>
     <script>
 $(document).ready(function(){
@@ -282,33 +277,6 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<!-- Modify this according to your requirement -->
-<h3>
-    Redirecting after <span id="countdown">10</span> seconds
-</h3>
-<!-- JavaScript part -->
-<script type="text/javascript">
-
-    // Total seconds to wait
-    var seconds = 10;
-
-    function countdown() {
-        seconds = seconds - 1;
-        if (seconds < 0) {
-            // Chnage your redirection link here
-            window.location = "/result";
-        } else {
-            // Update remaining seconds
-            document.getElementById("countdown").innerHTML = seconds;
-            // Count down using javascript
-            window.setTimeout("countdown()", 1000);
-        }
-    }
-
-    // Run countdown function
-    countdown();
-
-</script>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -320,63 +288,61 @@ $(document).ready(function(){
                         <h2>Online <b>Exam</b></h2>
                     </div>
 
-
-<!--                    <div  class="col-sm-6">-->
+                    <!--                    <div  class="col-sm-6">-->
                     <div  align="center">
-<!--                        <a href="add" class="btn btn-success" ><i class="material-icons"></i> <span>home</span></a>-->
+                        <!--                        <a href="add" class="btn btn-success" ><i class="material-icons"></i> <span>home</span></a>-->
 
                         <a id="button" href="/" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
 
                         <div class="center">
-                        <form  action="#" th:action="@{/start}" th:object="${exam}" method="get">
+                            <form  action="#" th:action="@{/startChemHard}" th:object="${exam}" method="get">
+                                <table>
+                                    <input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                    <div>
+                                        <tr align="center">
+                                            <td align="center"><div class="login-header1"><h1>Question :</h1></div></td>
+                                        </tr>
+                                        <tr >
+                                            <!--                                     <td class="login-header3" th:text="${exam.qn}"></td>-->
+                                            <td >  <h2><label class="login-header3" th:text="${exam.qnh}"></label></h2></td>
 
-                            <table>
-                            <input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <div>
-                                <tr align="center">
-                                    <td align="center"><div class="login-header1"><h1>Question :</h1></div></td>
-                                </tr>
-                                <tr >
-<!--                                     <td class="login-header3" th:text="${exam.qn}"></td>-->
-                                  <td >  <h2><label class="login-header3" th:text="${exam.qn}"></label></h2></td>
+                                        </tr>
+                                        <tr>
 
-                                </tr>
-                                <tr>
+                                            <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="1"/>
+                                                <label th:for="1" th:text="${exam.opt1h}"></label></h2></div></td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
 
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="1"/>
-                                        <label th:for="1" th:text="${exam.opt1}"></label></h2></div></td>
-                                </tr>
-                                <tr>
-                                <tr>
+                                            <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="2"/>
+                                                <label th:for="2" th:text="${exam.opt2h}"></label></h2></div></td>
+                                        </tr>
+                                        <tr>
 
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="2"/>
-                                        <label th:for="2" th:text="${exam.opt2}"></label></h2></div></td>
-                                </tr>
-                                <tr>
+                                            <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="3"/>
+                                                <label th:for="3" th:text="${exam.opt3h}"></label></h2></div></td>
+                                        </tr>
+                                        <tr>
 
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="3"/>
-                                        <label th:for="3" th:text="${exam.opt3}"></label></h2></div></td>
-                                </tr>
-                                <tr>
+                                            <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="4"/>
+                                                <label th:for="4" th:text="${exam.opt4h}"></label></h2></div></td>
+                                        </tr>
 
-                                    <td><div class="login-header2"><h2><input type="radio" name="opt" th:value="4"/>
-                                        <label th:for="4" th:text="${exam.opt4}"></label></h2></div></td>
-                                </tr>
+                                        <tr>
+                                            <!--                                    <td colspan="2" align="center"><input type="submit" class="button button1" value="next"></td>-->
+                                            <td colspan="2" align="center"><input class="btn btn-primary" type="submit" value="next">
+                                            </td>
 
-                                <tr>
-<!--                                    <td colspan="2" align="center"><input type="submit" class="button button1" value="next"></td>-->
-                                    <td colspan="2" align="center"><input class="btn btn-primary" type="submit" value="next">
-                                    </td>
-
-                                </tr>
-                            </div></table>
-                        </form>
+                                        </tr>
+                                    </div></table>
+                            </form>
                         </div>
-<!--                    </div>-->
+                        <!--                    </div>-->
 
+                    </div>
                 </div>
-            </div>
-            <script>
+                <script>
 function myFunction() {
   confirm("successfully added!");
 }
@@ -384,13 +350,13 @@ function myFunction() {
 
 
 
+            </div>
+
+
         </div>
 
 
     </div>
-
-
-</div>
 
 </div>
 
