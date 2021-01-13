@@ -25,19 +25,19 @@
 						th:object="${dialogue}" method="post">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Charactor Name</label> <input
-									type="text" th:field="*{name}" class="form-control" id="name"
-									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								<label for="dialogue" class="col-form-label">Charactor Name</label> <input
+									type="text" th:field="*{dialogue}" class="form-control" id="dialogue"
+									placeholder="dialogue"> <span
+									th:if="${#fields.hasErrors('dialogue')}" th:errors="*{dialogue}"
 									class="text-danger"></span>
 							</div>
-							<div class="form-group col-md-8">
-								<label for="word" class="col-form-label">Dialogue</label> <input
-									type="text" th:field="*{word}" class="form-control" id="word"
-									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('word')}" th:errors="*{word}"
-									class="text-danger"></span>
-							</div>
+<!--							<div class="form-group col-md-8">-->
+<!--								<label for="word" class="col-form-label">Dialogue</label> <input-->
+<!--									type="text" th:field="*{word}" class="form-control" id="word"-->
+<!--									placeholder="Name"> <span-->
+<!--									th:if="${#fields.hasErrors('word')}" th:errors="*{word}"-->
+<!--									class="text-danger"></span>-->
+<!--							</div>-->
 
 							<div class="col-md-6">
 								<input type="submit" class="btn btn-primary" value="Add Dialogue">
