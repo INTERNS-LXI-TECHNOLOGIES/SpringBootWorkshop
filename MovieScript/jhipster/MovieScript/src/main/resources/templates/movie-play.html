@@ -36,9 +36,9 @@
 		<tr th:each="dialogue: ${dialogues}">
 
 			<span th:if="${dialogue.name} == 'ironman'" th:text="${dialogue.name}"/>:
-			<span th:text="${dialogue.word}"/>
+			<span th:text="${dialogue.dialogue}"/>
 			<span th:if="${dialogue.name} == 'thor'" th:text="${dialogue.name}"/>:
-			<span th:text="${dialogue.word}"/>
+			<span th:text="${dialogue.dialogue}"/>
 		</tr>
 
 	</td>
