@@ -104,6 +104,7 @@ public String root() {
     @RequestMapping(value = "/saveExam",method = RequestMethod.POST)
     public String saveExam(@ModelAttribute("exam") Exam theExam) {
         examservice.save(theExam);
+
         return "redirect:list";
 
     }

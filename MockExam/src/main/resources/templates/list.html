@@ -1,12 +1,15 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>Mock Exam-Java</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -274,12 +277,16 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-sm-6">
 
-                        <h2>Online <b>Exam</b></h2>
+                        <h2>Online <b>Exam-Java</b></h2>
+
 
 
                     </div>
 
-                    <div class="col-sm-6">
+
+
+
+                    <div class="col-sm-12">
 
 
 <!--                        <a href="javascript:document.getElementById('logout').submit()" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>-->
@@ -287,8 +294,10 @@ $(document).ready(function(){
                         <a id="button" href="/" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
 
 
+                        <a href="subjects" class="btn btn-success" > <span>Home</span></a>
 
                         <a href="add" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New Question</span></a>
+
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Difficulty
                                 <span class="caret"></span></button>

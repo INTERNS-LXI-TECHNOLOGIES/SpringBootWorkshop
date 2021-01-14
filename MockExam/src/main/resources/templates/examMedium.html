@@ -277,6 +277,33 @@ $(document).ready(function(){
 });
 </script>
 </head>
+<h3>
+    Redirecting after <span id="countdown">10</span> seconds
+</h3>
+
+<!-- JavaScript part -->
+<script type="text/javascript">
+
+    // Total seconds to wait
+    var seconds = 10;
+
+    function countdown() {
+        seconds = seconds - 1;
+        if (seconds < 0) {
+            // Chnage your redirection link here
+            window.location = "/result";
+        } else {
+            // Update remaining seconds
+            document.getElementById("countdown").innerHTML = seconds;
+            // Count down using javascript
+            window.setTimeout("countdown()", 1000);
+        }
+    }
+
+    // Run countdown function
+    countdown();
+
+</script>
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -293,6 +320,7 @@ $(document).ready(function(){
                         <!--                        <a href="add" class="btn btn-success" ><i class="material-icons"></i> <span>home</span></a>-->
 
                         <a id="button" href="/" class="btn btn-danger" ><i class="material-icons">&#xE15C;</i> <span>Logout</span></a>
+
 
                         <div class="center">
                             <form  action="#" th:action="@{/startMedium}" th:object="${exam}" method="get">
