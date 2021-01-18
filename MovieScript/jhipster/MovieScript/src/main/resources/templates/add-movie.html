@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Add_Actor</title>
+<title>Add_Movie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class="container my-5">
-	<h3> Add Actor</h3>
+	<h3> Add Movie</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
@@ -39,21 +39,7 @@
 									class="text-danger"></span>
 							</div>
 
-							<div class="form-group col-md-8">
-								<label for="scene2" class="col-form-label">Second Scene</label> <input
-									type="text" th:field="*{scene2}" class="form-control" id="scene2"
-									placeholder="Scene 2"> <span
-									th:if="${#fields.hasErrors('scene2')}" th:errors="*{scene2}"
-									class="text-danger"></span>
-							</div>
 
-							<div class="form-group col-md-8">
-								<label for="scene3" class="col-form-label">Second Scene</label> <input
-									type="text" th:field="*{scene3}" class="form-control" id="scene3"
-									placeholder="Scene 3"> <span
-									th:if="${#fields.hasErrors('scene3')}" th:errors="*{scene3}"
-									class="text-danger"></span>
-							</div>
 							<div class="col-md-6">
 								<input type="submit" class="btn btn-primary" value="Add Movie ">
 							</div>

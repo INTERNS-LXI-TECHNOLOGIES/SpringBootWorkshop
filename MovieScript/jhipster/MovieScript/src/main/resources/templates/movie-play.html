@@ -17,14 +17,14 @@
 </head>
 <body>
 	<h2>Welcome To You</h2>
-	<h3>You Are Watching MovieOne </h3>
+	<h3>You Are Watching Marvel Movie</h3>
 <td>
-	<h4>Scene One: Scene in Home</h4>
+	<h4>Scene One: Scene Inside Home</h4>
 	<tr th:each="dialogue: ${dialogues}">
 
-		<span th:if="${dialogue.name} == 'afsal'" th:text="${dialogue.name}"/>:
+		<span th:if="${dialogue.actor_id} == '11'" th:text="${dialogue.actor.character.characterName}"/>:
 		<span th:text="${dialogue.word}"/>
-		<span th:if="${dialogue.name} == 'spiderMan'" th:text="${dialogue.name}"/>:
+		<span th:if="${dialogue.actor_id} == '12'" th:text="${dialogue.actor.character.characterName}"/>:
 		<span th:text="${dialogue.word}"/>
 
 	</tr>
@@ -35,9 +35,9 @@
 		<h4>Scene Two: Scene outside</h4>
 		<tr th:each="dialogue: ${dialogues}">
 
-			<span th:if="${dialogue.name} == 'ironman'" th:text="${dialogue.name}"/>:
+			<span th:if="${dialogue.actor_id} == '13'" th:text="${dialogue.actor.character.characterName}"/>:
 			<span th:text="${dialogue.dialogue}"/>
-			<span th:if="${dialogue.name} == 'thor'" th:text="${dialogue.name}"/>:
+			<span th:if="${dialogue.actor_id} == '14'" th:text="${dialogue.actor.character.characterName}"/>:
 			<span th:text="${dialogue.dialogue}"/>
 		</tr>
 
@@ -58,11 +58,12 @@
 						<tbody>
 						<tr th:each="actor : ${actors}">
 							<td th:text="${actor.actorName}"></td>
-							<td th:text="${actor.charactor}"></td>
+							<td th:text="${actor.character.characterName}"></td>
 						</tr>
 						</tbody>
 					</table>
-
+                <a href="/index" class="btn btn-primary"><i
+                    class="fas fa-user-plus ml-2">Exit </i></a>
 				</div>
 			</div>
 		</div>

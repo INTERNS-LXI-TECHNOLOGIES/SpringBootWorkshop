@@ -34,11 +34,14 @@ public class MovieController {
 		this.movieRepository = movieRepository;
 	}
 
-//	@GetMapping("adminpg")
-//	public String showAdminPage()
-//	{
-//		return "admin";
-//	}
+	@GetMapping("adminpg")
+	public String showAdminPage(Model model)
+	{
+		model.addAttribute("actors", actorRepository.findAll());
+		model.addAttribute("dialogues", dialogueRepository.findAll());
+		model.addAttribute("movies", movieRepository.findAll());
+		return "admin";
+	}
 	@GetMapping("viewMovie")
 	public String showUpdateForm(Model model) {
 		model.addAttribute("actors", actorRepository.findAll());

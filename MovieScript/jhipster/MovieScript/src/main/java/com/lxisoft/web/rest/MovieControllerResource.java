@@ -43,11 +43,11 @@ public class MovieControllerResource {
     * GET add
     */
 
-//    @GetMapping("/")
-//    public String login()
-//    {
-//        return "/login";
-//    }
+    @GetMapping("/home")
+    public String login()
+    {
+        return "index";
+    }
 
     @GetMapping("viewMovie")
     public String showUpdateForm(Model model) {
@@ -88,10 +88,10 @@ public class MovieControllerResource {
         }
 
         actorRepository.save(actor);
-        return "redirect:adminintro";
+        return "redirect:admin-intro";
     }
 
-    @GetMapping("edit/{id}")
+    @GetMapping("editactor/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Actor actor = actorRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
@@ -99,23 +99,31 @@ public class MovieControllerResource {
         return "update-actors";
     }
 
-    @PostMapping("update/{id}")
-    public String updateStudent(@PathVariable("id") long id, @Valid Actor actor, BindingResult result,
+    @PostMapping("updateactor/{id}")
+    public String updateActor(@PathVariable("id") long id, @Valid Actor actor, BindingResult result,
                                 Model model) {
         if (result.hasErrors()) {
             actor.setId(id);
-            return "update-student";
+            return "update-actors";
         }
 
         actorRepository.save(actor);
-        model.addAttribute("students", actorRepository.findAll());
-        return "index";
+        return "admin-intro";
+    }
+
+    @GetMapping("deleteactor/{id}")
+    public String deleteActor(@PathVariable("id") long id, Model model) {
+        Actor actor = actorRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid Actor Id:" + id));
+        actorRepository.delete(actor);
+
+        return "admin-intro";
     }
 
     @GetMapping("newDialogue")
     public String newDialogue(Dialogue dialogue,Model model)
     {
-        model.addAttribute("actors", actorRepository.findAll());
+        model.addAttribute("dialogues", dialogueRepository.findAll());
         return "add-dialogue";
     }
 
@@ -126,7 +134,7 @@ public class MovieControllerResource {
         }
 
         dialogueRepository.save(dialogue);
-        return "redirect:adminintro";
+        return "redirect:admin-intro";
     }
 
     @GetMapping("editdlg/{id}")
@@ -146,7 +154,7 @@ public class MovieControllerResource {
         }
 
         dialogueRepository.save(dialogue);
-        return "adminintro";
+        return "admin-intro";
     }
 
     @GetMapping("deletedlg/{id}")
@@ -155,7 +163,7 @@ public class MovieControllerResource {
             .orElseThrow(() -> new IllegalArgumentException("Invalid Actor Id:" + id));
         dialogueRepository.delete(dialogue);
 
-        return "index";
+        return "admin-intro";
     }
 
     @GetMapping("newMovie")
@@ -172,6 +180,25 @@ public class MovieControllerResource {
 
         movieRepository.save(movie);
         return "redirect:adminintro";
+    }
+    @GetMapping("editmovie/{id}")
+    public String editmovie(@PathVariable("id") long id, Model model) {
+        Movie movie = movieRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        model.addAttribute("movie", movie);
+        return "update-movie";
+    }
+
+    @PostMapping("updatemovie/{id}")
+    public String updateMovie(@PathVariable("id") long id, @Valid Movie movie, BindingResult result,
+                                 Model model) {
+        if (result.hasErrors()) {
+            movie.setId(id);
+            return "update-movie";
+        }
+
+        movieRepository.save(movie);
+        return "admin-intro";
     }
 
 
