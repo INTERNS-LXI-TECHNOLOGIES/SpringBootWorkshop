@@ -1,0 +1,29 @@
+{
+  "name": "Dialogue",
+  "fields": [
+    {
+      "fieldName": "dialogue",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "actor",
+      "otherEntityRelationshipName": "dialogue",
+      "relationshipName": "actor",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201231054203",
+  "entityTableName": "dialogue",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

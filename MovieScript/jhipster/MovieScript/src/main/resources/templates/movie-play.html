@@ -1,0 +1,72 @@
+     <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Users</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+	<h2>Welcome To You</h2>
+	<h3>You Are Watching Marvel Movie</h3>
+<td>
+	<h4>Scene One: Scene Inside Home</h4>
+	<tr th:each="dialogue: ${dialogues}">
+
+		<span th:if="${dialogue.actor_id} == '11'" th:text="${dialogue.actor.character.characterName}"/>:
+		<span th:text="${dialogue.word}"/>
+		<span th:if="${dialogue.actor_id} == '12'" th:text="${dialogue.actor.character.characterName}"/>:
+		<span th:text="${dialogue.word}"/>
+
+	</tr>
+
+</td>
+
+	<td>
+		<h4>Scene Two: Scene outside</h4>
+		<tr th:each="dialogue: ${dialogues}">
+
+			<span th:if="${dialogue.actor_id} == '13'" th:text="${dialogue.actor.character.characterName}"/>:
+			<span th:text="${dialogue.dialogue}"/>
+			<span th:if="${dialogue.actor_id} == '14'" th:text="${dialogue.actor.character.characterName}"/>:
+			<span th:text="${dialogue.dialogue}"/>
+		</tr>
+
+	</td>
+
+
+	<div class="container my-2">
+		<div class="card">
+			<div class="card-body">
+				<h3>Actors </h3>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+						<tr>
+							<th>Name</th>
+							<th>Charactor</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="actor : ${actors}">
+							<td th:text="${actor.actorName}"></td>
+							<td th:text="${actor.character.characterName}"></td>
+						</tr>
+						</tbody>
+					</table>
+                <a href="/index" class="btn btn-primary"><i
+                    class="fas fa-user-plus ml-2">Exit </i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

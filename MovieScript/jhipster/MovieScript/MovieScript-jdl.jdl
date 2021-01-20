@@ -1,0 +1,32 @@
+entity Movie {
+	movieName String
+	movieDetails String
+}
+
+entity Scene {
+	sceneDetail String
+}
+
+entity Actor {
+	actorName String
+	phNumber String
+}
+
+entity Character {
+	characterName String
+	characterType String
+}
+
+entity Dialogue {
+	dialogue String
+}
+
+relationship OneToMany {
+	Movie to Actor{movie},
+	Actor to Dialogue{actor},
+	Movie to Scene{movie}
+	}
+
+relationship OneToOne {
+	Actor{character} to Character
+}

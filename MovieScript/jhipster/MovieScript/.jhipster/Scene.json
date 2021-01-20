@@ -1,0 +1,29 @@
+{
+  "name": "Scene",
+  "fields": [
+    {
+      "fieldName": "sceneDetail",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "movie",
+      "otherEntityRelationshipName": "scene",
+      "relationshipName": "movie",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201231053903",
+  "entityTableName": "scene",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

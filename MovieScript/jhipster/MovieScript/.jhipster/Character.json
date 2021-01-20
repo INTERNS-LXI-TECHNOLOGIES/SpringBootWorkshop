@@ -1,0 +1,25 @@
+{
+  "name": "Character",
+  "fields": [
+    {
+      "fieldName": "characterName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "characterType",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201231054103",
+  "entityTableName": "character",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
