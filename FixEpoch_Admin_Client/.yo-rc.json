@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.lxisoft",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "FixEpoch_Admin_Client",
+    "packageName": "com.lxisoft",
+    "packageFolder": "com/lxisoft",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MzIwZGIxYjg2YzJkZDhhYjM2YzJiNjY4NjIxMzQ3M2E5YTM1OGM3YTIxZmNhMGQ0YzdkMDlkY2Y3MTMyYmZkYWMxY2U1YmY2ZmYyNDBjODljMjVkZThhNmNmYjA0YTJmZDQ5NGFmZWNmZDAxN2JlYjg1NTg4NjUzNzRkYThmNGI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "creationTimestamp": 1611142494953,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en"],
+    "blueprints": []
+  }
+}
