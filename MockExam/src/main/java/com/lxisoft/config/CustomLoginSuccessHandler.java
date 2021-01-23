@@ -33,12 +33,27 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
             if(grantedAuthorityIterator.next().getAuthority().equalsIgnoreCase("ROLE_ADMIN"))
             {
                 isAdmin = true;
+
             }
         }
         if (isAdmin) {
 //            response.sendRedirect("/list");
+            com.lxisoft.model.User user1=new com.lxisoft.model.User();
+//            int count= 1;
+//
+//            user1.setCount(count);
+//            count++;
             response.sendRedirect("/subjects");
         } else {
+//            User user4=new User();
+            com.lxisoft.model.User user1=new com.lxisoft.model.User();
+//            int count= 1;
+            int count=1;
+
+           count= 1+ user1.getCount();
+
+           user1.setCount(count);
+
             response.sendRedirect("/subjectStudent");
         }
     }

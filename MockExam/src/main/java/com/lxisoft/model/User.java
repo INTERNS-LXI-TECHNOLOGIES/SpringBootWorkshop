@@ -16,6 +16,10 @@ public class User {
     private String email;
     private String password;
 
+
+
+    private int count;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -91,6 +95,22 @@ public class User {
         this.roles = roles;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+
+    public void setCount(int count) {
+//        count=count+1;
+
+        this.count = count;
+//        count ++;
+
+
+    }
+
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -99,7 +119,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + "*********" + '\'' +
-                ", roles=" + roles +
+                ", roles=" + roles +", count=" + count +
                 '}';
 
     }

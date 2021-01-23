@@ -3,10 +3,12 @@ package com.lxisoft.controller;
 import com.lxisoft.exception.ResourceNotFoundException;
 import com.lxisoft.model.*;
 import com.lxisoft.service.*;
+import org.dom4j.rule.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -40,18 +42,59 @@ public class examController {
     private examServiceHard examServiceHard;
     @Autowired
     private examServiceChemHard examServiceChemHard;
+    @Autowired
+    private examAttended examAttended;
 
 
-    @RequestMapping(value = "/notice")
-    public ModelAndView notice() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("notice");
-        return model;
+
+
+//    @RequestMapping(value = "/notice",method=RequestMethod.GET)
+//    public ModelAndView notice(@ModelAttribute("exam") attendedExam exam){
+////        attendedExam exam1=new attendedExam();
+////        String name="java";
+////        String uname=(String)request.getSession().getAttribute("email");
+////        String uname=(String)session.getAttribute("email");
+////        System.out.println("THe name is"+uname);
+////        exam.setSubName(name);
+////    exam.setUserName(uname);
+////        examAttended.save(exam);
+//
+//        ModelAndView model = new ModelAndView();
+//        model.setViewName("notice");
+//        return model;
+//    }
+@RequestMapping(value = "/notice")
+public ModelAndView notice(@ModelAttribute("exam") attendedExam exam) {
+    String name="python";
+    exam.setSubName(name);
+    exam.setUserName("user2@email.com");
+
+    examAttended.save(exam);
+    ModelAndView model = new ModelAndView();
+    model.setViewName("notice");
+    return model;
+}
+    @RequestMapping(value = "/userTable", method = RequestMethod.GET)
+    public String userList(Model theModel) {
+        List < User > theExam = examservice.getUser();
+        theModel.addAttribute("user", theExam);
+        return "userTable";
     }
-    @RequestMapping(value = "/noticePython")
-    public ModelAndView noticePython() {
+    @RequestMapping(value = "/userActivity",method = RequestMethod.GET)
+   public String userActivity(Model theModel)
+    {
+        List<attendedExam> theExam =examAttended.getAttended();
+        theModel.addAttribute("attendedExam",theExam);
+        return "userActivity";
+    }
+
+    @RequestMapping(value = "/noticePython",method = RequestMethod.GET)
+    public ModelAndView noticePython(@ModelAttribute("exam") attendedExam exam) {
+//        attendedExam exam1=new attendedExam();
+        exam.setSubName("python");
         ModelAndView model = new ModelAndView();
         model.setViewName("noticePython");
+        examAttended.save(exam);
         return model;
     }
 @GetMapping("/")
@@ -63,12 +106,33 @@ public String root() {
     public String subject() {
         return "subjects";
     }
+
+  //  @GetMapping("/subjectStudent")
+    @RequestMapping(value = "/subjectStudent",method = RequestMethod.GET)
+
+//    public String subjectStudent(HttpServletRequest request,HttpSession session,Model model,@ModelAttribute("User") User user,@ModelAttribute("exam") attendedExam exam) {
+////        String userName=request.getParameter("Username");
+////       session.setAttribute("email",user.getEmail());
+//        session.setAttribute("email",user.getEmail());
+////System.out.println(request.getParameter("Username"));
+////        exam.setUserName(userName);
+//
+//examAttended.save(exam);
+//        model.addAttribute("exam",exam);
+//
+////        examservice.saveUser(user);
+//        return "subjectStudent";
+//    }
     @GetMapping("/subjectStudent")
     public String subjectStudent() {
         return "subjectStudent";
     }
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model,HttpServletRequest request,HttpSession session) {
+//     String name=request.getParameter("username");
+//        session.setAttribute("user",name);
+//System.out.println(name);
+
         return "login";
     }
 

@@ -277,33 +277,46 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<h3>
-    Redirecting after <span id="countdown">10</span> seconds
-</h3>
+<script>
+    function startTimer(duration, display) {
+var timer = duration, minutes, seconds;
+setInterval(function () {
+    minutes = parseInt(timer / 60, 10)
+    seconds = parseInt(timer % 60, 10);
 
-<!-- JavaScript part -->
-<script type="text/javascript">
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    // Total seconds to wait
-    var seconds = 10;
+    display.textContent = minutes + " " + " " + seconds;
 
-    function countdown() {
-        seconds = seconds - 1;
-        if (seconds < 0) {
-            // Chnage your redirection link here
-            window.location = "/result";
-        } else {
-            // Update remaining seconds
-            document.getElementById("countdown").innerHTML = seconds;
-            // Count down using javascript
-            window.setTimeout("countdown()", 1000);
-        }
+    if (--timer < 0) {
+        timer = duration;
     }
+  console.log(parseInt(seconds))
+  window.localStorage.setItem("seconds",seconds)
+  window.localStorage.setItem("minutes",minutes)
+  window.setTimeout(function(){
+window.location.href='/result';
+}, 4000);
+}, 1000);
+}
 
-    // Run countdown function
-    countdown();
+window.onload = function () {
+  sec  = parseInt(window.localStorage.getItem("seconds"))
+  min = parseInt(window.localStorage.getItem("minutes"))
 
+  if(parseInt(min*sec)){
+    var fiveMinutes = (parseInt(min*60)+sec);
+  }else{
+    var fiveMinutes = 1 * 5;
+  }
+    // var fiveMinutes = 60 * 5;
+  display = document.querySelector('#time');
+  startTimer(fiveMinutes, display);
+};
 </script>
+
+
 <body>
 <div class="container-xl">
     <div class="table-responsive">
@@ -313,6 +326,8 @@ $(document).ready(function(){
                     <div class="col-sm-6">
 
                         <h2>Online <b>Exam</b></h2>
+                        <div id="time"></div>
+
                     </div>
 
                     <!--                    <div  class="col-sm-6">-->

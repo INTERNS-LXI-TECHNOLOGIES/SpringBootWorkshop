@@ -106,8 +106,7 @@ body {
 <body>
 <div class="signup-form">
     <div th:if="${param.success}">
-        <div class="alert alert-info">You've successfully registered
-            to MockExam</div>
+        <div class="alert alert-info">You've successfully registered to MockExam</div>
     </div>
     <form th:action="@{/registration}" method="post" th:object = "${user}">
         <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
