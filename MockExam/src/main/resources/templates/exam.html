@@ -260,42 +260,43 @@ table.table .avatar {
 </head>
 
 <script>
-    function startTimer(duration, display) {
-var timer = duration, minutes, seconds;
-setInterval(function () {
-    minutes = parseInt(timer / 60, 10)
-    seconds = parseInt(timer % 60, 10);
+var time = 30; // This is the time allowed
+var saved_countdown = localStorage.getItem('saved_countdown');
 
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+if(saved_countdown == null) {
+    // Set the time we're counting down to using the time allowed
+    var new_countdown = new Date().getTime() + (time + 2) * 1000;
 
-    display.textContent = minutes + " " + " " + seconds;
-
-    if (--timer < 0) {
-        timer = duration;
-    }
-  console.log(parseInt(seconds))
-  window.localStorage.setItem("seconds",seconds)
-  window.localStorage.setItem("minutes",minutes)
-  window.setTimeout(function(){
-window.location.href='/result';
-}, 4000);
-}, 1000);
+    time = new_countdown;
+    localStorage.setItem('saved_countdown', new_countdown);
+} else {
+    time = saved_countdown;
 }
 
-window.onload = function () {
-  sec  = parseInt(window.localStorage.getItem("seconds"))
-  min = parseInt(window.localStorage.getItem("minutes"))
+// Update the count down every 1 second
+var x = setInterval(() => {
 
-  if(parseInt(min*sec)){
-    var fiveMinutes = (parseInt(min*60)+sec);
-  }else{
-    var fiveMinutes = 1 * 5;
-  }
-    // var fiveMinutes = 60 * 5;
-  display = document.querySelector('#time');
-  startTimer(fiveMinutes, display);
-};
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the allowed time
+    var distance = time - now;
+
+    // Time counter
+    var counter = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = counter + " s";
+
+    // If the count down is over, write some text
+    if (counter <= 0) {
+        clearInterval(x);
+        localStorage.removeItem('saved_countdown');
+        document.getElementById("demo").innerHTML = "EXPIRED";
+            window.location.href = "/result";
+
+    }
+}, 1000);
 </script>
 
 <body>
@@ -309,7 +310,10 @@ window.onload = function () {
                         <h2>Online <b>Exam</b></h2>
 
 
-                        <div id="time"></div>
+<!--                        <div id="time"></div>-->
+<!--                        <span id="countdown" class="timer"></span>-->
+                        <p id="demo"></p>
+
 
                     </div>
 
