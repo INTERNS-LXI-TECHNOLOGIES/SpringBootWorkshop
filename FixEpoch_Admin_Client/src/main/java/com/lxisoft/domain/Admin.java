@@ -137,7 +137,7 @@ public class Admin implements Serializable {
 
     public Admin removeCategorie(Categorie categorie) {
         this.categories.remove(categorie);
-        categorie.setName(null);
+        categorie.setName("null");
         return this;
     }
 
