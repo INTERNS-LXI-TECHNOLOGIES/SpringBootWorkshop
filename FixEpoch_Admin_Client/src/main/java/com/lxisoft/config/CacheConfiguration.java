@@ -48,11 +48,6 @@ public class CacheConfiguration {
             createCache(cm, com.lxisoft.domain.User.class.getName());
             createCache(cm, com.lxisoft.domain.Authority.class.getName());
             createCache(cm, com.lxisoft.domain.User.class.getName() + ".authorities");
-            createCache(cm, com.lxisoft.domain.Admin.class.getName());
-            createCache(cm, com.lxisoft.domain.Admin.class.getName() + ".categories");
-            createCache(cm, com.lxisoft.domain.Categorie.class.getName());
-            createCache(cm, com.lxisoft.domain.Categorie.class.getName() + ".firms");
-            createCache(cm, com.lxisoft.domain.Firm.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
