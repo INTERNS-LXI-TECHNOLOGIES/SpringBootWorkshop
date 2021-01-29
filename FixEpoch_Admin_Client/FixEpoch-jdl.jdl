@@ -1,32 +1,43 @@
-entity Movie {
-	movieName String
-	movieDetails String
+entity Admin {
+	adminName String
+	email String
+	password String
+	phNumber String
+
 }
 
-entity Scene {
-	sceneDetail String
+entity Catagorie {
+	catagorieName String
+	details String
+
 }
 
-entity Actor {
+entity Firm {
 	actorName String
 	phNumber String
 }
 
 entity Character {
-	characterName String
-	characterType String
-}
+	firmName String
+	phNumber String
+	adress String
+	email String
+	time String
+    	}
 
-entity Dialogue {
-	dialogue String
+entity User {
+	userName String
+	password String
+
 }
 
 relationship OneToMany {
-	Movie to Actor{movie},
-	Actor to Dialogue{actor},
-	Movie to Scene{movie}
+	Catagorie to Firm{catagorie},
+	Admin to Catagorie{admin},
+
+
 	}
 
 relationship OneToOne {
-	Actor{character} to Character
+	Firm{catagorie} to Catagorie
 }

@@ -1,0 +1,37 @@
+{
+  "name": "Character",
+  "fields": [
+    {
+      "fieldName": "firmName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "time",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210129065914",
+  "entityTableName": "character",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

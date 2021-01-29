@@ -1,0 +1,39 @@
+{
+  "name": "Catagorie",
+  "fields": [
+    {
+      "fieldName": "catagorieName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "details",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "firm",
+      "otherEntityRelationshipName": "catagorie",
+      "relationshipName": "firm"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "admin",
+      "otherEntityRelationshipName": "catagorie",
+      "relationshipName": "admin",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20210129065714",
+  "entityTableName": "catagorie",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

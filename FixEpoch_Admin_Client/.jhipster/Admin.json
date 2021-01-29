@@ -1,0 +1,40 @@
+{
+  "name": "Admin",
+  "fields": [
+    {
+      "fieldName": "adminName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phNumber",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "catagorie",
+      "otherEntityRelationshipName": "admin",
+      "relationshipName": "catagorie"
+    }
+  ],
+  "changelogDate": "20210129065614",
+  "entityTableName": "admin",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
