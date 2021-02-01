@@ -33,11 +33,6 @@ entity User {
 
 relationship OneToMany {
 	Catagorie to Firm{catagorie},
-	Admin to Catagorie{admin},
-
-
+	Admin to Catagorie{admin}
 	}
-
-relationship OneToOne {
-	Firm{catagorie} to Catagorie
 }
