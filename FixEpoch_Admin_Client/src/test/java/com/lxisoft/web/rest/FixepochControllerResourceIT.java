@@ -1,6 +1,7 @@
 package com.lxisoft.web.rest;
 
 import com.lxisoft.FixEpochAdminClientApp;
+import com.lxisoft.repository.AdminRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -19,12 +20,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class FixepochControllerResourceIT {
 
     private MockMvc restMockMvc;
+    private final AdminRepository adminRepository;
+    private final CatagorieResource catagorieResource;
+
+    public FixepochControllerResourceIT(AdminRepository adminRepository, CatagorieResource catagorieResource) {
+        this.adminRepository = adminRepository;
+        this.catagorieResource = catagorieResource;
+    }
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        FixepochControllerResource fixepochControllerResource = new FixepochControllerResource();
+        FixepochControllerResource fixepochControllerResource = new FixepochControllerResource(adminRepository, catagorieResource);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(fixepochControllerResource)
             .build();
