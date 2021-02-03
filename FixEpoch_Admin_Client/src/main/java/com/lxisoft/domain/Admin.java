@@ -37,7 +37,7 @@ public class Admin implements Serializable {
 
     @OneToMany(mappedBy = "admin")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Catagorie> catagories = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -100,29 +100,29 @@ public class Admin implements Serializable {
         this.phNumber = phNumber;
     }
 
-    public Set<Catagorie> getCatagories() {
-        return catagories;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public Admin catagories(Set<Catagorie> catagories) {
-        this.catagories = catagories;
+    public Admin categories(Set<Category> categories) {
+        this.categories = categories;
         return this;
     }
 
-    public Admin addCatagorie(Catagorie catagorie) {
-        this.catagories.add(catagorie);
-        catagorie.setAdmin(this);
+    public Admin addCategory(Category category) {
+        this.categories.add(category);
+        category.setAdmin(this);
         return this;
     }
 
-    public Admin removeCatagorie(Catagorie catagorie) {
-        this.catagories.remove(catagorie);
-        catagorie.setAdmin(null);
+    public Admin removeCategory(Category category) {
+        this.categories.remove(category);
+        category.setAdmin(null);
         return this;
     }
 
-    public void setCatagories(Set<Catagorie> catagories) {
-        this.catagories = catagories;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

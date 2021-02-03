@@ -22,19 +22,24 @@ public class Firm implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "actor_name")
-    private String actorName;
+    @Column(name = "firm_name")
+    private String firmName;
 
     @Column(name = "ph_number")
     private String phNumber;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Catagorie catagorie;
+    @Column(name = "adress")
+    private String adress;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "time")
+    private String time;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "firms", allowSetters = true)
-    private Catagorie catagorie;
+    private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -45,17 +50,17 @@ public class Firm implements Serializable {
         this.id = id;
     }
 
-    public String getActorName() {
-        return actorName;
+    public String getFirmName() {
+        return firmName;
     }
 
-    public Firm actorName(String actorName) {
-        this.actorName = actorName;
+    public Firm firmName(String firmName) {
+        this.firmName = firmName;
         return this;
     }
 
-    public void setActorName(String actorName) {
-        this.actorName = actorName;
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
     }
 
     public String getPhNumber() {
@@ -71,30 +76,56 @@ public class Firm implements Serializable {
         this.phNumber = phNumber;
     }
 
-    public Catagorie getCatagorie() {
-        return catagorie;
+    public String getAdress() {
+        return adress;
     }
 
-    public Firm catagorie(Catagorie catagorie) {
-        this.catagorie = catagorie;
+    public Firm adress(String adress) {
+        this.adress = adress;
         return this;
     }
 
-    public void setCatagorie(Catagorie catagorie) {
-        this.catagorie = catagorie;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
-    public Catagorie getCatagorie() {
-        return catagorie;
+    public String getEmail() {
+        return email;
     }
 
-    public Firm catagorie(Catagorie catagorie) {
-        this.catagorie = catagorie;
+    public Firm email(String email) {
+        this.email = email;
         return this;
     }
 
-    public void setCatagorie(Catagorie catagorie) {
-        this.catagorie = catagorie;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public Firm time(String time) {
+        this.time = time;
+        return this;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Firm category(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -119,8 +150,11 @@ public class Firm implements Serializable {
     public String toString() {
         return "Firm{" +
             "id=" + getId() +
-            ", actorName='" + getActorName() + "'" +
+            ", firmName='" + getFirmName() + "'" +
             ", phNumber='" + getPhNumber() + "'" +
+            ", adress='" + getAdress() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", time='" + getTime() + "'" +
             "}";
     }
 }

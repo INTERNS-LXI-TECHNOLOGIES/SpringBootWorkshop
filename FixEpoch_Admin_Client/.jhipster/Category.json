@@ -1,8 +1,8 @@
 {
-  "name": "Catagorie",
+  "name": "Category",
   "fields": [
     {
-      "fieldName": "catagorieName",
+      "fieldName": "categoryName",
       "fieldType": "String"
     },
     {
@@ -14,19 +14,19 @@
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "firm",
-      "otherEntityRelationshipName": "catagorie",
+      "otherEntityRelationshipName": "category",
       "relationshipName": "firm"
     },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "admin",
-      "otherEntityRelationshipName": "catagorie",
+      "otherEntityRelationshipName": "category",
       "relationshipName": "admin",
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20210129065714",
-  "entityTableName": "catagorie",
+  "changelogDate": "20210202151932",
+  "entityTableName": "category",
   "dto": "no",
   "pagination": "no",
   "service": "no",

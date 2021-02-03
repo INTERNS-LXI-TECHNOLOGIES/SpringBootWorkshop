@@ -2,32 +2,36 @@
   "name": "Firm",
   "fields": [
     {
-      "fieldName": "actorName",
+      "fieldName": "firmName",
       "fieldType": "String"
     },
     {
       "fieldName": "phNumber",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "adress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "time",
+      "fieldType": "String"
     }
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "catagorie",
-      "otherEntityRelationshipName": "firm",
-      "relationshipName": "catagorie",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "many-to-one",
-      "otherEntityName": "catagorie",
+      "otherEntityName": "category",
       "otherEntityRelationshipName": "firm",
-      "relationshipName": "catagorie",
+      "relationshipName": "category",
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20210129065814",
+  "changelogDate": "20210202152032",
   "entityTableName": "firm",
   "dto": "no",
   "pagination": "no",

@@ -29,11 +29,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class FirmResourceIT {
 
-    private static final String DEFAULT_ACTOR_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_ACTOR_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_FIRM_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_FIRM_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_PH_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PH_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADRESS = "AAAAAAAAAA";
+    private static final String UPDATED_ADRESS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_TIME = "AAAAAAAAAA";
+    private static final String UPDATED_TIME = "BBBBBBBBBB";
 
     @Autowired
     private FirmRepository firmRepository;
@@ -54,8 +63,11 @@ public class FirmResourceIT {
      */
     public static Firm createEntity(EntityManager em) {
         Firm firm = new Firm()
-            .actorName(DEFAULT_ACTOR_NAME)
-            .phNumber(DEFAULT_PH_NUMBER);
+            .firmName(DEFAULT_FIRM_NAME)
+            .phNumber(DEFAULT_PH_NUMBER)
+            .adress(DEFAULT_ADRESS)
+            .email(DEFAULT_EMAIL)
+            .time(DEFAULT_TIME);
         return firm;
     }
     /**
@@ -66,8 +78,11 @@ public class FirmResourceIT {
      */
     public static Firm createUpdatedEntity(EntityManager em) {
         Firm firm = new Firm()
-            .actorName(UPDATED_ACTOR_NAME)
-            .phNumber(UPDATED_PH_NUMBER);
+            .firmName(UPDATED_FIRM_NAME)
+            .phNumber(UPDATED_PH_NUMBER)
+            .adress(UPDATED_ADRESS)
+            .email(UPDATED_EMAIL)
+            .time(UPDATED_TIME);
         return firm;
     }
 
@@ -90,8 +105,11 @@ public class FirmResourceIT {
         List<Firm> firmList = firmRepository.findAll();
         assertThat(firmList).hasSize(databaseSizeBeforeCreate + 1);
         Firm testFirm = firmList.get(firmList.size() - 1);
-        assertThat(testFirm.getActorName()).isEqualTo(DEFAULT_ACTOR_NAME);
+        assertThat(testFirm.getFirmName()).isEqualTo(DEFAULT_FIRM_NAME);
         assertThat(testFirm.getPhNumber()).isEqualTo(DEFAULT_PH_NUMBER);
+        assertThat(testFirm.getAdress()).isEqualTo(DEFAULT_ADRESS);
+        assertThat(testFirm.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testFirm.getTime()).isEqualTo(DEFAULT_TIME);
     }
 
     @Test
@@ -125,8 +143,11 @@ public class FirmResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(firm.getId().intValue())))
-            .andExpect(jsonPath("$.[*].actorName").value(hasItem(DEFAULT_ACTOR_NAME)))
-            .andExpect(jsonPath("$.[*].phNumber").value(hasItem(DEFAULT_PH_NUMBER)));
+            .andExpect(jsonPath("$.[*].firmName").value(hasItem(DEFAULT_FIRM_NAME)))
+            .andExpect(jsonPath("$.[*].phNumber").value(hasItem(DEFAULT_PH_NUMBER)))
+            .andExpect(jsonPath("$.[*].adress").value(hasItem(DEFAULT_ADRESS)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].time").value(hasItem(DEFAULT_TIME)));
     }
     
     @Test
@@ -140,8 +161,11 @@ public class FirmResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(firm.getId().intValue()))
-            .andExpect(jsonPath("$.actorName").value(DEFAULT_ACTOR_NAME))
-            .andExpect(jsonPath("$.phNumber").value(DEFAULT_PH_NUMBER));
+            .andExpect(jsonPath("$.firmName").value(DEFAULT_FIRM_NAME))
+            .andExpect(jsonPath("$.phNumber").value(DEFAULT_PH_NUMBER))
+            .andExpect(jsonPath("$.adress").value(DEFAULT_ADRESS))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.time").value(DEFAULT_TIME));
     }
     @Test
     @Transactional
@@ -164,8 +188,11 @@ public class FirmResourceIT {
         // Disconnect from session so that the updates on updatedFirm are not directly saved in db
         em.detach(updatedFirm);
         updatedFirm
-            .actorName(UPDATED_ACTOR_NAME)
-            .phNumber(UPDATED_PH_NUMBER);
+            .firmName(UPDATED_FIRM_NAME)
+            .phNumber(UPDATED_PH_NUMBER)
+            .adress(UPDATED_ADRESS)
+            .email(UPDATED_EMAIL)
+            .time(UPDATED_TIME);
 
         restFirmMockMvc.perform(put("/api/firms")
             .contentType(MediaType.APPLICATION_JSON)
@@ -176,8 +203,11 @@ public class FirmResourceIT {
         List<Firm> firmList = firmRepository.findAll();
         assertThat(firmList).hasSize(databaseSizeBeforeUpdate);
         Firm testFirm = firmList.get(firmList.size() - 1);
-        assertThat(testFirm.getActorName()).isEqualTo(UPDATED_ACTOR_NAME);
+        assertThat(testFirm.getFirmName()).isEqualTo(UPDATED_FIRM_NAME);
         assertThat(testFirm.getPhNumber()).isEqualTo(UPDATED_PH_NUMBER);
+        assertThat(testFirm.getAdress()).isEqualTo(UPDATED_ADRESS);
+        assertThat(testFirm.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testFirm.getTime()).isEqualTo(UPDATED_TIME);
     }
 
     @Test

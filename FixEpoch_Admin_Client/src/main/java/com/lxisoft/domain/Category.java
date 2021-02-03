@@ -11,12 +11,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A Catagorie.
+ * A Category.
  */
 @Entity
-@Table(name = "catagorie")
+@Table(name = "category")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Catagorie implements Serializable {
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,18 +24,18 @@ public class Catagorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "catagorie_name")
-    private String catagorieName;
+    @Column(name = "category_name")
+    private String categoryName;
 
     @Column(name = "details")
     private String details;
 
-    @OneToMany(mappedBy = "catagorie")
+    @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Firm> firms = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "catagories", allowSetters = true)
+    @JsonIgnoreProperties(value = "categories", allowSetters = true)
     private Admin admin;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -47,24 +47,24 @@ public class Catagorie implements Serializable {
         this.id = id;
     }
 
-    public String getCatagorieName() {
-        return catagorieName;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public Catagorie catagorieName(String catagorieName) {
-        this.catagorieName = catagorieName;
+    public Category categoryName(String categoryName) {
+        this.categoryName = categoryName;
         return this;
     }
 
-    public void setCatagorieName(String catagorieName) {
-        this.catagorieName = catagorieName;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getDetails() {
         return details;
     }
 
-    public Catagorie details(String details) {
+    public Category details(String details) {
         this.details = details;
         return this;
     }
@@ -77,20 +77,20 @@ public class Catagorie implements Serializable {
         return firms;
     }
 
-    public Catagorie firms(Set<Firm> firms) {
+    public Category firms(Set<Firm> firms) {
         this.firms = firms;
         return this;
     }
 
-    public Catagorie addFirm(Firm firm) {
+    public Category addFirm(Firm firm) {
         this.firms.add(firm);
-        firm.setCatagorie(this);
+        firm.setCategory(this);
         return this;
     }
 
-    public Catagorie removeFirm(Firm firm) {
+    public Category removeFirm(Firm firm) {
         this.firms.remove(firm);
-        firm.setCatagorie(null);
+        firm.setCategory(null);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class Catagorie implements Serializable {
         return admin;
     }
 
-    public Catagorie admin(Admin admin) {
+    public Category admin(Admin admin) {
         this.admin = admin;
         return this;
     }
@@ -117,10 +117,10 @@ public class Catagorie implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Catagorie)) {
+        if (!(o instanceof Category)) {
             return false;
         }
-        return id != null && id.equals(((Catagorie) o).id);
+        return id != null && id.equals(((Category) o).id);
     }
 
     @Override
@@ -131,9 +131,9 @@ public class Catagorie implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Catagorie{" +
+        return "Category{" +
             "id=" + getId() +
-            ", catagorieName='" + getCatagorieName() + "'" +
+            ", categoryName='" + getCategoryName() + "'" +
             ", details='" + getDetails() + "'" +
             "}";
     }

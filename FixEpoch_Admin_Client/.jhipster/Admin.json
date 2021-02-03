@@ -21,12 +21,12 @@
   "relationships": [
     {
       "relationshipType": "one-to-many",
-      "otherEntityName": "catagorie",
+      "otherEntityName": "category",
       "otherEntityRelationshipName": "admin",
-      "relationshipName": "catagorie"
+      "relationshipName": "category"
     }
   ],
-  "changelogDate": "20210129065614",
+  "changelogDate": "20210202151832",
   "entityTableName": "admin",
   "dto": "no",
   "pagination": "no",

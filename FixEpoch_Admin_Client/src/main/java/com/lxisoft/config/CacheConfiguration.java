@@ -49,9 +49,9 @@ public class CacheConfiguration {
             createCache(cm, com.lxisoft.domain.Authority.class.getName());
             createCache(cm, com.lxisoft.domain.User.class.getName() + ".authorities");
             createCache(cm, com.lxisoft.domain.Admin.class.getName());
-            createCache(cm, com.lxisoft.domain.Admin.class.getName() + ".catagories");
-            createCache(cm, com.lxisoft.domain.Catagorie.class.getName());
-            createCache(cm, com.lxisoft.domain.Catagorie.class.getName() + ".firms");
+            createCache(cm, com.lxisoft.domain.Admin.class.getName() + ".categories");
+            createCache(cm, com.lxisoft.domain.Category.class.getName());
+            createCache(cm, com.lxisoft.domain.Category.class.getName() + ".firms");
             createCache(cm, com.lxisoft.domain.Firm.class.getName());
             createCache(cm, com.lxisoft.domain.Character.class.getName());
             // jhipster-needle-ehcache-add-entry

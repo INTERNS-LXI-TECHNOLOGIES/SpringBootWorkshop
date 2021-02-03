@@ -1,7 +1,6 @@
 package com.lxisoft.web.rest;
 
 import com.lxisoft.FixEpochAdminClientApp;
-import com.lxisoft.domain.Character;
 import com.lxisoft.repository.CharacterRepository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -149,7 +148,7 @@ public class CharacterResourceIT {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].time").value(hasItem(DEFAULT_TIME)));
     }
-    
+
     @Test
     @Transactional
     public void getCharacter() throws Exception {

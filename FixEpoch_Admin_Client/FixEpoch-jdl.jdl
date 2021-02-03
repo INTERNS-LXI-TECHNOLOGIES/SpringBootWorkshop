@@ -6,18 +6,13 @@ entity Admin {
 
 }
 
-entity Catagorie {
-	catagorieName String
+entity Category {
+	categoryName String
 	details String
 
 }
 
 entity Firm {
-	actorName String
-	phNumber String
-}
-
-entity Character {
 	firmName String
 	phNumber String
 	adress String
@@ -32,7 +27,7 @@ entity User {
 }
 
 relationship OneToMany {
-	Catagorie to Firm{catagorie},
-	Admin to Catagorie{admin}
+	Admin to Category{admin},
+	Category to Firm{category},
+
 	}
-}
