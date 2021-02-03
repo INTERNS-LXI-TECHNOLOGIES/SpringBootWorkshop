@@ -44,39 +44,49 @@ public class examController {
     private examServiceChemHard examServiceChemHard;
     @Autowired
     private examAttended examAttended;
+    @Autowired
+    private examAnswer examAnswer;
 
 
 
 
-   @RequestMapping(value = "/notice/id",method=RequestMethod.GET)
-   public ModelAndView notice(@ModelAttribute("exam") attendedExam exam){
-       attendedExam exam1=new attendedExam();
-       String uname=(String)request.getSession().getAttribute("email");
-              String uname=(String)request.getSession().getAttribute("id");
+//    @RequestMapping(value = "/notice",method=RequestMethod.GET)
+//    public ModelAndView notice(@ModelAttribute("exam") attendedExam exam){
+////        attendedExam exam1=new attendedExam();
+////        String name="java";
+////        String uname=(String)request.getSession().getAttribute("email");
+////        String uname=(String)session.getAttribute("email");
+////        System.out.println("THe name is"+uname);
+////        exam.setSubName(name);
+////    exam.setUserName(uname);
+////        examAttended.save(exam);
+//
+//        ModelAndView model = new ModelAndView();
+//        model.setViewName("notice");
+//        return model;
+//    }
+@RequestMapping(value = "/notice")
+public ModelAndView notice(@ModelAttribute("exam") attendedExam exam) {
+    String name="java";
+    exam.setSubName(name);
+    exam.setUserName("karthik@gmail.com");
 
-       // System.out.println("THe name is"+uname);
-       exam.setSubName(name);
-   exam.setUserName(id);
-       examAttended.save(exam);
-
-       ModelAndView model = new ModelAndView();
-       model.setViewName("notice");
-       return model;
-   }
-// @RequestMapping(value = "/notice")
-// public ModelAndView notice(@ModelAttribute("exam") attendedExam exam) {
-   
-
-//     examAttended.save(exam);
-//     ModelAndView model = new ModelAndView();
-//     model.setViewName("notice");
-//     return model;
-// }
+    examAttended.save(exam);
+    ModelAndView model = new ModelAndView();
+    model.setViewName("notice");
+    return model;
+}
     @RequestMapping(value = "/userTable", method = RequestMethod.GET)
     public String userList(Model theModel) {
         List < User > theExam = examservice.getUser();
         theModel.addAttribute("user", theExam);
         return "userTable";
+    }
+    @RequestMapping(value = "/questionId", method = RequestMethod.GET)/// set akkanam
+    public String questionId(Model theModel) {
+        List < Answer > theExam = examAnswer.getUser();
+        theModel.addAttribute("Answer", theExam);
+        return "questionId";
     }
     @RequestMapping(value = "/userActivity",method = RequestMethod.GET)
    public String userActivity(Model theModel)
@@ -86,21 +96,15 @@ public class examController {
         return "userActivity";
     }
 
-    @RequestMapping(value = "/noticePython/id",method = RequestMethod.GET)
+    @RequestMapping(value = "/noticePython",method = RequestMethod.GET)
     public ModelAndView noticePython(@ModelAttribute("exam") attendedExam exam) {
 //        attendedExam exam1=new attendedExam();
-         attendedExam exam1=new attendedExam();
-       String uname=(String)request.getSession().getAttribute("email");
-              String uname=(String)request.getSession().getAttribute("id");
-
-       // System.out.println("THe name is"+uname);
-       exam.setSubName(name);
-   exam.setUserName(id);
-       examAttended.save(exam);
-
-       ModelAndView model = new ModelAndView();
-       model.setViewName("noticePython");
-       return model;
+        exam.setSubName("python");
+        exam.setUserName("user@email.com");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("noticePython");
+        examAttended.save(exam);
+        return model;
     }
 @GetMapping("/")
 public String root() {

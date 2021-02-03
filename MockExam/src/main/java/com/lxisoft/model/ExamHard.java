@@ -39,7 +39,7 @@ public class ExamHard implements Serializable {
 
 
 
-//hard get and setter
+//hard getter and setter
     public int getSlno() {
         return slno;
     }
