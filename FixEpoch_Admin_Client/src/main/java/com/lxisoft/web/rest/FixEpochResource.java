@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -16,7 +17,7 @@ import javax.validation.Valid;
  * FixEpochResource controller
  */
 @RestController
-@RequestMapping("/api/fix-epoch")
+//@RequestMapping("/api/fix-epoch")
 public class FixEpochResource {
     private final AdminRepository adminRepository;
     private final CategoryRepository categoryRepository;
@@ -31,16 +32,23 @@ public class FixEpochResource {
     }
 
     @GetMapping("/home")
-    public String login()
+    public String Home()
     {
         return "index";
+    }
+
+    @GetMapping("/adminIndex")
+    public ModelAndView AdminIndex()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin-index");
+        return modelAndView;
     }
 
     @GetMapping("newAdmin")
     public String newAdmin(Admin admin, Model model)
     {
-        model.addAttribute("movies", adminRepository.findAll());
-        return "add-admin";
+       return "add-admin";
     }
 
     @PostMapping("addAdmin")

@@ -53,7 +53,8 @@ public class CacheConfiguration {
             createCache(cm, com.lxisoft.domain.Category.class.getName());
             createCache(cm, com.lxisoft.domain.Category.class.getName() + ".firms");
             createCache(cm, com.lxisoft.domain.Firm.class.getName());
-            createCache(cm, com.lxisoft.domain.Character.class.getName());
+//            createCache(cm, com.lxisoft.domain.Character.class.getName());
+
             // jhipster-needle-ehcache-add-entry
         };
     }
