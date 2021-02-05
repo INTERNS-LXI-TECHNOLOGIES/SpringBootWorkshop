@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Add_Category</title>
+<title>New_Firm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -17,18 +17,18 @@
 </head>
 <body>
 	<div class="container my-5">
-	<h3> Add Category</h3>
+	<h3> Add Firm</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
- 					<form action="#" th:action="@{/addActor}"
-						th:object="${actor}" method="post">
+ 					<form action="#" th:action="@{/addFirm}"
+						th:object="${firm}" method="post">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="actorName" class="col-form-label">Name</label> <input
-									type="text" th:field="*{actorName}" class="form-control" id="actorName"
-									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('actorName')}" th:errors="*{actorName}"
+								<label for="firmName" class="col-form-label">Firm Name</label> <input
+									type="text" th:field="*{firmName}" class="form-control" id="firmName"
+									placeholder="firmName"> <span
+									th:if="${#fields.hasErrors('firmName')}" th:errors="*{firmName}"
 									class="text-danger"></span>
 							</div>
 
@@ -40,8 +40,32 @@
 									class="text-danger"></span>
 							</div>
 
+                            <div class="form-group col-md-8">
+                                <label for="adress" class="col-form-label">Adress</label> <input
+                                type="text" th:field="*{phNumber}" class="form-control"
+                                id="adress" placeholder="adress"><span
+                                th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"
+                                class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label for="time" class="col-form-label">Open And Close Time</label> <input
+                                type="text" th:field="*{time}" class="form-control"
+                                id="time" placeholder="00:00 to 00:00"><span
+                                th:if="${#fields.hasErrors('time')}" th:errors="*{time}"
+                                class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label for="email" class="col-form-label">Email</label> <input
+                                type="text" th:field="*{email}" class="form-control"
+                                id="email" placeholder="email"><span
+                                th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                class="text-danger"></span>
+                            </div>
+
 							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value="Add Actor">
+								<input type="submit" class="btn btn-primary" value="Save">
 							</div>
 
 							<div class="form-group col-md-8"></div>

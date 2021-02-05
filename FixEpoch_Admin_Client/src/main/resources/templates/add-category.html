@@ -21,27 +21,27 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-10">
- 					<form action="#" th:action="@{/addActor}"
-						th:object="${actor}" method="post">
+ 					<form action="#" th:action="@{/addCategory}"
+						th:object="${category}" method="post">
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="actorName" class="col-form-label">Name</label> <input
-									type="text" th:field="*{actorName}" class="form-control" id="actorName"
+								<label for="categoryName" class="col-form-label">categoryName</label> <input
+									type="text" th:field="*{categoryName}" class="form-control" id="categoryName"
 									placeholder="Name"> <span
-									th:if="${#fields.hasErrors('actorName')}" th:errors="*{actorName}"
+									th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
 									class="text-danger"></span>
 							</div>
 
 							<div class="form-group col-md-8">
-								<label for="phNumber" class="col-form-label">Phone No</label> <input
-									type="text" th:field="*{phNumber}" class="form-control"
-									id="phNumber" placeholder="phNumber"><span
-									th:if="${#fields.hasErrors('phNumber')}" th:errors="*{phNumber}"
+								<label for="details" class="col-form-label">details</label> <input
+									type="text" th:field="*{details}" class="form-control"
+									id="details" placeholder="details"><span
+									th:if="${#fields.hasErrors('details')}" th:errors="*{details}"
 									class="text-danger"></span>
 							</div>
 
 							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value="Add Actor">
+								<input type="submit" class="btn btn-primary" value="Add Category">
 							</div>
 
 							<div class="form-group col-md-8"></div>

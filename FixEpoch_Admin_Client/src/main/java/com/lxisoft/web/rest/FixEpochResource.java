@@ -1,11 +1,15 @@
 package com.lxisoft.web.rest;
 
 import com.lxisoft.domain.Admin;
+import com.lxisoft.domain.Category;
+import com.lxisoft.domain.Firm;
+import com.lxisoft.domain.Firm;
 import com.lxisoft.repository.AdminRepository;
 import com.lxisoft.repository.CategoryRepository;
 import com.lxisoft.repository.FirmRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +20,7 @@ import javax.validation.Valid;
 /**
  * FixEpochResource controller
  */
-@RestController
+@Controller
 //@RequestMapping("/api/fix-epoch")
 public class FixEpochResource {
     private final AdminRepository adminRepository;
@@ -79,6 +83,38 @@ public class FixEpochResource {
 
         adminRepository.save(admin);
         return "admin-intro";
+    }
+
+    @GetMapping("newCategory")
+    public String newCategory(Category category, Model model)
+    {
+        return "add-category";
+    }
+
+    @PostMapping("addCategory")
+    public String addCategory(@Valid Category category, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-category";
+        }
+
+        categoryRepository.save(category);
+        return "redirect:admin-intro";
+    }
+
+    @GetMapping("newFirm")
+    public String newFirm(Firm firm, Model model)
+    {
+        return "add-firm";
+    }
+
+    @PostMapping("addFirm")
+    public String addFirm(@Valid Firm firm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-firm";
+        }
+
+        firmRepository.save(firm);
+        return "redirect:admin-intro";
     }
 
 }
