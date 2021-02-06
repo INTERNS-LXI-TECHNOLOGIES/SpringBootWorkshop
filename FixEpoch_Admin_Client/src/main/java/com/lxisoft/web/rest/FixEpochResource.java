@@ -49,6 +49,13 @@ public class FixEpochResource {
         return modelAndView;
     }
 
+    @GetMapping("/adminIntro")
+    public String showUpdateForm(Model model) {
+        model.addAttribute("categorys", categoryRepository.findAll());
+        model.addAttribute("admins", adminRepository.findAll());
+        return "admin-intro";
+    }
+
     @GetMapping("newAdmin")
     public String newAdmin(Admin admin, Model model)
     {
@@ -62,7 +69,7 @@ public class FixEpochResource {
         }
 
         adminRepository.save(admin);
-        return "redirect:admin-intro";
+        return "adminIntro";
     }
 
     @GetMapping("editAdmin/{id}")
@@ -82,6 +89,8 @@ public class FixEpochResource {
         }
 
         adminRepository.save(admin);
+        model.addAttribute("categorys", categoryRepository.findAll());
+        model.addAttribute("admins", adminRepository.findAll());
         return "admin-intro";
     }
 
@@ -98,7 +107,31 @@ public class FixEpochResource {
         }
 
         categoryRepository.save(category);
-        return "redirect:admin-intro";
+        model.addAttribute("categorys", categoryRepository.findAll());
+        model.addAttribute("admins", adminRepository.findAll());
+        return "admin-intro";
+    }
+
+    @GetMapping("editCategory/{id}")
+    public String showUpdateCategory(@PathVariable("id") long id, Model model) {
+        Category category = categoryRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + id));
+        model.addAttribute("category", category);
+        return "update-category";
+    }
+
+    @PostMapping("updateCategory/{id}")
+    public String updateCategory(@PathVariable("id") long id, @Valid Category category, BindingResult result,
+                              Model model) {
+        if (result.hasErrors()) {
+            category.setId(id);
+            return "update-category";
+        }
+
+        categoryRepository.save(category);
+        model.addAttribute("categorys", categoryRepository.findAll());
+        model.addAttribute("admins", adminRepository.findAll());
+        return "admin-intro";
     }
 
     @GetMapping("newFirm")
@@ -114,7 +147,9 @@ public class FixEpochResource {
         }
 
         firmRepository.save(firm);
-        return "redirect:admin-intro";
+        model.addAttribute("categorys", categoryRepository.findAll());
+        model.addAttribute("admins", adminRepository.findAll());
+        return "admin-intro";
     }
 
 }
