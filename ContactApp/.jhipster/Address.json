@@ -1,0 +1,37 @@
+{
+  "applications": ["myApp"],
+  "changelogDate": "20220512121929",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "address",
+  "fields": [
+    {
+      "fieldName": "placeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Address",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "address",
+      "relationshipName": "contact",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "address",
+      "relationshipName": "contact",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

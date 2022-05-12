@@ -26,7 +26,7 @@ module.exports = async (config, options, targetOptions) => {
         extensions: ['js', 'ts'],
       }),
       new WebpackNotifierPlugin({
-        title: 'Contact App',
+        title: 'My App',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
       })
     );

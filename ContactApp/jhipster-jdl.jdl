@@ -1,0 +1,32 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.lxisoft.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Contact {
+    contactName String
+    contactNumber String
+    email String
+}
+
+entity Address {
+    placeName String
+    country String
+}
+
+relationship OneToMany {
+  Contact to Address
+}
+
+relationship ManyToOne{
+  Address to Contact  
+}
+    

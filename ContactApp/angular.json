@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "contact-app": {
+    "my-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -76,15 +76,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "contact-app:build:development",
+            "browserTarget": "my-app:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "contact-app:build:production"
+              "browserTarget": "my-app:build:production"
             },
             "development": {
-              "browserTarget": "contact-app:build:development"
+              "browserTarget": "my-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +98,7 @@
       }
     }
   },
-  "defaultProject": "contact-app",
+  "defaultProject": "my-app",
   "cli": {
     "cache": {
       "enabled": true,
