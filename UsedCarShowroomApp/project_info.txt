@@ -1,0 +1,9 @@
+This web app lists the details of used Cars to be sold.
+The details may contain-
+	Car Manufacturer name, model(year), variant
+	Total kilometers
+	expected price
+	other details(like price negotiable or not, service details etc)
+
+Architecture specification
+	Spring, hibernate, jpa etc.
