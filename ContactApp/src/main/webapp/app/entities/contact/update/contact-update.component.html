@@ -1,20 +1,18 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-contact-heading" data-cy="ContactCreateUpdateHeading" jhiTranslate="myApp.contact.home.createOrEditLabel">
-        Create or edit a Contact
-      </h2>
+      <h2 id="jhi-contact-heading" data-cy="ContactCreateUpdateHeading">Create or edit a Contact</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
-          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <label class="form-label" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="myApp.contact.contactName" for="field_contactName">Contact Name</label>
+          <label class="form-label" for="field_contactName">Contact Name</label>
           <input
             type="text"
             class="form-control"
@@ -26,7 +24,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="myApp.contact.contactNumber" for="field_contactNumber">Contact Number</label>
+          <label class="form-label" for="field_contactNumber">Contact Number</label>
           <input
             type="text"
             class="form-control"
@@ -38,14 +36,27 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="myApp.contact.email" for="field_email">Email</label>
+          <label class="form-label" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_address">Address</label>
+          <select class="form-control" id="field_address" data-cy="address" name="address" formControlName="address">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="addressOption.id === editForm.get('address')!.value?.id ? editForm.get('address')!.value : addressOption"
+              *ngFor="let addressOption of addressesSharedCollection; trackBy: trackAddressById"
+            >
+              {{ addressOption.id }}
+            </option>
+          </select>
         </div>
       </div>
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
         <button
@@ -55,7 +66,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>
       </div>
     </form>

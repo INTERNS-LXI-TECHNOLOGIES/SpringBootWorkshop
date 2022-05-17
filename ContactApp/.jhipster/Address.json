@@ -1,6 +1,6 @@
 {
-  "applications": ["myApp"],
-  "changelogDate": "20220512121929",
+  "applications": "*",
+  "changelogDate": "20220517063652",
   "dto": "no",
   "embedded": false,
   "entityTableName": "address",
@@ -10,7 +10,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "country",
+      "fieldName": "countryName",
       "fieldType": "String"
     }
   ],
@@ -24,14 +24,8 @@
       "otherEntityName": "contact",
       "otherEntityRelationshipName": "address",
       "relationshipName": "contact",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "contact",
-      "otherEntityRelationshipName": "address",
-      "relationshipName": "contact",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-many"
     }
   ],
-  "service": "no"
+  "service": "serviceImpl"
 }

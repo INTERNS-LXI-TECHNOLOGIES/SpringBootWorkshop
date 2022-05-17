@@ -11,6 +11,9 @@ const contactRoute: Routes = [
   {
     path: '',
     component: ContactComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

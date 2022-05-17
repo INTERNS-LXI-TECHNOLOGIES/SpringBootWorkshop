@@ -22,7 +22,7 @@ describe('Address Service', () => {
     elemDefault = {
       id: 0,
       placeName: 'AAAAAAA',
-      country: 'AAAAAAA',
+      countryName: 'AAAAAAA',
     };
   });
 
@@ -59,7 +59,7 @@ describe('Address Service', () => {
         {
           id: 1,
           placeName: 'BBBBBB',
-          country: 'BBBBBB',
+          countryName: 'BBBBBB',
         },
         elemDefault
       );
@@ -92,7 +92,7 @@ describe('Address Service', () => {
         {
           id: 1,
           placeName: 'BBBBBB',
-          country: 'BBBBBB',
+          countryName: 'BBBBBB',
         },
         elemDefault
       );

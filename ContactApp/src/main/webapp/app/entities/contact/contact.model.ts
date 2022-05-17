@@ -5,8 +5,7 @@ export interface IContact {
   contactName?: string | null;
   contactNumber?: string | null;
   email?: string | null;
-  addresses?: IAddress[] | null;
-  addresses?: IAddress[] | null;
+  address?: IAddress | null;
 }
 
 export class Contact implements IContact {
@@ -15,8 +14,7 @@ export class Contact implements IContact {
     public contactName?: string | null,
     public contactNumber?: string | null,
     public email?: string | null,
-    public addresses?: IAddress[] | null,
-    public addresses?: IAddress[] | null
+    public address?: IAddress | null
   ) {}
 }
 

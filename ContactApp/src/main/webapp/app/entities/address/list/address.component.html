@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="AddressHeading">
-    <span jhiTranslate="myApp.address.home.title">Addresses</span>
+    <span>Addresses</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="myApp.address.home.refreshListLabel">Refresh List</span>
+        <span>Refresh List</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/address/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="myApp.address.home.createLabel"> Create a new Address </span>
+        <span> Create a new Address </span>
       </button>
     </div>
   </h2>
@@ -25,18 +25,16 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="addresses?.length === 0">
-    <span jhiTranslate="myApp.address.home.notFound">No addresses found</span>
+    <span>No addresses found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="addresses && addresses.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr>
-          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col"><span jhiTranslate="myApp.address.placeName">Place Name</span></th>
-          <th scope="col"><span jhiTranslate="myApp.address.country">Country</span></th>
-          <th scope="col"><span jhiTranslate="myApp.address.contact">Contact</span></th>
-          <th scope="col"><span jhiTranslate="myApp.address.contact">Contact</span></th>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Place Name</span></th>
+          <th scope="col"><span>Country Name</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -46,17 +44,7 @@
             <a [routerLink]="['/address', address.id, 'view']">{{ address.id }}</a>
           </td>
           <td>{{ address.placeName }}</td>
-          <td>{{ address.country }}</td>
-          <td>
-            <div *ngIf="address.contact">
-              <a [routerLink]="['/contact', address.contact?.id, 'view']">{{ address.contact?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="address.contact">
-              <a [routerLink]="['/contact', address.contact?.id, 'view']">{{ address.contact?.id }}</a>
-            </div>
-          </td>
+          <td>{{ address.countryName }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -66,7 +54,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                <span class="d-none d-md-inline">View</span>
               </button>
 
               <button
@@ -76,12 +64,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                <span class="d-none d-md-inline">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(address)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                <span class="d-none d-md-inline">Delete</span>
               </button>
             </div>
           </td>

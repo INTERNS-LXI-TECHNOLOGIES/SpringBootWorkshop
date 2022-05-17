@@ -1,6 +1,6 @@
 {
-  "applications": ["myApp"],
-  "changelogDate": "20220512121928",
+  "applications": "*",
+  "changelogDate": "20220517063651",
   "dto": "no",
   "embedded": false,
   "entityTableName": "contact",
@@ -21,21 +21,15 @@
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
   "name": "Contact",
-  "pagination": "no",
+  "pagination": "pagination",
   "readOnly": false,
   "relationships": [
     {
       "otherEntityName": "address",
       "otherEntityRelationshipName": "contact",
       "relationshipName": "address",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "address",
-      "otherEntityRelationshipName": "contact",
-      "relationshipName": "address",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     }
   ],
-  "service": "no"
+  "service": "serviceImpl"
 }

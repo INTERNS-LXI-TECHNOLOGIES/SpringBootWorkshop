@@ -3,10 +3,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { IContact, Contact } from '../contact.model';
 import { ContactService } from '../service/contact.service';
+import { IAddress } from 'app/entities/address/address.model';
+import { AddressService } from 'app/entities/address/service/address.service';
 
 @Component({
   selector: 'jhi-contact-update',
@@ -15,18 +17,28 @@ import { ContactService } from '../service/contact.service';
 export class ContactUpdateComponent implements OnInit {
   isSaving = false;
 
+  addressesSharedCollection: IAddress[] = [];
+
   editForm = this.fb.group({
     id: [],
     contactName: [],
     contactNumber: [],
     email: [],
+    address: [],
   });
 
-  constructor(protected contactService: ContactService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
+  constructor(
+    protected contactService: ContactService,
+    protected addressService: AddressService,
+    protected activatedRoute: ActivatedRoute,
+    protected fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ contact }) => {
       this.updateForm(contact);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -42,6 +54,10 @@ export class ContactUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.contactService.create(contact));
     }
+  }
+
+  trackAddressById(_index: number, item: IAddress): number {
+    return item.id!;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IContact>>): void {
@@ -69,7 +85,20 @@ export class ContactUpdateComponent implements OnInit {
       contactName: contact.contactName,
       contactNumber: contact.contactNumber,
       email: contact.email,
+      address: contact.address,
     });
+
+    this.addressesSharedCollection = this.addressService.addAddressToCollectionIfMissing(this.addressesSharedCollection, contact.address);
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.addressService
+      .query()
+      .pipe(map((res: HttpResponse<IAddress[]>) => res.body ?? []))
+      .pipe(
+        map((addresses: IAddress[]) => this.addressService.addAddressToCollectionIfMissing(addresses, this.editForm.get('address')!.value))
+      )
+      .subscribe((addresses: IAddress[]) => (this.addressesSharedCollection = addresses));
   }
 
   protected createFromForm(): IContact {
@@ -79,6 +108,7 @@ export class ContactUpdateComponent implements OnInit {
       contactName: this.editForm.get(['contactName'])!.value,
       contactNumber: this.editForm.get(['contactNumber'])!.value,
       email: this.editForm.get(['email'])!.value,
+      address: this.editForm.get(['address'])!.value,
     };
   }
 }

@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { ContactService } from '../service/contact.service';
 import { IContact, Contact } from '../contact.model';
+import { IAddress } from 'app/entities/address/address.model';
+import { AddressService } from 'app/entities/address/service/address.service';
 
 import { ContactUpdateComponent } from './contact-update.component';
 
@@ -16,6 +18,7 @@ describe('Contact Management Update Component', () => {
   let fixture: ComponentFixture<ContactUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let contactService: ContactService;
+  let addressService: AddressService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,18 +40,41 @@ describe('Contact Management Update Component', () => {
     fixture = TestBed.createComponent(ContactUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     contactService = TestBed.inject(ContactService);
+    addressService = TestBed.inject(AddressService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call Address query and add missing value', () => {
+      const contact: IContact = { id: 456 };
+      const address: IAddress = { id: 95055 };
+      contact.address = address;
+
+      const addressCollection: IAddress[] = [{ id: 71108 }];
+      jest.spyOn(addressService, 'query').mockReturnValue(of(new HttpResponse({ body: addressCollection })));
+      const additionalAddresses = [address];
+      const expectedCollection: IAddress[] = [...additionalAddresses, ...addressCollection];
+      jest.spyOn(addressService, 'addAddressToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ contact });
+      comp.ngOnInit();
+
+      expect(addressService.query).toHaveBeenCalled();
+      expect(addressService.addAddressToCollectionIfMissing).toHaveBeenCalledWith(addressCollection, ...additionalAddresses);
+      expect(comp.addressesSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const contact: IContact = { id: 456 };
+      const address: IAddress = { id: 29717 };
+      contact.address = address;
 
       activatedRoute.data = of({ contact });
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(contact));
+      expect(comp.addressesSharedCollection).toContain(address);
     });
   });
 
@@ -113,6 +139,16 @@ describe('Contact Management Update Component', () => {
       expect(contactService.update).toHaveBeenCalledWith(contact);
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Tracking relationships identifiers', () => {
+    describe('trackAddressById', () => {
+      it('Should return tracked Address primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackAddressById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
     });
   });
 });
