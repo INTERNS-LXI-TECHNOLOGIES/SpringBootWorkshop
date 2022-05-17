@@ -1,13 +1,15 @@
 package com.lxisoft.carshowroom.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
-import com.lxisoft.carshowroom.repository.CarRepository;
 import com.lxisoft.carshowroom.entity.Car;
+import com.lxisoft.carshowroom.repository.CarRepository;
 
 @Service
 @Transactional
@@ -17,8 +19,11 @@ public class CarServiceImpl implements CarService {
 	private CarRepository carRepository;
 
 	@Override
-	public List<Car> listAllCars() {
-		return carRepository.findAll();
+	public void listAllCars(Integer pageNo, Model model) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 10);
+        Page<Car> page = carRepository.findAll(pageable);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("carList", page.getContent());
 	}
 
 	@Override

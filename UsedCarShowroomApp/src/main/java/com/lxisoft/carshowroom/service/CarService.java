@@ -1,12 +1,12 @@
 package com.lxisoft.carshowroom.service;
 
-import java.util.List;
+import org.springframework.ui.Model;
 
 import com.lxisoft.carshowroom.entity.Car;
 
 public interface CarService {
 
-	List<Car> listAllCars();
+	void listAllCars(Integer pageNo, Model model);
 
 	void saveCar(Car car);
 

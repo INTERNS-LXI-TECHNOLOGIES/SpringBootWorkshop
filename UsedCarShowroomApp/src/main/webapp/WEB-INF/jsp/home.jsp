@@ -15,7 +15,7 @@
 			style="background: #0a3939; color: white; text-align: center; padding: 9px; text-transform: uppercase;">
 			<h1>Used Car Showroom Application</h1>
 			<h2 class="links">
-				<a href="${contextPath}">Home</a>
+				<a href="${contextPath}/home">Home</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<a href="create">Add New Car</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -57,6 +57,10 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<br>
+			<c:forEach begin="1" end="${totalPages}" varStatus="loop">
+				<a href="${contextPath}/home?pageNo=${loop.index}">${loop.index}</a>
+			</c:forEach>
 		</div>
 	</body>
 </html>
