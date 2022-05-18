@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public void listAllCars(Integer pageNo, Model model) {
-		Pageable pageable = PageRequest.of(pageNo - 1, 10);
+		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("expectedPrice").and(Sort.by("totalKilometers")));
         Page<Car> page = carRepository.findAll(pageable);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("carList", page.getContent());
