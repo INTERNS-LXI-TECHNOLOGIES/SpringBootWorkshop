@@ -20,9 +20,10 @@ public class CarServiceImpl implements CarService {
 	private CarRepository carRepository;
 
 	@Override
-	public void listAllCars(Integer pageNo, Model model) {
-		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("expectedPrice").and(Sort.by("totalKilometers")));
+	public void listAllCars(Integer pageNo, String sortBy, Model model) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
         Page<Car> page = carRepository.findAll(pageable);
+        model.addAttribute("currentPage", page.getNumber() + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("carList", page.getContent());
 	}

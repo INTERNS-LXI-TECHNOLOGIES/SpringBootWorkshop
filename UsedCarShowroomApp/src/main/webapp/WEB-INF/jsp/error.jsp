@@ -5,13 +5,10 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
-		<style>
-		     .links, .links a {color: #979da3; text-decoration: none;}
-		</style>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body style="margin:0;background: #e6f0e9;">
-		<div
-			style="background: #0a3939; color: white; text-align: center; padding: 9px; text-transform: uppercase;">
+	<body>
+		<div class="header">
 			<h1>Used Car Showroom Application</h1>
 			<h2 class="links">
 				<a href="${contextPath}">Home</a>
@@ -21,7 +18,7 @@
 				<a href="${contextPath}/logout">Logout</a>
 			</h2>
 		</div>
-		<div style="padding: 40px;text-align: center;">
+		<div class="padding-40" align="center">
 			<h1>Error</h1>
 			<h2>Something went wrong..</h2>
 		</div>	

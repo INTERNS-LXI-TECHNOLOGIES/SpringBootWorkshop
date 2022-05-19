@@ -24,8 +24,9 @@ public class CarController {
 	}
 
 	@GetMapping("/home")
-	public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo) {
-		carService.listAllCars(pageNo, model);
+	public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
+			@RequestParam(defaultValue = "expectedPrice") String sortBy) {
+		carService.listAllCars(pageNo, sortBy, model);
 		return "home";
 	}
 

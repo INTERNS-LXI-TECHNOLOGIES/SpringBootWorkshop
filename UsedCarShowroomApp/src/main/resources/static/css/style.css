@@ -1,0 +1,100 @@
+body {
+	margin: 0;
+	background: #e6f0e9;
+}
+
+.header {
+	background: #0a3939;
+	color: white;
+	text-align: center;
+	padding: 9px;
+	text-transform: uppercase;
+}
+
+.button {
+	background: #040505;
+	color: white;
+	border-radius: 12px;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background: #589393;
+	border-color: #589393;
+}
+
+.failure {
+	color: #d13232;
+}
+
+.success {
+	color: #247d94;
+}
+
+.padding-40 {
+	padding: 40px;
+}
+
+.table-1 {
+	width: 100%;
+	text-align: center;
+}
+
+.uppercase, .uppercase input {
+	text-transform: uppercase;
+}
+
+.links, .links a {
+	color: #979da3;
+	text-decoration: none;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a.active {
+	background-color: #4a9292;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+th a.sort-by {
+	padding-right: 18px;
+	position: relative;
+	text-decoration: none;
+	color: black;
+}
+
+a.sort-by:before, a.sort-by:after {
+	border: 4px solid transparent;
+	content: "";
+	display: block;
+	height: 0;
+	right: 5px;
+	top: 50%;
+	position: absolute;
+	width: 0;
+}
+
+a.sort-by:before {
+	border-bottom-color: #666;
+	margin-top: -9px;
+}
+
+a.sort-by:after {
+	border-top-color: #666;
+	margin-top: 1px;
+}

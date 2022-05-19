@@ -6,13 +6,10 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
-		<style>
-		     .links, .links a {color: #979da3; text-decoration: none;}
-		</style>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body style="margin:0;background: #e6f0e9;">
-		<div
-			style="background: #0a3939; color: white; text-align: center; padding: 9px; text-transform: uppercase;">
+	<body>
+		<div class="header">
 			<h1>Used Car Showroom Application</h1>
 			<h2 class="links">
 				<a href="${contextPath}/home">Home</a>
@@ -22,16 +19,16 @@
 				<a href="logout">Logout</a>
 			</h2>
 		</div>
-		<div style="padding: 40px;">
-			<table cellspacing="0" border="1" cellpadding="5" style="text-transform: uppercase; width: 100%; text-align: center;">
+		<div class="padding-40">
+			<table cellspacing="0" border="1" cellpadding="5" class="table-1 uppercase">
 				<tr>
 					<th>CAR ID</th>
 					<th>MANUFACTURER</th>
 					<th>MODEL</th>
 					<th>VARIANT</th>
 					<th>YEAR</th>
-					<th>TOTAL KILOMETERS</th>
-					<th>EXPECTED PRICE</th>
+					<th><a href="${contextPath}/home?sortBy=totalKilometers" class="sort-by">TOTAL KILOMETERS</a></th>
+					<th><a href="${contextPath}/home?sortBy=expectedPrice" class="sort-by">EXPECTED PRICE</a></th>
 					<th>OTHER DETAILS</th>
 					<sec:authorize access="hasRole('ADMIN')">
 					<th>ACTIONS</th>
@@ -57,10 +54,20 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<br>
-			<c:forEach begin="1" end="${totalPages}" varStatus="loop">
-				<a href="${contextPath}/home?pageNo=${loop.index}">${loop.index}</a>
-			</c:forEach>
+			<br><br>
+			<div align="center">
+				<div class="pagination">
+				  <c:if test="${currentPage != 1}">
+				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}">&laquo;</a>
+				  </c:if>
+				  <c:forEach begin="1" end="${totalPages}" varStatus="loop">
+					<a href="${contextPath}/home?pageNo=${loop.index}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
+				  </c:forEach>
+				  <c:if test="${currentPage != totalPages}">
+				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}">&raquo;</a>
+				  </c:if>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

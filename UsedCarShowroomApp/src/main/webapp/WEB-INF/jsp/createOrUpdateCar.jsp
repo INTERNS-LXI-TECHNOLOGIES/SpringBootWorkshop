@@ -5,14 +5,10 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
-		<style>
-		    .links, .links a {color: #979da3; text-decoration: none;}
-			input {text-transform: uppercase;}
-		</style>
+		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body style="margin:0;background: #e6f0e9;">
-		<div
-			style="background: #0a3939; color: white; text-align: center; padding: 9px; text-transform: uppercase;">
+	<body>
+		<div class="header">
 			<h1>Used Car Showroom Application</h1>
 			<h2 class="links">
 				<a href="${contextPath}">Home</a>
@@ -24,7 +20,7 @@
 		</div>
 		<div align="center">
 			<form:form action="${contextPath}/save" method="post" modelAttribute="car">
-		        <table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
+		        <table border="1" cellpadding="5" cellspacing="0" class="uppercase">
 		            <caption>
 		            	<h2>${caption}</h2>
 		            </caption>
@@ -73,7 +69,7 @@
 		            </tr>
 		            <tr>
 		            	<td colspan="2" align="center">
-		            		<input type="submit" value="Save" style="background: #040505; color: white; border-radius: 12px; padding: 6px 12px; cursor: pointer;" />
+		            		<input type="submit" value="Save" class="button" />
 		            	</td>
 		            </tr>
 		        </table>
