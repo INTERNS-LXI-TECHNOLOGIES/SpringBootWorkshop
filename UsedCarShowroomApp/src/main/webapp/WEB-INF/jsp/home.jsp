@@ -7,6 +7,7 @@
 	<head>
 		<title>Used Car Showroom Application</title>
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<div class="header">
@@ -20,6 +21,13 @@
 			</h2>
 		</div>
 		<div class="padding-40">
+			<div class="search">
+	       		<input type="text" class="searchTerm" placeholder="Search Car Model">
+	      		<button type="submit" class="searchButton">
+	      		<i class="fa fa-search"></i>
+	      		</button>
+	   	    </div>
+	   	    <br><br>
 			<table cellspacing="0" border="1" cellpadding="5" class="table-1 uppercase">
 				<tr>
 					<th>CAR ID</th>

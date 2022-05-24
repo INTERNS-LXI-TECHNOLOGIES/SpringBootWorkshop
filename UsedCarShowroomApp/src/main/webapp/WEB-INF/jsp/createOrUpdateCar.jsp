@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="${contextPath}/css/style.css">
 	</head>
 	<body>
 		<div class="header">
