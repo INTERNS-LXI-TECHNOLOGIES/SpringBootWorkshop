@@ -21,12 +21,12 @@
 			</h2>
 		</div>
 		<div class="padding-40">
-			<div class="search">
-	       		<input type="text" class="searchTerm" placeholder="Search Car Model">
+			<form method="GET" action="${contextPath}/home" class="search">
+	       		<input type="text" class="searchTerm uppercase" placeholder="Search Car Model" name="carModel" value="${carModel}">
 	      		<button type="submit" class="searchButton">
-	      		<i class="fa fa-search"></i>
+	      			<i class="fa fa-search"></i>
 	      		</button>
-	   	    </div>
+	   	    </form>
 	   	    <br><br>
 			<table cellspacing="0" border="1" cellpadding="5" class="table-1 uppercase">
 				<tr>
@@ -35,8 +35,8 @@
 					<th>MODEL</th>
 					<th>VARIANT</th>
 					<th>YEAR</th>
-					<th><a href="${contextPath}/home?sortBy=totalKilometers" class="sort-by">TOTAL KILOMETERS</a></th>
-					<th><a href="${contextPath}/home?sortBy=expectedPrice" class="sort-by">EXPECTED PRICE</a></th>
+					<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}" class="sort-by">TOTAL KILOMETERS</a></th>
+					<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}" class="sort-by">EXPECTED PRICE</a></th>
 					<th>OTHER DETAILS</th>
 					<sec:authorize access="hasRole('ADMIN')">
 					<th>ACTIONS</th>
@@ -66,13 +66,13 @@
 			<div align="center">
 				<div class="pagination">
 				  <c:if test="${currentPage != 1}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}">&laquo;</a>
+				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}">&laquo;</a>
 				  </c:if>
 				  <c:forEach begin="1" end="${totalPages}" varStatus="loop">
-					<a href="${contextPath}/home?pageNo=${loop.index}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
+					<a href="${contextPath}/home?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
 				  </c:forEach>
 				  <c:if test="${currentPage != totalPages}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}">&raquo;</a>
+				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}">&raquo;</a>
 				  </c:if>
 				</div>
 			</div>
