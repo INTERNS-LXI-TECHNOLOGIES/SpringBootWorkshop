@@ -12,11 +12,12 @@ body {
 }
 
 .button {
-	background: #040505;
-	color: white;
-	border-radius: 12px;
-	padding: 6px 12px;
-	cursor: pointer;
+	background: #166b6b;
+    color: white;
+    border-radius: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-color: #166b6b;
 }
 
 .button:hover {
@@ -48,6 +49,15 @@ body {
 .links, .links a {
 	color: #979da3;
 	text-decoration: none;
+}
+
+.links a {
+    padding: 5px 10px;
+}
+
+.selected, .links a:hover {
+	background: #195b5b;
+    border-radius: 5px;
 }
 
 .pagination {
@@ -101,39 +111,61 @@ a.sort-by:after {
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body{
-  background: #f2f2f2;
-  font-family: 'Open Sans', sans-serif;
+body {
+	background: #f2f2f2;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.search, .filter {
+	position: relative;
+	display: flex;
 }
 
 .search {
-  width: 100%;
-  position: relative;
-  display: flex;
+	width: 72%;
+	float: left;
+}
+
+.searchTerm, .filterValue {
+	border: 3px solid #4a9292;
+	padding: 5px;
+	height: 20px;
+	border-radius: 5px 5px;
+	outline: none;
+	color: #9DBFAF;
+	margin-right: 3px;
 }
 
 .searchTerm {
-  border: 3px solid #4a9292;
-  border-right: none;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
+	border-right: none;
+	border-radius: 5px 0 0 5px;
+	margin-right: 0;
 }
 
-.searchTerm:focus{
-  color: #4a9292;
+.searchTerm:focus {
+	color: #4a9292;
 }
 
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #4a9292;
-  background: #4a9292;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
+.searchButton, .filterButton {
+	width: 40px;
+	height: 36px;
+	border: 1px solid #4a9292;
+	background: #4a9292;
+	text-align: center;
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.filterButton {
+	border-radius: 5px 5px;
+}
+
+.fa-trash {
+	color: #c42626;
+}
+
+.fa-edit {
+	color: #0e174b;
 }

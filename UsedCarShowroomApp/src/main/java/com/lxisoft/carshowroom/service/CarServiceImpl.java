@@ -20,19 +20,23 @@ public class CarServiceImpl implements CarService {
 	private CarRepository carRepository;
 
 	@Override
-	public void listCars(Integer pageNo, String sortBy, String carModel, Model model) {
+	public void listCars(Integer pageNo, String sortBy, String carModel, Model model, Integer min, Integer max) {
 		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
 		Page<Car> page;
-		if (carModel.isEmpty()) {
-			page = carRepository.findAll(pageable);
-		} else {
+		if (!carModel.isEmpty()) {
 			page = carRepository.findByModelContaining(carModel, pageable);
+		} else if (min != null) {
+			page = carRepository.findByExpectedPriceBetween(min, max, pageable);
+		} else {
+			page = carRepository.findAll(pageable);
 		}
         model.addAttribute("currentPage", page.getNumber() + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("carList", page.getContent());
         model.addAttribute("carModel", carModel);
         model.addAttribute("sortBy", sortBy);
+        model.addAttribute("min", min);
+        model.addAttribute("max", max);
 	}
 
 	@Override

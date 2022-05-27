@@ -13,7 +13,7 @@
 		<div class="header">
 			<h1>Used Car Showroom Application</h1>
 			<h2 class="links">
-				<a href="${contextPath}/home">Home</a>
+				<a href="${contextPath}/home" class="selected">Home</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<a href="create">Add New Car</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -27,6 +27,13 @@
 	      			<i class="fa fa-search"></i>
 	      		</button>
 	   	    </form>
+			<form method="GET" action="${contextPath}/home" class="filter">
+	       		<input type="text" class="filterValue uppercase" placeholder="Min Price" name="min" value="${min}">
+	       		<input type="text" class="filterValue uppercase" placeholder="Max Price" name="max" value="${max}">
+	      		<button type="submit" class="filterButton">
+	      			<i class="fa fa-filter"></i>
+	      		</button>
+	   	    </form>
 	   	    <br><br>
 			<table cellspacing="0" border="1" cellpadding="5" class="table-1 uppercase">
 				<tr>
@@ -35,8 +42,8 @@
 					<th>MODEL</th>
 					<th>VARIANT</th>
 					<th>YEAR</th>
-					<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}" class="sort-by">TOTAL KILOMETERS</a></th>
-					<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}" class="sort-by">EXPECTED PRICE</a></th>
+					<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">TOTAL KILOMETERS</a></th>
+					<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">EXPECTED PRICE</a></th>
 					<th>OTHER DETAILS</th>
 					<sec:authorize access="hasRole('ADMIN')">
 					<th>ACTIONS</th>
@@ -54,9 +61,9 @@
 						<td>${car.otherDetails}</td>
 						<sec:authorize access="hasRole('ADMIN')">
 						<td>
-							<a href="edit/${car.carId}">Edit</a>
+							<a href="edit/${car.carId}"><i class="fa fa-edit"></i></a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i></a>
 						</td>
 						</sec:authorize>
 					</tr>
@@ -66,13 +73,13 @@
 			<div align="center">
 				<div class="pagination">
 				  <c:if test="${currentPage != 1}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}">&laquo;</a>
+				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&laquo;</a>
 				  </c:if>
 				  <c:forEach begin="1" end="${totalPages}" varStatus="loop">
-					<a href="${contextPath}/home?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
+					<a href="${contextPath}/home?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
 				  </c:forEach>
 				  <c:if test="${currentPage != totalPages}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}">&raquo;</a>
+				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&raquo;</a>
 				  </c:if>
 				</div>
 			</div>

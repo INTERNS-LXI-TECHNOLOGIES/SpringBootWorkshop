@@ -20,21 +20,23 @@ public class CarController {
 
 	@GetMapping("/")
 	public String welcome() {
-		return "redirect:home";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/home")
 	public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
 			@RequestParam(defaultValue = "expectedPrice") String sortBy,
-			@RequestParam(defaultValue = "") String carModel) {
-		carService.listCars(pageNo, sortBy, carModel, model);
+			@RequestParam(defaultValue = "") String carModel,
+			@RequestParam(defaultValue = "") Integer min,
+			@RequestParam(defaultValue = "") Integer max) {
+		carService.listCars(pageNo, sortBy, carModel, model, min, max);
 		return "home";
 	}
 
 	@PostMapping("/save")
 	public String saveCar(@ModelAttribute Car car) {
 		carService.saveCar(car);
-		return "redirect:home";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/create")
@@ -47,7 +49,7 @@ public class CarController {
 	@GetMapping("/delete/{carId}")
 	public String deleteCar(@PathVariable int carId) {
 		carService.deleteCar(carId);
-		return "redirect:home";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/edit/{carId}")

@@ -13,7 +13,7 @@
 			<h2 class="links">
 				<a href="${contextPath}">Home</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="${contextPath}/create">Add New Car</a>
+				<a href="${contextPath}/create" class="selected">Add New Car</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<a href="${contextPath}/logout">Logout</a>
 			</h2>
