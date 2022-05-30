@@ -1,9 +1,9 @@
-package com.lxisoftspringboot.service;
+package com.lxisoft.springboot.service;
 
 
 
 
-import com.lxisoftspringboot.entity.Contact;
+import com.lxisoft.springboot.entity.Contact;
 
 import java.util.List;
 

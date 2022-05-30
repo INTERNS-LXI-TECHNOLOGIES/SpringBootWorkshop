@@ -1,7 +1,7 @@
-package com.lxisoftspringboot.service;
+package com.lxisoft.springboot.service;
 
-import com.lxisoftspringboot.entity.Contact;
-import com.lxisoftspringboot.repository.ContactRepository;
+import com.lxisoft.springboot.entity.Contact;
+import com.lxisoft.springboot.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.lxisoftspringboot.entity;
+package com.lxisoft.springboot.entity;
 
 
 import javax.persistence.*;
