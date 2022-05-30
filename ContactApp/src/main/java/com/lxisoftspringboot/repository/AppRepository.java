@@ -1,6 +1,6 @@
-package com.lxisoft.springboot.repository;
+package com.lxisoftspringboot.repository;
 
-import com.lxisoft.springboot.entity.AppUser;
+import com.lxisoftspringboot.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

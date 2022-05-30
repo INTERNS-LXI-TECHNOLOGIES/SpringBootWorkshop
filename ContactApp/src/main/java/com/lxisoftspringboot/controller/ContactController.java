@@ -1,7 +1,7 @@
-package com.lxisoft.springboot.controller;
+package com.lxisoftspringboot.controller;
 
-import com.lxisoft.springboot.entity.Contact;
-import com.lxisoft.springboot.service.ContactService;
+import com.lxisoftspringboot.entity.Contact;
+import com.lxisoftspringboot.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

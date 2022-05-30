@@ -1,4 +1,4 @@
-package com.lxisoft.springboot;
+package com.lxisoftspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

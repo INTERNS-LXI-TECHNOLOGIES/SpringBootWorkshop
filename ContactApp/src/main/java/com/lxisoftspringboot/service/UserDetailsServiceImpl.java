@@ -1,7 +1,7 @@
-package com.lxisoft.springboot.service;
+package com.lxisoftspringboot.service;
 
-import com.lxisoft.springboot.entity.AppUser;
-import com.lxisoft.springboot.repository.AppRepository;
+import com.lxisoftspringboot.entity.AppUser;
+import com.lxisoftspringboot.repository.AppRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
