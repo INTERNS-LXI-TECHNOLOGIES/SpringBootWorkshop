@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Contact Management System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+    <h1 align="center">Contact List</h1>
+    <div align="right">
+        <a  th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+    <a th:href="@{/showForm}" class="btn btn-primary btn-sm mb-3"> Add Contact </a>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Telephone</th>
+            <div sec:authorize="hasRole('ADMIN')">
+            <th>Action</th>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact : ${contactList}">
+            <td th:text="${contact.contact_id}"></td>
+            <td th:text="${contact.name}"></td>
+            <td th:text="${contact.email}"></td>
+            <td th:text="${contact.address}"></td>
+            <td th:text="${contact.phone}"></td>
+            <div sec:authorize="hasRole('ADMIN')">
+            <td> <a th:href="@{/showFormUpdate/{contact_id}(contact_id=${contact.contact_id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteContact/{contact_id}(contact_id=${contact.contact_id})}" class="btn btn-danger">Delete</a>
+            </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
