@@ -24,19 +24,27 @@ public class CarServiceImpl implements CarService {
 		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
 		Page<Car> page;
 		if (!carModel.isEmpty()) {
-			page = carRepository.findByModelContaining(carModel, pageable);
+			page = searchCar(carModel, pageable, model);
 		} else if (min != null) {
-			page = carRepository.findByExpectedPriceBetween(min, max, pageable);
+			page = filerCar(min, max, pageable, model);
 		} else {
 			page = carRepository.findAll(pageable);
 		}
         model.addAttribute("currentPage", page.getNumber() + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("carList", page.getContent());
-        model.addAttribute("carModel", carModel);
         model.addAttribute("sortBy", sortBy);
+	}
+
+	private Page<Car> filerCar(Integer min, Integer max, Pageable pageable, Model model) {
         model.addAttribute("min", min);
         model.addAttribute("max", max);
+		return carRepository.findByExpectedPriceBetween(min, max, pageable);
+	}
+
+	private Page<Car> searchCar(String carModel, Pageable pageable, Model model) {
+        model.addAttribute("carModel", carModel);
+		return carRepository.findByModelContaining(carModel, pageable);
 	}
 
 	@Override
