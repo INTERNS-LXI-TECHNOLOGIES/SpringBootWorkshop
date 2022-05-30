@@ -1,6 +1,6 @@
-package com.lxisoftspringboot.repository;
+package com.lxisoft.springboot.repository;
 
-import com.lxisoftspringboot.entity.Contact;
+import com.lxisoft.springboot.entity.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

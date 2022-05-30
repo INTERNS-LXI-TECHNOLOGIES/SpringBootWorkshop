@@ -1,6 +1,6 @@
-package com.lxisoftspringboot.config;
+package com.lxisoft.springboot.config;
 
-import com.lxisoftspringboot.service.UserDetailsServiceImpl;
+import com.lxisoft.springboot.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
