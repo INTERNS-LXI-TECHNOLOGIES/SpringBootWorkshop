@@ -6,7 +6,11 @@ import com.lxisoft.carshowroom.entity.Car;
 
 public interface CarService {
 
-	void listCars(Integer pageNo, String sortBy, String carModel, Model model, Integer min, Integer max);
+	void listCars(Integer pageNo, String sortBy, Model model);
+
+	void filerCars(Integer min, Integer max, Model model, String sortBy, Integer pageNo);
+
+	void searchCars(String carModel, Model model, String sortBy, Integer pageNo);
 
 	void saveCar(Car car);
 

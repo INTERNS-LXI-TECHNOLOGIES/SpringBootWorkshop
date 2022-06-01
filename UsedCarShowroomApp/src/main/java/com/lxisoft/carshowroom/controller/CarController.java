@@ -25,11 +25,24 @@ public class CarController {
 
 	@GetMapping("/home")
 	public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
+			@RequestParam(defaultValue = "expectedPrice") String sortBy) {
+		carService.listCars(pageNo, sortBy, model);
+		return "home";
+	}
+
+	@GetMapping("/search")
+	public String search(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
 			@RequestParam(defaultValue = "expectedPrice") String sortBy,
-			@RequestParam(defaultValue = "") String carModel,
-			@RequestParam(defaultValue = "") Integer min,
+			@RequestParam(defaultValue = "") String carModel) {
+		carService.searchCars(carModel, model, sortBy, pageNo);
+		return "home";
+	}
+
+	@GetMapping("/filter")
+	public String filter(Model model, @RequestParam(defaultValue = "1") Integer pageNo,
+			@RequestParam(defaultValue = "expectedPrice") String sortBy, @RequestParam(defaultValue = "") Integer min,
 			@RequestParam(defaultValue = "") Integer max) {
-		carService.listCars(pageNo, sortBy, carModel, model, min, max);
+		carService.filerCars(min, max, model, sortBy, pageNo);
 		return "home";
 	}
 

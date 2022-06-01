@@ -20,31 +20,27 @@ public class CarServiceImpl implements CarService {
 	private CarRepository carRepository;
 
 	@Override
-	public void listCars(Integer pageNo, String sortBy, String carModel, Model model, Integer min, Integer max) {
+	public void listCars(Integer pageNo, String sortBy, Model model) {
 		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
-		Page<Car> page;
-		if (!carModel.isEmpty()) {
-			page = searchCar(carModel, pageable, model);
-		} else if (min != null) {
-			page = filerCar(min, max, pageable, model);
-		} else {
-			page = carRepository.findAll(pageable);
-		}
-        model.addAttribute("currentPage", page.getNumber() + 1);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("carList", page.getContent());
-        model.addAttribute("sortBy", sortBy);
+		Page<Car> page = carRepository.findAll(pageable);
+		setModels(sortBy, model, page, "home");
 	}
 
-	private Page<Car> filerCar(Integer min, Integer max, Pageable pageable, Model model) {
-        model.addAttribute("min", min);
-        model.addAttribute("max", max);
-		return carRepository.findByExpectedPriceBetween(min, max, pageable);
+	@Override
+	public void filerCars(Integer min, Integer max, Model model, String sortBy, Integer pageNo) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
+		Page<Car> page = carRepository.findByExpectedPriceBetween(min, max, pageable);
+		model.addAttribute("min", min);
+		model.addAttribute("max", max);
+		setModels(sortBy, model, page, "filter");
 	}
 
-	private Page<Car> searchCar(String carModel, Pageable pageable, Model model) {
-        model.addAttribute("carModel", carModel);
-		return carRepository.findByModelContaining(carModel, pageable);
+	@Override
+	public void searchCars(String carModel, Model model, String sortBy, Integer pageNo) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by(sortBy));
+		Page<Car> page = carRepository.findByModelContaining(carModel, pageable);
+		model.addAttribute("carModel", carModel);
+		setModels(sortBy, model, page, "search");
 	}
 
 	@Override
@@ -60,6 +56,14 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public Car getCar(int carId) {
 		return carRepository.findById(carId).get();
+	}
+
+	private void setModels(String sortBy, Model model, Page<Car> page, String navAction) {
+		model.addAttribute("currentPage", page.getNumber() + 1);
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("carList", page.getContent());
+		model.addAttribute("sortBy", sortBy);
+		model.addAttribute("navAction", navAction);
 	}
 
 }

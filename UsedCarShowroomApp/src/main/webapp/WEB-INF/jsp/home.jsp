@@ -8,6 +8,19 @@
 		<title>Used Car Showroom Application</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script>
+			function validateForm() {
+			  let min = document.getElementsByName('min')[0].value;
+			  let max = document.getElementsByName('max')[0].value;
+			  if (min <= 0) {
+			    alert("Min price should be greater than zero");
+			    return false;
+			  } else if (max < min) {
+			    alert("Min price should be less than max price");
+			    return false;
+			  }
+			}
+		</script>
 	</head>
 	<body>
 		<div class="header">
@@ -21,15 +34,15 @@
 			</h2>
 		</div>
 		<div class="padding-40">
-			<form method="GET" action="${contextPath}/home" class="search">
-	       		<input type="text" class="searchTerm uppercase" placeholder="Search Car Model" name="carModel" value="${carModel}">
+			<form method="GET" action="${contextPath}/search" class="search">
+	       		<input type="text" class="searchTerm uppercase" placeholder="Search Car Model" name="carModel" value="${carModel}" required>
 	      		<button type="submit" class="searchButton">
 	      			<i class="fa fa-search"></i>
 	      		</button>
 	   	    </form>
-			<form method="GET" action="${contextPath}/home" class="filter">
-	       		<input type="text" class="filterValue uppercase" placeholder="Min Price" name="min" value="${min}">
-	       		<input type="text" class="filterValue uppercase" placeholder="Max Price" name="max" value="${max}">
+			<form method="GET" action="${contextPath}/filter" class="filter" onsubmit="return validateForm()">
+	       		<input type="number" class="filterValue uppercase" placeholder="Min Price" name="min" value="${min}" required>
+	       		<input type="number" class="filterValue uppercase" placeholder="Max Price" name="max" value="${max}" required>
 	      		<button type="submit" class="filterButton">
 	      			<i class="fa fa-filter"></i>
 	      		</button>
@@ -73,13 +86,13 @@
 			<div align="center">
 				<div class="pagination">
 				  <c:if test="${currentPage != 1}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&laquo;</a>
+				  	<a href="${contextPath}/${navAction}?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&laquo;</a>
 				  </c:if>
 				  <c:forEach begin="1" end="${totalPages}" varStatus="loop">
-					<a href="${contextPath}/home?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
+					<a href="${contextPath}/${navAction}?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
 				  </c:forEach>
-				  <c:if test="${currentPage != totalPages}">
-				  	<a href="${contextPath}/home?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&raquo;</a>
+				  <c:if test="${currentPage > 1 && currentPage != totalPages}">
+				  	<a href="${contextPath}/${navAction}?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&raquo;</a>
 				  </c:if>
 				</div>
 			</div>
