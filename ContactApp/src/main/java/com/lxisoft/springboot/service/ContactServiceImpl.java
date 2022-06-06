@@ -3,6 +3,9 @@ package com.lxisoft.springboot.service;
 import com.lxisoft.springboot.entity.Contact;
 import com.lxisoft.springboot.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,14 +21,17 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
 
-    public List<Contact> listAllContacts(String keyword) {
+    public List<Contact> listAllContacts() {
+
+        return contactRepo.findAll();
+    }
+    @Override
+    public List<Contact> searchContacts(String keyword){
         if (keyword != null) {
             return contactRepo.search(keyword);
         }
         return contactRepo.findAll();
-       // return contactRepo.findAll();
     }
-
     @Override
 
     public void saveContact(Contact contact) {
@@ -50,5 +56,10 @@ public class ContactServiceImpl implements ContactService{
         }
         return contact;
        // return contactRepo.findById(contact_id).get();
+    }
+    @Override
+    public Page<Contact> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return contactRepo.findAll(pageable);
     }
 }
