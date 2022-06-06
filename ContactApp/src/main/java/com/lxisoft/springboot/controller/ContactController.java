@@ -3,6 +3,7 @@ package com.lxisoft.springboot.controller;
 import com.lxisoft.springboot.entity.Contact;
 import com.lxisoft.springboot.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,15 @@ public class ContactController {
     ContactService contactService;
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
-        List<Contact> contactList = contactService.listAllContacts();
+    public String welcome(){
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String home(Model model, @Param("keyword") String keyword) {
+        List<Contact> contactList = contactService.listAllContacts(keyword);
         model.addAttribute("contactList", contactList);
+        model.addAttribute("keyword", keyword); 
         return "home";
     }
 

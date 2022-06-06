@@ -8,7 +8,7 @@ import com.lxisoft.springboot.entity.Contact;
 import java.util.List;
 
 public interface ContactService {
-    List<Contact> listAllContacts();
+    List<Contact> listAllContacts(String keyword);
 
     void saveContact(Contact contact);
 

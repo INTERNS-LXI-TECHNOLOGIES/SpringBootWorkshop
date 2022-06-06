@@ -18,8 +18,12 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
 
-    public List<Contact> listAllContacts() {
+    public List<Contact> listAllContacts(String keyword) {
+        if (keyword != null) {
+            return contactRepo.search(keyword);
+        }
         return contactRepo.findAll();
+       // return contactRepo.findAll();
     }
 
     @Override
