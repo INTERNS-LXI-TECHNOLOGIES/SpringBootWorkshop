@@ -18,4 +18,6 @@ public interface ContactService {
     Contact getContact(int contact_id);
 
     Page<Contact> findPaginated(int pageNo, int pageSize);
+
+
 }

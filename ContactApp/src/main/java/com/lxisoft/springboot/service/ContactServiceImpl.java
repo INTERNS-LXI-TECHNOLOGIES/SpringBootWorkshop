@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,9 +58,15 @@ public class ContactServiceImpl implements ContactService{
         return contact;
        // return contactRepo.findById(contact_id).get();
     }
+
+
+
     @Override
     public Page<Contact> findPaginated(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize , Sort.by("name"));
         return contactRepo.findAll(pageable);
     }
+
+
+
 }

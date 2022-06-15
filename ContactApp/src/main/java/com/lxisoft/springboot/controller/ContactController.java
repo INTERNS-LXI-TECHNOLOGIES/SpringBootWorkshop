@@ -49,6 +49,7 @@ public class ContactController {
         model.addAttribute("listContacts", listContacts);
         return "home";
     }
+
     @GetMapping("/showForm")
     public String showForm(Model model) {
         // create model attribute to bind form data
