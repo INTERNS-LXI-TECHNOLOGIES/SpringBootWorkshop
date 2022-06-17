@@ -3,6 +3,8 @@ package com.lxisoft.carshowroom.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,10 +14,13 @@ public class CarUser {
 	@Id
 	@Column
 	private String username;
+
 	@Column
 	private String password;
-	@Column
-	private String role;
+
+	@ManyToOne
+	@JoinColumn(name = "role")
+	private Role role;
 
 	public String getUsername() {
 		return username;
@@ -33,11 +38,11 @@ public class CarUser {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 }

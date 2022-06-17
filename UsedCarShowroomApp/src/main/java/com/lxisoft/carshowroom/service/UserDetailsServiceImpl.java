@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (carUser == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		UserDetails user = User.withUsername(carUser.getUsername()).password(carUser.getPassword()).authorities(carUser.getRole()).build();
+		UserDetails user = User.withUsername(carUser.getUsername()).password(carUser.getPassword()).authorities(carUser.getRole().getRoleName()).build();
 		return user;
 	}
 }
