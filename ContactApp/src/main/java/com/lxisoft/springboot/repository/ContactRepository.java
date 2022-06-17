@@ -12,7 +12,8 @@ import java.util.List;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
     @Query("SELECT contact FROM Contact contact WHERE CONCAT(contact.name, ' ', contact.email, ' ', contact.address, ' ', contact.phone) LIKE %?1%")
-    public List<Contact> search(String keyword);
+    Page< Contact > findByName(String keyword,Pageable pageable);
+        /*public List<Contact> search(String keyword);*/
     Page< Contact > findAll(Pageable pageable);
 
 

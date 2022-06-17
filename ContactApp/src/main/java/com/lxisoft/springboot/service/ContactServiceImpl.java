@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,17 +23,27 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
 
-    public List<Contact> listAllContacts() {
+    public void listAllContacts(Integer pageNo, String keyword, Model model) {
 
-        return contactRepo.findAll();
+        Pageable pageable = PageRequest.of(pageNo - 1, 4, Sort.by("name"));
+        Page<Contact> page;
+        if (keyword.isEmpty()) {
+            page = contactRepo.findAll(pageable);
+        } else {
+            page = contactRepo.findByName(keyword, pageable);
+        }
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("contactList", page.getContent());
+        model.addAttribute("keyword", keyword);
     }
-    @Override
+ /*   @Override
     public List<Contact> searchContacts(String keyword){
         if (keyword != null) {
-            return contactRepo.search(keyword);
+            *//*return contactRepo.search(keyword);*//*
         }
         return contactRepo.findAll();
-    }
+    }*/
     @Override
 
     public void saveContact(Contact contact) {
@@ -61,11 +72,11 @@ public class ContactServiceImpl implements ContactService{
 
 
 
-    @Override
+  /*  @Override
     public Page<Contact> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize , Sort.by("name"));
         return contactRepo.findAll(pageable);
-    }
+    }*/
 
 
 

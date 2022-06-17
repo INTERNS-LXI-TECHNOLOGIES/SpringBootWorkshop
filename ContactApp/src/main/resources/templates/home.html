@@ -21,7 +21,7 @@
         <a  th:href="@{/logout}" class="btn btn-danger">Logout</a>
     </div>
     <div align="center">
-        <form th:action="@{/search}">
+        <form th:action="@{/home}">
             SEARCH : <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
             &nbsp;
             <input type="submit" value="Search" class="btn btn-primary"/>
@@ -46,7 +46,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="contact : ${listContacts}">
+        <tr th:each="contact : ${contactList}">
             <td th:text="${contactStat.index}"></td>
             <td th:text="${contact.name}"></td>
             <td th:text="${contact.email}"></td>
@@ -61,31 +61,35 @@
         </tbody>
     </table>
 
-    <div th:if="${totalPages > 1}">
-        <div class="row col-sm-10">
-            <div class="col-sm-2">
-                Total Rows: [[${totalItems}]]
-            </div>
-            <div class="col-sm-1">
-                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+    <br><br>
+    <div align="center">
+        <ul>
+  <span th:unless="${currentPage == 1}">
+           <!--             <li><a title="First Page"
+                               th:href="@{home(pageNo=${currentPage == 1}, keyword=${keyword})}"
+                        >&laquo;</a>
+                        </li>-->
+                        <li>
+                            <a title="Previous Page"
+                               th:href="@{home(pageNo=${currentPage - 1}, keyword=${keyword})}"
+                            >&laquo;&lsaquo;</a>
+                        </li>
 
-      <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
-
-      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
                     </span>
-            </div>
+        <li th:each="page,i:${pages}" th:class="${i.index==currentPage?'active':''}"  th:if="${i.index >= currentPage AND currentPage != totalPages}" >
+            <a
+                    th:href="@{home(pageNo=${i.index}, keyword=${keyword})}"
+                    th:text="${i.index+1}"> [[${i.index+1}]]</a>
+        </li>
 
-            <div class="col-sm-1">
-                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
-                <span th:unless="${currentPage < totalPages}">Next</span>
-            </div>
 
-            <div class="col-sm-1">
-                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
-                <span th:unless="${currentPage < totalPages}">Last</span>
-            </div>
-        </div>
-    </div>
+                        <li><a title="Next Page"
+                               th:href="@{home(pageNo=${currentPage + 1}, keyword=${keyword})}"
+                        >&rsaquo;&raquo;</a>
+                        </li>
+        </ul>
+
+</div>
 </div>
 </body>
 

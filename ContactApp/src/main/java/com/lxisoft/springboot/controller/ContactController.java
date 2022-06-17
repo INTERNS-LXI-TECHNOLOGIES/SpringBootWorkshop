@@ -7,10 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,17 +22,18 @@ public class ContactController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
-        return findPaginated(1, model);
-
+    public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo ,@RequestParam(defaultValue = "") String keyword) {
+        contactService.listAllContacts(pageNo, keyword, model);
+        return "home";
     }
-    @GetMapping("/search")
+/*    @GetMapping("/search")
     public String searchContacts(Model model, @Param("keyword") String keyword) {
         List<Contact> listContacts = contactService.searchContacts(keyword);
         model.addAttribute("listContacts", listContacts);
         model.addAttribute("keyword", keyword);
         return "home";
-    }
+    }*/
+/*
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
         int pageSize = 4;
@@ -49,19 +47,18 @@ public class ContactController {
         model.addAttribute("listContacts", listContacts);
         return "home";
     }
+*/
 
     @GetMapping("/showForm")
     public String showForm(Model model) {
         // create model attribute to bind form data
         model.addAttribute("contact", new Contact());
         model.addAttribute("caption", "ADD NEW CONTACT");
-
         return "new_contact";
     }
 
     @PostMapping("/saveContact")
     public String saveContact(@ModelAttribute("contact") Contact contact) {
-
         contactService.saveContact(contact);
         return "redirect:/";
     }
