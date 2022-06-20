@@ -47,7 +47,7 @@
         </thead>
         <tbody>
         <tr th:each="contact : ${contactList}">
-            <td th:text="${contactStat.index}"></td>
+            <td th:text="${contactStat.index + 1}"></td>
             <td th:text="${contact.name}"></td>
             <td th:text="${contact.email}"></td>
             <td th:text="${contact.address}"></td>
@@ -80,7 +80,7 @@
 
       <a th:if="${currentPage != i}" th:href="@{home(pageNo=${i}, keyword=${keyword})}">[[${i}]]</a>
 
-      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+     <b><i> <span th:unless="${currentPage != i}" style="color:green">[[${i}]]</span> </i></b> &nbsp; &nbsp;
                     </span>
 
 <span th:unless="${currentPage == totalPages}">
