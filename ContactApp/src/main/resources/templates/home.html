@@ -62,32 +62,33 @@
     </table>
 
     <br><br>
-    <div align="center">
-        <ul>
+    <div align="center" >
+
   <span th:unless="${currentPage == 1}">
-           <!--             <li><a title="First Page"
-                               th:href="@{home(pageNo=${currentPage == 1}, keyword=${keyword})}"
-                        >&laquo;</a>
-                        </li>-->
-                        <li>
+
+
                             <a title="Previous Page"
                                th:href="@{home(pageNo=${currentPage - 1}, keyword=${keyword})}"
                             >&laquo;&lsaquo;</a>
-                        </li>
+
 
                     </span>
-        <li th:each="page,i:${pages}" th:class="${i.index==currentPage?'active':''}"  th:if="${i.index >= currentPage AND currentPage != totalPages}" >
-            <a
-                    th:href="@{home(pageNo=${i.index}, keyword=${keyword})}"
-                    th:text="${i.index+1}"> [[${i.index+1}]]</a>
-        </li>
 
 
-                        <li><a title="Next Page"
-                               th:href="@{home(pageNo=${currentPage + 1}, keyword=${keyword})}"
+
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${i ==currentPage?'active':''}">
+
+      <a th:if="${currentPage != i}" th:href="@{home(pageNo=${i}, keyword=${keyword})}">[[${i}]]</a>
+
+      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                    </span>
+
+<span th:unless="${currentPage == totalPages}">
+                        <a title="Next Page"
+                               th:href="@{home(pageNo=${currentPage + 1}, keyword=${keyword}) }"
                         >&rsaquo;&raquo;</a>
-                        </li>
-        </ul>
+
+</span>
 
 </div>
 </div>

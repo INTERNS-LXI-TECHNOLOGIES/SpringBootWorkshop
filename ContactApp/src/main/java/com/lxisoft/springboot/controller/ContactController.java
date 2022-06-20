@@ -26,28 +26,8 @@ public class ContactController {
         contactService.listAllContacts(pageNo, keyword, model);
         return "home";
     }
-/*    @GetMapping("/search")
-    public String searchContacts(Model model, @Param("keyword") String keyword) {
-        List<Contact> listContacts = contactService.searchContacts(keyword);
-        model.addAttribute("listContacts", listContacts);
-        model.addAttribute("keyword", keyword);
-        return "home";
-    }*/
-/*
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-        int pageSize = 4;
 
-        Page< Contact > page = contactService.findPaginated(pageNo, pageSize);
-        List < Contact > listContacts = page.getContent();
 
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("listContacts", listContacts);
-        return "home";
-    }
-*/
 
     @GetMapping("/showForm")
     public String showForm(Model model) {

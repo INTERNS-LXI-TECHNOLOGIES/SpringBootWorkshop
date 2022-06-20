@@ -32,18 +32,13 @@ public class ContactServiceImpl implements ContactService{
         } else {
             page = contactRepo.findByName(keyword, pageable);
         }
-        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("currentPage", page.getNumber() + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("contactList", page.getContent());
+        model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("keyword", keyword);
     }
- /*   @Override
-    public List<Contact> searchContacts(String keyword){
-        if (keyword != null) {
-            *//*return contactRepo.search(keyword);*//*
-        }
-        return contactRepo.findAll();
-    }*/
+
     @Override
 
     public void saveContact(Contact contact) {
@@ -72,11 +67,6 @@ public class ContactServiceImpl implements ContactService{
 
 
 
-  /*  @Override
-    public Page<Contact> findPaginated(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize , Sort.by("name"));
-        return contactRepo.findAll(pageable);
-    }*/
 
 
 
