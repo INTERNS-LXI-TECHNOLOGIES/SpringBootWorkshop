@@ -16,14 +16,23 @@ create table car (
 create table role (
   role_name varchar(15) not null primary key
 );
-INSERT INTO role VALUES ('ROLE_ADMIN');
-INSERT INTO role VALUES ('ROLE_USER');
+insert into role values ('ROLE_ADMIN');
+insert into role values ('ROLE_USER');
 
 create table user (
   username varchar(15) not null primary key,
   password varchar(100) not null,
   role varchar(15) not null,
-  FOREIGN KEY (role) REFERENCES role (role_name)
+  foreign key (role) references role (role_name)
 );
-INSERT INTO user VALUES ('admin', '$2a$10$giqt6IFjTXvUXghLzKRoxOVW08hi0Q4ArbCH6xR4TX14v5BxpDXjm', 'ROLE_ADMIN');
-INSERT INTO user VALUES ('user', '$2a$10$PWtOUr63Wy8ExoTN.2Nc/Oaa51wH.lmqh16ntcXL5hfeCn1NxWHFC', 'ROLE_USER');
+insert into user values ('admin', '$2a$10$giqt6IFjTXvUXghLzKRoxOVW08hi0Q4ArbCH6xR4TX14v5BxpDXjm', 'ROLE_ADMIN');
+insert into user values ('user', '$2a$10$PWtOUr63Wy8ExoTN.2Nc/Oaa51wH.lmqh16ntcXL5hfeCn1NxWHFC', 'ROLE_USER');
+
+create table service_history (
+   service_date datetime not null,
+   total_kilometers int not null,
+   showroom varchar(100) not null,
+   car_id int not null,
+   primary key (service_date),
+   foreign key (car_id) references car (car_id)
+ )
