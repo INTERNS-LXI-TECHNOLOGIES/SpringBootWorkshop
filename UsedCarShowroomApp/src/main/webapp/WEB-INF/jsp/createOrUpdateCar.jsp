@@ -5,71 +5,61 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="${contextPath}/css/style.css">
 	</head>
 	<body>
-		<div class="header">
-			<h1>Used Car Showroom Application</h1>
-			<h2 class="links">
-				<a href="${contextPath}">Home</a>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="${contextPath}/create" class="selected">Add New Car</a>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="${contextPath}/logout">Logout</a>
-			</h2>
-		</div>
-		<div align="center">
-			<form:form action="${contextPath}/save" method="post" modelAttribute="car">
-		        <table border="1" cellpadding="5" cellspacing="0" class="uppercase">
-		            <caption>
-		            	<h2>${caption}</h2>
-		            </caption>
-		            <tr>
+		<jsp:include page="header.jsp" />
+		<div align="center" class="container mt-4">
+			<form:form action="${contextPath}/save" method="post" modelAttribute="car" class="col-6">
+		        <h2>${caption}</h2>
+		        <table class="table table-striped uppercase mt-4">
+		            <tr class="border">
 		            	<form:hidden path="carId"/>
 		                <th>Manufacturer</th>
 		                <td>
-		                	<form:input path="manufacturer"/>
+		                	<form:input class="form-control" path="manufacturer"/>
 		                </td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Model</th>
 		                <td>
-		                	<form:input path="model"/>	
+		                	<form:input class="form-control" path="model"/>	
 		         	   	</td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Variant</th>
 		                <td>
-		                	<form:input path="variant"/>
+		                	<form:input class="form-control" path="variant"/>
 		                </td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Year</th>
 		                <td>
-		                	<form:input path="year"/>
+		                	<form:input class="form-control" path="year"/>
 		                </td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Total Kilometers</th>
 		                <td>
-		                	<form:input path="totalKilometers"/>
+		                	<form:input class="form-control" path="totalKilometers"/>
 		                </td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Expected Price</th>
 		                <td>
-		                	<form:input path="expectedPrice"/>
+		                	<form:input class="form-control" path="expectedPrice"/>
 		                </td>
 		            </tr>
-		            <tr>
+		            <tr class="border">
 		                <th>Other Details</th>
 		                <td>
-		                	<form:input path="otherDetails"/>
+		                	<form:input class="form-control" path="otherDetails"/>
 		                </td>
 		            </tr>
 		            <tr>
 		            	<td colspan="2" align="center">
-		            		<input type="submit" value="Save" class="button" />
+		            		<input type="submit" value="Save" class="btn" />
 		            	</td>
 		            </tr>
 		        </table>

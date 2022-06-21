@@ -41,7 +41,7 @@ public class ServiceHistory {
 		this.totalKilometers = totalKilometers;
 	}
 
-	public String getManufacturer() {
+	public String getShowroom() {
 		return showroom;
 	}
 

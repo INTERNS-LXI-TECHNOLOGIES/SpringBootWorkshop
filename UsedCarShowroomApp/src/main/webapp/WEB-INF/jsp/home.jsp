@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<title>Used Car Showroom Application</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script>
@@ -23,45 +24,38 @@
 		</script>
 	</head>
 	<body>
-		<div class="header">
-			<h1>Used Car Showroom Application</h1>
-			<h2 class="links">
-				<a href="${contextPath}/home" class="selected">Home</a>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="create">Add New Car</a>
-				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="logout">Logout</a>
-			</h2>
-		</div>
-		<div class="padding-40">
-			<form method="GET" action="${contextPath}/search" class="search">
-	       		<input type="text" class="searchTerm uppercase" placeholder="Search Car Model" name="carModel" value="${carModel}" required>
-	      		<button type="submit" class="searchButton">
-	      			<i class="fa fa-search"></i>
-	      		</button>
-	   	    </form>
-			<form method="GET" action="${contextPath}/filter" class="filter" onsubmit="return validateForm()">
-	       		<input type="number" class="filterValue uppercase" placeholder="Min Price" name="min" value="${min}" required>
-	       		<input type="number" class="filterValue uppercase" placeholder="Max Price" name="max" value="${max}" required>
-	      		<button type="submit" class="filterButton">
-	      			<i class="fa fa-filter"></i>
-	      		</button>
-	   	    </form>
-	   	    <br><br>
-			<table cellspacing="0" border="1" cellpadding="5" class="table-1 uppercase">
-				<tr>
-					<th>CAR ID</th>
-					<th>MANUFACTURER</th>
-					<th>MODEL</th>
-					<th>VARIANT</th>
-					<th>YEAR</th>
-					<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">TOTAL KILOMETERS</a></th>
-					<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">EXPECTED PRICE</a></th>
-					<th>OTHER DETAILS</th>
-					<sec:authorize access="hasRole('ADMIN')">
-					<th>ACTIONS</th>
-					</sec:authorize>
-				</tr>
+		<jsp:include page="header.jsp" />
+		<div class="container">
+			<div class="row mt-4">
+				<form method="GET" action="${contextPath}/search" class="float-left col-sm-6">
+		       		<input type="text" class="form-control uppercase col-sm-4 float-left" placeholder="Search Car Model" name="carModel" value="${carModel}" required>
+		      		<button type="submit" class="btn ml-1">
+		      			<i class="fa fa-search"></i>
+		      		</button>
+		   	    </form>
+				<form method="GET" action="${contextPath}/filter" class="float-right col-sm-6" onsubmit="return validateForm()">
+		      		<button type="submit" class="btn float-right ml-1">
+		      			<i class="fa fa-filter"></i>
+		      		</button>
+		       		<input type="number" class="form-control uppercase col-sm-4 float-right ml-1" placeholder="Max Price" name="max" value="${max}" required>
+		       		<input type="number" class="form-control uppercase col-sm-4 float-right" placeholder="Min Price" name="min" value="${min}" required>
+		   	    </form>
+	   	    </div>
+			<table class="table table-striped table-hover uppercase mt-4 border">
+					<tr class="bg-th">
+						<th>CAR ID</th>
+						<th>MANUFACTURER</th>
+						<th>MODEL</th>
+						<th>VARIANT</th>
+						<th>YEAR</th>
+						<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">TOTAL KILOMETERS</a></th>
+						<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">EXPECTED PRICE</a></th>
+						<th>OTHER DETAILS</th>
+						<th>SERVICE HISTORY</th>
+						<sec:authorize access="hasRole('ADMIN')">
+						<th>ACTIONS</th>
+						</sec:authorize>
+					</tr>
 				<c:forEach var="car" items="${carList}">
 					<tr>
 						<td>${car.carId}</td>
@@ -72,19 +66,21 @@
 						<td>${car.totalKilometers}</td>
 						<td>${car.expectedPrice}</td>
 						<td>${car.otherDetails}</td>
+						<td class="text-center">
+							<a href="service-history/${car.carId}"><i class="fa fa-eye text-secondary"></i></a>
+						</td>
 						<sec:authorize access="hasRole('ADMIN')">
-						<td>
-							<a href="edit/${car.carId}"><i class="fa fa-edit"></i></a>
+						<td class="text-center">
+							<a href="edit/${car.carId}"><i class="fa fa-edit text-info"></i></a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash"></i></a>
+							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash text-danger"></i></a>
 						</td>
 						</sec:authorize>
 					</tr>
 				</c:forEach>
 			</table>
-			<br><br>
 			<div align="center">
-				<div class="pagination">
+				<div class="pagination m-3">
 				  <c:if test="${currentPage != 1}">
 				  	<a href="${contextPath}/${navAction}?pageNo=${currentPage - 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&laquo;</a>
 				  </c:if>

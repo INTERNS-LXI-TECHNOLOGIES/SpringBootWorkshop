@@ -77,4 +77,11 @@ public class CarController {
 	public String login() {
 		return "login";
 	}
+
+	@GetMapping("/service-history/{carId}")
+	public String serviceHistory(@PathVariable int carId, Model model) {
+		Car car = carService.getCar(carId);
+		model.addAttribute("car", car);
+		return "serviceHistory";
+	}
 }
