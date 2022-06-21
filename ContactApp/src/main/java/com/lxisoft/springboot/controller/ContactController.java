@@ -22,12 +22,16 @@ public class ContactController {
     }
 
     @GetMapping("/home")
-    public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo ,@RequestParam(defaultValue = "") String keyword) {
-        contactService.listAllContacts(pageNo, keyword, model);
+    public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo ) {
+        contactService.listAllContacts(pageNo, model);
         return "home";
     }
 
-
+    @GetMapping("/search")
+    public String home(Model model, @RequestParam(defaultValue = "1") Integer pageNo ,@RequestParam(defaultValue = "") String keyword) {
+        contactService.searchContacts(pageNo, keyword, model);
+        return "home";
+    }
 
     @GetMapping("/showForm")
     public String showForm(Model model) {

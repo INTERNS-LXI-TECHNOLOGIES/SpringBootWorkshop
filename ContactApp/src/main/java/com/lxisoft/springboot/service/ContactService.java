@@ -10,8 +10,9 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface ContactService {
-    void listAllContacts(Integer pageNo, String keyword, Model model);
+    void listAllContacts(Integer pageNo,  Model model);
 /*    List<Contact> searchContacts(String keyword);*/
+    void searchContacts(Integer pageNo, String keyword, Model model);
     void saveContact(Contact contact);
 
     void deleteContact(int contact_id);

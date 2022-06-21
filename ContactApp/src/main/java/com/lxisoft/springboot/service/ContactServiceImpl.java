@@ -23,22 +23,28 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
 
-    public void listAllContacts(Integer pageNo, String keyword, Model model) {
+    public void listAllContacts(Integer pageNo, Model model) {
 
         Pageable pageable = PageRequest.of(pageNo - 1, 4, Sort.by("name"));
-        Page<Contact> page;
-        if (keyword.isEmpty()) {
-            page = contactRepo.findAll(pageable);
-        } else {
-            page = contactRepo.findByName(keyword, pageable);
-        }
+        Page<Contact> page = contactRepo.findAll(pageable);
+
         model.addAttribute("currentPage", page.getNumber() + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("contactList", page.getContent());
         model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("keyword", keyword);
+
     }
 
+    public void searchContacts(Integer pageNo, String keyword, Model model) {
+        Pageable pageable = PageRequest.of(pageNo - 1, 4, Sort.by("name"));
+        Page<Contact> page = contactRepo.findByKeyword(keyword, pageable);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("currentPage", page.getNumber() + 1);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("contactList", page.getContent());
+        model.addAttribute("totalItems", page.getTotalElements());
+
+    }
     @Override
 
     public void saveContact(Contact contact) {

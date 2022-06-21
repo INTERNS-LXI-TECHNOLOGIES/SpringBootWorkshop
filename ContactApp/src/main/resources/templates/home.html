@@ -21,7 +21,7 @@
         <a  th:href="@{/logout}" class="btn btn-danger">Logout</a>
     </div>
     <div align="center">
-        <form th:action="@{/home}">
+        <form th:action="@{/search}">
             SEARCH : <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
             &nbsp;
             <input type="submit" value="Search" class="btn btn-primary"/>
@@ -63,31 +63,20 @@
 
     <br><br>
     <div align="center" >
-
+<span>
   <span th:unless="${currentPage == 1}">
-
-
                             <a title="Previous Page"
                                th:href="@{home(pageNo=${currentPage - 1}, keyword=${keyword})}"
-                            >&laquo;&lsaquo;</a>
-
-
-                    </span>
-
-
-
+                            > &laquo;&lsaquo; </a>
+                    </span>  </span>
                     <span th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${i ==currentPage?'active':''}">
-
-      <a th:if="${currentPage != i}" th:href="@{home(pageNo=${i}, keyword=${keyword})}">[[${i}]]</a>
-
-     <b><i> <span th:unless="${currentPage != i}" style="color:green">[[${i}]]</span> </i></b> &nbsp; &nbsp;
+      <a th:if="${currentPage != i}" th:href="@{home(pageNo=${i}, keyword=${keyword})}"> [[${i}]]</a>
+     <b><i> <span th:unless="${currentPage != i}" style="color:green"> [[${i}]] </span> </i></b> &nbsp; &nbsp;
                     </span>
-
 <span th:unless="${currentPage == totalPages}">
                         <a title="Next Page"
                                th:href="@{home(pageNo=${currentPage + 1}, keyword=${keyword}) }"
                         >&rsaquo;&raquo;</a>
-
 </span>
 
 </div>
