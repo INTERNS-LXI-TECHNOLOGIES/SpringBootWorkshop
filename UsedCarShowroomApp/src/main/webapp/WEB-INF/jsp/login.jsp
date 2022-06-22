@@ -18,14 +18,14 @@
 			<b>Used Car Showroom Application</b>
 		</h2>
 	</div>
-	<div align="center">
-		<div class="col-sm-3 mt-5">
+	<div align="center" class="container">
+		<div class="col-sm-4 mt-3">
 			<c:if test="${param.error != null}">
-				<div class="alert alert-danger" role="alert">Invalid username
+				<div class="alert alert-danger mt-n4 mb-3" role="alert">Invalid username
 					and password</div>
 			</c:if>
 			<c:if test="${param.logout != null}">
-				<div class="alert alert-success" role="alert">You have been
+				<div class="alert alert-success mt-n4 mb-3" role="alert">You have been
 					successfully logged out</div>
 			</c:if>
 			<h3>PLEASE LOGIN</h3>

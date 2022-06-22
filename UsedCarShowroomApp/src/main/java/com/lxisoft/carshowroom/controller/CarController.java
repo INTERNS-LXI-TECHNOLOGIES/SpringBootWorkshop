@@ -78,10 +78,10 @@ public class CarController {
 		return "login";
 	}
 
-	@GetMapping("/service-history/{carId}")
-	public String serviceHistory(@PathVariable int carId, Model model) {
+	@GetMapping("/car-details/{carId}")
+	public String carDetails(@PathVariable int carId, Model model) {
 		Car car = carService.getCar(carId);
 		model.addAttribute("car", car);
-		return "serviceHistory";
+		return "carDetails";
 	}
 }

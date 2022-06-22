@@ -1,5 +1,6 @@
 package com.lxisoft.carshowroom.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -40,6 +42,9 @@ public class Car {
 
 	@OneToMany(mappedBy = "car")
 	private Set<ServiceHistory> serviceHistories;
+
+	@ManyToMany(mappedBy = "cars")
+	private Set<Owner> owners = new HashSet<>();
 
 	public Integer getCarId() {
 		return carId;
@@ -111,5 +116,13 @@ public class Car {
 
 	public void setServiceHistories(Set<ServiceHistory> serviceHistories) {
 		this.serviceHistories = serviceHistories;
+	}
+
+	public Set<Owner> getOwners() {
+		return owners;
+	}
+
+	public void setOwners(Set<Owner> owners) {
+		this.owners = owners;
 	}
 }

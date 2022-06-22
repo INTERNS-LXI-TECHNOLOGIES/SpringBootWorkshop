@@ -35,4 +35,17 @@ create table service_history (
    car_id int not null,
    primary key (service_date),
    foreign key (car_id) references car (car_id)
- )
+ );
+ 
+ create table owner (
+   name varchar(100) not null,
+   address varchar(100) not null,
+   phone_number bigint not null primary key
+ ); 
+ 
+create table car_owner (
+  car_id int not null,
+  phone_number bigint not null,
+  foreign key (car_id) references car (car_id),
+  foreign key (phone_number) references owner (phone_number)
+);

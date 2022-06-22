@@ -11,15 +11,20 @@ body, input {
 }
 
 .container {
-    max-width: 1200px !important;
+	max-width: 1200px !important;
+	padding-top: 152px;
 }
 
 .header {
-    background: #0a3939;
-    color: #fff;
-    text-align: center;
-    padding: 28px;
-    text-transform: uppercase;
+	background: #0a3939;
+	color: #fff;
+	text-align: center;
+	padding: 28px;
+	text-transform: uppercase;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	top: 0;
 }
 
 .uppercase, .uppercase input {
@@ -32,12 +37,12 @@ body, input {
 }
 
 .links a {
-    padding: 5px 10px;
+	padding: 5px 10px;
 }
 
 .selected, .links a:hover {
 	background: #195b5b;
-    border-radius: 5px;
+	border-radius: 5px;
 }
 
 .pagination {
@@ -97,4 +102,9 @@ a.sort-by:after {
 
 .bg-th {
 	background-color: #cacfcf !important;
+}
+
+caption {
+	caption-side: top;
+	font-weight: 700;
 }

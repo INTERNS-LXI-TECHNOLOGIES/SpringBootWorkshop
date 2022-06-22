@@ -15,8 +15,8 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="container mt-5" align="center">
-		<h2>SERVICE HISTORY</h2>
-		<table class="table table-bordered uppercase mt-5">
+		<h2>CAR DETAILS</h2>
+		<table class="table table-bordered uppercase mt-5 caption-top">
 			<tr>
 				<td><b>CAR ID:</b> ${car.carId}</td>
 				<td><b>MANUFACTURER: </b>${car.manufacturer}</td>
@@ -31,6 +31,22 @@
 			</tr>
 		</table>
 		<table class="table table-striped table-hover uppercase mt-5 border">
+ 	    	<caption>Owner Details</caption>
+			<tr class="bg-th">
+				<th>NAME</th>
+				<th>ADDRESS</th>
+				<th>PHONE NUMBER</th>
+			</tr>
+			<c:forEach var="owner" items="${car.owners}">
+				<tr>
+					<td>${owner.name}</td>
+					<td>${owner.address}</td>
+					<td>${owner.phoneNumber}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<table class="table table-striped table-hover uppercase mt-5 mb-5 border">
+ 	    	<caption>Service History</caption>
 			<tr class="bg-th">
 				<th>SERVICE DATE</th>
 				<th>TOTAL KILOMETERS</th>

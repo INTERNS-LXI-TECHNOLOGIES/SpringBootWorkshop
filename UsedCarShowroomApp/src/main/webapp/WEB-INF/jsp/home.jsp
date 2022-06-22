@@ -11,8 +11,10 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script>
 			function validateForm() {
-			  let min = document.getElementsByName('min')[0].value;
-			  let max = document.getElementsByName('max')[0].value;
+			  let min = document.getElementById('min').value;
+			  let max = document.getElementById('max').value;
+			  min = new Number(min);
+			  max = new Number(max);
 			  if (min <= 0) {
 			    alert("Min price should be greater than zero");
 			    return false;
@@ -37,8 +39,8 @@
 		      		<button type="submit" class="btn float-right ml-1">
 		      			<i class="fa fa-filter"></i>
 		      		</button>
-		       		<input type="number" class="form-control uppercase col-sm-4 float-right ml-1" placeholder="Max Price" name="max" value="${max}" required>
-		       		<input type="number" class="form-control uppercase col-sm-4 float-right" placeholder="Min Price" name="min" value="${min}" required>
+		       		<input type="number" class="form-control uppercase col-sm-4 float-right ml-1" placeholder="Max Price" name="max" value="${max}" id="max" required>
+		       		<input type="number" class="form-control uppercase col-sm-4 float-right" placeholder="Min Price" name="min" value="${min}" id="min" required>
 		   	    </form>
 	   	    </div>
 			<table class="table table-striped table-hover uppercase mt-4 border">
@@ -51,10 +53,7 @@
 						<th><a href="${contextPath}/home?sortBy=totalKilometers&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">TOTAL KILOMETERS</a></th>
 						<th><a href="${contextPath}/home?sortBy=expectedPrice&carModel=${carModel}&min=${min}&max=${max}" class="sort-by">EXPECTED PRICE</a></th>
 						<th>OTHER DETAILS</th>
-						<th>SERVICE HISTORY</th>
-						<sec:authorize access="hasRole('ADMIN')">
 						<th>ACTIONS</th>
-						</sec:authorize>
 					</tr>
 				<c:forEach var="car" items="${carList}">
 					<tr>
@@ -66,16 +65,13 @@
 						<td>${car.totalKilometers}</td>
 						<td>${car.expectedPrice}</td>
 						<td>${car.otherDetails}</td>
-						<td class="text-center">
-							<a href="service-history/${car.carId}"><i class="fa fa-eye text-secondary"></i></a>
+						<td>
+							<a href="car-details/${car.carId}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
+							<sec:authorize access="hasRole('ADMIN')">
+								<a href="edit/${car.carId}"><i title="Edit Car" class="fa fa-edit text-info ml-2"></i></a>
+								<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i title="Delete Car" class="fa fa-trash text-danger ml-2"></i></a>
+							</sec:authorize>
 						</td>
-						<sec:authorize access="hasRole('ADMIN')">
-						<td class="text-center">
-							<a href="edit/${car.carId}"><i class="fa fa-edit text-info"></i></a>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i class="fa fa-trash text-danger"></i></a>
-						</td>
-						</sec:authorize>
 					</tr>
 				</c:forEach>
 			</table>
@@ -87,7 +83,7 @@
 				  <c:forEach begin="1" end="${totalPages}" varStatus="loop">
 					<a href="${contextPath}/${navAction}?pageNo=${loop.index}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}" class="${currentPage == loop.index ? 'active' : ''}">${loop.index}</a>
 				  </c:forEach>
-				  <c:if test="${currentPage > 1 && currentPage != totalPages}">
+				  <c:if test="${totalPages > 0 && currentPage != totalPages}">
 				  	<a href="${contextPath}/${navAction}?pageNo=${currentPage + 1}&sortBy=${sortBy}&carModel=${carModel}&min=${min}&max=${max}">&raquo;</a>
 				  </c:if>
 				</div>
