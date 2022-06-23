@@ -65,4 +65,11 @@ public class ContactController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/service-history/{contact_id}")
+    public String serviceHistory(@PathVariable int contact_id, Model model) {
+        Contact contact = contactService.getContact(contact_id);
+        model.addAttribute("contact", contact);
+        return "contactAddress";
+    }
 }

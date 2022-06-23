@@ -2,6 +2,7 @@ package com.lxisoft.springboot.entity;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name ="contact")
@@ -15,10 +16,20 @@ public class Contact {
     private String name;
     @Column(name = "email")
     private String email;
-    @Column(name = "address")
-    private String address;
+
     @Column(name = "phone")
     private String phone;
+
+    @OneToMany(mappedBy = "contact")
+    private Set<ContactAddress> contactAddress;
+
+    public Set<ContactAddress> getContactAddress() {
+        return contactAddress;
+    }
+
+    public void setContactAddress(Set<ContactAddress> contactAddress) {
+        this.contactAddress = contactAddress;
+    }
 
     public Integer getContact_id() {
         return contact_id;
@@ -42,14 +53,6 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {
