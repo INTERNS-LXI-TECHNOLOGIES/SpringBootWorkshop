@@ -2,6 +2,8 @@ package com.lxisoft.springboot.controller;
 
 import com.lxisoft.springboot.entity.Contact;
 import com.lxisoft.springboot.service.ContactService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -66,10 +68,13 @@ public class ContactController {
         return "login";
     }
 
-    @GetMapping("/service-history/{contact_id}")
-    public String serviceHistory(@PathVariable int contact_id, Model model) {
+    @GetMapping("/contactAddress/{contact_id}")
+    public String contactAddress(@PathVariable int contact_id, Model model) {
         Contact contact = contactService.getContact(contact_id);
+        Logger logger = LoggerFactory.getLogger(ContactController.class);
+        logger.error("contact Address is : ",contact.getContactAddresses());
         model.addAttribute("contact", contact);
+
         return "contactAddress";
     }
 }

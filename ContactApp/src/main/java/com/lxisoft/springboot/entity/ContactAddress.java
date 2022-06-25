@@ -17,7 +17,7 @@ public class ContactAddress {
     @Column(name="contact_id")
     private String contact_id;
     @ManyToOne
-    @JoinColumn(name = "contact_id")
+    @JoinColumn(name = "contact_id" , referencedColumnName = "contact_id", insertable = false, updatable = false)
     private Contact contact;
 
     public String getHouseNameAndPlace() {

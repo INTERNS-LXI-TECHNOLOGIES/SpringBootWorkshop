@@ -21,14 +21,14 @@ public class Contact {
     private String phone;
 
     @OneToMany(mappedBy = "contact")
-    private Set<ContactAddress> contactAddress;
+    private Set<ContactAddress> contactAddresses;
 
-    public Set<ContactAddress> getContactAddress() {
-        return contactAddress;
+    public Set<ContactAddress> getContactAddresses() {
+        return contactAddresses;
     }
 
-    public void setContactAddress(Set<ContactAddress> contactAddress) {
-        this.contactAddress = contactAddress;
+    public void setContactAddresses(Set<ContactAddress> contactAddresses) {
+        this.contactAddresses = contactAddresses;
     }
 
     public Integer getContact_id() {
