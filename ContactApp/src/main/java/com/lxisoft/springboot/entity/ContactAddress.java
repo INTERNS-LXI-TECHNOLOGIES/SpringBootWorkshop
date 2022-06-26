@@ -13,7 +13,18 @@ public class ContactAddress {
     private String district;
 @Column(name="pincode")
     private String pinCode;
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
+
     @Id
+    @Column(name="address_id")
+    private String addressId;
     @Column(name="contact_id")
     private String contact_id;
     @ManyToOne

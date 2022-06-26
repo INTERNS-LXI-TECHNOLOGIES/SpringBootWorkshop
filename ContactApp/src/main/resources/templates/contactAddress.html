@@ -8,14 +8,22 @@
           crossorigin="anonymous">
 </head>
 <body>
+<!--<a th:href="@{/}" >
+    <img src="../static/images/back_button.jpg" width="1000" th:src="@{images/back_button.jpg}"/>
+</a>-->
 <div class="container mt-5" align="center">
     <h2>CONTACT ADDRESS</h2>
+    <table class="table">
+        <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
+        <tbody>
+        </tbody>
+    </table>
     <table class="table table-bordered uppercase mt-5">
-        <tr>
+ <!--       <tr>
             <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
             <td><b>CONTACT NAME: </b><p th:text="${contact.name}"></p></td>
 
-        </tr>
+        </tr>-->
         <tr>
             <td><b>CONTACT EMAIL: </b><p th:text="${contact.email}"></p></td>
             <td><b>PHONE NUMBER: </b><p th:text="${contact.phone}"></p></td>
@@ -32,7 +40,7 @@
         </tr>
 
             <tr th:each="contact : ${contact.contactAddresses}">
-                <td th:text="${contact.contact_id}"></td>
+                <td th:text="${contact.addressId}"></td>
                 <td th:text="${contact.houseNameAndPlace}"></td>
                 <td th:text="${contact.post}"></td>
                 <td th:text="${contact.district}"></td>
@@ -40,6 +48,10 @@
             </tr>
 
     </table>
+</div>
+<div align="center">
+<a  th:href="@{/}" style="color:red"> Back to Contact List</a >
+
 </div>
 </body>
 </html>
