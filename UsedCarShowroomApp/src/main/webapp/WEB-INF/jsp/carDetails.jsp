@@ -17,19 +17,135 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="container mt-5" align="center">
+	<form:form action="${contextPath}/save" method="post" modelAttribute="car">
 		<h2>CAR DETAILS</h2>
 		<table class="table table-bordered uppercase mt-5 caption-top">
+			<caption><c:choose>
+			  <c:when test="${action == 'view'}">
+				<a href="${contextPath}/car-details/${car.carId}?action=edit" class="btn float-right">EDIT</a>
+				<button class="btn float-right mr-2">ADD NEW CAR</button>
+				</c:when>
+			  <c:otherwise>
+				<a href="${contextPath}/car-details/${car.carId}" class="btn float-right">CANCEL</a>
+				<input type="submit" value="Save" class="btn float-right mr-2" />
+			  </c:otherwise>
+			</c:choose></caption>
 			<tr>
-				<td><b>CAR ID:</b> ${car.carId}</td>
-				<td><b>MANUFACTURER: </b>${car.manufacturer}</td>
-				<td><b>MODEL: </b>${car.model}</td>
-				<td><b>VARIANT: </b>${car.variant}</td>
+				<td class="col-sm-2 align-middle">
+					<b>CAR ID:</b> ${car.carId}
+					<form:hidden path="carId"/>
+				</td>
+				<td class="col-sm-3">
+			      <c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="manufacturer" class="col-sm-6 col-form-label"><b>MANUFACTURER: </b></label>
+						    <div class="col-sm-6 pl-1">
+				        		<form:input class="form-control" path="manufacturer"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>MANUFACTURER: </b>${car.manufacturer}
+					</c:otherwise>
+				  </c:choose>
+				</td>
+				<td class="col-sm-2">
+				 <c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="model" class="col-sm-5 col-form-label mr-n2"><b>MODEL: </b></label>
+						    <div class="col-sm-7 pl-0">
+				        		<form:input class="form-control" path="model"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>MODEL: </b>${car.model}
+					</c:otherwise>
+				  </c:choose>
+				</td>
+				<td class="col-sm-5">
+				<c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="totalKilometers" class="col-sm-5 col-form-label mr-n4"><b>TOTAL KILOMETERS: </b></label>
+						    <div class="col-sm-4 pl-0">
+				        		<form:input type="number" class="form-control" path="totalKilometers"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>TOTAL KILOMETERS: </b>${car.totalKilometers}
+					</c:otherwise>
+				  </c:choose>
+				</td>
 			</tr>
 			<tr>
-				<td><b>YEAR: </b>${car.year}</td>
-				<td><b>EXPECTED PRICE: </b>${car.expectedPrice}</td>
-				<td><b>TOTAL KILOMETERS: </b>${car.totalKilometers}</td>
-				<td><b>OTHER DETAILS: </b>${car.otherDetails}</td>
+				<td>
+				<c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="year" class="col-sm-4 col-form-label"><b>YEAR: </b></label>
+						    <div class="col-sm-6 pl-0">
+				        		<form:input type="number" class="form-control" path="year"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>YEAR: </b>${car.year}
+					</c:otherwise>
+				  </c:choose>
+				  </td>
+				<td>
+				<c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="expectedPrice" class="col-sm-6 col-form-label pr-0"><b>EXPECTED PRICE: </b></label>
+						    <div class="col-sm-6 pl-0">
+				        		<form:input type="number" class="form-control" path="expectedPrice"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>EXPECTED PRICE: </b>${car.expectedPrice}
+					</c:otherwise>
+				  </c:choose>
+				  </td>
+				<td>
+				<c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="variant" class="col-sm-5 col-form-label"><b>VARIANT: </b></label>
+						    <div class="col-sm-7 pl-1">
+						      		<form:select path="variant" class="form-control">
+									  <form:option value="PETROL" label="PETROL"/>
+									  <form:option value="DIESEL" label="DIESEL"/>
+									  <form:option value="ELECTRIC" label="ELECTRIC"/>
+									</form:select>
+						      	</div>
+						      </div>
+						</c:when>
+					<c:otherwise>
+						<b>VARIANT: </b>${car.variant}
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${action == 'edit'}">
+						<div class="row">
+							<label for="otherDetails" class="col-sm-4 col-form-label mr-n4"><b>OTHER DETAILS: </b></label>
+						    <div class="col-sm-8 p-0">
+				        		<form:input class="form-control" path="otherDetails"/>
+				        	</div>
+				        </div>
+					</c:when>
+					<c:otherwise>
+						<b>OTHER DETAILS: </b>${car.otherDetails}
+					</c:otherwise>
+				  </c:choose>
+				  </td>
 			</tr>
 		</table>
 		<table class="table table-striped table-hover uppercase mt-5 border">
@@ -75,6 +191,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+	</form:form>
 	</div>
 </body>
 </html>

@@ -6,7 +6,7 @@ body {
 	/*font-family: 'Open Sans', sans-serif;*/
 }
 
-body, input {
+body, input, td, select, button, a {
 	font-size: 0.9rem !important;
 }
 
@@ -38,6 +38,7 @@ body, input {
 
 .links a {
 	padding: 5px 10px;
+	font-size: 24px !important;
 }
 
 .selected, .links a:hover {

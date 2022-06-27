@@ -12,7 +12,7 @@ public interface CarService {
 
 	void searchCars(String carModel, Model model, String sortBy, Integer pageNo);
 
-	void saveCar(Car car);
+	Car saveCar(Car car);
 
 	void deleteCar(int carId);
 

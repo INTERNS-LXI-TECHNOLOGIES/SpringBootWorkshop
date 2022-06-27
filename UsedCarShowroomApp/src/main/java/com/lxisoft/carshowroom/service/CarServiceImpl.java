@@ -44,8 +44,8 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public void saveCar(Car car) {
-		carRepository.save(car);
+	public Car saveCar(Car car) {
+		return carRepository.save(car);
 	}
 
 	@Override

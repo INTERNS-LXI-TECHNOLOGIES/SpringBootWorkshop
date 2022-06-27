@@ -48,7 +48,7 @@
 		            <tr class="border">
 		                <th>Expected Price</th>
 		                <td>
-		                	<form:input class="form-control" path="expectedPrice"/>
+		                	<form:input type="number" class="form-control" path="expectedPrice"/>
 		                </td>
 		            </tr>
 		            <tr class="border">

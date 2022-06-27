@@ -48,8 +48,8 @@ public class CarController {
 
 	@PostMapping("/save")
 	public String saveCar(@ModelAttribute Car car) {
-		carService.saveCar(car);
-		return "redirect:/home";
+		car = carService.saveCar(car);
+		return "redirect:/car-details/" + car.getCarId();
 	}
 
 	@GetMapping("/create")
@@ -79,9 +79,10 @@ public class CarController {
 	}
 
 	@GetMapping("/car-details/{carId}")
-	public String carDetails(@PathVariable int carId, Model model) {
+	public String carDetails(@PathVariable int carId, Model model, @RequestParam(defaultValue = "view") String action) {
 		Car car = carService.getCar(carId);
 		model.addAttribute("car", car);
+		model.addAttribute("action", action);
 		return "carDetails";
 	}
 }
