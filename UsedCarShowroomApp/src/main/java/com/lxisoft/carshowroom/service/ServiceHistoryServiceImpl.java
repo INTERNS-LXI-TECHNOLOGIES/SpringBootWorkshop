@@ -1,7 +1,5 @@
 package com.lxisoft.carshowroom.service;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +20,13 @@ public class ServiceHistoryServiceImpl implements ServiceHistoryService {
 	}
 
 	@Override
-	public ServiceHistory getServiceHistory(Date serviceDate) {
-		return ServiceHistoryRepository.findById(serviceDate).get();
+	public ServiceHistory getServiceHistory(Integer id) {
+		return ServiceHistoryRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteServiceHistory(Date serviceDate) {
-		ServiceHistoryRepository.deleteById(serviceDate);
+	public void deleteServiceHistory(Integer id) {
+		ServiceHistoryRepository.deleteById(id);
 	}
 
 }

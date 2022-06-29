@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Car {
@@ -41,6 +42,7 @@ public class Car {
 	private String otherDetails;
 
 	@OneToMany(mappedBy = "car")
+	@OrderBy(value = "id desc")
 	private Set<ServiceHistory> serviceHistories;
 
 	@ManyToMany(mappedBy = "cars")

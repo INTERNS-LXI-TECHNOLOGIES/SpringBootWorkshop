@@ -109,3 +109,7 @@ caption {
 	caption-side: top;
 	font-weight: 700;
 }
+
+caption a, caption button {
+	font-size: 24px !important;
+}
