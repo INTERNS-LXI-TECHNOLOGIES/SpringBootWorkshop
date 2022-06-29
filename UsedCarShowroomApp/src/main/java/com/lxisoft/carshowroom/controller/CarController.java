@@ -1,6 +1,7 @@
 package com.lxisoft.carshowroom.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,8 +56,8 @@ public class CarController {
 	@GetMapping("/create")
 	public String createCar(Model model) {
 		model.addAttribute("car", new Car());
-		model.addAttribute("caption", "ADD NEW CAR");
-		return "createOrUpdateCar";
+		model.addAttribute("action", "add");
+		return "carDetails";
 	}
 
 	@GetMapping("/delete/{carId}")
@@ -78,11 +79,20 @@ public class CarController {
 		return "login";
 	}
 
-	@GetMapping("/car-details/{carId}")
-	public String carDetails(@PathVariable int carId, Model model, @RequestParam(defaultValue = "view") String action) {
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	@GetMapping("/car-details/{carId}/edit")
+	public String editCarDetails(@PathVariable int carId, Model model) {
 		Car car = carService.getCar(carId);
 		model.addAttribute("car", car);
-		model.addAttribute("action", action);
+		model.addAttribute("action", "edit");
+		return "carDetails";
+	}
+
+	@GetMapping("/car-details/{carId}")
+	public String viewCarDetails(@PathVariable int carId, Model model) {
+		Car car = carService.getCar(carId);
+		model.addAttribute("car", car);
+		model.addAttribute("action", "view");
 		return "carDetails";
 	}
 }

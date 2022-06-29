@@ -68,7 +68,7 @@
 						<td>
 							<a href="car-details/${car.carId}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
 							<sec:authorize access="hasRole('ADMIN')">
-								<a href="car-details/${car.carId}?action=edit"><i title="Edit Car" class="fa fa-edit text-info ml-2"></i></a>
+								<a href="car-details/${car.carId}/edit"><i title="Edit Car" class="fa fa-edit text-info ml-2"></i></a>
 								<a href="delete/${car.carId}" onclick="return confirm('Are you sure you want to delete?')"><i title="Delete Car" class="fa fa-trash text-danger ml-2"></i></a>
 							</sec:authorize>
 						</td>

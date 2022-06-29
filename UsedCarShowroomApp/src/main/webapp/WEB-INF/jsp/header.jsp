@@ -9,7 +9,7 @@
 	</h2>
 	<h4 class="links mt-4">
 		<b> <a href="${contextPath}/home" class="${navAction == 'home' ? 'selected' : ''}">Home</a>
-			&nbsp;&nbsp;|&nbsp;&nbsp; <a href="${contextPath}/create" class="${caption == 'ADD NEW CAR' ? 'selected' : ''}">Add New Car</a>
+			&nbsp;&nbsp;|&nbsp;&nbsp; <a href="${contextPath}/create" class="${action != null ? 'selected' : ''}">Car Details</a>
 			&nbsp;&nbsp;|&nbsp;&nbsp; <a href="${contextPath}/logout">Logout</a>
 		</b>
 	</h4>
