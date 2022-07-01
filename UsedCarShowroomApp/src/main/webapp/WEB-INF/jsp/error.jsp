@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<jsp:include page="header.jsp" />
-		<div class="padding-40" align="center">
+		<div class="container mt-5" align="center">
 			<h1>Error</h1>
 			<h2>Something went wrong..</h2>
 		</div>	

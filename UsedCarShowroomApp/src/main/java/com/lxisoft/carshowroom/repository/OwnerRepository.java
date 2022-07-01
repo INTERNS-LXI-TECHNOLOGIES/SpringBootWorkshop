@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.lxisoft.carshowroom.entity.Owner;
 
 @Repository
-public interface OwnerRepository extends JpaRepository<Owner, Long> {
+public interface OwnerRepository extends JpaRepository<Owner, Integer> {
 }

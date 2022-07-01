@@ -185,23 +185,64 @@
   	  </table>
   	</form:form>
   	<table class="table table-striped table-hover uppercase mt-5 border">
-      <caption>Owner Details</caption>
+      <caption>
+       Owner Details
+       <a href="${contextPath}/add-owner/${car.carId}">
+  	  	 <i title="Add New Owner" class="fa fa-plus-square text-primary float-right ml-3"></i>
+  	   </a>
+      </caption>
 	  <tr class="bg-th">
   	    <th>NAME</th>
   	    <th>ADDRESS</th>
   	    <th>PHONE NUMBER</th>
   	    <th>ACTIONS</th>
 	  </tr>
-	  <c:forEach var="owner" items="${car.owners}">
+	  <c:forEach var="ow" items="${car.owners}">
   	    <tr>
-  	  	  <td>${owner.name}</td>
-  	  	  <td>${owner.address}</td>
-  	  	  <td>${owner.phoneNumber}</td>
+  	      <form:form action="${contextPath}/car/${car.carId}/save-owner" method="post" modelAttribute="owner">
   	  	  <td>
+  	  	    <c:choose>
+			  <c:when test="${owner.id == ow.id}">
+  	            <form:select path="id" class="form-control">
+				  <form:options items="${owners}" itemValue="id" itemLabel="name" />
+				</form:select>
+			  </c:when>
+			  <c:otherwise>
+  	  		    ${ow.name}
+			  </c:otherwise>
+			</c:choose>
+  	  	  </td>
+  	  	  <td>
+			<c:if test="${owner.id != ow.id}">
+  	  		  ${ow.address}
+			</c:if>
+  	  	  </td>
+  	  	  <td>
+			<c:if test="${owner.id != ow.id}">
+  	  		  ${ow.phoneNumber}
+			</c:if>
+  	  	  </td>
+  	  	  <td>
+  	  	    <a href="${contextPath}/owner-details/${ow.id}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
   	  		<sec:authorize access="hasRole('ADMIN')">
-			  <a href="${contextPath}/car/${car.carId}/delete-owner/${owner.phoneNumber}" onclick="return confirm('Are you sure you want to delete?')"><i title="Remove Owner" class="fa fa-trash text-danger ml-2"></i></a>
+  	  		<c:choose>
+		      <c:when test="${owner.id == ow.id}">
+			    <button type="submit" class="p-0 border-0 bg-transparent">
+				  <i title="Save Owner" class="fa fa-floppy-o text-info ml-2"></i>
+				</button>
+				<a href="${contextPath}/car-details/${car.carId}">
+  	  		      <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
+  	  		    </a>
+			  </c:when>
+			  <c:otherwise>
+			    <a href="${contextPath}/car/${car.carId}/remove-owner/${ow.id}" onclick="return confirm('Are you sure you want to delete?')">
+				  <i title="Remove owner" class="fa fa-trash text-danger ml-2"></i>
+				</a>
+			  </c:otherwise>
+			</c:choose>
   	  		</sec:authorize>
   	  	  </td>
+  	  	  </form:form>
   	    </tr>
   	  </c:forEach>
   	</table>

@@ -29,23 +29,24 @@ insert into user values ('admin', '$2a$10$giqt6IFjTXvUXghLzKRoxOVW08hi0Q4ArbCH6x
 insert into user values ('user', '$2a$10$PWtOUr63Wy8ExoTN.2Nc/Oaa51wH.lmqh16ntcXL5hfeCn1NxWHFC', 'ROLE_USER');
 
 create table service_history (
+   id int not null primary key auto_increment,
    service_date datetime not null,
    total_kilometers int not null,
    showroom varchar(100) not null,
    car_id int not null,
-   primary key (service_date),
    foreign key (car_id) references car (car_id)
  );
  
- create table owner (
+create table owner (
+   id int not null primary key auto_increment,
    name varchar(100) not null,
    address varchar(100) not null,
-   phone_number bigint not null primary key
- ); 
- 
+   phone_number bigint not null
+);
+
 create table car_owner (
   car_id int not null,
-  phone_number bigint not null,
+  owner_id int not null,
   foreign key (car_id) references car (car_id),
-  foreign key (phone_number) references owner (phone_number)
+  foreign key (owner_id) references owner (id)
 );
