@@ -1,7 +1,7 @@
 package com.lxisoft.springboot.service;
 
 import com.lxisoft.springboot.entity.AppUser;
-import com.lxisoft.springboot.repository.AppRepository;
+import com.lxisoft.springboot.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class AppUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    AppRepository appRepo;
+    AppUserRepository appRepo;
 
     @Override
     @Transactional
