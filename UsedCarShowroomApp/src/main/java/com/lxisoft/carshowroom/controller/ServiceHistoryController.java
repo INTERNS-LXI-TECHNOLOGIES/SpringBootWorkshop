@@ -28,7 +28,7 @@ public class ServiceHistoryController {
 
 	@Autowired
 	private CarService carService;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder bind) {
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -41,7 +41,7 @@ public class ServiceHistoryController {
 		serviceHistoryService.deleteServiceHistory(id);
 		return "redirect:/car-details/" + carId;
 	}
-	
+
 	@PostMapping("/car/{carId}/save-service-history")
 	public String saveServiceHistory(@PathVariable int carId, @ModelAttribute ServiceHistory serviceHistory) throws ParseException {
 		Car car = carService.getCar(carId);

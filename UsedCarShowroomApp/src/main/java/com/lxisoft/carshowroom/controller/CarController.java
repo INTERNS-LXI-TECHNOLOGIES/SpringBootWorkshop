@@ -122,7 +122,7 @@ public class CarController {
 		model.addAttribute("navAction", "car");
 		return "carDetails";
     }
-	
+
 	@PostMapping("/car/{carId}/save-owner")
 	public String saveOwner(@PathVariable int carId, @ModelAttribute Owner owner) throws ParseException {
 		Car car = carService.getCar(carId);
