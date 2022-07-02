@@ -107,10 +107,12 @@
   	</form:form>
   	<table class="table table-striped table-hover uppercase mt-5 border">
       <caption>
-       Car Details
-       <a href="${contextPath}/add-car/${owner.id}">
-  	  	 <i title="Add New Car" class="fa fa-plus-square text-primary float-right ml-3"></i>
-  	   </a>
+        Car Details
+        <c:if test="${action != 'add'}">
+          <a href="${contextPath}/add-car/${owner.id}">
+  	  	    <i title="Add New Car" class="fa fa-plus-square text-primary float-right ml-3"></i>
+  	      </a>
+  	    </c:if>
       </caption>
 	  <tr class="bg-th">
   	    <th>CAR ID</th>
@@ -174,22 +176,20 @@
 			</c:if>
   	  	  </td>
   	  	  <td>
+  	  	    <c:if test="${car.carId == c.carId}">
+			  <button type="submit" class="p-0 border-0 bg-transparent">
+			    <i title="Save Car" class="fa fa-floppy-o text-info ml-2"></i>
+			  </button>
+			  <a href="${contextPath}/owner-details/${owner.id}">
+  	  		    <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
+  	  	      </a>
+		    </c:if>
   	  		<sec:authorize access="hasRole('ADMIN')">
-  	  		<c:choose>
-		      <c:when test="${car.carId == c.carId}">
-			    <button type="submit" class="p-0 border-0 bg-transparent">
-				  <i title="Save Car" class="fa fa-floppy-o text-info ml-2"></i>
-				</button>
-				<a href="${contextPath}/owner-details/${owner.id}">
-  	  		      <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
-  	  		    </a>
-			  </c:when>
-			  <c:otherwise>
+			  <c:if test="${car.carId != c.carId}">
 			    <a href="${contextPath}/owner/${owner.id}/remove-car/${c.carId}" onclick="return confirm('Are you sure you want to delete?')">
 				  <i title="Remove car" class="fa fa-trash text-danger ml-2"></i>
 				</a>
-			  </c:otherwise>
-			</c:choose>
+			  </c:if>
   	  		</sec:authorize>
   	  	  </td>
   	  	  </form:form>

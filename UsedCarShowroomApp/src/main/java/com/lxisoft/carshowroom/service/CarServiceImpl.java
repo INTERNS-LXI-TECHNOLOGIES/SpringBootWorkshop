@@ -1,5 +1,7 @@
 package com.lxisoft.carshowroom.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.lxisoft.carshowroom.entity.Car;
+import com.lxisoft.carshowroom.entity.Owner;
 import com.lxisoft.carshowroom.repository.CarRepository;
+import com.lxisoft.carshowroom.repository.OwnerRepository;
 
 @Service
 @Transactional
@@ -18,6 +22,9 @@ public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository carRepository;
+
+	@Autowired
+	private OwnerRepository ownerRepository;
 
 	@Override
 	public void listCars(Integer pageNo, String sortBy, Model model) {
@@ -50,6 +57,11 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public void deleteCar(int carId) {
+		Car car = getCar(carId);
+		for (Owner owner : car.getOwners()) {
+			owner.getCars().remove(car);
+			ownerRepository.save(owner);
+		}
 		carRepository.deleteById(carId);
 	}
 
@@ -64,6 +76,11 @@ public class CarServiceImpl implements CarService {
 		model.addAttribute("carList", page.getContent());
 		model.addAttribute("sortBy", sortBy);
 		model.addAttribute("navAction", navAction);
+	}
+
+	@Override
+	public List<Car> getCars() {
+		return carRepository.findAll();
 	}
 
 }

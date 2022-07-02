@@ -6,15 +6,22 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Owner {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+
 	@Column(name = "phone_number")
 	private long phoneNumber;
 
@@ -25,9 +32,10 @@ public class Owner {
 	private String address;
 
 	@ManyToMany(cascade = { CascadeType.ALL })
+	@OrderBy(value = "car_id")
 	@JoinTable(
         name = "car_owner", 
-        joinColumns = { @JoinColumn(name = "phone_number") }, 
+        joinColumns = { @JoinColumn(name = "owner_id") }, 
         inverseJoinColumns = { @JoinColumn(name = "car_id") }
     )
 	Set<Car> cars = new HashSet<>();
@@ -62,6 +70,14 @@ public class Owner {
 
 	public void setCars(Set<Car> cars) {
 		this.cars = cars;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

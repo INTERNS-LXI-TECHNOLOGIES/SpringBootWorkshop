@@ -1,5 +1,8 @@
 package com.lxisoft.carshowroom.controller;
 
+import java.text.ParseException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -11,13 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lxisoft.carshowroom.entity.Car;
+import com.lxisoft.carshowroom.entity.Owner;
 import com.lxisoft.carshowroom.service.CarService;
+import com.lxisoft.carshowroom.service.OwnerService;
 
 @Controller
 public class CarController {
 
 	@Autowired
 	private CarService carService;
+
+	@Autowired
+	private OwnerService ownerService;
 
 	@GetMapping("/")
 	public String welcome() {
@@ -57,6 +65,7 @@ public class CarController {
 	public String createCar(Model model) {
 		model.addAttribute("car", new Car());
 		model.addAttribute("action", "add");
+		model.addAttribute("navAction", "car");
 		return "carDetails";
 	}
 
@@ -64,14 +73,6 @@ public class CarController {
 	public String deleteCar(@PathVariable int carId) {
 		carService.deleteCar(carId);
 		return "redirect:/home";
-	}
-
-	@GetMapping("/edit/{carId}")
-	public String editCar(@PathVariable int carId, Model model) {
-		Car car = carService.getCar(carId);
-		model.addAttribute("car", car);
-		model.addAttribute("caption", "EDIT CAR");
-		return "createOrUpdateCar";
 	}
 
 	@GetMapping("/login")
@@ -85,6 +86,7 @@ public class CarController {
 		Car car = carService.getCar(carId);
 		model.addAttribute("car", car);
 		model.addAttribute("action", "edit");
+		model.addAttribute("navAction", "car");
 		return "carDetails";
 	}
 
@@ -93,6 +95,40 @@ public class CarController {
 		Car car = carService.getCar(carId);
 		model.addAttribute("car", car);
 		model.addAttribute("action", "view");
+		model.addAttribute("navAction", "car");
 		return "carDetails";
+	}
+
+	@GetMapping("/car/{carId}/remove-owner/{id}")
+	public String deleteOwner(@PathVariable int carId, @PathVariable Integer id) {
+		Car car = carService.getCar(carId);
+		Owner owner = ownerService.getOwner(id);
+		owner.getCars().remove(car);
+		ownerService.saveOwner(owner);
+		return "redirect:/car-details/" + carId;
+	}
+
+	@GetMapping("/add-owner/{carId}")
+	public String createOwner(@PathVariable int carId, Model model) {
+		Car car = carService.getCar(carId);
+		List<Owner> owners = ownerService.getOwners();
+		owners.removeAll(car.getOwners());
+		Owner owner = new Owner();
+		car.getOwners().add(owner);
+		model.addAttribute("car", car);
+		model.addAttribute("owner", owner);
+		model.addAttribute("owners", owners);
+		model.addAttribute("action", "view");
+		model.addAttribute("navAction", "car");
+		return "carDetails";
+    }
+	
+	@PostMapping("/car/{carId}/save-owner")
+	public String saveOwner(@PathVariable int carId, @ModelAttribute Owner owner) throws ParseException {
+		Car car = carService.getCar(carId);
+		owner = ownerService.getOwner(owner.getId());
+		owner.getCars().add(car);
+		ownerService.saveOwner(owner);
+		return "redirect:/car-details/" + carId;
 	}
 }

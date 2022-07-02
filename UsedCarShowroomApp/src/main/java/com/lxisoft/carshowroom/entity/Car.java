@@ -46,6 +46,7 @@ public class Car {
 	private Set<ServiceHistory> serviceHistories;
 
 	@ManyToMany(mappedBy = "cars")
+	@OrderBy(value = "name")
 	private Set<Owner> owners = new HashSet<>();
 
 	public Integer getCarId() {

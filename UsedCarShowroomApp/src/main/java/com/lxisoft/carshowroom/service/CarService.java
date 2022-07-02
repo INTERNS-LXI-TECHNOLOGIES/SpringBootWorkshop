@@ -1,5 +1,7 @@
 package com.lxisoft.carshowroom.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
 import com.lxisoft.carshowroom.entity.Car;
@@ -17,5 +19,7 @@ public interface CarService {
 	void deleteCar(int carId);
 
 	Car getCar(int carId);
+
+	List<Car> getCars();
 
 }

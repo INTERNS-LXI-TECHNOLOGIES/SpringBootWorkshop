@@ -187,9 +187,11 @@
   	<table class="table table-striped table-hover uppercase mt-5 border">
       <caption>
        Owner Details
-       <a href="${contextPath}/add-owner/${car.carId}">
-  	  	 <i title="Add New Owner" class="fa fa-plus-square text-primary float-right ml-3"></i>
-  	   </a>
+       <c:if test="${action != 'add'}">
+       	 <a href="${contextPath}/add-owner/${car.carId}">
+  	  	   <i title="Add New Owner" class="fa fa-plus-square text-primary float-right ml-3"></i>
+  	     </a>
+       </c:if>
       </caption>
 	  <tr class="bg-th">
   	    <th>NAME</th>
@@ -203,7 +205,7 @@
   	  	  <td>
   	  	    <c:choose>
 			  <c:when test="${owner.id == ow.id}">
-  	            <form:select path="id" class="form-control">
+  	            <form:select path="id" class="form-control uppercase">
 				  <form:options items="${owners}" itemValue="id" itemLabel="name" />
 				</form:select>
 			  </c:when>
@@ -223,23 +225,25 @@
 			</c:if>
   	  	  </td>
   	  	  <td>
-  	  	    <a href="${contextPath}/owner-details/${ow.id}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
+  	  	   <c:if test="${owner.id != ow.id}">
+  	  	     <a href="${contextPath}/owner-details/${ow.id}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
+  	  	   </c:if>
   	  		<sec:authorize access="hasRole('ADMIN')">
-  	  		<c:choose>
-		      <c:when test="${owner.id == ow.id}">
-			    <button type="submit" class="p-0 border-0 bg-transparent">
-				  <i title="Save Owner" class="fa fa-floppy-o text-info ml-2"></i>
-				</button>
-				<a href="${contextPath}/car-details/${car.carId}">
-  	  		      <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
-  	  		    </a>
-			  </c:when>
-			  <c:otherwise>
-			    <a href="${contextPath}/car/${car.carId}/remove-owner/${ow.id}" onclick="return confirm('Are you sure you want to delete?')">
-				  <i title="Remove owner" class="fa fa-trash text-danger ml-2"></i>
-				</a>
-			  </c:otherwise>
-			</c:choose>
+  	  		  <c:choose>
+		        <c:when test="${owner.id == ow.id}">
+			      <button type="submit" class="p-0 border-0 bg-transparent">
+			  	    <i title="Save Owner" class="fa fa-floppy-o text-info ml-2"></i>
+			  	  </button>
+			  	  <a href="${contextPath}/car-details/${car.carId}">
+  	  		        <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
+  	  		      </a>
+			    </c:when>
+			    <c:otherwise>
+			      <a href="${contextPath}/car/${car.carId}/remove-owner/${ow.id}" onclick="return confirm('Are you sure you want to delete?')">
+			  	    <i title="Remove owner" class="fa fa-trash text-danger ml-2"></i>
+			  	  </a>
+			    </c:otherwise>
+			  </c:choose>
   	  		</sec:authorize>
   	  	  </td>
   	  	  </form:form>
@@ -249,9 +253,11 @@
   	<table class="table table-striped table-hover uppercase mt-5 mb-5 border">
       <caption>
         Service History
-      	<a href="${contextPath}/create-service-history/${car.carId}">
-  	  	  <i title="Add New Service History" class="fa fa-plus-square text-primary float-right ml-3"></i>
-  	  	</a>
+        <c:if test="${action != 'add'}">
+      	  <a href="${contextPath}/create-service-history/${car.carId}">
+  	  	    <i title="Add New Service History" class="fa fa-plus-square text-primary float-right ml-3"></i>
+  	  	  </a>
+  	  	</c:if>
       </caption>
   	  <tr class="bg-th">
   	    <th>SERVICE DATE</th>
@@ -295,25 +301,23 @@
 			</td>
   	    	<td class="align-middle">
   	    	  <sec:authorize access="hasRole('ADMIN')">
-  	    	  	<c:choose>
-				  <c:when test="${serviceHistory.id == sh.id}">
-					<button type="submit" class="p-0 border-0 bg-transparent">
-					  <i title="Save Service History" class="fa fa-floppy-o text-info ml-2"></i>
-					</button>
-					<a href="${contextPath}/car-details/${car.carId}">
-  	  		          <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
-  	  		        </a>
-				  </c:when>
-				  <c:otherwise>
-  	    	  		<a href="${contextPath}/car/${car.carId}/edit-service-history/${sh.id}">
-					  <i title="Edit Service History" class="fa fa-edit text-info ml-2"></i>
-					</a>
-					<a href="${contextPath}/car/${car.carId}/delete-service-history/${sh.id}" onclick="return confirm('Are you sure you want to delete?')">
-				      <i title="Delete Service History" class="fa fa-trash text-danger ml-2"></i>
-				    </a>
-				  </c:otherwise>
-				</c:choose>
+  	    	  	<c:if test="${serviceHistory.id != sh.id}">
+  	    	  	  <a href="${contextPath}/car/${car.carId}/edit-service-history/${sh.id}">
+					<i title="Edit Service History" class="fa fa-edit text-info ml-2"></i>
+				  </a>
+				  <a href="${contextPath}/car/${car.carId}/delete-service-history/${sh.id}" onclick="return confirm('Are you sure you want to delete?')">
+				    <i title="Delete Service History" class="fa fa-trash text-danger ml-2"></i>
+				  </a>
+  	    	  	</c:if>
   	    	  </sec:authorize>
+  	    	  <c:if test="${serviceHistory.id == sh.id}">
+  	    	  	<button type="submit" class="p-0 border-0 bg-transparent">
+				  <i title="Save Service History" class="fa fa-floppy-o text-info ml-2"></i>
+				</button>
+				<a href="${contextPath}/car-details/${car.carId}">
+  	  		      <i title="Cancel Changes" class="fa fa-times-circle-o text-secondary ml-2"></i>
+  	  		    </a>
+  	    	  </c:if>
   	    	</td>
   	      </form:form>
 		</tr>
