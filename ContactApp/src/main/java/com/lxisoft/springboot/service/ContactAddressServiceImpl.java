@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class ContactAddressServiceImpl implements ContactAddressService{
@@ -21,11 +23,22 @@ public class ContactAddressServiceImpl implements ContactAddressService{
     @Override
     public ContactAddress getContactAddress(Integer address_id) {
 
-        return null;
+/*
+        return addressRepo.findById(address_id).get();
+*/
+        Optional<ContactAddress> optional = addressRepo.findById(address_id);
+        ContactAddress address = null;
+        if (optional.isPresent()) {
+            address = optional.get();
+        } else {
+            throw new RuntimeException(" ContactAddress not found for id :: " + address_id);
+        }
+        return address;
+
     }
 
     @Override
-    public void deleteContactAddress(Integer address_id) {
-
+    public void deleteContactAddress(Integer addressId) {
+    addressRepo.deleteById(addressId);
     }
 }

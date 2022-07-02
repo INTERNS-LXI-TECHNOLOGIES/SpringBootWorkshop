@@ -14,7 +14,8 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
     @Query("SELECT contact FROM Contact contact WHERE CONCAT(contact.name, ' ', contact.email, ' ',  contact.phone) LIKE %?1%")
     Page< Contact > findByKeyword(String keyword,Pageable pageable);
 
-    Page< Contact > findAll(Pageable pageable);
+
+
 
 
 }

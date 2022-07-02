@@ -14,22 +14,25 @@ public class ContactAddress {
 @Column(name="pincode")
     private String pinCode;
 
-    public String getAddressId() {
-        return addressId;
-    }
 
-    public void setAddressId(String addressId) {
-        this.addressId = addressId;
-    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="address_id")
-    private String addressId;
+    private Integer addressId;
+
+    public ContactAddress() {
+    }
+
     @Column(name="contact_id")
-    private String contact_id;
+    private Integer contact_id;
     @ManyToOne
     @JoinColumn(name = "contact_id" , referencedColumnName = "contact_id", insertable = false, updatable = false)
     private Contact contact;
+
+    public ContactAddress(Integer contact_id) {
+        this.contact_id = contact_id;
+    }
 
     public String getHouseNameAndPlace() {
         return houseNameAndPlace;
@@ -63,11 +66,20 @@ public class ContactAddress {
         this.pinCode = pinCode;
     }
 
-    public String getContact_id() {
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public Integer getContact_id() {
         return contact_id;
     }
 
-    public void setContact_id(String contact_id) {
+    public void setContact_id(Integer contact_id) {
         this.contact_id = contact_id;
     }
 

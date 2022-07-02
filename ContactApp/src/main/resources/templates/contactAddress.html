@@ -2,17 +2,63 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>ContactApplication</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .bn30 {
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: white;
+}
+
+.bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+}
+
+.bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: #0e0e10;
+}
+
+.bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
+</style>
 </head>
 <body>
-<!--<a th:href="@{/}" >
-    <img src="../static/images/back_button.jpg" width="1000" th:src="@{images/back_button.jpg}"/>
-</a>-->
+
 <div class="container mt-5" align="center">
     <h2>CONTACT ADDRESS</h2>
+    <a  th:href="@{/}"><button class="bn30"><i class="fa fa-home"></i></button></a>
+    <div align="right">
+        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contact_id})}"><button class="bn30">ADD ADDRESS</button></a>
+    </div>
     <table class="table">
         <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
         <tbody>
@@ -25,6 +71,7 @@
 
         </tr>-->
         <tr>
+            <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
             <td><b>CONTACT EMAIL: </b><p th:text="${contact.email}"></p></td>
             <td><b>PHONE NUMBER: </b><p th:text="${contact.phone}"></p></td>
 
@@ -37,6 +84,8 @@
             <th>POST OFFICE</th>
             <th>DISTRICT</th>
             <th>PIN CODE</th>
+            <th>ACTIONS</th>
+
         </tr>
 
             <tr th:each="contact : ${contact.contactAddresses}">
@@ -45,13 +94,18 @@
                 <td th:text="${contact.post}"></td>
                 <td th:text="${contact.district}"></td>
                 <td th:text="${contact.pinCode}"></td>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <td> <a title=" UPDATE " th:href="${'/showUpdateForm/' + {contact.addressId} + '/contact/' + {contact.contact_id}}"  ><i class="fa fa-edit text-info"></i></a>
+                        <a title=" TRASH " th:href="${'/deleteAddress/' + {contact.addressId} + '/contact/' + {contact.contact_id}}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                    </td>
+                </div>
             </tr>
 
     </table>
 </div>
-<div align="center">
+<!--<div align="center">
 <a  th:href="@{/}" style="color:red"> Back to Contact List</a >
 
-</div>
+</div>-->
 </body>
 </html>
