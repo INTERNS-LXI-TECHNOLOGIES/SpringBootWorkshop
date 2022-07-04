@@ -71,9 +71,10 @@ public class ContactServiceImpl implements ContactService{
 
     }
 
-
-
-
+    @Override
+    public List<Contact> getContacts() {
+        return contactRepo.findAll();
+    }
 
 
 }

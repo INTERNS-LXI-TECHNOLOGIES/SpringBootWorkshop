@@ -61,12 +61,13 @@ a:hover {
 
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
-        <tr>
+        <tr align="center">
             <th>No</th>
             <th>Name</th>
             <th>Email</th>
             <th>Telephone</th>
             <th>Address</th>
+            <th>Projects</th>
             <div sec:authorize="hasRole('ADMIN')">
             <th>Action</th>
             </div>
@@ -80,6 +81,9 @@ a:hover {
             <td th:text="${contact.phone}"></td>
             <td class="text-center">
                 <a title="View_Address " th:href="@{contactAddress/{contact_id}(contact_id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
+            </td>
+            <td class="text-center">
+                <a title="View Projects " th:href="@{project/{id}(id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
             </td>
             <div sec:authorize="hasRole('ADMIN')">
             <td> <a title=" UPDATE " th:href="@{/showFormUpdate/{contact_id}(contact_id=${contact.contact_id})}" ><i class="fa fa-edit text-info"></i></a>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Contact Management System</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #00bfff;
+  color: black;
+}
+
+.next {
+  background-color: #00bfff;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container my-2">
+    <br>
+    <h1 align="center">Project Details</h1>
+<br>
+<br>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr align="center">
+            <th>Project Id</th>
+            <th>Project Name</th>
+            <th>Project Status</th>
+            <th>Project TimeScale</th>
+
+            <div sec:authorize="hasRole('ADMIN')">
+                <th>Action</th>
+            </div>
+        </tr>
+        </thead>
+        <tr th:if="${#lists.isEmpty(project)}">
+            <td colspan="5">No Records found. Add some...!</td>
+        </tr>
+        <tbody>
+        <tr th:each="pro : ${project}">
+            <td th:text="${proStat.index + 1}"></td>
+            <td th:text="${pro.projectName}"></td>
+            <td th:text="${pro.projectStatus}"></td>
+            <td th:text="${pro.timeScale}"></td>
+<!--            <td class="text-center">
+                <a title="View_Address " th:href="@{contactAddress/{contact_id}(contact_id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
+            </td>
+            <td class="text-center">
+                <a title="View Projects " th:href="@{project/{id}(id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
+            </td>-->
+      <!--      <div sec:authorize="hasRole('ADMIN')">
+                <td> <a title=" UPDATE " th:href="@{/showFormUpdate/{contact_id}(contact_id=${contact.contact_id})}" ><i class="fa fa-edit text-info"></i></a>
+                    <a title=" TRASH " th:href="@{/deleteContact/{contact_id}(contact_id=${contact.contact_id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                </td>
+            </div>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

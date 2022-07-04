@@ -2,6 +2,7 @@ package com.lxisoft.springboot.entity;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,20 @@ public class Contact {
 
     @OneToMany(mappedBy = "contact")
     private Set<ContactAddress> contactAddresses;
+
+
+    @ManyToMany(mappedBy = "contacts")
+    @OrderBy(value = "name")
+    private Set<Project> projects = new HashSet<>();
+
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 
     public Set<ContactAddress> getContactAddresses() {
         return contactAddresses;

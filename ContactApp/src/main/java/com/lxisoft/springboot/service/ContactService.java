@@ -19,6 +19,8 @@ public interface ContactService {
 
     Contact getContact(int contact_id);
 
+    List<Contact> getContacts();
+
 /*    Page<Contact> findPaginated(int pageNo, int pageSize);*/
 
 

@@ -84,7 +84,8 @@
             <th>POST OFFICE</th>
             <th>DISTRICT</th>
             <th>PIN CODE</th>
-            <th>ACTIONS</th>
+            <div sec:authorize="hasRole('ADMIN')">
+                <th>ACTIONS</th></div>
 
         </tr>
 

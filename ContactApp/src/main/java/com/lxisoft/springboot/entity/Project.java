@@ -1,6 +1,8 @@
 package com.lxisoft.springboot.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Project {
@@ -14,10 +16,27 @@ public class Project {
     private String projectName;
 
     @Column(name = "status")
-    private boolean projectStatus;
+    private Boolean projectStatus;
 
     @Column(name = "timescale")
     private String timeScale;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @OrderBy(value = "contact_id")
+    @JoinTable(
+            name = "contactProjects",
+            joinColumns = { @JoinColumn(name = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "contact_id") }
+    )
+    Set<Contact> contacts = new HashSet<>();
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public Integer getId() {
         return id;
