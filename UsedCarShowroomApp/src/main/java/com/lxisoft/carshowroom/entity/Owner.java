@@ -23,7 +23,7 @@ public class Owner {
 	private Integer id;
 
 	@Column(name = "phone_number")
-	private long phoneNumber;
+	private Long phoneNumber;
 
 	@Column(name = "name")
 	private String name;
@@ -56,11 +56,11 @@ public class Owner {
 		this.address = address;
 	}
 
-	public long getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

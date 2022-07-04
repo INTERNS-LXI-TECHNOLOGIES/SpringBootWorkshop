@@ -23,6 +23,12 @@
         	format: 'dd/mm/yyyy'
         });
     });
+
+    function getOwnerDetails(ownerId) {
+	  var addOwnerLink = document.getElementById('addOwner');
+	  addOwnerLink.href = addOwnerLink.href + '?ownerId=' + ownerId;
+	  addOwnerLink.click();
+    }
   </script>
 </head>
 <body>
@@ -188,7 +194,7 @@
       <caption>
        Owner Details
        <c:if test="${action != 'add'}">
-       	 <a href="${contextPath}/add-owner/${car.carId}">
+       	 <a href="${contextPath}/add-owner/${car.carId}" id="addOwner">
   	  	   <i title="Add New Owner" class="fa fa-plus-square text-primary float-right ml-3"></i>
   	     </a>
        </c:if>
@@ -205,7 +211,8 @@
   	  	  <td>
   	  	    <c:choose>
 			  <c:when test="${owner.id == ow.id}">
-  	            <form:select path="id" class="form-control uppercase">
+  	            <form:select path="id" class="form-control uppercase" required='true' onchange="getOwnerDetails(this.value)">
+				  <form:option value="">--Select An Owner--</form:option>
 				  <form:options items="${owners}" itemValue="id" itemLabel="name" />
 				</form:select>
 			  </c:when>
@@ -214,17 +221,27 @@
 			  </c:otherwise>
 			</c:choose>
   	  	  </td>
-  	  	  <td>
-			<c:if test="${owner.id != ow.id}">
-  	  		  ${ow.address}
-			</c:if>
+  	  	  <td class="align-middle">
+  	  	  	<c:choose>
+			  <c:when test="${owner.id == ow.id}">
+  	            ${owner.address}
+			  </c:when>
+			  <c:otherwise>
+  	  		    ${ow.address}
+			  </c:otherwise>
+			</c:choose>
   	  	  </td>
-  	  	  <td>
-			<c:if test="${owner.id != ow.id}">
-  	  		  ${ow.phoneNumber}
-			</c:if>
+  	  	  <td class="align-middle">
+  	  	  	<c:choose>
+			  <c:when test="${owner.id == ow.id}">
+  	            ${owner.phoneNumber}
+			  </c:when>
+			  <c:otherwise>
+  	  		    ${ow.phoneNumber}
+			  </c:otherwise>
+			</c:choose>
   	  	  </td>
-  	  	  <td>
+  	  	  <td class="align-middle">
   	  	   <c:if test="${owner.id != ow.id}">
   	  	     <a href="${contextPath}/owner-details/${ow.id}"><i title="View More Details..." class="fa fa-eye text-secondary"></i></a>
   	  	   </c:if>

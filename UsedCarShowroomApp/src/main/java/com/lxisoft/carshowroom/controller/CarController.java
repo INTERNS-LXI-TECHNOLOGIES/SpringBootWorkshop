@@ -109,11 +109,11 @@ public class CarController {
 	}
 
 	@GetMapping("/add-owner/{carId}")
-	public String createOwner(@PathVariable int carId, Model model) {
+	public String createOwner(@PathVariable int carId, Model model, @RequestParam(defaultValue = "") Integer ownerId) {
 		Car car = carService.getCar(carId);
 		List<Owner> owners = ownerService.getOwners();
 		owners.removeAll(car.getOwners());
-		Owner owner = new Owner();
+		Owner owner = null == ownerId ? new Owner() : ownerService.getOwner(ownerId);
 		car.getOwners().add(owner);
 		model.addAttribute("car", car);
 		model.addAttribute("owner", owner);
