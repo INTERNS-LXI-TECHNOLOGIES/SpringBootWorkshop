@@ -21,7 +21,7 @@ public class Contact {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "contact")
+    @OneToMany(mappedBy = "contact",cascade = { CascadeType.ALL } )
     private Set<ContactAddress> contactAddresses;
 
 

@@ -85,7 +85,9 @@ a:hover {
     <br>
     <h1 align="center">Project Details</h1>
 <br>
-    <a th:href="@{/createProject}"><button class="bn30">ADD ADDRESS</button></a>
+<div align="right">
+    <a th:href="@{/createProject}"><button class="bn30">ADD PROJECT</button></a>
+</div>
 
     <br>
 
@@ -108,11 +110,12 @@ a:hover {
             <td th:text="${pro.projectName}"></td>
             <td th:text="${pro.projectStatus}"></td>
             <td th:text="${pro.timeScale}"></td>
-      <!--      <div sec:authorize="hasRole('ADMIN')">
-                <td> <a title=" UPDATE " th:href="@{/showFormUpdate/{contact_id}(contact_id=${contact.contact_id})}" ><i class="fa fa-edit text-info"></i></a>
-                    <a title=" TRASH " th:href="@{/deleteContact/{contact_id}(contact_id=${contact.contact_id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+            <div sec:authorize="hasRole('ADMIN')">
+
+                <td> <a title=" UPDATE " th:href="@{/editProject/{id}(id=${project.id})}" ><i class="fa fa-edit text-info"></i></a>
+                    <a title=" TRASH " th:href="@{/deleteProject/{id}(id=${project.id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
                 </td>
-            </div>-->
+            </div>
         </tr>
         </tbody>
     </table>

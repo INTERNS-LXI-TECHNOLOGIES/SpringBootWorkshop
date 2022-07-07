@@ -16,12 +16,12 @@ public class Project {
     private String projectName;
 
     @Column(name = "status")
-    private Boolean projectStatus;
+    private Boolean projectStatus = false;
 
     @Column(name = "timescale")
     private String timeScale;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
     @OrderBy(value = "contact_id")
     @JoinTable(
             name = "contactProjects",
@@ -54,7 +54,7 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public boolean isProjectStatus() {
+    public boolean getProjectStatus() {
         return projectStatus;
     }
 

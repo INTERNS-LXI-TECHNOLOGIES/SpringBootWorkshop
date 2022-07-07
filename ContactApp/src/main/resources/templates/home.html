@@ -8,6 +8,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+   .bn30 {
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: white;
+}
+
+.bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+}
+
+.bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: #0e0e10;
+}
+
+.bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
     a {
   text-decoration: none;
   display: inline-block;
@@ -43,10 +87,11 @@ a:hover {
 <body>
 
 <div class="container my-2">
-    <h1 align="center">Contact List</h1>
+    <h1 align="center"><u >CONTACT DETAILS</u></h1>
     <div align="right">
         <a  th:href="@{/logout}" class="btn btn-danger">Logout</a>
     </div>
+
     <div align="center">
         <form th:action="@{/search}">
             SEARCH : <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
@@ -56,8 +101,10 @@ a:hover {
             <input type="button" value="Clear" class="btn btn-danger" onclick="clearSearch()" />
         </form>
         <br>
+        <div align="center">
+            <a th:href="@{/showForm}" ><button class="bn30"> ADD CONTACT</button> </a>
+        </div>
     </div>
-    <a th:href="@{/showForm}" class="btn btn-primary btn-sm mb-3"> Add Contact </a>
 
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
