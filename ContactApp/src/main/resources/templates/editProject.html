@@ -76,13 +76,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
 <div class="wrapper">
-  <form action="#" th:object="${project}" th:action="@{/editProject/{id}(id=${project.id})}" method="POST">        <div id="wizard">
+  <form action="#" th:object="${project}" th:action="@{/saveProject}" method="POST">        <div id="wizard">
 
     <h3 align="center"> ADD PROJECT DETAILS</h3><br>
     <section>
 
       <label class="form">  PROJECT ID : </label>
-      <div class="form-row"> <input type="text"  th:field="*{id}" class="form-control" placeholder="id"> </div>
+      <div class="form-row"> <input type="text"  th:field="*{project_id}" class="form-control" placeholder="id"> </div>
 
       <label class="form"> PROJECT NAME : </label>
       <div class="form-row"> <input type="text"  th:field="*{projectName}" class="form-control" placeholder="HouseName"> </div>

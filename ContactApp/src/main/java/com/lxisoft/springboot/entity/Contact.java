@@ -25,9 +25,18 @@ public class Contact {
     private Set<ContactAddress> contactAddresses;
 
 
-    @ManyToMany(mappedBy = "contacts")
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @OrderBy(value = "name")
-    private Set<Project> projects = new HashSet<>();
+    @JoinTable(
+            name = "contact_projects",
+            joinColumns = {
+                    @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
+            }
+    )
+    private Set<Project> projects = new HashSet<Project>();
 
 
     public Set<Project> getProjects() {

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class ProjectController {
 
@@ -21,9 +23,9 @@ public class ProjectController {
     @Autowired
     ProjectService projectService;
 
-    @GetMapping("/project/{id}")
-    public String viewProjects(@PathVariable Integer id, Model model) {
-        Project project = projectService.getProject(id);
+    @GetMapping("/project")
+    public String viewProjects( Model model) {
+        List<Project> project = projectService.getProjects();
         model.addAttribute("project", project);
         return "projectDetails";
     }
@@ -35,7 +37,7 @@ public class ProjectController {
     @PostMapping("/saveProject")
     public String saveProject(@ModelAttribute("Project") Project project) {
         project = projectService.saveProject(project);
-        return "redirect:/project/" + project.getId();
+        return "redirect:/project" ;
     }
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/editProject/{id}")

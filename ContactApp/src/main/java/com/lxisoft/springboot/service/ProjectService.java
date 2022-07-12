@@ -5,6 +5,7 @@ import com.lxisoft.springboot.entity.Project;
 import java.util.List;
 
 public interface ProjectService {
+
     Project saveProject(Project project);
 
     Project getProject(Integer id);

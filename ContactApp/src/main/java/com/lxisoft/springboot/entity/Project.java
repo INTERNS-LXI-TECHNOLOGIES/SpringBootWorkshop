@@ -5,12 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "project_id")
+    private Integer project_id;
 
     @Column(name = "name")
     private String projectName;
@@ -21,14 +22,8 @@ public class Project {
     @Column(name = "timescale")
     private String timeScale;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
-    @OrderBy(value = "contact_id")
-    @JoinTable(
-            name = "contactProjects",
-            joinColumns = { @JoinColumn(name = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "contact_id") }
-    )
-    Set<Contact> contacts = new HashSet<>();
+    @ManyToMany(mappedBy = "projects")
+    private Set<Contact> contacts = new HashSet<Contact>();
 
     public Set<Contact> getContacts() {
         return contacts;
@@ -38,12 +33,16 @@ public class Project {
         this.contacts = contacts;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getProject_id() {
+        return project_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProject_id(Integer project_id) {
+        this.project_id = project_id;
+    }
+
+    public void setProjectStatus(Boolean projectStatus) {
+        this.projectStatus = projectStatus;
     }
 
     public String getProjectName() {
@@ -68,5 +67,16 @@ public class Project {
 
     public void setTimeScale(String timeScale) {
         this.timeScale = timeScale;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", projectName='" + projectName + '\'' +
+                ", projectStatus=" + projectStatus +
+                ", timeScale='" + timeScale + '\'' +
+                ", contacts=" + contacts +
+                '}';
     }
 }

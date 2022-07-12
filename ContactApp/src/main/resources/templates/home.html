@@ -130,7 +130,7 @@ a:hover {
                 <a title="View_Address " th:href="@{contactAddress/{contact_id}(contact_id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
             </td>
             <td class="text-center">
-                <a title="View Projects " th:href="@{project/{id}(id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
+                <a title="View Projects " th:href="@{/project}"><i class="fa fa-eye text-secondary"></i></a>
             </td>
             <div sec:authorize="hasRole('ADMIN')">
             <td> <a title=" UPDATE " th:href="@{/showFormUpdate/{contact_id}(contact_id=${contact.contact_id})}" ><i class="fa fa-edit text-info"></i></a>

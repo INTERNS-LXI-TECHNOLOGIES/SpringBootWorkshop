@@ -18,8 +18,8 @@ public class ProjectServiceImpl implements ProjectService{
     private ProjectRepository projectRepo;
     @Override
     public Project saveProject(Project project) {
-        if (project.getId() != null) {
-            Project projectObj = getProject(project.getId());
+        if (project.getProject_id() != null) {
+            Project projectObj = getProject(project.getProject_id());
             project.setContacts(projectObj.getContacts());
         }
         return projectRepo.save(project);
