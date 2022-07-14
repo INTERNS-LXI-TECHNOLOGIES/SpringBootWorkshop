@@ -127,7 +127,7 @@ a:hover {
             <td th:text="${contact.email}"></td>
             <td th:text="${contact.phone}"></td>
             <td class="text-center">
-                <a title="View_Address " th:href="@{contactAddress/{contact_id}(contact_id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
+                <a title="View_Address " th:href="@{contact-address/contact-project/{contact_id}(contact_id=${contact.contact_id})}"><i class="fa fa-eye text-secondary"></i></a>
             </td>
             <td class="text-center">
                 <a title="View Projects " th:href="@{/project}"><i class="fa fa-eye text-secondary"></i></a>

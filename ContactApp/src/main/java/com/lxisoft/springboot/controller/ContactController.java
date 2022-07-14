@@ -1,7 +1,9 @@
 package com.lxisoft.springboot.controller;
 
 import com.lxisoft.springboot.entity.Contact;
+import com.lxisoft.springboot.entity.Project;
 import com.lxisoft.springboot.service.ContactService;
+import com.lxisoft.springboot.service.ProjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import java.util.List;
 public class ContactController {
     @Autowired
     ContactService contactService;
+
+    @Autowired
+    ProjectService projectService;
 
     @GetMapping("/")
     public String welcome(){
@@ -68,12 +73,14 @@ public class ContactController {
         return "login";
     }
 
-    @GetMapping("/contactAddress/{contact_id}")
-    public String contactAddress(@PathVariable int contact_id, Model model) {
+    @GetMapping("/contact-address/contact-project/{contact_id}")
+    public String contactAddressAndProject(@PathVariable int contact_id, Model model) {
         Contact contact = contactService.getContact(contact_id);
+        model.addAttribute("contact", contact);
+        Project project = projectService.getProject(contact_id);
+        model.addAttribute("project", project);
         Logger logger = LoggerFactory.getLogger(ContactController.class);
         logger.error("contact Address is : ",contact.getContactAddresses());
-        model.addAttribute("contact", contact);
 
         return "contactAddress";
     }

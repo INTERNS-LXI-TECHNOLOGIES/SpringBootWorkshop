@@ -59,18 +59,19 @@
     <div align="right">
         <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contact_id})}"><button class="bn30">ADD ADDRESS</button></a>
     </div>
-    <table class="table">
-        <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
-        <tbody>
-        </tbody>
-    </table>
-    <table class="table table-bordered uppercase mt-5">
- <!--       <tr>
-            <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
-            <td><b>CONTACT NAME: </b><p th:text="${contact.name}"></p></td>
+    <!--     <table class="table">
+            <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
+            <tbody>
+            </tbody>
+        </table>-->
+        <table class="table table-bordered uppercase mt-5">
+            <!--  <tr>
+                   <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
+                   <td><b>CONTACT NAME: </b><p th:text="${contact.name}"></p></td>
 
-        </tr>-->
+               </tr>-->
         <tr>
+            <td><b>CONTACT NAME: <h3><i> <p th:text="${contact.name}"></p></i></h3></b></td>
             <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
             <td><b>CONTACT EMAIL: </b><p th:text="${contact.email}"></p></td>
             <td><b>PHONE NUMBER: </b><p th:text="${contact.phone}"></p></td>
@@ -102,6 +103,39 @@
                 </div>
             </tr>
 
+    </table>
+
+    <h3 align="center"> Contact Projects</h3>
+    <div align="right">
+        <a th:href="@{/create-project/{contactId}(contactId=${contact.contact_id})}"><button class="bn30">ADD PROJECT</button></a>
+    </div>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr align="center">
+            <th>Project Id</th>
+            <th>Project Name</th>
+            <th>Project Status</th>
+            <th>Project TimeScale</th>
+
+            <div sec:authorize="hasRole('ADMIN')">
+                <th>Action</th>
+            </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pro : ${project}">
+            <td th:text="${proStat.index + 1}"></td>
+            <td th:text="${pro.projectName}"></td>
+            <td th:text="${pro.projectStatus}"></td>
+            <td th:text="${pro.timeScale}"></td>
+            <div sec:authorize="hasRole('ADMIN')">
+
+                <td> <a title=" UPDATE " th:href="@{/editProject/{id}(id=${pro.project_id})}" ><i class="fa fa-edit text-info"></i></a>
+                    <a title=" TRASH " th:href="@{/deleteProject/{id}(id=${pro.project_id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                </td>
+            </div>
+        </tr>
+        </tbody>
     </table>
 </div>
 <!--<div align="center">
