@@ -4,6 +4,7 @@ import com.lxisoft.springboot.entity.Contact;
 import com.lxisoft.springboot.entity.Project;
 import com.lxisoft.springboot.service.ContactService;
 import com.lxisoft.springboot.service.ProjectService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,15 @@ public class ProjectController {
 
     @Autowired
     ContactService contactService;
-
     @Autowired
     ProjectService projectService;
 
-    @GetMapping("/project")
-    public String viewProjects( Model model) {
-        List<Project> project = projectService.getProjects();
-        model.addAttribute("project", project);
+    @GetMapping("/contact-project/{contactId}")
+    public String viewProjects(@NotNull Model model, @PathVariable Integer contactId) {
+        Contact contact = contactService.getContact(contactId);
+//        Project project = projectService.getProject();
+        model.addAttribute("contact", contact);
+        model.addAttribute("contactId",contactId);
         return "projectDetails";
     }
     @GetMapping("/create-project/{contactId}")
@@ -37,6 +39,7 @@ public class ProjectController {
         contact.getProjects().add(project);
         model.addAttribute("contact", contact);
         model.addAttribute("project", project);
+        model.addAttribute("contactId",contactId);
         model.addAttribute("projects", projects);
         return "addproject";
     }
@@ -44,20 +47,34 @@ public class ProjectController {
     public String saveProject(@PathVariable int contactId,@ModelAttribute("Project") Project project) {
         Contact contact = contactService.getContact(contactId);
 //        project = projectService.getProject(project.getProject_id());
-        project.getContacts().add(contact);
-        projectService.saveProject(project);
-        return "contactAddress" ;
+        contact.getProjects().add(project);
+//        project.getContacts().add(contact);
+        contactService.saveContact(contact);
+        return "redirect:/contact-project/" +contactId ;
     }
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/editProject/{id}")
     public String editProject(@PathVariable Integer id, Model model) {
         Project project = projectService.getProject(id);
         model.addAttribute("project", project);
-        return "addproject";
+        return "editProject";
+    }
+    @PostMapping("/save-project")
+    public String saveOwner(@ModelAttribute Project project) {
+        project = projectService.saveProject(project);
+        return "redirect:/home";
     }
         @GetMapping("/deleteProject/{id}")
     public String deleteProject(@PathVariable("id") int id) {
         projectService.deleteProject(id);
         return "redirect:/home";
+    }
+    @GetMapping("/remove-contact/contactId/project/{id}")
+    public String deleteContact(@PathVariable int contactId, @PathVariable Integer id) {
+        Contact contact = contactService.getContact(contactId);
+        Project project = projectService.getProject(id);
+        contact.getProjects().remove(project);
+        contactService.saveContact(contact);
+        return "redirect:/contact-project/" + contactId;
     }
 }

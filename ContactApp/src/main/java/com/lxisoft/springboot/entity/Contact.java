@@ -11,7 +11,7 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contact_id")
-    private Integer contact_id;
+    private Integer contactId;
 
     @Column(name = "name")
     private String name;
@@ -25,7 +25,7 @@ public class Contact {
     private Set<ContactAddress> contactAddresses;
 
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @OrderBy(value = "name")
     @JoinTable(
             name = "contact_projects",
@@ -55,12 +55,12 @@ public class Contact {
         this.contactAddresses = contactAddresses;
     }
 
-    public Integer getContact_id() {
-        return contact_id;
+    public Integer getContactId() {
+        return contactId;
     }
 
-    public void setContact_id(Integer contact_id) {
-        this.contact_id = contact_id;
+    public void setContactId(Integer contactId) {
+        this.contactId = contactId;
     }
 
     public String getName() {

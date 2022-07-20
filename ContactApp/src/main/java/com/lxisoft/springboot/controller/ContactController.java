@@ -77,8 +77,8 @@ public class ContactController {
     public String contactAddressAndProject(@PathVariable int contact_id, Model model) {
         Contact contact = contactService.getContact(contact_id);
         model.addAttribute("contact", contact);
-        Project project = projectService.getProject(contact_id);
-        model.addAttribute("project", project);
+  /*      Project project = projectService.getProject(contact_id);
+        model.addAttribute("project", project);*/
         Logger logger = LoggerFactory.getLogger(ContactController.class);
         logger.error("contact Address is : ",contact.getContactAddresses());
 

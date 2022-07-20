@@ -57,7 +57,7 @@
     <h2>CONTACT ADDRESS</h2>
     <a  th:href="@{/}"><button class="bn30"><i class="fa fa-home"></i></button></a>
     <div align="right">
-        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contact_id})}"><button class="bn30">ADD ADDRESS</button></a>
+        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contactId})}"><button class="bn30">ADD ADDRESS</button></a>
     </div>
     <!--     <table class="table">
             <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
@@ -72,7 +72,7 @@
                </tr>-->
         <tr>
             <td><b>CONTACT NAME: <h3><i> <p th:text="${contact.name}"></p></i></h3></b></td>
-            <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
+            <td><b>CONTACT ID: </b> <p th:text="${contact.contactId}"></td>
             <td><b>CONTACT EMAIL: </b><p th:text="${contact.email}"></p></td>
             <td><b>PHONE NUMBER: </b><p th:text="${contact.phone}"></p></td>
 
@@ -107,7 +107,7 @@
 
     <h3 align="center"> Contact Projects</h3>
     <div align="right">
-        <a th:href="@{/create-project/{contactId}(contactId=${contact.contact_id})}"><button class="bn30">ADD PROJECT</button></a>
+        <a th:href="@{/create-project/{contactId}(contactId=${contact.contactId})}"><button class="bn30">ADD PROJECT</button></a>
     </div>
     <table border="1" class="table table-striped table-responsive-md">
         <thead>

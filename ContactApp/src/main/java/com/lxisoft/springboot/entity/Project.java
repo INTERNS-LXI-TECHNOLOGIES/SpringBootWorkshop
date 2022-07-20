@@ -1,5 +1,7 @@
 package com.lxisoft.springboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class Project {
     private String timeScale;
 
     @ManyToMany(mappedBy = "projects")
+//    @JsonIgnore
     private Set<Contact> contacts = new HashSet<Contact>();
 
     public Set<Contact> getContacts() {
