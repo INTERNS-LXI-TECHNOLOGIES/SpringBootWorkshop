@@ -25,13 +25,13 @@ public class ContactAddress {
     }
 
     @Column(name="contact_id")
-    private Integer contact_id;
+    private Integer contactId;
     @ManyToOne
     @JoinColumn(name = "contact_id" , referencedColumnName = "contact_id", insertable = false, updatable = false)
     private Contact contact;
 
-    public ContactAddress(Integer contact_id) {
-        this.contact_id = contact_id;
+    public ContactAddress(Integer contactId) {
+        this.contactId = contactId;
     }
 
     public String getHouseNameAndPlace() {
@@ -75,12 +75,12 @@ public class ContactAddress {
         this.addressId = addressId;
     }
 
-    public Integer getContact_id() {
-        return contact_id;
+    public Integer getContactId() {
+        return contactId;
     }
 
-    public void setContact_id(Integer contact_id) {
-        this.contact_id = contact_id;
+    public void setContactId(Integer contactId) {
+        this.contactId = contactId;
     }
 
     public Contact getContact() {

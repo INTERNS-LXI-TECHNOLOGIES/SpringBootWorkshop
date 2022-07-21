@@ -24,7 +24,7 @@ public class Project {
     @Column(name = "timescale")
     private String timeScale;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(mappedBy = "projects",cascade = {CascadeType.ALL})
 //    @JsonIgnore
     private Set<Contact> contacts = new HashSet<Contact>();
 

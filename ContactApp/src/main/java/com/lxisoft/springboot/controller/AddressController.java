@@ -36,7 +36,7 @@ public class AddressController {
         Contact contact = contactService.getContact(contact_id);
         contactAddress.setContact(contact);
         addressService.saveContactAddress(contactAddress);
-        return "redirect:/contactAddress/" +contact_id;
+        return "redirect:/home";
     }
     @GetMapping("/deleteAddress/{addressId}/contact/{contact_id}")
     public String deleteContactAddress(@PathVariable(value = "addressId") int addressId,@PathVariable(value = "contact_id") int contact_id) {

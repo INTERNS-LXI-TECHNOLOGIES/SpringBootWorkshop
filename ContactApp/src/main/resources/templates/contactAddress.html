@@ -4,72 +4,26 @@
     <title>ContactApplication</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    .bn30 {
-  border: 5em;
-  cursor: pointer;
-  outline: none;
-  font-size: 16px;
-  -webkit-transform: translate(0);
-  transform: translate(0);
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-  padding: 0.7em 2em;
-  border-radius: 65px;
-  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
-  -webkit-transition: box-shadow 0.25s;
-  transition: box-shadow 0.25s;
-  color: white;
-}
-
-.bn30 .text {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-}
-
-.bn30:after {
-  content: "";
-  border-radius: 18px;
-  position: absolute;
-  margin: 4px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  background: #0e0e10;
-}
-
-.bn30:hover {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
-}
-
-.bn30:hover .text {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-}
-</style>
+    <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <div class="container mt-5" align="center">
     <h2>CONTACT ADDRESS</h2>
     <a  th:href="@{/}"><button class="bn30"><i class="fa fa-home"></i></button></a>
-    <div align="right">
-        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contactId})}"><button class="bn30">ADD ADDRESS</button></a>
-    </div>
+
     <!--     <table class="table">
             <thead class="table-light" align="center"><td><b><h3><i> <p th:text="${contact.name}"></p></i></h3></b></td></thead>
             <tbody>
             </tbody>
         </table>-->
-        <table class="table table-bordered uppercase mt-5">
-            <!--  <tr>
-                   <td><b>CONTACT ID: </b> <p th:text="${contact.contact_id}"></td>
-                   <td><b>CONTACT NAME: </b><p th:text="${contact.name}"></p></td>
+        <table class="table table-bordered uppercase mt-5" style="background-color: #DBF9FC">
 
-               </tr>-->
         <tr>
             <td><b>CONTACT NAME: <h3><i> <p th:text="${contact.name}"></p></i></h3></b></td>
             <td><b>CONTACT ID: </b> <p th:text="${contact.contactId}"></td>
@@ -78,6 +32,9 @@
 
         </tr>
     </table>
+    <div align="right">
+        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contactId})}"><button class="bn30"><i title="Add New Address" class="fa fa-plus-square text-primary float-right mr-3"></i></button></a>
+    </div>
     <table class="table table-striped table-hover uppercase mt-5 border">
         <tr class="bg-th">
             <th>ID </th>
@@ -97,46 +54,14 @@
                 <td th:text="${contact.district}"></td>
                 <td th:text="${contact.pinCode}"></td>
                 <div sec:authorize="hasRole('ADMIN')">
-                    <td> <a title=" UPDATE " th:href="${'/showUpdateForm/' + {contact.addressId} + '/contact/' + {contact.contact_id}}"  ><i class="fa fa-edit text-info"></i></a>
-                        <a title=" TRASH " th:href="${'/deleteAddress/' + {contact.addressId} + '/contact/' + {contact.contact_id}}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                    <td> <a title=" UPDATE " th:href="${'/showUpdateForm/' + {contact.addressId} + '/contact/' + {contact.contactId}}"  ><i class="fa fa-edit text-info"></i></a>
+                        <a title=" TRASH " th:href="${'/deleteAddress/' + {contact.addressId} + '/contact/' + {contact.contactId}}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
                     </td>
                 </div>
             </tr>
 
     </table>
 
-    <h3 align="center"> Contact Projects</h3>
-    <div align="right">
-        <a th:href="@{/create-project/{contactId}(contactId=${contact.contactId})}"><button class="bn30">ADD PROJECT</button></a>
-    </div>
-    <table border="1" class="table table-striped table-responsive-md">
-        <thead>
-        <tr align="center">
-            <th>Project Id</th>
-            <th>Project Name</th>
-            <th>Project Status</th>
-            <th>Project TimeScale</th>
-
-            <div sec:authorize="hasRole('ADMIN')">
-                <th>Action</th>
-            </div>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="pro : ${project}">
-            <td th:text="${proStat.index + 1}"></td>
-            <td th:text="${pro.projectName}"></td>
-            <td th:text="${pro.projectStatus}"></td>
-            <td th:text="${pro.timeScale}"></td>
-            <div sec:authorize="hasRole('ADMIN')">
-
-                <td> <a title=" UPDATE " th:href="@{/editProject/{id}(id=${pro.project_id})}" ><i class="fa fa-edit text-info"></i></a>
-                    <a title=" TRASH " th:href="@{/deleteProject/{id}(id=${pro.project_id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
-                </td>
-            </div>
-        </tr>
-        </tbody>
-    </table>
 </div>
 <!--<div align="center">
 <a  th:href="@{/}" style="color:red"> Back to Contact List</a >

@@ -40,9 +40,9 @@ public class ProjectServiceImpl implements ProjectService{
 
     @Override
     public void deleteProject(Integer id) {
-        Project project = getProject(id);
+    /*    Project project = getProject(id);
         project.getContacts().clear();
-        projectRepo.save(project);
+        projectRepo.save(project);*/
         projectRepo.deleteById(id);
     }
 
