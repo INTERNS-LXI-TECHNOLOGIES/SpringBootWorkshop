@@ -53,19 +53,19 @@ public class ContactServiceImpl implements ContactService{
 
     @Override
 
-    public void deleteContact(int contact_id) {
-        contactRepo.deleteById(contact_id);
+    public void deleteContact(int contactId) {
+        contactRepo.deleteById(contactId);
     }
 
     @Override
 
-    public Contact getContact(int contact_id) {
-        Optional< Contact > optional = contactRepo.findById(contact_id);
+    public Contact getContact(int contactId) {
+        Optional< Contact > optional = contactRepo.findById(contactId);
         Contact contact = null;
         if (optional.isPresent()) {
             contact = optional.get();
         } else {
-            throw new RuntimeException(" Contact not found for id :: " + contact_id);
+            throw new RuntimeException(" Contact not found for id :: " + contactId);
         }
         return contact;
 

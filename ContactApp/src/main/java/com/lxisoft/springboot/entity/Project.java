@@ -1,7 +1,5 @@
 package com.lxisoft.springboot.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +11,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
-    private Integer project_id;
+    private Integer projectId;
 
     @Column(name = "name")
     private String projectName;
@@ -36,12 +34,12 @@ public class Project {
         this.contacts = contacts;
     }
 
-    public Integer getProject_id() {
-        return project_id;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(Integer project_id) {
-        this.project_id = project_id;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     public void setProjectStatus(Boolean projectStatus) {
@@ -75,7 +73,7 @@ public class Project {
     @Override
     public String toString() {
         return "Project{" +
-                "project_id=" + project_id +
+                "project_id=" + projectId +
                 ", projectName='" + projectName + '\'' +
                 ", projectStatus=" + projectStatus +
                 ", timeScale='" + timeScale + '\'' +

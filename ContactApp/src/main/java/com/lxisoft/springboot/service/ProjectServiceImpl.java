@@ -1,6 +1,5 @@
 package com.lxisoft.springboot.service;
 
-import com.lxisoft.springboot.entity.Contact;
 import com.lxisoft.springboot.entity.Project;
 import com.lxisoft.springboot.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,32 +17,32 @@ public class ProjectServiceImpl implements ProjectService{
     private ProjectRepository projectRepo;
     @Override
     public Project saveProject(Project project) {
-        if (project.getProject_id() != null) {
-            Project projectObj = getProject(project.getProject_id());
+        if (project.getProjectId() != null) {
+            Project projectObj = getProject(project.getProjectId());
             project.setContacts(projectObj.getContacts());
         }
         return projectRepo.save(project);
     }
 
     @Override
-    public Project getProject(Integer id) {
-        Optional<Project> optional = projectRepo.findById(id);
+    public Project getProject(Integer projectId) {
+        Optional<Project> optional = projectRepo.findById(projectId);
         Project project = null;
         if (optional.isPresent()) {
             project = optional.get();
         } else {
-            throw new RuntimeException(" Project not found for id :: " + id);
+            throw new RuntimeException(" Project not found for projectId :: " + projectId);
         }
         return project;
 
     }
 
     @Override
-    public void deleteProject(Integer id) {
+    public void deleteProject(Integer projectId) {
     /*    Project project = getProject(id);
         project.getContacts().clear();
         projectRepo.save(project);*/
-        projectRepo.deleteById(id);
+        projectRepo.deleteById(projectId);
     }
 
     @Override

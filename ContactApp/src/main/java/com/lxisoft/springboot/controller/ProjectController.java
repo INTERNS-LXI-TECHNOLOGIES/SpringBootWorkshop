@@ -53,9 +53,9 @@ public class ProjectController {
         return "redirect:/contact-project/" +contactId ;
     }
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping("/editProject/{id}")
-    public String editProject(@PathVariable Integer id, Model model) {
-        Project project = projectService.getProject(id);
+    @GetMapping("/editProject/{projectId}")
+    public String editProject(@PathVariable Integer projectId, Model model) {
+        Project project = projectService.getProject(projectId);
         model.addAttribute("project", project);
         return "editProject";
     }
@@ -64,15 +64,15 @@ public class ProjectController {
         project = projectService.saveProject(project);
         return "redirect:/home";
     }
-        @GetMapping("/deleteProject/{id}")
-    public String deleteProject(@PathVariable("id") int id) {
-        projectService.deleteProject(id);
+        @GetMapping("/deleteProject/{projectId}")
+    public String deleteProject(@PathVariable("projectId") int projectId) {
+        projectService.deleteProject(projectId);
         return "redirect:/home";
     }
-    @GetMapping("/remove-contact/contactId/project/{id}")
-    public String deleteContact(@PathVariable int contactId, @PathVariable Integer id) {
+    @GetMapping("/remove-contact/contactId/project/{projectId}")
+    public String deleteContact(@PathVariable int contactId, @PathVariable Integer projectId) {
         Contact contact = contactService.getContact(contactId);
-        Project project = projectService.getProject(id);
+        Project project = projectService.getProject(projectId);
         contact.getProjects().remove(project);
         contactService.saveContact(contact);
         return "redirect:/contact-project/" + contactId;

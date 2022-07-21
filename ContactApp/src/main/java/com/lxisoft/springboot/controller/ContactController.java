@@ -54,17 +54,17 @@ public class ContactController {
         return "redirect:/";
     }
 
-    @GetMapping("/showFormUpdate/{contact_id}")
-    public String showFormUpdate(@PathVariable(value = "contact_id") int contact_id, Model model) {
-        Contact contact = contactService.getContact(contact_id);
+    @GetMapping("/showFormUpdate/{contactId}")
+    public String showFormUpdate(@PathVariable(value = "contactId") int contactId, Model model) {
+        Contact contact = contactService.getContact(contactId);
         model.addAttribute("contact", contact);
         model.addAttribute("caption", "UPDATE CONTACT");
         return "new_contact";
     }
 
-    @GetMapping("/deleteContact/{contact_id}")
-    public String deleteContact(@PathVariable(value = "contact_id") int contact_id) {
-        this.contactService.deleteContact(contact_id);
+    @GetMapping("/deleteContact/{contactId}")
+    public String deleteContact(@PathVariable(value = "contactId") int contactId) {
+        this.contactService.deleteContact(contactId);
         return "redirect:/";
     }
 
@@ -73,9 +73,9 @@ public class ContactController {
         return "login";
     }
 
-    @GetMapping("/contact-address/contact-project/{contact_id}")
-    public String contactAddressAndProject(@PathVariable int contact_id, Model model) {
-        Contact contact = contactService.getContact(contact_id);
+    @GetMapping("/contact-address/{contactId}")
+    public String contactAddressAndProject(@PathVariable int contactId, Model model) {
+        Contact contact = contactService.getContact(contactId);
         model.addAttribute("contact", contact);
   /*      Project project = projectService.getProject(contact_id);
         model.addAttribute("project", project);*/

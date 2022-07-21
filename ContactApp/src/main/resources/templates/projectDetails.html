@@ -6,87 +6,18 @@
     <title>Contact Management System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-    a {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
-}
-
-a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.previous {
-  background-color: #00bfff;
-  color: black;
-}
-
-.next {
-  background-color: #00bfff;
-  color: white;
-}
-
-.round {
-  border-radius: 50%;
-}
-    .bn30 {
-  border: 5em;
-  cursor: pointer;
-  outline: none;
-  font-size: 16px;
-  -webkit-transform: translate(0);
-  transform: translate(0);
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-  padding: 0.7em 2em;
-  border-radius: 65px;
-  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
-  -webkit-transition: box-shadow 0.25s;
-  transition: box-shadow 0.25s;
-  color: white;
-}
-
-.bn30 .text {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-}
-
-.bn30:after {
-  content: "";
-  border-radius: 18px;
-  position: absolute;
-  margin: 4px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  background: #0e0e10;
-}
-
-.bn30:hover {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
-}
-
-.bn30:hover .text {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-}
-</style>
+    <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color:#33475b">
 <div class="container my-2">
     <br>
     <h1 align="center">Project Details</h1>
 <br>
 <div align="right">
-    <a th:href="@{/createProject}"><button class="bn30">ADD PROJECT</button></a>
+    <a th:href="@{/create-project/{contactId}(contactId=${contact.contactId})}"><button class="bn30">ADD PROJECT</button></a>
 </div>
     <br>
-    <table border="1" class="table table-striped table-responsive-md">
+    <table border="1" class="table table-striped table-responsive-md"  style="background-color: #DBF9FC">
         <thead>
         <tr align="center">
             <th>Project Id</th>
@@ -100,13 +31,13 @@ a:hover {
         </thead>
         <tbody>
         <tr th:each="pro : ${contact.projects}">
-            <td th:text="${pro.project_id}"></td>
+            <td th:text="${pro.projectId}"></td>
             <td th:text="${pro.projectName}"></td>
             <td th:text="${pro.projectStatus}"></td>
             <td th:text="${pro.timeScale}"></td>
             <div sec:authorize="hasRole('ADMIN')">
-                <td> <a title=" UPDATE " th:href="@{/editProject/{id}(id=${pro.project_id})}" ><i class="fa fa-edit text-info"></i></a>
-                    <a title=" TRASH " th:href="@{/deleteProject/{id}(id=${pro.project_id})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                <td> <a title=" UPDATE " th:href="@{/editProject/{projectId}(projectId=${pro.projectId})}" ><i class="fa fa-edit text-info"></i></a>
+                    <a title=" TRASH " th:href="@{/deleteProject/{projectId}(projectId=${pro.projectId})}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
                 </td>
             </div>
         </tr>

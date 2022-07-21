@@ -15,9 +15,9 @@ public interface ContactService {
     void searchContacts(Integer pageNo, String keyword, Model model);
     void saveContact(Contact contact);
 
-    void deleteContact(int contact_id);
+    void deleteContact(int contactId);
 
-    Contact getContact(int contact_id);
+    Contact getContact(int contactId);
 
     List<Contact> getContacts();
 

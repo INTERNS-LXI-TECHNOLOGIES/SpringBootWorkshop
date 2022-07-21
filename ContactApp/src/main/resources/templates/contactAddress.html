@@ -11,7 +11,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body style="background-color:#33475b">
 
 <div class="container mt-5" align="center">
     <h2>CONTACT ADDRESS</h2>
@@ -31,11 +31,11 @@
             <td><b>PHONE NUMBER: </b><p th:text="${contact.phone}"></p></td>
 
         </tr>
-    </table>
+    </table><br>
     <div align="right">
-        <a th:href="@{/showAddressForm/{contact_id}(contact_id=${contact.contactId})}"><button class="bn30"><i title="Add New Address" class="fa fa-plus-square text-primary float-right mr-3"></i></button></a>
+        <a th:href="@{/showAddressForm/{contactId}(contactId=${contact.contactId})}"><button class="bn30"><i title="Add New Address" class="fa fa-plus-square text-primary float-right mr-3"></i></button></a>
     </div>
-    <table class="table table-striped table-hover uppercase mt-5 border">
+    <table class="table table-striped table-hover uppercase mt-5 border" style="background-color: #DBF9FC">
         <tr class="bg-th">
             <th>ID </th>
             <th>HOUSE DETAILS</th>
@@ -54,8 +54,8 @@
                 <td th:text="${contact.district}"></td>
                 <td th:text="${contact.pinCode}"></td>
                 <div sec:authorize="hasRole('ADMIN')">
-                    <td> <a title=" UPDATE " th:href="${'/showUpdateForm/' + {contact.addressId} + '/contact/' + {contact.contactId}}"  ><i class="fa fa-edit text-info"></i></a>
-                        <a title=" TRASH " th:href="${'/deleteAddress/' + {contact.addressId} + '/contact/' + {contact.contactId}}" onclick="return confirm('Are you sure you want to delete This?')" ><i class="fa fa-trash text-danger"></i></a>
+                    <td> <a th:href="${'/showUpdateForm/' + {contact.addressId} + '/contact/' + {contact.contactId}}"  ><i title=" UPDATE "  class="fa fa-edit text-info"></i></a>
+                        <a  th:href="${'/deleteAddress/' + {contact.addressId} + '/contact/' + {contact.contactId}}" onclick="return confirm('Are you sure you want to delete This?')" ><i title=" TRASH " class="fa fa-trash text-danger"></i></a>
                     </td>
                 </div>
             </tr>

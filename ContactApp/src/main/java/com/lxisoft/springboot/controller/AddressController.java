@@ -24,28 +24,28 @@ public class AddressController {
     @Autowired
     private ContactService contactService;
 
-    @GetMapping("/showAddressForm/{contact_id}")
-    public String showForm(@PathVariable int contact_id,Model model) {
+    @GetMapping("/showAddressForm/{contactId}")
+    public String showForm(@PathVariable int contactId,Model model) {
         // create model attribute to bind form data
-        model.addAttribute("address", new ContactAddress(contact_id));
+        model.addAttribute("address", new ContactAddress(contactId));
         model.addAttribute("caption", "ADD NEW ADDRESS");
         return "address";
     }
-    @PostMapping("/saveAddress/contact/{contact_id}")
-    public String saveContact(@PathVariable int contact_id,@ModelAttribute("contactAddress") ContactAddress contactAddress) {
-        Contact contact = contactService.getContact(contact_id);
+    @PostMapping("/saveAddress/contact/{contactId}")
+    public String saveContact(@PathVariable int contactId,@ModelAttribute("contactAddress") ContactAddress contactAddress) {
+        Contact contact = contactService.getContact(contactId);
         contactAddress.setContact(contact);
         addressService.saveContactAddress(contactAddress);
-        return "redirect:/home";
+        return "redirect:/contact-address/" +contactId;
     }
-    @GetMapping("/deleteAddress/{addressId}/contact/{contact_id}")
-    public String deleteContactAddress(@PathVariable(value = "addressId") int addressId,@PathVariable(value = "contact_id") int contact_id) {
+    @GetMapping("/deleteAddress/{addressId}/contact/{contactId}")
+    public String deleteContactAddress(@PathVariable(value = "addressId") int addressId,@PathVariable(value = "contactId") int contactId) {
         addressService.deleteContactAddress(addressId);;
-        return "redirect:/contactAddress/" +contact_id;
+        return "redirect:/contact-address/" +contactId;
     }
 
-    @GetMapping("/showUpdateForm/{addressId}/contact/{contact_id}")
-    public String showFormUpdate(@PathVariable(value = "addressId") int addressId, Model model,@PathVariable(value = "contact_id") int contact_id) {
+    @GetMapping("/showUpdateForm/{addressId}/contact/{contactId}")
+    public String showFormUpdate(@PathVariable(value = "addressId") int addressId, Model model,@PathVariable(value = "contactId") int contactId) {
         ContactAddress contactAddress = addressService.getContactAddress(addressId);
         model.addAttribute("contactAddress", contactAddress);
         model.addAttribute("caption", "UPDATE CONTACT");

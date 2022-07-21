@@ -21,17 +21,17 @@ public class ContactAddressServiceImpl implements ContactAddressService{
     }
 
     @Override
-    public ContactAddress getContactAddress(Integer address_id) {
+    public ContactAddress getContactAddress(Integer addressId) {
 
 /*
         return addressRepo.findById(address_id).get();
 */
-        Optional<ContactAddress> optional = addressRepo.findById(address_id);
+        Optional<ContactAddress> optional = addressRepo.findById(addressId);
         ContactAddress address = null;
         if (optional.isPresent()) {
             address = optional.get();
         } else {
-            throw new RuntimeException(" ContactAddress not found for id :: " + address_id);
+            throw new RuntimeException(" ContactAddress not found for id :: " + addressId);
         }
         return address;
 

@@ -1,29 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <meta charset="ISO-8859-1">
-  <title>Contact Management System</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
 </head>
-
 <body>
-<div class="container" align="center">
-  <h1 >Contact Management System</h1>
-  <hr >
-  <h2 >Add New Contact</h2>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+<div class="wrapper" align="center">
+  <form action="#" th:action="@{/saveContact}" th:object="${contact}" method="POST">   <div id="wizard">
 
-  <form action="#" th:action="@{/saveContact}" th:object="${contact}" method="POST">
+    <h2 >Add New Contact</h2>
+    <section>
 
-    <input type="hidden" th:field="*{contactId}">
+      <div class="form-row">  <input type="hidden" th:field="*{contactId}"> </div>
 
-    <input type="text"   th:field="*{name}" placeholder="Contact Name" class="form-control mb-4 col-4">
+    <label class="form"> CONTACT NAME : </label>
 
-    <input type="text"  th:field="*{email}" placeholder="Contact Email" class="form-control mb-4 col-4">
+      <div class="form-row"> <input type="text"   th:field="*{name}" class="form-control" placeholder="Contact Name" ></div>
 
-    <input type="text"  th:field="*{phone}" placeholder="Contact PhoneNumber" class="form-control mb-4 col-4">
+    <label class="form"> EMAIL ID : </label>
 
-   <button type="submit"  class="btn btn-info col-2" > Save Contact</button>
+      <div class="form-row"> <input type="text"  th:field="*{email}" class="form-control" placeholder="Contact Email" > </div>
+
+    <label class="form"> PHONE NUMBER : </label>
+
+      <div class="form-row"> <input type="text"  th:field="*{phone}" class="form-control" placeholder="Contact PhoneNumber"> </div>
+
+   <button class="bn29" type="submit" > Save Contact</button>
+    </section>
   </form>
 
   <hr align="center">
@@ -33,3 +44,8 @@
 </body>
 
 </html>
+
+
+
+
+

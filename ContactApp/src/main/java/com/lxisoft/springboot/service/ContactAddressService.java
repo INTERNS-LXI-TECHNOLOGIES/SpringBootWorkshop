@@ -4,6 +4,6 @@ import com.lxisoft.springboot.entity.ContactAddress;
 
 public interface ContactAddressService {
     void saveContactAddress(ContactAddress contactAddress);
-    ContactAddress getContactAddress(Integer address_id);
-    void deleteContactAddress(Integer address_id);
+    ContactAddress getContactAddress(Integer addressId);
+    void deleteContactAddress(Integer addressId);
 }

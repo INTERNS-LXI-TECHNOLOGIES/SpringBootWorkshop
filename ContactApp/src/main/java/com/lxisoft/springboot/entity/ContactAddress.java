@@ -14,8 +14,6 @@ public class ContactAddress {
 @Column(name="pincode")
     private String pinCode;
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="address_id")

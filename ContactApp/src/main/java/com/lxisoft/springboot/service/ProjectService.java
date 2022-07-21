@@ -8,9 +8,9 @@ public interface ProjectService {
 
     Project saveProject(Project project);
 
-    Project getProject(Integer id);
+    Project getProject(Integer projectId);
 
-    void deleteProject(Integer id);
+    void deleteProject(Integer projectId);
 
     List<Project> getProjects();
 }
