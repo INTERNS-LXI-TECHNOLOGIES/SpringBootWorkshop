@@ -1,6 +1,7 @@
 package com.lxisoft.dictionary.dao;
 
 import com.lxisoft.dictionary.entity.DictionaryUser;
+
 import org.springframework.stereotype.Component;
 
 @Component

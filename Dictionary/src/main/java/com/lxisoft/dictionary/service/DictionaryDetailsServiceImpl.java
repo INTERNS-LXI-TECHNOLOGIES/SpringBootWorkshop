@@ -1,4 +1,5 @@
 package com.lxisoft.dictionary.service;
+
 import com.lxisoft.dictionary.dao.DictionaryUserDAO;
 import com.lxisoft.dictionary.entity.DictionaryUser;
 import org.springframework.beans.factory.annotation.Autowired;

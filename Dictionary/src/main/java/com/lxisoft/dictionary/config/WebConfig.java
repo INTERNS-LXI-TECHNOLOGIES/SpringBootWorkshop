@@ -22,11 +22,12 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "com.lxisoft")
+@ComponentScan(basePackages = "com.lxisoft.dictionary")
 public class WebConfig {
 
     @Autowired
     private Environment environment;
+
 
     @Bean
     public ViewResolver viewResolver() {

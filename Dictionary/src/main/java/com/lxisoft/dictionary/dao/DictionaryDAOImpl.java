@@ -1,4 +1,5 @@
 package com.lxisoft.dictionary.dao;
+
 import com.lxisoft.dictionary.entity.Word;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

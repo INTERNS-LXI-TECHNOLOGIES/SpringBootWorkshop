@@ -2,6 +2,7 @@ package com.lxisoft.dictionary.dao;
 
 import com.lxisoft.dictionary.entity.Word;
 
+
 import java.util.List;
 
 public interface DictionaryDAO {

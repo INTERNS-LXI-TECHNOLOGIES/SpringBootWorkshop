@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
-@ComponentScan(basePackages = "com.lxisoft")
+@ComponentScan(basePackages = "com.lxisoft.dictionary")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
