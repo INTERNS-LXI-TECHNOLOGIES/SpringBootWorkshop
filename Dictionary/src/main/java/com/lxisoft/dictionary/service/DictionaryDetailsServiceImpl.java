@@ -1,7 +1,6 @@
 package com.lxisoft.dictionary.service;
-
-import com.lxisoft.dictionary.dao.DictionaryUserDAO;
 import com.lxisoft.dictionary.entity.DictionaryUser;
+import com.lxisoft.dictionary.repository.DictionaryUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class DictionaryDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    DictionaryUserDAO userDAO;
+    DictionaryUserRepository dictionaryUserRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final DictionaryUser dictionaryUser = userDAO.getUser(username);
+        final DictionaryUser dictionaryUser = dictionaryUserRepository.findById(username).orElse(null);
         if (dictionaryUser == null) {
             throw new UsernameNotFoundException(username);
         }

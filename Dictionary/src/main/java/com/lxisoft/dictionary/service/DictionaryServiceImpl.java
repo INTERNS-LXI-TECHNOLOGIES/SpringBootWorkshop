@@ -1,39 +1,39 @@
 package com.lxisoft.dictionary.service;
-import com.lxisoft.dictionary.dao.DictionaryDAO;
 import com.lxisoft.dictionary.entity.Word;
+import com.lxisoft.dictionary.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Component
+@Service
+@Transactional
 public class DictionaryServiceImpl  implements DictionaryService {
 
     @Autowired
-    private DictionaryDAO dictionaryDAO;
+    private WordRepository wordRepository;
 
     @Override
-    @Transactional
+
     public List<Word> listAllWords() {
-        return dictionaryDAO.listAllWords();
+        return wordRepository.findAll();
     }
 
     @Override
-    @Transactional
     public void saveWord(Word word) {
-        dictionaryDAO.saveWord(word);
+        wordRepository.save(word);
     }
 
     @Override
-    @Transactional
     public void deleteWord(int id) {
-        dictionaryDAO.deleteWord(id);
+        wordRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
     public Word getWord(int id) {
-        return dictionaryDAO.getWord(id);
+        return wordRepository.findById(id).get();
     }
 
 }
