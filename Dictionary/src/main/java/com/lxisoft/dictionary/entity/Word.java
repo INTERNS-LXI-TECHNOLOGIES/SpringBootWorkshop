@@ -7,14 +7,19 @@ import javax.persistence.*;
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
 
+    @Column(name = "id")
     private Integer id;
+
     @Column(name = "Words")
     private String name;
 
     @Column(name = "Meanings")
     private String meaning;
+
+    @Column(name = "Parts_Of_Speech")
+    private String speech;
+
 
     public Integer getId() {
         return id;
@@ -38,12 +43,21 @@ public class Word {
         this.meaning = meaning;
     }
 
+    public String getSpeech() {
+        return speech;
+    }
+
+    public void setSpeech(String speech) {
+        this.speech = speech;
+    }
+
     @Override
     public String toString() {
         return "Word{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", meaning='" + meaning + '\'' +
+                ", speech='" + speech + '\'' +
                 '}';
     }
 }

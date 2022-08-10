@@ -60,6 +60,13 @@
                   </td>
                 </tr>
 
+                <tr>
+                  <th>Parts Of Speech</th>
+                   <td>
+                   <form:input path="speech"/>
+                    </td>
+                    </tr>
+
                <tr>
 				<button type="submit" class="btn btn-success">Save</button>
 				   </tr>
