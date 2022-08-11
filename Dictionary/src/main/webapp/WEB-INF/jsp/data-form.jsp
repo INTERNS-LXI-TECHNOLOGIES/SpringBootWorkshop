@@ -67,6 +67,13 @@
                     </td>
                     </tr>
 
+                    <tr>
+                      <th>Synonyms</th>
+                      <td>
+                       <form:input path="synonyms"/>
+                        </td>
+                        </tr>
+
                <tr>
 				<button type="submit" class="btn btn-success">Save</button>
 				   </tr>

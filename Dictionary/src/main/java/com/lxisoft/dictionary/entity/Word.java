@@ -20,6 +20,9 @@ public class Word {
     @Column(name = "Parts_Of_Speech")
     private String speech;
 
+    @Column(name = "Synonyms")
+    private String synonyms;
+
 
     public Integer getId() {
         return id;
@@ -51,6 +54,14 @@ public class Word {
         this.speech = speech;
     }
 
+    public String getSynonyms() {
+        return synonyms;
+    }
+
+    public void setSynonyms(String synonyms) {
+        this.synonyms = synonyms;
+    }
+
     @Override
     public String toString() {
         return "Word{" +
@@ -58,6 +69,7 @@ public class Word {
                 ", name='" + name + '\'' +
                 ", meaning='" + meaning + '\'' +
                 ", speech='" + speech + '\'' +
+                ", synonyms='" + synonyms + '\'' +
                 '}';
     }
 }

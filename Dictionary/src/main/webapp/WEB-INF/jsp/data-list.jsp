@@ -57,6 +57,7 @@
 						<th>Word</th>
 						<th>Meaning</th>
 						<th>Parts Of Speech</th>
+						<th>Synonyms</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
 						<% } %>
@@ -68,6 +69,7 @@
                             <td>${word.name}</td>
                             <td>${word.meaning}</td>
                             <td>${word.speech}</td>
+                            <td>${word.synonyms}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
 							<a href="edit/${word.id}">Edit</a>
