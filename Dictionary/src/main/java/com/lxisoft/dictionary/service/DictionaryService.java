@@ -10,8 +10,8 @@ public interface DictionaryService {
 
     void saveWord(Word word);
 
-    void deleteWord(int id);
+    void deleteWord(long id);
 
-    Word getWord(int id);
+    Word getWord(long id);
 
 }

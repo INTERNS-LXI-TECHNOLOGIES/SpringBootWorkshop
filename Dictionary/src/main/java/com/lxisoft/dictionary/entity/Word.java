@@ -9,7 +9,7 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "Words")
     private String name;
@@ -23,11 +23,23 @@ public class Word {
     @Column(name = "Synonyms")
     private String synonyms;
 
+    public Word() {
 
-    public Integer getId() {
+    }
+
+    public Word(long id, String name, String  meaning, String speech , String synonyms) {
+        this.id = id;
+        this.name = name;
+        this.meaning = meaning;
+        this.speech = speech;
+        this.synonyms = synonyms;
+    }
+
+
+    public long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getName() {
@@ -64,12 +76,6 @@ public class Word {
 
     @Override
     public String toString() {
-        return "Word{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", meaning='" + meaning + '\'' +
-                ", speech='" + speech + '\'' +
-                ", synonyms='" + synonyms + '\'' +
-                '}';
+        return "Word [id=" + id + ",Words=" + name + ", Meanings=" + meaning + ", Parts_Of_Speech=" + speech + " , Synonyms =" + synonyms + " ]";
     }
 }

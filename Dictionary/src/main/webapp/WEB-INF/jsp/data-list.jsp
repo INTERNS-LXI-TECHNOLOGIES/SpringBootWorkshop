@@ -50,6 +50,7 @@
 			  </div>
 
 			<br>
+			<a href="/Dictionary/src/main/resources/static/index.html">Click Here</a>
 			<table class="table table-bordered">
 
 					<tr>

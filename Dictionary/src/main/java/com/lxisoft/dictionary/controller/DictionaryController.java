@@ -44,13 +44,13 @@ public class DictionaryController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteWord(@PathVariable int id) {
+    public String deleteWord(@PathVariable long id) {
         dictionaryService.deleteWord(id);
         return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
-    public String editWord(@PathVariable int id, Model model) {
+    public String editWord(@PathVariable long id, Model model) {
         Word word = dictionaryService.getWord(id);
         model.addAttribute("word", word);
         model.addAttribute("caption", "EDIT WORD");

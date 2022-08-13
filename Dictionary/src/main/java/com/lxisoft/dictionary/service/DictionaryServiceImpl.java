@@ -27,12 +27,12 @@ public class DictionaryServiceImpl  implements DictionaryService {
     }
 
     @Override
-    public void deleteWord(int id) {
+    public void deleteWord(long id) {
         wordRepository.deleteById(id);
     }
 
     @Override
-    public Word getWord(int id) {
+    public Word getWord(long id) {
         return wordRepository.findById(id).get();
     }
 

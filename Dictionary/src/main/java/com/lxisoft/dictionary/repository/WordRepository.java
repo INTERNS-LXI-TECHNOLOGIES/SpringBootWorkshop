@@ -1,11 +1,11 @@
 package com.lxisoft.dictionary.repository;
 
+import com.lxisoft.dictionary.entity.Word;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.lxisoft.dictionary.entity.Word;
-
 @Repository
-public interface WordRepository extends JpaRepository<Word, Integer> {
+public interface WordRepository extends JpaRepository<Word, Long> {
 
 }
