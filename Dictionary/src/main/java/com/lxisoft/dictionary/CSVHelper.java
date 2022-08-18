@@ -1,4 +1,4 @@
-package com.lxisoft.dictionary.config;
+package com.lxisoft.dictionary;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import com.lxisoft.dictionary.entity.Word;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;

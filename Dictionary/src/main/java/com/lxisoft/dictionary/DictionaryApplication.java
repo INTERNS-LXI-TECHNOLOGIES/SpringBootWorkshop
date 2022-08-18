@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "com.lxisoft.dictionary.repository")
+@EnableJpaRepositories(basePackages = "com.lxisoft.dictionary")
 @SpringBootApplication
 public class DictionaryApplication {
 

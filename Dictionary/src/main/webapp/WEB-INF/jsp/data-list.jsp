@@ -27,6 +27,8 @@
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white" href="create">Add New Word</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
+            				<a style= "color:white" href="file.html">Import File</a>
+            				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white"  href="logout">Log Out</a>
             			</h5>
             			</div>
@@ -50,7 +52,6 @@
 			  </div>
 
 			<br>
-			<a href="/Dictionary/src/main/resources/static/index.html">Click Here</a>
 			<table class="table table-bordered">
 
 					<tr>

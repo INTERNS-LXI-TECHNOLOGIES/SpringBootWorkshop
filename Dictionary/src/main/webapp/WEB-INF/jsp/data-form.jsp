@@ -23,7 +23,7 @@
 
             <h5 class="links">
 
-				<a style= "color:white" href="${contextPath}">Words List</a>
+				<a style= "color:white" href="/${contextPath}">Words List</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
 				<a style= "color:white" href="${contextPath}/create">Add New Word</a>
                 &nbsp;&nbsp;|&nbsp;&nbsp;

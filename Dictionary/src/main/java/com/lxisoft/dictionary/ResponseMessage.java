@@ -1,4 +1,4 @@
-package com.lxisoft.dictionary.config;
+package com.lxisoft.dictionary;
 
 public class ResponseMessage {
 

@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import com.lxisoft.dictionary.config.CSVHelper;
+import com.lxisoft.dictionary.CSVHelper;
 import com.lxisoft.dictionary.entity.Word;
 import com.lxisoft.dictionary.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
