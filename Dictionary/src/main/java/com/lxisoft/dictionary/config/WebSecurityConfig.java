@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/Login-form").permitAll().antMatchers("/edit/*", "/delete/*")
+        http.csrf().disable().authorizeRequests().antMatchers("/Login-form","/api/**").permitAll().antMatchers("/edit/*", "/delete/*")
                 .access("hasRole('ROLE_ADMIN')").anyRequest().authenticated().and().formLogin().loginPage("/Login-form")
                 .defaultSuccessUrl("/").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
