@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CSVHelper {
     public static String TYPE = "text/csv";
-    static String[] HEADERs = { "id", "Words", "Meanings", "Parts_Of_Speech" , "Synonyms" };
+    static String[] HEADERs = { "id", "Words", "Parts_Of_Speech", "Meanings" };
 
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
@@ -35,7 +35,7 @@ public class CSVHelper {
     public static List<Word> csvToWords(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
              CSVParser csvParser = new CSVParser(fileReader,
-                     CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
+                     CSVFormat.TDF.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
             List<Word> wordsList = new ArrayList<>();
 
@@ -45,9 +45,8 @@ public class CSVHelper {
                 Word word = new Word (
                         Long.parseLong(csvRecord.get("id")),
                         csvRecord.get("Words"),
-                        csvRecord.get("Meanings"),
                         csvRecord.get("Parts_Of_Speech"),
-                        csvRecord.get("Synonyms")
+                        csvRecord.get("Meanings")
                 );
 
                 wordsList.add(word);
@@ -60,7 +59,7 @@ public class CSVHelper {
     }
 
     public static ByteArrayInputStream wordsToCSV(List<Word> wordsList) {
-        final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
+        final CSVFormat format = CSVFormat.TDF.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
@@ -68,9 +67,8 @@ public class CSVHelper {
                 List<String> data = Arrays.asList(
                         String.valueOf(word.getId()),
                         word.getName(),
-                        word.getMeaning(),
                         word.getSpeech(),
-                        word.getSynonyms());
+                        word.getMeaning());
 
                 csvPrinter.printRecord(data);
             }

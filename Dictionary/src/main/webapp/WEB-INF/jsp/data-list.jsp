@@ -57,9 +57,8 @@
 					<tr>
 						<th>ID</th>
 						<th>Word</th>
-						<th>Meaning</th>
 						<th>Parts Of Speech</th>
-						<th>Synonyms</th>
+						<th>Meaning</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
 						<% } %>
@@ -69,9 +68,8 @@
 						<tr>
 							<td><c:out value="${status.index + 1}" /></td>
                             <td>${word.name}</td>
-                            <td>${word.meaning}</td>
                             <td>${word.speech}</td>
-                            <td>${word.synonyms}</td>
+                            <td>${word.meaning}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
 							<a href="edit/${word.id}">Edit</a>
@@ -81,8 +79,6 @@
 						<% } %>
 						</tr>
 					</c:forEach>
-
-
 			</table>
 		</div>
 	</div>

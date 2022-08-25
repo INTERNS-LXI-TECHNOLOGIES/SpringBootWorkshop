@@ -14,25 +14,22 @@ public class Word {
     @Column(name = "Words")
     private String name;
 
-    @Column(name = "Meanings")
-    private String meaning;
-
     @Column(name = "Parts_Of_Speech")
     private String speech;
 
-    @Column(name = "Synonyms")
-    private String synonyms;
+    @Column(name = "Meanings")
+    private String meaning;
 
     public Word() {
 
     }
 
-    public Word(long id, String name, String  meaning, String speech , String synonyms) {
+    public Word(long id, String name,String speech, String  meaning ) {
         this.id = id;
         this.name = name;
-        this.meaning = meaning;
         this.speech = speech;
-        this.synonyms = synonyms;
+        this.meaning = meaning;
+
     }
 
 
@@ -50,14 +47,6 @@ public class Word {
         this.name = name;
     }
 
-    public String getMeaning() {
-        return meaning;
-    }
-
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
-    }
-
     public String getSpeech() {
         return speech;
     }
@@ -66,16 +55,17 @@ public class Word {
         this.speech = speech;
     }
 
-    public String getSynonyms() {
-        return synonyms;
+    public String getMeaning() {
+        return meaning;
     }
 
-    public void setSynonyms(String synonyms) {
-        this.synonyms = synonyms;
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
     }
+
 
     @Override
     public String toString() {
-        return "Word [id=" + id + ",Words=" + name + ", Meanings=" + meaning + ", Parts_Of_Speech=" + speech + " , Synonyms =" + synonyms + " ]";
+        return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + speech + ", Meanings=" + meaning + " ]";
     }
 }

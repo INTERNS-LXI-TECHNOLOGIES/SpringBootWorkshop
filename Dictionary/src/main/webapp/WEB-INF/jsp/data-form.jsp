@@ -53,27 +53,19 @@
                 		<form:input path="name"/>
                 	  </td>
                 	  </tr>
+
+                	   <tr>
+                         <th>Parts Of Speech</th>
+                           <td>
+                             <form:input path="speech"/>
+                              </td>
+                            </tr>
                 	 <tr>
                     <th>Meaning</th>
                 	 <td>
                  	<form:input path="meaning"/>
                   </td>
                 </tr>
-
-                <tr>
-                  <th>Parts Of Speech</th>
-                   <td>
-                   <form:input path="speech"/>
-                    </td>
-                    </tr>
-
-                    <tr>
-                      <th>Synonyms</th>
-                      <td>
-                       <form:input path="synonyms"/>
-                        </td>
-                        </tr>
-
                <tr>
 				<button type="submit" class="btn btn-success">Save</button>
 				   </tr>
