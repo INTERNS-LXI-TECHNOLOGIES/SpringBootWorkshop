@@ -61,6 +61,4 @@ public class DictionaryController {
     public String login() {
         return "Login-form";
     }
-
-
 }
