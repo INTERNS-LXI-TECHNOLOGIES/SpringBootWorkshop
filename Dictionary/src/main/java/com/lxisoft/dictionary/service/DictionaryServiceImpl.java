@@ -17,7 +17,11 @@ public class DictionaryServiceImpl  implements DictionaryService {
 
     @Override
 
-    public List<Word> listAllWords() {
+    public List<Word> listAllWords(String keyword) {
+
+        if (keyword != null) {
+            return wordRepository.search(keyword);
+        }
         return wordRepository.findAll();
     }
 

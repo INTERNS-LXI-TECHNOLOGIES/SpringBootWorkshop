@@ -3,6 +3,7 @@ package com.lxisoft.dictionary.controller;
 import com.lxisoft.dictionary.entity.Word;
 import com.lxisoft.dictionary.service.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,10 @@ public class DictionaryController {
 
     @GetMapping("/")
 
-    public String home(Model model)  {
-        List<Word> wordsList =dictionaryService.listAllWords();
+    public String home(Model model, @Param("keyword") String keyword)  {
+        List<Word> wordsList =dictionaryService.listAllWords(keyword);
         model.addAttribute("wordsList", wordsList);
+        model.addAttribute("keyword", keyword);
 
         LOGGER.info("wordList" + wordsList);
         return "data-list";

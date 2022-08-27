@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DictionaryService {
 
-    List<Word> listAllWords();
+    List<Word> listAllWords(String keyword);
 
     void saveWord(Word word);
 

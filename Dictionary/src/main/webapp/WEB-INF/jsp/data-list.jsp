@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html>
 <head>
 <title>Dictionary Application</title>
@@ -12,6 +13,13 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
+
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "http://localhost:8080";
+    }
+</script>
+
 <body>
 
 	<header>
@@ -42,13 +50,13 @@
 
 			<div class="container" >
 				<div align="center">
-				<form>
-				<h5><input type="search" placeholder="Search Word">
-				<button type="submit">Search</button></h5>
-
-			  </form>
-			  <form class="nosubmit">
-			  </form>
+				<form th:action="@{/}">
+                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                    &nbsp;
+                    <input type="submit" value="Search" />
+                    &nbsp;
+                    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+                </form>
 			  </div>
 
 			<br>
@@ -58,7 +66,7 @@
 						<th>ID</th>
 						<th>Word</th>
 						<th>Parts Of Speech</th>
-						<th>Meaning</th>
+						<th>Malayalam Meaning</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
 						<% } %>
