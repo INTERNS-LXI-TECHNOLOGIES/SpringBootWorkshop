@@ -1,6 +1,8 @@
 package com.lxisoft.dictionary.entity;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import java.util.Set;
 import javax.persistence.*;
 @Table(name = "dictionary")
 @Entity
@@ -19,6 +21,9 @@ public class Word {
 
     @Column(name = "Meanings")
     private String meaning;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Meaning> meanings;
 
     public Word() {
 
@@ -61,6 +66,14 @@ public class Word {
 
     public void setMeaning(String meaning) {
         this.meaning = meaning;
+    }
+
+    public Set<Meaning> getMeanings() {
+        return meanings;
+    }
+
+    public void setServiceHistories(Set<Meaning> meanings) {
+        this.meanings = meanings;
     }
 
 
