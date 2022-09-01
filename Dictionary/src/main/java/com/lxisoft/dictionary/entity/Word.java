@@ -23,7 +23,7 @@ public class Word {
     private String meaning;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Meaning> meanings;
+    private Set<Synonyms> words;
 
     public Word() {
 
@@ -68,12 +68,12 @@ public class Word {
         this.meaning = meaning;
     }
 
-    public Set<Meaning> getMeanings() {
-        return meanings;
+    public Set<Synonyms> getWords() {
+        return words;
     }
 
-    public void setServiceHistories(Set<Meaning> meanings) {
-        this.meanings = meanings;
+    public void setWords(Set<Synonyms> words) {
+        this.words = words;
     }
 
 
