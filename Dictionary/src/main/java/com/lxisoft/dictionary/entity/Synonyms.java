@@ -6,19 +6,30 @@ import javax.persistence.*;
 @Entity
 public class Synonyms {
     @Id
-    @Column(name = "words")
-    private String words;
+    @Column(name = "synonym_1")
+    private String synonym_1;
+
+    @Column(name = "synonym_2")
+    private String synonym_2;
 
     @ManyToOne
     @JoinColumn(name = "id")
     private Word word;
 
-    public String getWords() {
-        return words;
+    public String getSynonyms() {
+        return synonym_1;
     }
 
-    public void setWords(String words) {
-        this.words = words;
+    public void setSynonyms(String synonym_1) {
+        this.synonym_1 = synonym_1;
+    }
+
+    public String getSynonym() {
+        return synonym_2;
+    }
+
+    public void setSynonym (String synonym_2) {
+        this.synonym_2 = synonym_2;
     }
     public Word getWord() {
         return word;
