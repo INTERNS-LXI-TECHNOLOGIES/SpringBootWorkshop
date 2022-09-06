@@ -1,4 +1,13 @@
-package com.lxisoft.vegetablestore.dao;
+package com.lxisoft.vegetablestore.repository;
+
+import com.lxisoft.vegetablestore.vegetable.Vegetable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VegetableStoreRepository extends JpaRepository<Vegetable, Integer> {
+
+
+
+}/*package com.lxisoft.vegetablestore.dao;
 
 
 import java.io.BufferedInputStream;
@@ -45,13 +54,6 @@ public class VegetableDao {
 		Session session = sessionFactory.openSession();
 session.beginTransaction();
 
-		InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
-
-		byte[]image = new byte[inputStream.available()];
-
-		inputStream.read(image);
-
-		vegetable.setImage(image);
 
 		session.save(vegetable);
 		session.getTransaction().commit();
@@ -90,12 +92,6 @@ session.beginTransaction();
 
 		 session.beginTransaction();
 
-		InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
-
-		byte[]image = new byte[inputStream.available()];
-
-		inputStream.read(image);
-		vegetable.setImage(image);
 
 		session.update(vegetable);
 
@@ -107,18 +103,6 @@ session.beginTransaction();
 	}
 
 	public void deleteVegetable(int id) {
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-
-		Session session = sessionFactory.openSession();
-
-		session.beginTransaction();
-		Vegetable v = new Vegetable();
-		v.setId(id);
-
-		session.delete(v);
-		session.getTransaction().commit();
-
-		session.close();
 
 	}
 
@@ -137,4 +121,4 @@ session.beginTransaction();
 session.close();
 		return vegetables;
 	}
-}
+}*/

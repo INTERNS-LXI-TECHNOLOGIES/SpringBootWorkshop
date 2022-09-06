@@ -1,8 +1,8 @@
 package com.lxisoft.vegetablestore.controller;
 
-
-import com.lxisoft.vegetablestore.dao.VegetableDao;
+import com.lxisoft.vegetablestore.service.VegetableStoreService;
 import com.lxisoft.vegetablestore.vegetable.Vegetable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +20,16 @@ import java.io.IOException;
 @MultipartConfig
 public class VegetableStoreController {
 
-VegetableDao vegetableDao = new VegetableDao();
+
+    @Autowired
+    VegetableStoreService vegetableStoreService;
+
 
 
 @GetMapping("/")
 public String readVegetable(Model model) throws IOException {
 
-    model.addAttribute("vegetable",vegetableDao.readVegetable());
+    model.addAttribute("vegetable",vegetableStoreService.readVegetable());
     return "vegetable";
     }
 
@@ -39,14 +42,10 @@ return "addVegetable";
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute Vegetable vegetable){
+public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-try {
-    vegetableDao.addVegetable(vegetable);
+    vegetableStoreService.addVegetable(vegetable);
 
-}catch(Exception e){
-
-}
     return "vegetableConfirm";
 }
 
@@ -54,7 +53,7 @@ try {
 @GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id,Model model) {
 
-        model.addAttribute("vegetable",vegetableDao.selectData(id));
+        model.addAttribute("vegetable",vegetableStoreService.selectData(id));
 
     return "updateVegetable";
 }
@@ -64,7 +63,7 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 @PostMapping("/update-vegetable")
     public String updateVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-            vegetableDao.updateVegetable(vegetable);
+            vegetableStoreService.updateVegetable(vegetable);
 
 return"redirect:/";
     }
@@ -74,7 +73,7 @@ return"redirect:/";
 @PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {
 
-        vegetableDao.deleteVegetable(id);
+ vegetableStoreService.deleteVegetable(id);
 
 return "redirect:/";
 }
@@ -85,12 +84,10 @@ return "redirect:/";
 @GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
 
-        model.addAttribute("vegetable", vegetableDao.search(word));
+        model.addAttribute("vegetable", vegetableStoreService.search(word));
 
 return "vegetable";
 }
-
-
 
 
 @GetMapping("/image")
