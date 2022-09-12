@@ -15,21 +15,22 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @MultipartConfig
 public class VegetableStoreController {
 
-
     @Autowired
     VegetableStoreService vegetableStoreService;
 
 
-
 @GetMapping("/")
 public String readVegetable(Model model) throws IOException {
-
-    model.addAttribute("vegetable",vegetableStoreService.readVegetable());
+System.out.println("123");
+List<Vegetable> vegetables=vegetableStoreService.readVegetable();
+    model.addAttribute("vegetables",vegetables);
+    System.out.println("abc");
     return "vegetable";
     }
 

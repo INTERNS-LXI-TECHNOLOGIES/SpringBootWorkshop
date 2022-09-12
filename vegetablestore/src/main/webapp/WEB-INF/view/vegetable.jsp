@@ -74,7 +74,7 @@ border:none;
 </style>
  
 </head>
-<%@ page import="main.java.com.lxisoft.vegetable.Vegetable"%>
+<%@ page import="com.lxisoft.vegetablestore.vegetable.Vegetable"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
@@ -94,10 +94,10 @@ border:none;
 </div>
 
 
- <% if (request.isUserInRole("admin")) {  %>
+
   <a href = "add-form"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
 
-<%}%>
+
 
 <h2><center>Vegetable Details</center></h2>
  <center><table style="width: 50%;" border="0" >
@@ -109,7 +109,7 @@ border:none;
 </center></form>
 
 
- <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetable");
+ <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetables");
 
  
   for (Vegetable vegetable : vegetables) {%>
@@ -130,7 +130,7 @@ border:none;
 
 <center><%out.println("Order Quantity :"+vegetable.getOrderQuantity());%></center></td>
 
-<% if (request.isUserInRole("admin")) {  %>
+
 
   <td><form action = "select-vegetable" method = "GET">
 
@@ -144,7 +144,7 @@ border:none;
       <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
         <input type = "submit" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
         </td>
-<%}%>
+
 </div>
 </div>
 </div>

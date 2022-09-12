@@ -12,20 +12,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = "main.java.com.lxisoft")
+@ComponentScan(basePackages = "com.lxisoft")
 public class WebConfig implements WebMvcConfigurer {
-
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/view/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-
-    }
 
     @Bean(name = "multipartResolver")
 

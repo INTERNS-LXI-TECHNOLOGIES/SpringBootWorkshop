@@ -37,7 +37,7 @@ margin:50px;
 </style>
 
 
-   <%@ page import="main.java.com.lxisoft.vegetable.Vegetable"%>
+   <%@ page import="com.lxisoft.vegetablestore.vegetable.Vegetable"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 

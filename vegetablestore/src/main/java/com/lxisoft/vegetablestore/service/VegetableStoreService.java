@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +20,7 @@ public class VegetableStoreService{
 
     public List<Vegetable> readVegetable() {
         List<Vegetable>vegetables = repository.findAll();
+        System.out.println("success");
         return vegetables;
     }
 
@@ -60,7 +62,9 @@ public class VegetableStoreService{
     }
 
 
-    public Object search(String word) {
+    public List<Vegetable> search(String word) {
 
+        List<Vegetable> vegetables=new ArrayList<>();
+        return vegetables;
     }
 }
