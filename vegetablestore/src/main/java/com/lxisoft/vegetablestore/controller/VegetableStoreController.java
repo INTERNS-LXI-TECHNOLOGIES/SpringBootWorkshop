@@ -26,11 +26,10 @@ public class VegetableStoreController {
 
 
 @GetMapping("/")
-public String readVegetable(Model model) throws IOException {
-System.out.println("123");
-List<Vegetable> vegetables=vegetableStoreService.readVegetable();
-    model.addAttribute("vegetables",vegetables);
-    System.out.println("abc");
+public String readVegetable(Model model) {
+
+    model.addAttribute("vegetables",vegetableStoreService.readVegetable());
+
     return "vegetable";
     }
 
@@ -47,7 +46,7 @@ public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOExce
 
     vegetableStoreService.addVegetable(vegetable);
 
-    return "vegetableConfirm";
+    return "redirect:/";
 }
 
 
@@ -64,7 +63,7 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 @PostMapping("/update-vegetable")
     public String updateVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-            vegetableStoreService.updateVegetable(vegetable);
+    vegetableStoreService.updateVegetable(vegetable);
 
 return"redirect:/";
     }

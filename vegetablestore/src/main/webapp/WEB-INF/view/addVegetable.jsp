@@ -91,7 +91,7 @@ margin:50px;
 
 <tr>
 <td>Enter OrderQuantity</td>
-<td><input type = "text" name = "orderQuantity"/></td>
+<td><input type = "text" name = "minOrderQuantity"/></td>
 </tr>
 
 <tr>

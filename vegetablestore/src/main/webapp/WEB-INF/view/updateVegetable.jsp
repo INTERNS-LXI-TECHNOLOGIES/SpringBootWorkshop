@@ -53,10 +53,8 @@ margin:50px;
    <form action ="update-vegetable" enctype="multipart/form-data" method = "POST">
 
 
-   <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetable");
+   <%Vegetable vegetable =(Vegetable) request.getAttribute("vegetable");%>
 
- 
-      for (Vegetable vegetable : vegetables) {%>
 
 <center>
 <table style = "width: 80%">
@@ -85,7 +83,7 @@ margin:50px;
     
     <tr>
     <td>Enter OrderQuantity</td>
-    <td><input type = "text" name = "orderQuantity"  value =<%=vegetable.getOrderQuantity()%>></td>
+    <td><input type = "text" name = "minOrderQuantity"  value =<%=vegetable.getMinOrderQuantity()%>></td>
     </tr>
 
    <tr>
@@ -101,7 +99,6 @@ margin:50px;
 
  </center>
 
- <%}%>
  </form>
 </body>
 </html>

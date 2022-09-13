@@ -19,8 +19,9 @@ public class VegetableStoreService{
 
 
     public List<Vegetable> readVegetable() {
+
         List<Vegetable>vegetables = repository.findAll();
-        System.out.println("success");
+
         return vegetables;
     }
 
@@ -54,11 +55,13 @@ public class VegetableStoreService{
         inputStream.read(image);
         vegetable.setImage(image);
 
+        repository.save(vegetable);
     }
 
     public void deleteVegetable(int id) {
 
         repository.deleteById(id);
+
     }
 
 

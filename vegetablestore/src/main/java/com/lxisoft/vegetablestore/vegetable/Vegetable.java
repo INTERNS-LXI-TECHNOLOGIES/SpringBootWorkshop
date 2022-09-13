@@ -26,7 +26,7 @@ private String price;
 private String stock;
 
 	@Column(name = "minOrderQuantity")
-private String orderQuantity;
+private String minOrderQuantity;
 
 	@Transient
 private String base64Image;
@@ -37,44 +37,11 @@ private byte[]image;
 @Transient
 	private MultipartFile imageFile;
 
+
+
 public Vegetable() {
 
-
 }
-
-
-public Vegetable(String name,String price,String stock, String orderQuantity) {
-
-this.name = name;
-this.price = price;
-this.stock = stock;
-this.orderQuantity = orderQuantity;
-
-
-}
-
-public Vegetable(int id,String name,String price,String stock, String orderQuantity) {
-
-	this.id = id;
-	this.name = name;
-	this.price = price;
-	this.stock = stock;
-	this.orderQuantity = orderQuantity;
-	
-	
-	}
-public Vegetable(int id,String name,String price,String stock, String orderQuantity,String base64Image) {
-
-	
-this.id = id;
-this.name = name;
-this.price = price;
-this.stock = stock;
-this.orderQuantity = orderQuantity;
-this.base64Image = base64Image;
-
-}
-
 
 
 
@@ -118,13 +85,13 @@ this.stock = stock;
 }  
 
 
-public String getOrderQuantity() {
+public String getMinOrderQuantity() {
 
- return orderQuantity;
+ return minOrderQuantity;
 }
-public void setOrderQuantity(String orderQuantity)  {
+public void setMinOrderQuantity(String minOrderQuantity)  {
 
-this.orderQuantity = orderQuantity;  
+this.minOrderQuantity = minOrderQuantity;
 }  
  
  

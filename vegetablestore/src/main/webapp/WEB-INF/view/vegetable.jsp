@@ -128,7 +128,7 @@ border:none;
   
 <center><%out.println("Stock :"+vegetable.getStock());%></center>
 
-<center><%out.println("Order Quantity :"+vegetable.getOrderQuantity());%></center></td>
+<center><%out.println("Order Quantity :"+vegetable.getMinOrderQuantity());%></center></td>
 
 
 
