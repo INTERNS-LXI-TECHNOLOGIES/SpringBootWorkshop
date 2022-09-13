@@ -13,10 +13,7 @@ import java.util.List;
 public class SynonymServiceImpl  implements SynonymService {
     @Autowired
     private SynonymRepository synonymRepository;
-    @Override
-    public List<Synonyms> listAllSynonyms() {
-        return synonymRepository.findAll();
-    }
+
     @Override
     public void saveSynonym(Synonyms synonyms) {
         synonymRepository.save(synonyms);
