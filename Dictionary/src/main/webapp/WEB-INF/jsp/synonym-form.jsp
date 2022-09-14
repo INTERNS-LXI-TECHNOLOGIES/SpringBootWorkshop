@@ -25,7 +25,7 @@
 
 				<a style= "color:white" href="/${contextPath}">Words List</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a style= "color:white" href="${contextPath}/create">Add New Word</a>
+				<a style= "color:white" href="${contextPath}/createSynonym">Add New Synonym</a>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a style= "color:white" href="${contextPath}/logout">Log Out</a>
                 </h5>
@@ -38,7 +38,7 @@
 		<div class="card">
 			<div class="card-body">
 
-				<form:form action="${contextPath}/save" method="post" modelAttribute="word">
+				<form:form action="${contextPath}/saveSynonym" method="post" modelAttribute="synonyms">
 
 				<table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 

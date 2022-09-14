@@ -80,6 +80,9 @@
                             <td>${word.meaning}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
+
+							<a href="showSynonymForm">Show More</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="edit/${word.id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                            <a href="delete/${word.id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>

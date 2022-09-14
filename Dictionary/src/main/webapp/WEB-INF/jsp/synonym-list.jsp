@@ -26,7 +26,7 @@
 
             				<a style= "color:white" href="${contextPath}">Words List</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a style= "color:white" href="create">Add New Word</a>
+            				<a style= "color:white" href="createSynonym">Add New Synonym</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white"  href="logout">Log Out</a>
             			</h5>
@@ -48,17 +48,16 @@
 						<% } %>
 					</tr>
 
-					<c:forEach var="word" items="${wordsList}" varStatus="status">
+					<c:forEach var="synonyms" items="${synonymList}" varStatus="status">
 						<tr>
-							<td><c:out value="${status.index + 1}" /></td>
-                            <td>${word.name}</td>
-                            <td>${word.speech}</td>
-                            <td>${word.meaning}</td>
+							 <td>${synonyms.synonym_id}</td>
+                            <td>${synonyms.synonym_1}</td>
+                            <td>${synonyms.synonym_2}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<a href="edit/${word.id}">Edit</a>
+							<a href="editSynonym/${synonyms.synonym_id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                           <a href="delete/${word.id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                           <a href="deleteSynonym/${synonyms.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                            </td>
 						<% } %>
 						</tr>

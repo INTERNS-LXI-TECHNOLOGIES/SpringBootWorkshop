@@ -1,9 +1,9 @@
 package com.lxisoft.dictionary.entity;
 
 import javax.persistence.*;
-
-@Table(name = "synonyms")
 @Entity
+@Table(name = "synonyms")
+
 public class Synonyms {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
