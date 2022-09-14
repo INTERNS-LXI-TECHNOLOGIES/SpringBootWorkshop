@@ -64,7 +64,7 @@ margin:50px;
 <div align = "left">
 
   
-  <a href = "<%=request.getContextPath() %>"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+  <a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
     </a>
     
     </div>

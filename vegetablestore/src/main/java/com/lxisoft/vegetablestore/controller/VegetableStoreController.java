@@ -46,7 +46,7 @@ public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOExce
 
     vegetableStoreService.addVegetable(vegetable);
 
-    return "redirect:/";
+    return "vegetableConfirm";
 }
 
 
@@ -84,7 +84,7 @@ return "redirect:/";
 @GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
 
-        model.addAttribute("vegetable", vegetableStoreService.search(word));
+        model.addAttribute("vegetables", vegetableStoreService.search(word));
 
 return "vegetable";
 }

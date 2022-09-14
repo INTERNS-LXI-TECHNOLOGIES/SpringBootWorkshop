@@ -47,7 +47,7 @@ margin:50px;
 <center><h1>VEGETABLE UPDATE FORM</h1></center>
 
 
-<a href = "<%=request.getContextPath() %>"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+<a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
    
    <form action ="update-vegetable" enctype="multipart/form-data" method = "POST">
