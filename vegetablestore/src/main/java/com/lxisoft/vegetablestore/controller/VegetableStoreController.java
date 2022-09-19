@@ -1,7 +1,8 @@
 package com.lxisoft.vegetablestore.controller;
 
+import com.lxisoft.vegetablestore.entity.Vegetable;
 import com.lxisoft.vegetablestore.service.VegetableStoreService;
-import com.lxisoft.vegetablestore.vegetable.Vegetable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 
 @Controller
 @MultipartConfig

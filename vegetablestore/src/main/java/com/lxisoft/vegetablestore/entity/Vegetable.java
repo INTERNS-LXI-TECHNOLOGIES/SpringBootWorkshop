@@ -1,5 +1,5 @@
 
-package com.lxisoft.vegetablestore.vegetable;
+package com.lxisoft.vegetablestore.entity;
 
 import org.springframework.web.multipart.MultipartFile;
 

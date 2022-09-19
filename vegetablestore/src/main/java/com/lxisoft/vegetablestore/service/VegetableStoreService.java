@@ -1,7 +1,10 @@
 package com.lxisoft.vegetablestore.service;
 
+import com.lxisoft.vegetablestore.entity.Category;
+import com.lxisoft.vegetablestore.entity.Vegetable;
+import com.lxisoft.vegetablestore.repository.CateRepository;
 import com.lxisoft.vegetablestore.repository.VegetableStoreRepository;
-import com.lxisoft.vegetablestore.vegetable.Vegetable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +13,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+
 @Service
 public class VegetableStoreService{
 
     @Autowired
     VegetableStoreRepository repository;
+    CateRepository cateRepository;
 
 
     public List<Vegetable> readVegetable() {
@@ -32,7 +37,10 @@ public class VegetableStoreService{
 
         vegetable.setImage(image);
 
-        repository.save(vegetable);
+        Category cate = new Category("fruits");
+cate.getVegetables().add(vegetable);
+
+       cateRepository.save(cate);
     }
 
 

@@ -74,7 +74,7 @@ border:none;
 </style>
  
 </head>
-<%@ page import="com.lxisoft.vegetablestore.vegetable.Vegetable"%>
+<%@ page import="com.lxisoft.vegetablestore.entity.Vegetable"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
@@ -93,11 +93,11 @@ border:none;
   <a href = "log-out"  ><img src ="image?name=logout.jpeg" alt="google-play" height = 60px  class="log" onclick = "return confirm('Are You Sure Want to Logout')"></a></center>
 </div>
 
-
+ <% if (request.isUserInRole("ADMIN")) {  %>
 
   <a href = "add-form"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
 
-
+<%}%>
 
 <h2><center>Vegetable Details</center></h2>
  <center><table style="width: 50%;" border="0" >
@@ -130,7 +130,7 @@ border:none;
 
 <center><%out.println("Order Quantity :"+vegetable.getMinOrderQuantity());%></center></td>
 
-
+ <% if (request.isUserInRole("ADMIN")) {  %>
 
   <td><form action = "select-vegetable" method = "GET">
 
@@ -144,7 +144,7 @@ border:none;
       <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
         <input type = "submit" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
         </td>
-
+<%}%>
 </div>
 </div>
 </div>

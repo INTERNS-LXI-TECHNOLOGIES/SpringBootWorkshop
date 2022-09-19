@@ -17,7 +17,7 @@ margin:50px;
 <center><a href = "www.google.com"><img src ="image?name=like.jpg" alt="google-play" height = 280px></a>></center>
 
  <div style = "color : red"> 
-  <h1><center> Vegetable Added SuccessFully</center></h1>
+  <h1><center>Vegetable Added SuccessFully</center></h1>
   
 </div>
 
