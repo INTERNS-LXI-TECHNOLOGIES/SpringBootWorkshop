@@ -18,7 +18,7 @@ public class Synonyms {
     private String synonym_2;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private Word word;
 
     public long getSynonym_id() {
@@ -28,26 +28,19 @@ public class Synonyms {
         this.synonym_id = synonym_id;
     }
 
-    public String getSynonyms() {
+    public String getSynonym_1() {
         return synonym_1;
     }
 
-    public void setSynonyms(String synonym_1) {
+    public void setSynonym_1(String synonym_1) {
         this.synonym_1 = synonym_1;
     }
 
-    public String getSynonym() {
+    public String getSynonym_2() {
         return synonym_2;
     }
 
-    public void setSynonym (String synonym_2) {
+    public void setSynonym_2 (String synonym_2) {
         this.synonym_2 = synonym_2;
-    }
-    public Word getWord() {
-        return word;
-    }
-
-    public void setWord(Word word) {
-        this.word = word;
     }
 }

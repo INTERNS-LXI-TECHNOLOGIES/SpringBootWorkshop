@@ -1,7 +1,6 @@
 package com.lxisoft.dictionary.controller;
 
 import com.lxisoft.dictionary.entity.Synonyms;
-import com.lxisoft.dictionary.entity.Word;
 import com.lxisoft.dictionary.service.SynonymService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,8 @@ public class SynonymsController {
 
     @GetMapping("showSynonymForm")
     public String showForm(Model model)  {
-        model.addAttribute("synonym", new Synonyms() );
+        List<Synonyms> synonymList =synonymService.listAllSynonyms();
+        model.addAttribute("synonymList", synonymList);
         return "synonym-list";
     }
 

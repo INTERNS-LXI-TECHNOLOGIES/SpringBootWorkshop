@@ -68,15 +68,6 @@ public class Word {
         this.meaning = meaning;
     }
 
-    public Set<Synonyms> getSynonyms() {
-        return synonyms;
-    }
-
-    public void setSynonyms(Set<Synonyms> synonyms) {
-        this.synonyms = synonyms;
-    }
-
-
     @Override
     public String toString() {
         return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + speech + ", Meanings=" + meaning + " ]";
