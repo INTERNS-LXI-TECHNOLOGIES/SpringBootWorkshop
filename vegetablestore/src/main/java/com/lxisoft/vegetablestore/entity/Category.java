@@ -7,13 +7,12 @@ import java.util.List;
 @Entity
 @Table(name = "categories")
 public class Category {
+
   public Category(String type) {
     this.type = type;
   }
 
-  public Category() {
-
-  }
+  public Category() {}
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;

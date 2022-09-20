@@ -2,7 +2,7 @@ package com.lxisoft.vegetablestore.service;
 
 import com.lxisoft.vegetablestore.entity.Category;
 import com.lxisoft.vegetablestore.entity.Vegetable;
-import com.lxisoft.vegetablestore.repository.CateRepository;
+import com.lxisoft.vegetablestore.repository.CategoryRepository;
 import com.lxisoft.vegetablestore.repository.VegetableStoreRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.List;
 public class VegetableStoreService{
 
     @Autowired
-    VegetableStoreRepository repository;
-    CateRepository cateRepository;
+    VegetableStoreRepository vegetableRepository;
+    CategoryRepository categoryRepository;
 
 
     public List<Vegetable> readVegetable() {
 
-        return repository.findAll();
+        return vegetableRepository.findAll();
     }
 
     public void addVegetable(Vegetable vegetable) throws IOException {
@@ -37,16 +37,15 @@ public class VegetableStoreService{
 
         vegetable.setImage(image);
 
-        Category cate = new Category("fruits");
-cate.getVegetables().add(vegetable);
 
-       cateRepository.save(cate);
+
+       vegetableRepository.save(vegetable);
     }
 
 
     public Vegetable selectData(int id) {
 
-        return repository.findById(id).get();
+        return vegetableRepository.findById(id).get();
 
     }
 
@@ -60,18 +59,18 @@ cate.getVegetables().add(vegetable);
         inputStream.read(image);
         vegetable.setImage(image);
 
-        repository.save(vegetable);
+        vegetableRepository.save(vegetable);
     }
 
     public void deleteVegetable(int id) {
 
-        repository.deleteById(id);
+        vegetableRepository.deleteById(id);
 
     }
 
     public List<Vegetable> search(String word) {
 
-        return repository.search(word);
+        return vegetableRepository.search(word);
     }
 
 }

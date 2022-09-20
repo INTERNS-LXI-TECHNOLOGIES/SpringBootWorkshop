@@ -38,7 +38,6 @@ private byte[]image;
 	private MultipartFile imageFile;
 
 
-
 public Vegetable() {
 
 }
