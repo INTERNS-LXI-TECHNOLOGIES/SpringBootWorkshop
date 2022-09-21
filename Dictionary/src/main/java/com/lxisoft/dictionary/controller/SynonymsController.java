@@ -18,7 +18,7 @@ public class SynonymsController {
     @GetMapping("showSynonymForm")
     public String showForm(Model model)  {
         List<Synonyms> synonymList =synonymService.listAllSynonyms();
-        model.addAttribute("synonymList", synonymList);
+        model.addAttribute("synonymList",synonymList );
         return "synonym-list";
     }
 

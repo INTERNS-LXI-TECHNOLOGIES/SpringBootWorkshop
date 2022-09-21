@@ -5,11 +5,13 @@ import javax.persistence.*;
 @Table(name = "synonyms")
 
 public class Synonyms {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "word_id")
     private long synonym_id;
+
 
     @Column(name = "synonym_1")
     private String synonym_1;
@@ -43,4 +45,5 @@ public class Synonyms {
     public void setSynonym_2 (String synonym_2) {
         this.synonym_2 = synonym_2;
     }
+
 }
