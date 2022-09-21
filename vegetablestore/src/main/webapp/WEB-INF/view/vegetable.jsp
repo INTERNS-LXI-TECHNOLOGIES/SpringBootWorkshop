@@ -114,9 +114,13 @@ border:none;
  
   for (Vegetable vegetable : vegetables) {%>
   
-    <div class = "container">
-      <div class = "row">
-<div class = "col">
+    <div class = "row">
+
+    <div class = "col-md-2">
+    </div>
+
+    <div class = "col-md-8">
+    </div>
     <tr>
       <td><img src="data:image/jpg;base64,<%= vegetable.getBase64Image()%>"width = "200" height ="140"></td>
   
@@ -144,10 +148,10 @@ border:none;
       <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
         <input type = "submit" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
         </td>
+
+        </div>
 <%}%>
-</div>
-</div>
-</div>
+
 <%}%>  
 </table></center>
 </body>

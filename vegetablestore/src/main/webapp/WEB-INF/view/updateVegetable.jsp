@@ -50,7 +50,7 @@ margin:50px;
 <a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
    
-   <form action ="update-vegetable" enctype="multipart/form-data" method = "POST">
+   <form action ="<%=request.getContextPath() %>/update-vegetable" enctype="multipart/form-data" method = "POST">
 
 
    <%Vegetable vegetable =(Vegetable) request.getAttribute("vegetable");%>

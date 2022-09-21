@@ -1,8 +1,7 @@
 package com.lxisoft.vegetablestore.service;
 
-import com.lxisoft.vegetablestore.entity.Category;
 import com.lxisoft.vegetablestore.entity.Vegetable;
-import com.lxisoft.vegetablestore.repository.CategoryRepository;
+
 import com.lxisoft.vegetablestore.repository.VegetableStoreRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class VegetableStoreService{
 
     @Autowired
     VegetableStoreRepository vegetableRepository;
-    CategoryRepository categoryRepository;
+
 
 
     public List<Vegetable> readVegetable() {

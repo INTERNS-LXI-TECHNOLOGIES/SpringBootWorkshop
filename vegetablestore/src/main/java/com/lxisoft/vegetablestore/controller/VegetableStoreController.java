@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 
 @Controller
@@ -46,8 +47,10 @@ return "addVegetable";
 public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
     vegetableStoreService.addVegetable(vegetable);
+    Logger log=Logger.getLogger("veg");
+    log.info("success");
 
-    return "vegetableConfirm";
+    return "redirect:/";
 }
 
 

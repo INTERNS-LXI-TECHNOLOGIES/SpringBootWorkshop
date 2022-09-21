@@ -94,6 +94,7 @@ margin:50px;
 <td><input type = "text" name = "minOrderQuantity"/></td>
 </tr>
 
+
 <tr>
   <td>Select Photo</td>
   <td><input type="file" name="imageFile"></td>
