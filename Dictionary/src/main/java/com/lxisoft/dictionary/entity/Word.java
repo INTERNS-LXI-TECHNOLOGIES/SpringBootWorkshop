@@ -22,8 +22,15 @@ public class Word {
     @Column(name = "Meanings")
     private String meaning;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "word")
     private Set<Synonyms> synonyms;
+
+    public Set<Synonyms> getSynonyms() {
+        return synonyms;
+    }
+        public void setSynonyms(Set<Synonyms> synonyms) {
+            this.synonyms = synonyms;
+        }
 
     public Word() {
 

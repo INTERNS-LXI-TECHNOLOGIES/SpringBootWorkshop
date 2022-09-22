@@ -81,7 +81,7 @@
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
 
-							<a href="showSynonymForm">Show More</a>
+							<a href="showSynonymForm/${word.id}">Show More</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="edit/${word.id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;

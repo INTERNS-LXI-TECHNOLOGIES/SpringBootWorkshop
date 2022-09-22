@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 <title>Dictionary Application</title>
@@ -40,7 +39,8 @@
 			<table class="table table-bordered">
 
 					<tr>
-						<th>ID</th>
+					  <th>Word ID</th>
+						<th>Synonym ID</th>
 						<th>Synonym_1</th>
 						<th>Synonym_2</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
@@ -48,8 +48,9 @@
 						<% } %>
 					</tr>
 
-					<c:forEach var="synonyms" items="${synonymList}" varStatus="status">
+					<c:forEach var="word" items="${word.synonyms}" varStatus="status">
 						<tr>
+						     <td>${word.id}</td>
 							 <td>${synonyms.synonym_id}</td>
                             <td>${synonyms.synonym_1}</td>
                             <td>${synonyms.synonym_2}</td>

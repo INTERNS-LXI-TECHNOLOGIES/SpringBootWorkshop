@@ -19,6 +19,9 @@ public class Synonyms {
     @Column(name = "synonym_2")
     private String synonym_2;
 
+    @Column(name = "id")
+    private  long id;
+
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private Word word;
