@@ -1,7 +1,9 @@
 package com.lxisoft.vegetablestore.service;
 
+import com.lxisoft.vegetablestore.entity.Category;
 import com.lxisoft.vegetablestore.entity.Vegetable;
 
+import com.lxisoft.vegetablestore.repository.CategoryRepository;
 import com.lxisoft.vegetablestore.repository.VegetableStoreRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,21 @@ public class VegetableStoreService{
     @Autowired
     VegetableStoreRepository vegetableRepository;
 
-
+@Autowired
+CategoryRepository categoryRepository;
 
     public List<Vegetable> readVegetable() {
 
         return vegetableRepository.findAll();
     }
 
-    public void addVegetable(Vegetable vegetable) throws IOException {
+    public List<Category> readCategories() {
+
+        return categoryRepository.findAll();
+    }
+
+
+    public void addVegetable(Vegetable vegetable, Category category) throws IOException {
 
         InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
 
@@ -36,9 +45,9 @@ public class VegetableStoreService{
 
         vegetable.setImage(image);
 
+        category.getVegetables().add(vegetable);
 
-
-       vegetableRepository.save(vegetable);
+       categoryRepository.save(category);
     }
 
 
@@ -49,7 +58,7 @@ public class VegetableStoreService{
     }
 
 
-    public void updateVegetable(Vegetable vegetable) throws IOException {
+    public void updateVegetable(Vegetable vegetable,Category category) throws IOException {
 
         InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
 
@@ -58,7 +67,9 @@ public class VegetableStoreService{
         inputStream.read(image);
         vegetable.setImage(image);
 
-        vegetableRepository.save(vegetable);
+        category.getVegetables().add(vegetable);
+
+        categoryRepository.save(category);
     }
 
     public void deleteVegetable(int id) {
@@ -71,5 +82,6 @@ public class VegetableStoreService{
 
         return vegetableRepository.search(word);
     }
+
 
 }

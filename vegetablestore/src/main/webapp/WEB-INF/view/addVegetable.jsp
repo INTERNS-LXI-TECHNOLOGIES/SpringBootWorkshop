@@ -69,7 +69,7 @@ margin:50px;
     
     </div>
 
-<form action ="<%=request.getContextPath() %>/create-vegetable" enctype="multipart/form-data" method ="POST">
+<form action ="create-vegetable" enctype="multipart/form-data" method ="POST">
 
 <table style = "width: 80%">
 
@@ -94,6 +94,10 @@ margin:50px;
 <td><input type = "text" name = "minOrderQuantity"/></td>
 </tr>
 
+<tr>
+<td>Enter category</td>
+<td><input type = "text" name = "type"/></td>
+</tr>
 
 <tr>
   <td>Select Photo</td>

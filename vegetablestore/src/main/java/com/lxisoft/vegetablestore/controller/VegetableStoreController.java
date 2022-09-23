@@ -1,12 +1,17 @@
 package com.lxisoft.vegetablestore.controller;
 
+import com.lxisoft.vegetablestore.entity.Category;
 import com.lxisoft.vegetablestore.entity.Vegetable;
 import com.lxisoft.vegetablestore.service.VegetableStoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.imageio.ImageIO;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +37,9 @@ public String readVegetable(Model model) {
 
     model.addAttribute("vegetables",vegetableStoreService.readVegetable());
 
+    model.addAttribute("categories",vegetableStoreService.readCategories());
+
+
     return "vegetable";
     }
 
@@ -44,18 +52,17 @@ return "addVegetable";
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
+public String createVegetable(@ModelAttribute Vegetable vegetable,@ModelAttribute Category category) throws IOException {
 
-    vegetableStoreService.addVegetable(vegetable);
-    Logger log=Logger.getLogger("veg");
-    log.info("success");
+    System.out.println(category.getType());
+    vegetableStoreService.addVegetable(vegetable,category);
 
-    return "redirect:/";
+    return "vegetableConfirm";
 }
 
 
 @GetMapping("/select-vegetable")
-public String selectVegetable(@RequestParam("id")int id,Model model) {
+public String selectVegetable(@RequestParam("id")int id, Model model) {
 
         model.addAttribute("vegetable",vegetableStoreService.selectData(id));
 
@@ -63,15 +70,13 @@ public String selectVegetable(@RequestParam("id")int id,Model model) {
 }
 
 
-
 @PostMapping("/update-vegetable")
-    public String updateVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
+    public String updateVegetable(@ModelAttribute Vegetable vegetable,@ModelAttribute Category category) throws IOException {
 
-    vegetableStoreService.updateVegetable(vegetable);
+    vegetableStoreService.updateVegetable(vegetable,category);
 
-return"redirect:/";
+return "redirect:/";
     }
-
 
 
 @PostMapping("/delete-vegetable")
