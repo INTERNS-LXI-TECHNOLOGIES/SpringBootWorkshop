@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <html>
 <head>
@@ -25,7 +25,7 @@
 
             				<a style= "color:white" href="/${contextPath}">Words List</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a style= "color:white" href="createSynonym">Add New Synonym</a>
+            				<a style= "color:white" href="${contextPath}/createSynonym/${word.id}">Add New Synonym</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white"  href="logout">Log Out</a>
             			</h5>
@@ -34,12 +34,34 @@
 	<br>
 
 	<div class="row">
+    	<div class="container">
+
+
+    			<br>
+
+	<table class="table table-bordered">
+
+    					<tr>
+    						<th>Word ID</th>
+    						<th>Word</th>
+    						<th>Malayalam Meaning</th>
+    					</tr>
+
+    					<tr>
+                        	<td>${word.id}</td>
+                            <td>${word.name}</td>
+                           <td>${word.meaning}</td>
+                     </tr>
+
+
+	<div class="row">
+	<div class="container">
+
 
 			<br>
 			<table class="table table-bordered">
 
 					<tr>
-					  <th>Word ID</th>
 						<th>Synonym ID</th>
 						<th>Synonym_1</th>
 						<th>Synonym_2</th>
@@ -48,17 +70,16 @@
 						<% } %>
 					</tr>
 
-					<c:forEach var="word" items="${word.synonyms}" varStatus="status">
+					<c:forEach var="word" items="${word.synonym}" varStatus="status">
 						<tr>
-						     <td>${word.id}</td>
-							 <td>${synonyms.synonym_id}</td>
-                            <td>${synonyms.synonym_1}</td>
-                            <td>${synonyms.synonym_2}</td>
+							 <td>${synonym.synonym_id}</td>
+                            <td>${synonym.synonym_1}</td>
+                            <td>${synonym.synonym_2}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<a href="editSynonym/${synonyms.synonym_id}">Edit</a>
+							<a href="editSynonym/${synonym.synonym_id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                           <a href="deleteSynonym/${synonyms.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                           <a href="deleteSynonym/${synonym.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                            </td>
 						<% } %>
 						</tr>

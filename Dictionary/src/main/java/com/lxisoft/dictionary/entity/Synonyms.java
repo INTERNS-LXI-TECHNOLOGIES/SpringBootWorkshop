@@ -26,6 +26,10 @@ public class Synonyms {
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private Word word;
 
+    public Synonyms(long id) {
+
+    }
+
     public long getSynonym_id() {
         return synonym_id;
     }

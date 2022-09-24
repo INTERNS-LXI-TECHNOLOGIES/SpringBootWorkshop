@@ -23,13 +23,13 @@ public class Word {
     private String meaning;
 
     @OneToMany(mappedBy = "word")
-    private Set<Synonyms> synonyms;
+    private Set<Synonyms> synonym;
 
-    public Set<Synonyms> getSynonyms() {
-        return synonyms;
+    public Set<Synonyms> getSynonym() {
+        return synonym;
     }
-        public void setSynonyms(Set<Synonyms> synonyms) {
-            this.synonyms = synonyms;
+        public void setSynonym(Set<Synonyms> synonym) {
+            this.synonym = synonym;
         }
 
     public Word() {

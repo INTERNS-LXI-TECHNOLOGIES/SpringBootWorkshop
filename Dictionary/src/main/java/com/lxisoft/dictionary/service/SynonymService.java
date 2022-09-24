@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SynonymService {
 
-    void saveSynonym(Synonyms synonyms);
+    void saveSynonym(Synonyms synonym);
 
     void deleteSynonym(long synonym_id);
 

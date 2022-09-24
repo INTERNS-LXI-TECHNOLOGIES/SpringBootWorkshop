@@ -16,8 +16,8 @@ public class SynonymServiceImpl  implements SynonymService {
     private SynonymRepository synonymRepository;
 
     @Override
-    public void saveSynonym(Synonyms synonyms) {
-        synonymRepository.save(synonyms);
+    public void saveSynonym(Synonyms synonym) {
+        synonymRepository.save(synonym);
     }
 
     @Override
