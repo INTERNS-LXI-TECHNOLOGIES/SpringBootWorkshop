@@ -16,7 +16,7 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: blue">
+			style="background-color: rgb(1, 68, 22)">
 
 			<div>
                   <h3 class="navbar-brand"> Dictionary App </h3>

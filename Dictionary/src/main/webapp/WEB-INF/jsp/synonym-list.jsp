@@ -16,7 +16,7 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: blue">
+			style="background-color: rgb(1, 68, 22)">
 			<div>
 
 				<h3 class="navbar-brand"> Dictionary App </h3>
@@ -36,10 +36,10 @@
 	<div class="row">
     	<div class="container">
 
+    	<h3 class="text-center">WORD SYNONYMS</h3>
+        <br>
 
-    			<br>
-
-	<table class="table table-bordered">
+	        <table class="table table-bordered">
 
     					<tr>
     						<th>Word ID</th>
@@ -62,9 +62,9 @@
 			<table class="table table-bordered">
 
 					<tr>
-						<th>Synonym ID</th>
-						<th>Synonym_1</th>
-						<th>Synonym_2</th>
+						<th>ID</th>
+						<th>Synonym-1</th>
+						<th>Synonym-2</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
 						<% } %>
@@ -72,14 +72,14 @@
 
 					<c:forEach var="word" items="${word.synonym}" varStatus="status">
 						<tr>
-							 <td>${synonym.synonym_id}</td>
-                            <td>${synonym.synonym_1}</td>
-                            <td>${synonym.synonym_2}</td>
+							 <td>${word.synonym_id}</td>
+                            <td>${word.synonym_1}</td>
+                            <td>${word.synonym_2}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<a href="editSynonym/${synonym.synonym_id}">Edit</a>
+							<a href="${contextPath}/editSynonym/${word.synonym_id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                           <a href="deleteSynonym/${synonym.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                           <a href="${contextPath}/deleteSynonym/${word.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                            </td>
 						<% } %>
 						</tr>
