@@ -9,9 +9,11 @@ import com.lxisoft.vegetablestore.repository.VegetableStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -84,4 +86,42 @@ CategoryRepository categoryRepository;
     }
 
 
+    public void image(String name, HttpServletResponse response) throws IOException {
+
+        String path ="../../../vegetablestore/src/main/resources/picture/"+ name;
+
+        byte [] image = getImageAsBytes(path);
+
+        response.setContentType("image/jpeg");
+        response.setContentLength(image.length);
+        response.getOutputStream().write(image);
+    }
+    private byte[] getImageAsBytes(String name) {
+
+
+        File imgPath = new File(name);
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try{
+            BufferedImage bufferedImage = ImageIO.read(imgPath);
+            ImageIO.write(bufferedImage, "jpg", bos );
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        return bos.toByteArray();
+
+    }
+
+    public List<Vegetable> categories(int id) {
+        System.out.println("start2");
+
+List<Vegetable>list = categoryRepository.findVegetableInCategory(id);
+
+if(list.size()==0){
+    System.out.println("null");
+}
+        return list;
+
+    }
 }

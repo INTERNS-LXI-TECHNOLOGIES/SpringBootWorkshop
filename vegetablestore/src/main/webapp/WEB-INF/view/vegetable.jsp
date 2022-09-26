@@ -13,7 +13,7 @@ color:white;
 background-color:blue;
 font-size:37px;
 height:60px;
-width:1200px;
+width:1330px;
 }
 h2{
 color:white;
@@ -21,7 +21,7 @@ background-color:chartreuse;
 border-radius:10px;
 margin : 1px 10px 70px 440px;
 height:40px;
-width:300px;
+width:410px;
 }
 table{
   border: none;
@@ -59,8 +59,8 @@ height:40px;
 }
 .search{
 border-color:red;
-height:30px;
-  width : 450px;
+height:40px;
+  width : 500px;
 }
 .searchBtn{
 background-color: rgb(66, 224, 66);
@@ -96,9 +96,7 @@ text-align:left;
 </div>
 
 
-
   <a href = "add-form"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
-
 
 
 <h2><center>Vegetable Details</center></h2>
@@ -116,9 +114,14 @@ text-align:left;
 for(Category category:categories) {%>
 <tr>
 <td>
-<a href = ""><%out.println(category.getType()); }%></a>
+<form action = "categories" method = "GET">
+
+   <input type = "hidden" name ="id" value= <%=category.getId()%>
+      <input type = "submit" ><button><%=category.getType()%><button></input></form>
+
+
 </td>
-</td>
+</tr><%}%>
 </div></table>
 <center><table style="width: 50%;" border="0" >
  <%List<Vegetable> vegetables = (ArrayList<Vegetable>)request.getAttribute("vegetables");
