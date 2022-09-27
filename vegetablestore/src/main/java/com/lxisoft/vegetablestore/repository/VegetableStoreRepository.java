@@ -15,4 +15,5 @@ public interface VegetableStoreRepository extends JpaRepository<Vegetable, Integ
 @Query("SELECT vegetable FROM Vegetable vegetable WHERE name LIKE %?1%")
 List<Vegetable> search( String keyword);
 
+
 }

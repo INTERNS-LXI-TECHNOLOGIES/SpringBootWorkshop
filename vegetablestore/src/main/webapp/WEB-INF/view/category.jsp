@@ -21,11 +21,6 @@
 
   for (Vegetable vegetable : vegetables) {
 
-if(vegetable==null){
-
-System.out.println("bddf");
-
-}
   %>
 
 

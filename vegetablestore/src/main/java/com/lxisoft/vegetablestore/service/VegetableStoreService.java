@@ -116,7 +116,7 @@ CategoryRepository categoryRepository;
     public List<Vegetable> categories(int id) {
         System.out.println("start2");
 
-List<Vegetable>list = categoryRepository.findVegetableInCategory(id);
+List<Vegetable>list = categoryRepository.findAllVegetableInCate_id(id);
 
 if(list.size()==0){
     System.out.println("null");
