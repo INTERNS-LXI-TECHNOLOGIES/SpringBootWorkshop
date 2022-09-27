@@ -16,9 +16,6 @@ public class Synonyms {
     @Column(name = "synonym_1")
     private String synonym_1;
 
-    @Column(name = "synonym_2")
-    private String synonym_2;
-
     @Column(name = "id")
     private  long id;
 
@@ -46,14 +43,6 @@ public class Synonyms {
 
     public void setSynonym_1(String synonym_1) {
         this.synonym_1 = synonym_1;
-    }
-
-    public String getSynonym_2() {
-        return synonym_2;
-    }
-
-    public void setSynonym_2 (String synonym_2) {
-        this.synonym_2 = synonym_2;
     }
 
 }

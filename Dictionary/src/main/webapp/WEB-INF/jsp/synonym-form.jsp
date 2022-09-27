@@ -25,7 +25,7 @@
 
 				<a style= "color:white" href="/${contextPath}">Words List</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a style= "color:white" href="${contextPath}/createSynonym">Add New Synonym</a>
+				<a style= "color:white" href="${contextPath}/createSynonym/${word.id}">Add New Synonym</a>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a style= "color:white" href="${contextPath}/logout">Log Out</a>
                 </h5>
@@ -48,18 +48,11 @@
 
 				   <tr>
 				   <form:hidden path="synonym_id"/>
-                	 <th>Synonym_1</th>
+                	 <th>Synonyms</th>
                 		 <td>
                 		<form:input path="synonym_1"/>
                 	  </td>
                 	  </tr>
-
-                	   <tr>
-                         <th>Synonym_2</th>
-                           <td>
-                             <form:input path="synonym_2"/>
-                              </td>
-                            </tr>
                <tr>
 				<button type="submit" class="btn btn-success">Save</button>
 				   </tr>

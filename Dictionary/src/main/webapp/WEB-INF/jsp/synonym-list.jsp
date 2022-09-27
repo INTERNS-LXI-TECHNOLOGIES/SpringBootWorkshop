@@ -63,8 +63,7 @@
 
 					<tr>
 						<th>ID</th>
-						<th>Synonym-1</th>
-						<th>Synonym-2</th>
+						<th>Synonyms</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
 						<th>Actions</th>
 						<% } %>
@@ -74,7 +73,6 @@
 						<tr>
 							 <td>${word.synonym_id}</td>
                             <td>${word.synonym_1}</td>
-                            <td>${word.synonym_2}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
 							<a href="${contextPath}/editSynonym/${word.synonym_id}">Edit</a>
