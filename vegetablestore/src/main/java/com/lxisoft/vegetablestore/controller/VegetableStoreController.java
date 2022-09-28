@@ -82,7 +82,7 @@ return "redirect:/";
 
 @GetMapping("categories")
 public String categories(@RequestParam(required=false,name="id")Integer id, Model model) {
-    System.out.println("start");
+
    model.addAttribute("vegetables",vegetableStoreService.categories(id));
 
     return "category";

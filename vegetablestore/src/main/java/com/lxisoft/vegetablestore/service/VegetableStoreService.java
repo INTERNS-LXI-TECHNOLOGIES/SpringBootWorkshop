@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -56,7 +55,6 @@ CategoryRepository categoryRepository;
     public Vegetable selectData(int id) {
 
         return vegetableRepository.findById(id).get();
-
     }
 
 
@@ -77,7 +75,6 @@ CategoryRepository categoryRepository;
     public void deleteVegetable(int id) {
 
         vegetableRepository.deleteById(id);
-
     }
 
     public List<Vegetable> search(String word) {
@@ -85,6 +82,11 @@ CategoryRepository categoryRepository;
         return vegetableRepository.search(word);
     }
 
+
+    public List<Vegetable> categories(int id) {
+
+        return categoryRepository.findAllVegetableInCate_id(id);
+    }
 
     public void image(String name, HttpServletResponse response) throws IOException {
 
@@ -113,15 +115,4 @@ CategoryRepository categoryRepository;
 
     }
 
-    public List<Vegetable> categories(int id) {
-        System.out.println("start2");
-
-List<Vegetable>list = categoryRepository.findAllVegetableInCate_id(id);
-
-if(list.size()==0){
-    System.out.println("null");
-}
-        return list;
-
-    }
 }

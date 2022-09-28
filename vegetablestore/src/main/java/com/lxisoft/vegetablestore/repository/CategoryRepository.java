@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-    @Query("SELECT vegetable FROM Vegetable vegetable WHERE cate_id='?'")
+    @Query("SELECT vegetables FROM Category cat  WHERE cat.id =?1")
     List<Vegetable> findAllVegetableInCate_id(int id);
 }

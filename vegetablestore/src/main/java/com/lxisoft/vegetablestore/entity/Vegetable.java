@@ -37,7 +37,8 @@ private byte[]image;
 @Transient
 	private MultipartFile imageFile;
 
-
+@ManyToOne
+private Category category;
 public Vegetable() {
 
 }
