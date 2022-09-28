@@ -18,7 +18,7 @@ public class DictionaryController {
     @Autowired
     private DictionaryService dictionaryService;
 
-    private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
+    //private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
 
     @GetMapping("/")
 
@@ -27,7 +27,7 @@ public class DictionaryController {
         model.addAttribute("wordsList", wordsList);
         model.addAttribute("keyword", keyword);
 
-        LOGGER.info("wordList" + wordsList);
+       // LOGGER.info("wordList" + wordsList);
         return "data-list";
     }
 

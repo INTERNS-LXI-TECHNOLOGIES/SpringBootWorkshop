@@ -38,7 +38,7 @@
 		<div class="card">
 			<div class="card-body">
 
-				<form:form action="${contextPath}/saveSynonym" method="post" modelAttribute="synonym">
+				<form:form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="synonym">
 
 				<table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 

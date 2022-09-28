@@ -4,12 +4,12 @@ import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import java.util.Set;
 import javax.persistence.*;
-@Table(name = "dictionary")
+
 @Entity
+@Table(name = "dictionary")
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "id")
     private long id;
 
@@ -22,7 +22,7 @@ public class Word {
     @Column(name = "Meanings")
     private String meaning;
 
-    @OneToMany(mappedBy = "word")
+    @OneToMany(mappedBy = "word",cascade = { CascadeType.ALL } )
     private Set<Synonyms> synonym;
 
     public Set<Synonyms> getSynonym() {

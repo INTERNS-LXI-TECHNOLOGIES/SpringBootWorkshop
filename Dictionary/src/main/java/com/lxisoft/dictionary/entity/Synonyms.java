@@ -8,7 +8,6 @@ public class Synonyms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "word_id")
     private long synonym_id;
 
@@ -16,12 +15,13 @@ public class Synonyms {
     @Column(name = "synonym_1")
     private String synonym_1;
 
-    @Column(name = "id")
-    private  long id;
+
 
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private Word word;
+    @Column(name = "id")
+    private  long id;
 
     public Synonyms() {
     }
