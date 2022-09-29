@@ -36,7 +36,6 @@ public class SynonymsController {
     public String createSynonym(@PathVariable long id, Model model) {
 
         model.addAttribute("synonym", new Synonyms(id));
-        model.addAttribute("id",id);
         model.addAttribute("caption", "ADD NEW SYNONYM");
 
         return "synonym-form";

@@ -9,7 +9,7 @@ public interface SynonymService {
 
     void saveSynonym(Synonyms synonym);
 
-    void deleteSynonym(long id);
+    void deleteSynonym(long synonym_id);
 
-    Synonyms getSynonym(long id);
+    Synonyms getSynonym(long synonym_id);
 }
