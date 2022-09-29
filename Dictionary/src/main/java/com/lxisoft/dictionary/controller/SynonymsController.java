@@ -29,7 +29,7 @@ public class SynonymsController {
     @PostMapping("/saveSynonym/{id}")
     public String saveSynonym(@PathVariable long id,@ModelAttribute Synonyms synonym) {
         synonymService.saveSynonym(synonym);
-        return "redirect:Synonym";
+        return "redirect:/Synonym";
     }
 
     @GetMapping("/createSynonym/{id}")
