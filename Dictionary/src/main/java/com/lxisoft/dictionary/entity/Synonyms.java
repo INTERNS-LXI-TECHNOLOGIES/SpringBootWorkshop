@@ -8,19 +8,16 @@ public class Synonyms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "word_id")
+    @Column(name = "synonym_id")
     private long synonym_id;
 
 
     @Column(name = "synonym_1")
     private String synonym_1;
 
-
-
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private Word word;
-    @Column(name = "id")
     private  long id;
 
     public Synonyms() {
@@ -43,6 +40,20 @@ public class Synonyms {
 
     public void setSynonym_1(String synonym_1) {
         this.synonym_1 = synonym_1;
+    }
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Word getWord() {
+        return word;
+    }
+    public void setWord(Word word) {
+        this.word = word;
     }
 
 }

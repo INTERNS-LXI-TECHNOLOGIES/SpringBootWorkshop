@@ -75,8 +75,8 @@ public class Word {
         this.meaning = meaning;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + speech + ", Meanings=" + meaning + " ]";
-    }
+    }*/
 }

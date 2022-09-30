@@ -28,8 +28,10 @@ public class SynonymsController {
 
     @PostMapping("/saveSynonym/{id}")
     public String saveSynonym(@PathVariable long id,@ModelAttribute Synonyms synonym) {
+        Word word = dictionaryService.getWord(id);
+        synonym.setWord(word);
         synonymService.saveSynonym(synonym);
-        return "redirect:/Synonym";
+        return "redirect:/Synonym/" + id;
     }
 
     @GetMapping("/createSynonym/{id}")
@@ -41,15 +43,15 @@ public class SynonymsController {
         return "synonym-form";
     }
 
-    @GetMapping("/deleteSynonym/{id}")
-    public String deleteSynonym(@PathVariable long id) {
-        synonymService.deleteSynonym(id);
-        return "redirect:/Synonym";
+    @GetMapping("/deleteSynonym/{synonym_id}/word/{id}")
+    public String deleteSynonym(@PathVariable(value = "synonym_id") long synonym_id,@PathVariable(value = "id") long id) {
+        synonymService.deleteSynonym(synonym_id);
+        return "redirect:/Synonym/" + id;
     }
 
-    @GetMapping("/editSynonym/{id}")
-    public String editSynonym(@PathVariable long id, Model model) {
-        Synonyms synonym = synonymService.getSynonym(id);
+    @GetMapping("/editSynonym/{synonym_id}/word/{id}")
+    public String editSynonym(@PathVariable(value = "synonym_id") long synonym_id, Model model,@PathVariable(value = "id") long id) {
+        Synonyms synonym = synonymService.getSynonym(synonym_id);
         model.addAttribute("synonym", synonym);
         model.addAttribute("caption", "EDIT SYNONYM");
         return "synonym-form";

@@ -27,7 +27,7 @@
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white" href="${contextPath}/createSynonym/${word.id}">Add New Synonym</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a style= "color:white"  href="logout">Log Out</a>
+            				<a style= "color:white"  href="${contextPath}/logout">Log Out</a>
             			</h5>
             			</div>
        </header>
@@ -75,9 +75,9 @@
                             <td>${word.synonym_1}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<a href="${contextPath}/editSynonym/${word.synonym_id}">Edit</a>
+							<a href="${contextPath}/editSynonym/${word.synonym_id}/word/${id}">Edit</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                           <a href="${contextPath}/deleteSynonym/${word.synonym_id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                           <a href="${contextPath}/deleteSynonym/${word.synonym_id}/word/${id}" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                            </td>
 						<% } %>
 						</tr>
