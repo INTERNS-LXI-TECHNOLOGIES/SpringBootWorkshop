@@ -38,16 +38,18 @@ public String readVegetable(Model model) {
 
 
 @GetMapping("/add-form")
-public String addVegetableForm(){
+public String addVegetableForm(Model model){
+
+    model.addAttribute("categories",vegetableStoreService.readCategories());
 
 return "addVegetable";
 }
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute Vegetable vegetable,@ModelAttribute Category category) throws IOException {
+public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-    vegetableStoreService.addVegetable(vegetable,category);
+    vegetableStoreService.addVegetable(vegetable);
 
     return "vegetableConfirm";
 }
@@ -57,19 +59,18 @@ public String createVegetable(@ModelAttribute Vegetable vegetable,@ModelAttribut
 public String selectVegetable(@RequestParam("id")int id, Model model) {
 
         model.addAttribute("vegetable",vegetableStoreService.selectData(id));
-
+    model.addAttribute("categories",vegetableStoreService.readCategories());
     return "updateVegetable";
 }
 
 
 @PostMapping("/update-vegetable")
-    public String updateVegetable(@ModelAttribute Vegetable vegetable,@ModelAttribute Category category) throws IOException {
+    public String updateVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
 
-    vegetableStoreService.updateVegetable(vegetable,category);
+    vegetableStoreService.updateVegetable(vegetable);
 
 return "redirect:/";
     }
-
 
 @PostMapping("/delete-vegetable")
 public String delete(@RequestParam("id")int id) {

@@ -54,6 +54,11 @@ width:70px;
   height:30px;
 
 }
+
+.col{
+display:inline-block;
+
+}
 .vegetableBtn{
 height:40px;
 }
@@ -89,7 +94,6 @@ text-align:left;
   <a href = "/"><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
 </div>
 
-
   <div
   style= "text-align: right;">
   <a href = "log-out"  ><img src ="image?name=logout.jpeg" alt="google-play" height = 60px  class="log" onclick = "return confirm('Are You Sure Want to Logout')"></a></center>
@@ -117,7 +121,7 @@ for(Category category:categories) {%>
 <form action = "categories" method = "GET">
 
    <input type = "hidden" name ="id" value= <%=category.getId()%>
-      <input type = "submit" ><button><%=category.getType()%><button></input></form>
+      <input type = "submit" ><button><%=category.getCategory()%><button></input></form>
 
 
 </td>

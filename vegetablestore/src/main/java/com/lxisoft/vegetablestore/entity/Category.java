@@ -8,20 +8,20 @@ import java.util.List;
 @Table(name = "categories")
 public class Category {
 
-  public Category(String type) {
-    this.type = type;
+  public Category(String category) {
+    this.category = category;
   }
 
   public Category() {}
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private int id;
 
-  @Column(name = "types")
-  private String type;
+  @Column(name = "category")
+  private String category;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "cate_Id",referencedColumnName = "id")
+  @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
   List<Vegetable> vegetables = new ArrayList<>();
 
 
@@ -33,12 +33,12 @@ public class Category {
     this.id = id;
   }
 
-  public String getType() {
-    return type;
+  public String getCategory() {
+    return category;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCategory(String category) {
+    this.category = category;
   }
 
   public List<Vegetable> getVegetables() {

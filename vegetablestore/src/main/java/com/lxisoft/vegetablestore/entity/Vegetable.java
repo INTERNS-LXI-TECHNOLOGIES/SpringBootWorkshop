@@ -11,6 +11,10 @@ import java.util.Base64;
 public class Vegetable {
 
 
+	public Vegetable() {
+
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -38,14 +42,19 @@ private byte[]image;
 	private MultipartFile imageFile;
 
 @ManyToOne
+@JoinColumn(name = "category_id")
 private Category category;
-public Vegetable() {
-
-}
 
 
+	public Category getCategory() {
+		return category;
+	}
 
-public int getId() {
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public int getId() {
 
 	 return id;
 	}

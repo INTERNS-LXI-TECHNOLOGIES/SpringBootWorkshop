@@ -36,7 +36,7 @@ CategoryRepository categoryRepository;
     }
 
 
-    public void addVegetable(Vegetable vegetable, Category category) throws IOException {
+    public void addVegetable(Vegetable vegetable) throws IOException {
 
         InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
 
@@ -46,19 +46,17 @@ CategoryRepository categoryRepository;
 
         vegetable.setImage(image);
 
-        category.getVegetables().add(vegetable);
-
-       categoryRepository.save(category);
+       vegetableRepository.save(vegetable);
     }
 
 
     public Vegetable selectData(int id) {
 
-        return vegetableRepository.findById(id).get();
+        return  vegetableRepository.findById(id).get();
     }
 
 
-    public void updateVegetable(Vegetable vegetable,Category category) throws IOException {
+    public void updateVegetable(Vegetable vegetable) throws IOException {
 
         InputStream inputStream =  new BufferedInputStream(vegetable.getImageFile().getInputStream());
 
@@ -67,9 +65,8 @@ CategoryRepository categoryRepository;
         inputStream.read(image);
         vegetable.setImage(image);
 
-        category.getVegetables().add(vegetable);
 
-        categoryRepository.save(category);
+        vegetableRepository.save(vegetable);
     }
 
     public void deleteVegetable(int id) {
@@ -84,6 +81,7 @@ CategoryRepository categoryRepository;
 
 
     public List<Vegetable> categories(int id) {
+
 
         return categoryRepository.findAllVegetableInCate_id(id);
     }

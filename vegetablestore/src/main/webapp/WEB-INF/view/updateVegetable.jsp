@@ -38,6 +38,7 @@ margin:50px;
 
 
    <%@ page import="com.lxisoft.vegetablestore.entity.Vegetable"%>
+   <%@ page import="com.lxisoft.vegetablestore.entity.Category"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
@@ -86,10 +87,24 @@ margin:50px;
     <td><input type = "text" name = "minOrderQuantity"  value =<%=vegetable.getMinOrderQuantity()%>></td>
     </tr>
 
-    <tr>
-    <td>Change category</td>
-    <td><input type = "text" name = "type"></td>
-    </tr>
+<td>category = <%=vegetable.getCategory().getCategory()%></td>
+
+  <%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
+
+
+  <div class = "form-group">
+  <select name ="category" class = "form-control" id = "">
+
+
+  <%for(Category category:categories) {%>
+
+  <option value =<%= category.getId() %>><%= category.getCategory()%></option>
+
+  <%}%>
+  </select>
+
+  </div>
+
 
    <tr>
      <td>Select Photo</td>
