@@ -86,6 +86,13 @@ CategoryRepository categoryRepository;
         return categoryRepository.findAllVegetableInCate_id(id);
     }
 
+    public void addCategory(String cat) {
+
+        Category category = new Category(cat);
+        categoryRepository.save(category);
+    }
+
+
     public void image(String name, HttpServletResponse response) throws IOException {
 
         String path ="../../../vegetablestore/src/main/resources/picture/"+ name;

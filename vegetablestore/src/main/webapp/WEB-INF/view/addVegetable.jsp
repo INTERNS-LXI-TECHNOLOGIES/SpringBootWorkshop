@@ -12,47 +12,13 @@
 <title>Vegetable Add Form</title>
 
 <style>
+
   h1{
 color:white;	
 background-color:rgb(95, 95, 209);
 font-size:40px;
 height:65px;
 width:1200px;
-}
-h4{
-  font-size:30px;
-color:white;	
-background-color:red;
-border-radius:10px;
-margin : 30px 450px;
-height:40px;
-width:300px;
-}
-table{
-border:none;
-}
-th,td{
- padding : 9px;
-}
-table{
-border:none;
-}
-td{
-  padding : 9px;
-}
-.subBtn{
-background-color:red;
-border: none;
-border-radius:10px;
-color : white;
-width:70px;
-  height:30px
-}
-
-.homeBtn{
-margin:50px;
-
-
 }
 </style>
 
@@ -78,44 +44,107 @@ margin:50px;
     
     </div>
 
-   <button class = btn >Add Vegetable</button>
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-Add Category
+<div class = "container">
+<div class = "row">
+<div class ="card">
+<div class = "card-body">
+<div>
+ <a href = "#add-Vegetable"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
+    </a>
+   </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVegetable">
+Add Vegetable
    </button>
 
-
-<form action ="create-vegetable" enctype="multipart/form-data" method ="POST">
-
-<table style = "width: 80%">
-
-<tr>
-
-  <td>Enter Name</td>
-  <td><input type = "text" name = "name"/></td>
-  </tr>
-  
-  <tr> 
-  <td>Enter Price </td>
-  <td><input type = "text" name = "price"/></td>
-</tr>
-
-<tr>
-<td>Enter Stock</td>
-<td><input type = "text" name = "stock"/></td>
-</tr>
-
-<tr>
-<td>Enter OrderQuantity</td>
-<td><input type = "text" name = "minOrderQuantity"/></td>
-</tr>
+</div>
+</div>
 
 
-<%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
 
+
+<div class ="card">
+<div class = "card-body">
+<div>
+ <a href = "#add-category"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
+    </a>
+   </div>
+
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">
+Add Category
+   </button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+        </button>
+      </div>
+      <div class="modal-body">
+
+<form action = "create-category" method = "post">
+
+<div class = "form-group">
+
+<input type = "text" class = "form-control" name = "category" placeholder= "Enter New Category" required/>
+
+</div>
+
+<div class = "container text-center">
+<button class = "btn btn-outline-success">Add Category</button>
+ <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+</div>
+</form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addVegetable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Vegetable</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action ="create-vegetable" enctype="multipart/form-data" method ="POST">
+
+        <div class = "form-group">
+        <input type = "text" class = "form-control" placeholder = "Enter Name" name = "name" required/>
+        </div>
+
+          <div class = "form-group">
+                <input type = "text" class = "form-control" placeholder = "Enter Price" name = "price" required/>
+                </div>
+
+             <div class = "form-group">
+                <input type = "text" class = "form-control" placeholder = "Enter Stock" name = "stock" required/>
+                        </div>
+
+             <div class = "form-group">
+                   <input type = "text" class = "form-control" placeholder = "Enter Minimum Order Quantity" name = "minOrderQuantity" required/>
+                   </div>
 
 <div class = "form-group">
 <select name ="category" class = "form-control" id = "">
 
+<%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
 
 <%for(Category category:categories) {%>
 
@@ -123,48 +152,31 @@ Add Category
 
 <%}%>
 </select>
+</div>
+
+<div class = "form-group text-left">
+
+<label for="imageFile">Select Image</label>
+<br>
+<input type = "file" name = "imageFile" required />
 
 </div>
 
+<div class = "container text-center">
 
+<button class = "btn btn-outline-success">Add Vegetable</button>
+<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
 
-<tr>
-  <td>Select Photo</td>
-  <td><input type="file" name="imageFile"></td>
-  </tr>
-
- </table>
-
- 
- <input type = "submit" value = "submit" class = "subBtn"/>
- 
-
-</form>
 </div>
-</center>
 
-<!-- Button trigger modal -->
+        </form>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+
 </body>
 
 </html>

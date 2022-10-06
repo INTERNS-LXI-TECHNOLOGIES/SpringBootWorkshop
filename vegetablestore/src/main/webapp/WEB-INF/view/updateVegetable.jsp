@@ -7,17 +7,12 @@
    h1{
 color:white;	
 background-color:red;
-font-size:40px;
-height:65px;
-width:1200px;
-padding : 13px;
+font-size:30px;
+height:40px;
+width:1300px;
+padding : 5px;
 }
-table{
-border:none;
-}
-th,td{
-  padding : 9px;
-}
+
 .subBtn{
 
    background-color:blue;
@@ -28,10 +23,16 @@ th,td{
   height:30px
 
 }
-.homeBtn{
-margin:50px;
-
-
+.form-group{
+font-size:15px;
+border-radius:30px;
+padding:10px;
+border-color:red;
+}
+.form-control{
+border-radius:10px;
+padding:10px;
+border-color:red;
 }
 
 </style>
@@ -45,79 +46,81 @@ margin:50px;
 </head>
 <body>
 
-<center><h1>VEGETABLE UPDATE FORM</h1></center>
+<center><h1>VEGEE-CART UPDATE FORM</h1></center>
+
 
 
 <a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
-   
+ <div class = "container">
    <form action ="update-vegetable" enctype="multipart/form-data" method = "POST">
 
+    <%Vegetable vegetable =(Vegetable) request.getAttribute("vegetable");%>
+     <%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
 
-   <%Vegetable vegetable =(Vegetable) request.getAttribute("vegetable");%>
+    <center><img src="data:image/jpg;base64,<%= vegetable.getBase64Image()%>"width = "300" height ="180"> </center>
 
+    <!-- id -->
+   <div class = "form-group">
+   <input type = "hidden" name = "id" value =<%=vegetable.getId()%>>
+   </div>
 
-<center>
-<table style = "width: 80%">
+<!-- name -->
+   <center><div class = "form-group">
+   <label for = "form-control">Vegetable Name</label>
+           <input type = "text" class = "form-control" value =<%=vegetable.getName()%> name = "name" required/>
+           </div></center>
 
+<!-- price -->
+          <center><div class = "form-group">
+           <label for = "form-control">Vegetable Price</label>
+            <input type = "text" class = "form-control" value =<%=vegetable.getPrice()%> name = "price" required/>
+              </div></center>
 
-<td> <center><img src="data:image/jpg;base64,<%= vegetable.getBase64Image()%>"width = "200" height ="140"> </center></td>
-
-   <td><input type = "hidden" name = "id" value =<%=vegetable.getId()%>></td>
-   </tr>
-   
-   <tr>
-
-      <td>Enter Name</td>
-      <td><input type = "text" name = "name" value =<%=vegetable.getName()%>></td>
-      </tr>
-      
-      <tr> 
-      <td>Enter Price </td>
-      <td><input type = "text" name = "price"  value =<%=vegetable.getPrice()%>></td>
-    </tr>
-    
-    <tr>
-    <td>Enter Stock</td>
-    <td><input type = "text" name = "stock"  value =<%=vegetable.getStock()%>></td>
-    </tr>
-    
-    <tr>
-    <td>Enter OrderQuantity</td>
-    <td><input type = "text" name = "minOrderQuantity"  value =<%=vegetable.getMinOrderQuantity()%>></td>
-    </tr>
-
-<td>category = <%=vegetable.getCategory().getCategory()%></td>
-
-  <%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
+<!-- stock -->
+  <center><div class = "form-group">
+           <label for = "form-control">Vegetable Stock</label>
+            <input type = "text" class = "form-control" value =<%=vegetable.getStock()%> name = "stock" required/>
+              </div></center>
 
 
-  <div class = "form-group">
+<!-- order -->
+  <center><div class = "form-group">
+           <label for = "form-control">Vegetable Stock</label>
+            <input type = "text" class = "form-control" value =<%=vegetable.getMinOrderQuantity()%> name = "minOrderQuantity" required/>
+              </div></center>
+
+
+<center><div class = "form-group">
+  <label for = "category">Vegetable Category</label>
   <select name ="category" class = "form-control" id = "">
-
 
   <%for(Category category:categories) {%>
 
   <option value =<%= category.getId() %>><%= category.getCategory()%></option>
-
   <%}%>
   </select>
 
-  </div>
+  </div></center>
 
 
-   <tr>
-     <td>Select Photo</td>
-     <td><input type="file" name="imageFile" value = <%=vegetable.getImage()%>></td>
-     </tr>
+  <center><div class = "form-group text-left">
 
-     </table>
+  <label for="imageFile">Select Image</label>
+
+  <input type = "file" name = "imageFile" class = "form-control" required />
+
+  </div></center>
+
+
+   </div>
+
+
+
+
+
+     <center><input type = "submit" value = "submit" class ="subBtn"/></center>
      
-     <input type = "submit" value = "submit" class ="subBtn"/>
-     
-    
-
- </center>
 
  </form>
 </body>

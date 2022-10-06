@@ -81,13 +81,21 @@ return "redirect:/";
 }
 
 
-@GetMapping("categories")
+@GetMapping("/categories")
 public String categories(@RequestParam(required=false,name="id")Integer id, Model model) {
 
    model.addAttribute("vegetables",vegetableStoreService.categories(id));
 
     return "category";
 }
+
+    @PostMapping("/create-category")
+    public String createCategories(@RequestParam("category") String category) {
+
+   vegetableStoreService.addCategory(category);
+
+        return "addVegetable";
+    }
 
 @GetMapping("/search")
 public String search(@RequestParam("search")String word,Model model){
