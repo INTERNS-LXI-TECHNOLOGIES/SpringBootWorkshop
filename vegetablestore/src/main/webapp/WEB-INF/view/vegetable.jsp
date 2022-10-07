@@ -70,11 +70,61 @@ border:none;
 
 <body>
 
-  <h1><center>VEGEE-CART</center></h1>
-  <div
-  style= "text-align: left;">
-  <a href = "/"><img src ="image?name=refresh.jpg" alt="google-play" height = 50px  ></a>
-</div>
+
+<!--navbar-->
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#carouselExampleIndicators">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#vegetables">Vegetables</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+
+        <%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
+
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+         <%for(Category category:categories) {%>
+
+        <a href="categories?id=<%= category.getId()%>" class="dropdown-item" ><%=category.getCategory()%></a>
+
+        <div class="dropdown-divider"></div>
+        <%}%>
+
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="add-form">Add</a>
+      </li>
+    </ul>
+
+
+
+  <h3><a class="navbar-brand text-white fw-bold" href="#">VEGEE-CART</a></h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+    <form class="form-inline my-2 my-lg-0" action ="search" method = "get">
+      <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
 
   <div
   style= "text-align: right;">
@@ -82,42 +132,38 @@ border:none;
 </div>
 
 
-  <a href = "add-form"><img src ="image?name=add.jpeg" alt="google-play" height = 50px  class="vegetableBtn"></a>
-
-
-
-<form action = "search" method = "get">
- <center> <input type = "text" class = "search" name = "search" placeholder = "Search"/>
-<button class = "searchBtn">Search</button>
-
-</center></form>
-
-
-                 <!-- Categories-->
-
-
-<%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
-
-<div class = "col-md-2 text-left">
-
-<div class="list-group">
-
- <a href="#" class="list-group-item list-group-item-action active">
-   Categories
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="image?name=carousel1.jpg"  height = 600px alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="image?name=carousel2.jpg"  height = 600px alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="image?name=carousel3.jpg"  height = 600px alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
   </a>
-
-  <%for(Category category:categories) {%>
-
-<a href="categories?id=<%= category.getId()%>" class="list-group-item list-group-item-action"><%=category.getCategory()%></a>
-
-<%}%>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
-</div>
+
 
 
                  <!-- Vegetables -->
 
-<div class = "container">
+<div class = "container" id = "vegetables">
 
 <div class = "row">
 
