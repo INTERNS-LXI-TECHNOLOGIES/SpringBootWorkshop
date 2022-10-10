@@ -1,6 +1,5 @@
 package com.lxisoft.vegetablestore.controller;
 
-import com.lxisoft.vegetablestore.entity.Category;
 import com.lxisoft.vegetablestore.entity.Vegetable;
 import com.lxisoft.vegetablestore.service.VegetableStoreService;
 
@@ -33,7 +32,7 @@ public String readVegetable(Model model) {
     model.addAttribute("categories",vegetableStoreService.readCategories());
 
 
-    return "vegetable";
+    return "home";
     }
 
 
@@ -85,8 +84,8 @@ return "redirect:/";
 public String categories(@RequestParam(required=false,name="id")Integer id, Model model) {
 
    model.addAttribute("vegetables",vegetableStoreService.categories(id));
-
-    return "category";
+    model.addAttribute("categories",vegetableStoreService.readCategories());
+    return "showResult";
 }
 
     @PostMapping("/create-category")
@@ -101,8 +100,9 @@ public String categories(@RequestParam(required=false,name="id")Integer id, Mode
 public String search(@RequestParam("search")String word,Model model){
 
         model.addAttribute("vegetables", vegetableStoreService.search(word));
+    model.addAttribute("categories",vegetableStoreService.readCategories());
 
-return "vegetable";
+return "showResult";
 }
 
 
@@ -112,7 +112,16 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
     vegetableStoreService.image(name,response);
 }
 
+@GetMapping("/login")
+    public String login(){
 
+    return "login";
+}
 
+    @GetMapping("/logou")
+    public String logout(){
+
+        return "login-error";
+    }
 }
 
