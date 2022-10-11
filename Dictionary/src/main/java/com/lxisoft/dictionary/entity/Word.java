@@ -1,7 +1,7 @@
 package com.lxisoft.dictionary.entity;
 import javax.persistence.Column;
 import javax.persistence.Table;
-import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -22,15 +22,17 @@ public class Word {
     @Column(name = "Meanings")
     private String meaning;
 
-    @OneToMany(mappedBy = "word",cascade = { CascadeType.ALL } )
-    private Set<Synonyms> synonym;
+    @ManyToMany(mappedBy = "synonym", cascade = CascadeType.ALL)
+    @JoinTable(name="WordRel",
+            joinColumns={@JoinColumn(name="id")},
+            inverseJoinColumns={@JoinColumn(name="WordId")})
+    private Set<Word> words = new HashSet<Word>();
 
-    public Set<Synonyms> getSynonym() {
-        return synonym;
-    }
-        public void setSynonym(Set<Synonyms> synonym) {
-            this.synonym = synonym;
-        }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="WordRel",
+            joinColumns={@JoinColumn(name="WordId")},
+            inverseJoinColumns={@JoinColumn(name="id")})
+    private Set<Word> synonym = new HashSet<Word>();
 
     public Word() {
 
