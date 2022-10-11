@@ -20,6 +20,10 @@ font-size:40px;
 height:65px;
 width:1200px;
 }
+.card{
+padding:10px;
+}
+.container
 </style>
 
 </head>
@@ -46,23 +50,25 @@ width:1200px;
 
 <div class = "container">
 <div class = "row">
+<div class = "col-md-4">
 <div class ="card">
 <div class = "card-body">
 <div>
  <a href = "#add-Vegetable"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
     </a>
    </div>
-
+<div>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVegetable">
 Add Vegetable
    </button>
-
+ </div>
 </div>
 </div>
+</div>
 
 
 
-
+<div class = "col-md-4">
 <div class ="card">
 <div class = "card-body">
 <div>
@@ -73,6 +79,7 @@ Add Vegetable
  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">
 Add Category
    </button>
+</div>
 </div>
 </div>
 </div>

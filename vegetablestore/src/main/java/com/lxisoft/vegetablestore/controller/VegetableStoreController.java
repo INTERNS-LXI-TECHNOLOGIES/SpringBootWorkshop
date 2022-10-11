@@ -118,10 +118,5 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
     return "login";
 }
 
-    @GetMapping("/logou")
-    public String logout(){
-
-        return "login-error";
-    }
 }
 
