@@ -112,6 +112,19 @@ border:none;
         </div>
       </li>
 
+      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Language
+              </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <a href="#" class="dropdown-item" >English</a>
+
+                       <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" >Malayalam</a>
+
+                                              <div class="dropdown-divider"></div>
+</div>
+      </li>
 
       <li class="nav-item">
               <a class="nav-link" href="logout" onclick="return confirm('Are you sure you want to Logout?')">log out</a>
@@ -180,6 +193,8 @@ border:none;
      <p class="card-text">Minimum Order Quantity :<%=vegetable.getMinOrderQuantity()%></p>
      <h5 class="card-title text-danger">Rs:<%=vegetable.getPrice()%>/-</h5>
 <% if (request.isUserInRole("ADMIN")) { %>
+
+
      <form action = "select-vegetable" method = "GET">
 
          <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
@@ -189,6 +204,7 @@ border:none;
 
                  <center><input type = "hidden" name ="id" value= <%=vegetable.getId()%>
                    <input type = "submit" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
+
 <%}%>
   </div>
 </div>

@@ -89,10 +89,10 @@ public String categories(@RequestParam(required=false,name="id")Integer id, Mode
 }
 
     @PostMapping("/create-category")
-    public String createCategories(@RequestParam("category") String category) {
+    public String createCategories(@RequestParam("category") String category,Model model) {
 
    vegetableStoreService.addCategory(category);
-
+        model.addAttribute("categories",vegetableStoreService.readCategories());
         return "addVegetable";
     }
 
