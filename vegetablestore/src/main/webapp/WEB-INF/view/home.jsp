@@ -16,13 +16,6 @@
 
 
 <style>
-h1{
-color:white;
-background-color:blue;
-font-size:37px;
-height:60px;
-width:1330px;
-}
 .vegetableBtn{
 margin : 0px 1px 1px 70px;
 border-radius:10px;
@@ -47,16 +40,6 @@ width:70px;
 
 }
 
-.search{
-border-color:red;
-height:40px;
-  width : 500px;
-}
-.searchBtn{
-background-color: rgb(66, 224, 66);
-  color: white;
-border:none;
-}
 .card{
 border:none;
 }
@@ -173,6 +156,9 @@ border:none;
 
 
                  <!-- Vegetables -->
+
+
+                <center> <h1 th:text="${tittle}"></h1></center>
 
 <div class = "container" id = "vegetables">
 

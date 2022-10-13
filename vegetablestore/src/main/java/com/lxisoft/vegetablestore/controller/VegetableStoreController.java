@@ -57,7 +57,7 @@ public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOExce
 @GetMapping("/select-vegetable")
 public String selectVegetable(@RequestParam("id")int id, Model model) {
 
-        model.addAttribute("vegetable",vegetableStoreService.selectData(id));
+        model.addAttribute("vegetable",vegetableStoreService.selectVegetableById(id));
     model.addAttribute("categories",vegetableStoreService.readCategories());
     return "updateVegetable";
 }
@@ -81,9 +81,9 @@ return "redirect:/";
 
 
 @GetMapping("/categories")
-public String categories(@RequestParam(required=false,name="id")Integer id, Model model) {
+public String findVegetablesByCategorId(@RequestParam(required=false,name="id")Integer id, Model model) {
 
-   model.addAttribute("vegetables",vegetableStoreService.categories(id));
+   model.addAttribute("vegetables",vegetableStoreService.findVegetablesByCategorId(id));
     model.addAttribute("categories",vegetableStoreService.readCategories());
     return "showResult";
 }

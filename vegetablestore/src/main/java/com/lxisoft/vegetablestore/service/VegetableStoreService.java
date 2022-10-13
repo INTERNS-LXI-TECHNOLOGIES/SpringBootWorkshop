@@ -50,7 +50,7 @@ CategoryRepository categoryRepository;
     }
 
 
-    public Vegetable selectData(int id) {
+    public Vegetable selectVegetableById(int id) {
 
         return  vegetableRepository.findById(id).get();
     }
@@ -80,7 +80,7 @@ CategoryRepository categoryRepository;
     }
 
 
-    public List<Vegetable> categories(int id) {
+    public List<Vegetable> findVegetablesByCategorId(int id) {
 
 
         return categoryRepository.findAllVegetableInCate_id(id);
