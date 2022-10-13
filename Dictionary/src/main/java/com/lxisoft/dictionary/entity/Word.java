@@ -26,7 +26,7 @@ public class Word {
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="id")},
             inverseJoinColumns={@JoinColumn(name="WordId")})
-    private Set<Word> words = new HashSet<Word>();
+    private Set<Word> word = new HashSet<Word>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
@@ -37,7 +37,6 @@ public class Word {
     public Word() {
 
     }
-
     public Word(long id, String name,String speech, String  meaning ) {
         this.id = id;
         this.name = name;
@@ -45,7 +44,6 @@ public class Word {
         this.meaning = meaning;
 
     }
-
 
     public long getId() {
         return id;
