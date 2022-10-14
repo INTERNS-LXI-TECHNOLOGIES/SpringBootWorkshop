@@ -76,7 +76,7 @@
 						<tr>
 							<td><c:out value="${status.index + 1}" /></td>
                             <td>${word.name}</td>
-                            <td>${word.speech}</td>
+                            <td>${word.partsOfSpeech}</td>
                             <td>${word.meaning}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>

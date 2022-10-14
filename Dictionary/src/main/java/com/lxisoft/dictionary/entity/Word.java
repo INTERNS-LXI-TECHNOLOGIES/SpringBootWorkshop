@@ -6,41 +6,43 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dictionary")
+@Table(name = "word")
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "Words")
+    @Column(name = "Name")
     private String name;
 
     @Column(name = "Parts_Of_Speech")
-    private String speech;
+    private String partsOfSpeech;
 
-    @Column(name = "Meanings")
+    @Column(name = "Meaning")
     private String meaning;
 
-    @ManyToMany(mappedBy = "synonym", cascade = CascadeType.ALL)
+    public Word() {
+
+    }
+
+    /*@ManyToMany(mappedBy = "synonym", cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="id")},
             inverseJoinColumns={@JoinColumn(name="WordId")})
-    private Set<Word> word = new HashSet<Word>();
+    private Set<Word> word = new HashSet<Word>();*/
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="WordId")},
             inverseJoinColumns={@JoinColumn(name="id")})
-    private Set<Word> synonym = new HashSet<Word>();
+    private Set<Word> synonyms = new HashSet<Word>();
 
-    public Word() {
 
-    }
-    public Word(long id, String name,String speech, String  meaning ) {
+    public Word(long id, String name,String partsOfSpeech, String  meaning ) {
         this.id = id;
         this.name = name;
-        this.speech = speech;
+        this.partsOfSpeech = partsOfSpeech;
         this.meaning = meaning;
 
     }
@@ -59,12 +61,12 @@ public class Word {
         this.name = name;
     }
 
-    public String getSpeech() {
-        return speech;
+    public String getPartsOfSpeech() {
+        return partsOfSpeech;
     }
 
-    public void setSpeech(String speech) {
-        this.speech = speech;
+    public void setPartsOfSpeech(String partsOfSpeech) {
+        this.partsOfSpeech = partsOfSpeech;
     }
 
     public String getMeaning() {

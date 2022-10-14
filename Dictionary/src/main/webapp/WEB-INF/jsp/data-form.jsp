@@ -57,7 +57,7 @@
                 	   <tr>
                          <th>Parts Of Speech</th>
                            <td>
-                             <form:input path="speech"/>
+                             <form:input path="partsOfSpeech"/>
                               </td>
                             </tr>
                 	 <tr>

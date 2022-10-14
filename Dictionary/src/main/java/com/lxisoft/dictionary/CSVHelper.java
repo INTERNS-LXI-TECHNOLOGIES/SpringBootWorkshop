@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CSVHelper {
     public static String TYPE = "text/csv";
-    static String[] HEADERs = { "id", "Words", "Parts_Of_Speech", "Meanings" };
+    static String[] HEADERs = { "id", "Name", "Parts_Of_Speech", "Meaning" };
 
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
@@ -44,9 +44,9 @@ public class CSVHelper {
             for (CSVRecord csvRecord : csvRecords) {
                 Word word = new Word (
                         Long.parseLong(csvRecord.get("id")),
-                        csvRecord.get("Words"),
+                        csvRecord.get("Name"),
                         csvRecord.get("Parts_Of_Speech"),
-                        csvRecord.get("Meanings")
+                        csvRecord.get("Meaning")
                 );
 
                 wordsList.add(word);
@@ -67,7 +67,7 @@ public class CSVHelper {
                 List<String> data = Arrays.asList(
                         String.valueOf(word.getId()),
                         word.getName(),
-                        word.getSpeech(),
+                        word.getPartsOfSpeech(),
                         word.getMeaning());
 
                 csvPrinter.printRecord(data);
