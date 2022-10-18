@@ -26,18 +26,11 @@ public class Word {
 
     }
 
-    /*@ManyToMany(mappedBy = "synonym", cascade = CascadeType.ALL)
-    @JoinTable(name="WordRel",
-            joinColumns={@JoinColumn(name="id")},
-            inverseJoinColumns={@JoinColumn(name="WordId")})
-    private Set<Word> word = new HashSet<Word>();*/
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="WordId")},
             inverseJoinColumns={@JoinColumn(name="id")})
     private Set<Word> synonyms = new HashSet<Word>();
-
 
     public Word(long id, String name,String partsOfSpeech, String  meaning ) {
         this.id = id;
