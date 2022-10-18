@@ -31,8 +31,8 @@ public String readVegetable(Model model) {
 
     model.addAttribute("categories",vegetableStoreService.readCategories());
 
-
-    return "home";
+    System.out.println("hello");
+    return "hello";
     }
 
 
