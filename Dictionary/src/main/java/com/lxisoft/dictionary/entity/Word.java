@@ -21,18 +21,20 @@ public class Word {
 
     @Column(name = "Meaning")
     private String meaning;
-
     public Word() {
 
     }
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="WordId")},
             inverseJoinColumns={@JoinColumn(name="id")})
     private Set<Word> synonyms = new HashSet<Word>();
 
-    public Word(long id, String name,String partsOfSpeech, String  meaning ) {
+    public Set<Word> getSynonyms() {
+        return synonyms;
+    }
+
+    public Word(long id, String name, String partsOfSpeech, String  meaning ) {
         this.id = id;
         this.name = name;
         this.partsOfSpeech = partsOfSpeech;
