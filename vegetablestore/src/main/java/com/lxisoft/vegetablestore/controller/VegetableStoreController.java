@@ -31,7 +31,6 @@ public String readVegetable(Model model) {
 
     model.addAttribute("categories",vegetableStoreService.readCategories());
 
-    System.out.println("hello");
     return "hello";
     }
 

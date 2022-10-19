@@ -162,9 +162,9 @@ border:none;
 
                  <!-- Vegetables -->
 
-<a href = "../webapp/WEB-INF/view/ hello.html">asds</a>
-                <center> <h1 th:text="${lang.tittle}">"${lang.tittle}"</h1></center>
-                <center> <h1>"${lang.tittle}"</h1></center>
+
+               <h1><spring:message code="lang.title" text="default"/></h1>
+
 
 <div class = "container" id = "vegetables">
 
