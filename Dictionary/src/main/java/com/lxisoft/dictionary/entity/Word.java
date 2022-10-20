@@ -30,8 +30,21 @@ public class Word {
             inverseJoinColumns={@JoinColumn(name="id")})
     private Set<Word> synonyms = new HashSet<Word>();
 
+    @ManyToMany(mappedBy="synonyms")
+    private Set<Word> words = new HashSet<Word>();
+
     public Set<Word> getSynonyms() {
         return synonyms;
+    }
+    public void setSynonyms(Set<Word> synonyms) {
+        this.synonyms = synonyms;
+    }
+
+    public Set<Word> getWords() {
+        return words;
+    }
+    public void setWords(Set<Word> words) {
+        this.words = words;
     }
 
     public Word(long id, String name, String partsOfSpeech, String  meaning ) {
