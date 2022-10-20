@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
- pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -31,9 +31,6 @@ padding:10px;
 
 <html>
 
-<%@ page import="com.lxisoft.vegetablestore.entity.Category"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.List"%>
 <body>
 
 <center>
@@ -43,7 +40,7 @@ padding:10px;
 <div align = "left">
 
   
-  <a href = "/"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+  <a th:href = "@{/}"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
     </a>
     
     </div>
@@ -54,7 +51,7 @@ padding:10px;
 <div class ="card">
 <div class = "card-body">
 <div>
- <a href = "#add-Vegetable"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
+ <a th:href = "@{#add-Vegetable}"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
     </a>
    </div>
 <div>
@@ -72,7 +69,7 @@ Add Vegetable
 <div class ="card">
 <div class = "card-body">
 <div>
- <a href = "#add-category"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
+ <a href = "@{#add-category}"><img src ="image?name=add1.jpg" height = 120px alt="google-play" class="homeBtn">
     </a>
    </div>
 
@@ -98,7 +95,7 @@ Add Category
       </div>
       <div class="modal-body">
 
-<form action = "create-category" method = "post">
+<form th:action = "@{create-category}" method = "post">
 
 <div class = "form-group">
 
@@ -130,7 +127,7 @@ Add Category
       </div>
       <div class="modal-body">
 
-        <form action ="create-vegetable" enctype="multipart/form-data" method ="POST">
+        <form th:action ="@{create-vegetable}" enctype="multipart/form-data" method ="POST">
 
         <div class = "form-group">
         <input type = "text" class = "form-control" placeholder = "Enter Name" name = "name" required/>
@@ -149,15 +146,12 @@ Add Category
                    </div>
 
 <div class = "form-group">
-<select name ="category" class = "form-control" id = "">
+<select name ="category"  class = "form-control" id = "">
 
-<%List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");%>
 
-<%for(Category category:categories) {%>
+<option th:value = "${category.id}" th:each="category : ${categories}" th:text="${category.category}"></option>
 
-<option value =<%= category.getId() %>><%= category.getCategory()%></option>
 
-<%}%>
 </select>
 </div>
 

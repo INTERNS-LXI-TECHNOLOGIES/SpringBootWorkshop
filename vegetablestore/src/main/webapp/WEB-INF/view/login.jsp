@@ -31,7 +31,6 @@
 
 <div align="center">
 		<c:if test="${param.error != null}">
-
 	        <span style="color: #d13232;"><br><br>Invalid username or password<br><br></span>
 	    </c:if>
 	    <c:if test="${param.logout != null}">

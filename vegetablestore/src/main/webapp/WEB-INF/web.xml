@@ -44,15 +44,6 @@
 		</auth-constraint>
 	</security-constraint>
 
-  <login-config>
-      <auth-method>FORM</auth-method>
-      <form-login-config>
-         <form-login-page>/WEB-INF/view/login.jsp</form-login-page>
-         <form-error-page>/WEB-INF/view/login-error.jsp</form-error-page>
-      </form-login-config>
-   </login-config>
-
-
 
 
 </web-app>

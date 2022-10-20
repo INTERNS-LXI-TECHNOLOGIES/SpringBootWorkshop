@@ -31,7 +31,7 @@ public String readVegetable(Model model) {
 
     model.addAttribute("categories",vegetableStoreService.readCategories());
 
-    return "hello";
+    return "home";
     }
 
 
@@ -45,11 +45,13 @@ return "addVegetable";
 
 
 @PostMapping("/create-vegetable")
-public String createVegetable(@ModelAttribute Vegetable vegetable) throws IOException {
+public String createVegetable(@ModelAttribute Vegetable vegetable,Model model) throws IOException {
 
     vegetableStoreService.addVegetable(vegetable);
 
-    return "vegetableConfirm";
+    model.addAttribute("categories",vegetableStoreService.readCategories());
+
+    return "addVegetable";
 }
 
 
