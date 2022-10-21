@@ -75,13 +75,14 @@ border:none;
                 </a>
 
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" th:each="category : ${categories}">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-
-                    <a href="categories?id=${category.id}" class="dropdown-item" th:text="${category.category}"></a>
+<div th:each="category : ${categories}">
+                    <a th:href="@{categories(id=${category.id})}" th:value="${category.id}" name="id" class="dropdown-item" th:text="${category.category}"> </a>
 
                     <div class="dropdown-divider"></div>
 
+</div>
                 </div>
             </li>
 
@@ -169,12 +170,12 @@ border:none;
                     <form th:action = "@{select-vegetable}" method = "GET"  >
 
                         <center><input type = "hidden" name ="id" th:value= "${vegetable.id}">
-                            <input type = "submit" ><button class = "editBtn">Edit</button></input></center></form>
+                            <input type = "hidden" ><button class = "editBtn" th:text="Edit"></button></input></center></form>
 
                     <form th:action = "@{delete-vegetable}" method = "POST">
 
                         <center><input type = "hidden" name ="id" th:value= "${vegetable.id}">
-                            <input type = "submit" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
+                            <input type = "hidden" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
 
 
                 </div>

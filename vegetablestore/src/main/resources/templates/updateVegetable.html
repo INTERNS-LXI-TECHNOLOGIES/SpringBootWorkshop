@@ -45,53 +45,49 @@ border-color:red;
 
 
 
-<a href = "@{/}"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
+<a th:href = "@{/}"><img src ="image?name=home.jpeg" alt="google-play" height = 60px  class="homeBtn">
 </a>
  <div class = "container">
-   <form th:action ="@{update-vegetable}" enctype="multipart/form-data" method = "POST">
+   <form th:action ="@{update-vegetable}" th:object="${vegetable}" enctype="multipart/form-data" method = "POST">
 
 
-    <center><img src="'data:image/jpg;base64,'+${vegetable.base64Image}" width = "300" height ="180"> </center>
-
+    <center><img th:src="'data:image/jpg;base64,'+${vegetable.base64Image}" width = "300" height ="180"> </center>
     <!-- id -->
    <div class = "form-group">
-   <input type = "hidden" name = "id" value =<%=vegetable.getId()%>>
+   <input type = "hidden" name = "id" th:value ="${vegetable.id}">
    </div>
 
 <!-- name -->
    <center><div class = "form-group">
-   <label for = "form-control">Vegetable Name</label>
-           <input type = "text" class = "form-control" value =<%=vegetable.getName()%> name = "name" required/>
+   <label for = "form-control" >Name</label>
+           <input type = "text" class = "form-control" th:value ="${vegetable.name}" name = "name" required/>
            </div></center>
 
 <!-- price -->
           <center><div class = "form-group">
-           <label for = "form-control">Vegetable Price</label>
-            <input type = "text" class = "form-control" value =<%=vegetable.getPrice()%> name = "price" required/>
+           <label for = "form-control">Price</label>
+            <input type = "text" class = "form-control" th:value ="${vegetable.price}" name = "price" required/>
               </div></center>
 
 <!-- stock -->
   <center><div class = "form-group">
-           <label for = "form-control">Vegetable Stock</label>
-            <input type = "text" class = "form-control" value =<%=vegetable.getStock()%> name = "stock" required/>
+           <label for = "form-control">Stock</label>
+            <input type = "text" class = "form-control" th:value ="${vegetable.stock}" name = "stock" required/>
               </div></center>
 
 
 <!-- order -->
   <center><div class = "form-group">
-           <label for = "form-control">Vegetable Stock</label>
-            <input type = "text" class = "form-control" value =<%=vegetable.getMinOrderQuantity()%> name = "minOrderQuantity" required/>
+           <label for = "form-control">Minimum Order Quantity</label>
+            <input type = "text" class = "form-control" th:value ="${vegetable.minOrderQuantity}" name = "minOrderQuantity" required/>
               </div></center>
 
 
 <center><div class = "form-group">
-  <label for = "category">Vegetable Category</label>
+  <label for = "category">Category</label>
   <select name ="category" class = "form-control" id = "">
 
-  <%for(Category category:categories) {%>
-
-  <option value =<%= category.getId() %>><%= category.getCategory()%></option>
-  <%}%>
+      <option th:value = "${category.id}" th:each="category : ${categories}" th:text="${category.category}"></option>
   </select>
 
   </div></center>
@@ -109,10 +105,7 @@ border-color:red;
    </div>
 
 
-
-
-
-     <center><input type = "submit" value = "submit" class ="subBtn"/></center>
+     <center><input type = "submit" th:value = "Update" class ="subBtn"/></center>
      
 
  </form>
