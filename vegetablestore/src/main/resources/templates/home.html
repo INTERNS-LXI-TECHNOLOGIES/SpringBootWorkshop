@@ -91,10 +91,10 @@ border:none;
                     Select Language
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="#" class="dropdown-item" >English</a>
+                    <a th:href="@{locale(language=en)}" class="dropdown-item" th:text="#{lang.en}"></a>
 
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" >Malayalam</a>
+                    <a th:href="@{locale(language=ml)}" class="dropdown-item" th:text="#{lang.ml}"></a>
 
                     <div class="dropdown-divider"></div>
                 </div>
@@ -149,7 +149,7 @@ border:none;
 <!-- Vegetables -->
 
 
-
+<h1 th:text="#{title}"></h1>
 
 <div class = "container" id = "vegetables">
 

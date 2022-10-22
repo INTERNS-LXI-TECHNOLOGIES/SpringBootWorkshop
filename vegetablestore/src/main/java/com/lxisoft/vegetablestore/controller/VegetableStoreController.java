@@ -113,6 +113,16 @@ public void image(@RequestParam("name")String name, HttpServletResponse response
     vegetableStoreService.image(name,response);
 }
 
+@GetMapping("locale")
+public String changeLanguage(@RequestParam String language,Model model){
+
+    model.addAttribute("vegetables",vegetableStoreService.readVegetable());
+
+    model.addAttribute("categories",vegetableStoreService.readCategories());
+
+   return "home";
+}
+
 @GetMapping("/login")
     public String login(){
 
