@@ -2,6 +2,7 @@ package com.lxisoft.dictionary.controller;
 
 import com.lxisoft.dictionary.entity.Word;
 import com.lxisoft.dictionary.service.DictionaryService;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -59,6 +60,16 @@ public class DictionaryController {
         model.addAttribute("caption", "EDIT WORD");
         return "data-form";
     }
+
+    @GetMapping("Synonym/{id}")
+    public String showForm(@NotNull Model model, @PathVariable long id) {
+        Word word = dictionaryService.getWord(id);
+        model.addAttribute("word", word);
+        model.addAttribute("id",id);
+        return "synonym-list";
+    }
+
+
     @GetMapping("/Login-form")
     public String login() {
         return "Login-form";

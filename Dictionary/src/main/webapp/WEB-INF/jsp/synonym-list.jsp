@@ -71,9 +71,6 @@
 						<tr>
 							 <td>${word.id}</td>
                             <td>${word.name}</td>
-							<% if (request.isUserInRole("ADMIN")) { %>
-
-						<% } %>
 						</tr>
 					</c:forEach>
 			</table>
