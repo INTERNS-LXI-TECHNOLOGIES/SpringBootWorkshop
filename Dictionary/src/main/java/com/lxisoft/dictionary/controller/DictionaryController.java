@@ -23,6 +23,11 @@ public class DictionaryController {
 
     @GetMapping("/")
 
+    public String welcome() {
+        return "home";
+    }
+
+    @GetMapping("/home")
     public String home(Model model, @Param("keyword") String keyword)  {
         List<Word> wordsList =dictionaryService.listAllWords(keyword);
         model.addAttribute("wordsList", wordsList);
@@ -35,7 +40,7 @@ public class DictionaryController {
     @PostMapping("/save")
     public String saveWord(@ModelAttribute Word word) {
         dictionaryService.saveWord(word);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/create")
@@ -50,7 +55,7 @@ public class DictionaryController {
     @GetMapping("/delete/{id}")
     public String deleteWord(@PathVariable long id) {
         dictionaryService.deleteWord(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/edit/{id}")

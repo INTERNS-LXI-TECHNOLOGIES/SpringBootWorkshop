@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
     function clearSearch() {
-        window.location = "http://localhost:8080";
+        window.location = "http://localhost:8080/home";
     }
 </script>
 
@@ -31,12 +31,14 @@
 
 			<h5 class="links">
 
-            				<a style= "color:white" href="${contextPath}">Words List</a>
+            				<a style= "color:white" href="home">Words List</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white" href="create">Add New Word</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white" href="file.html">Import File</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
+            				<a style= "color:white" href="http://localhost:8080">Home Page</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white"  href="logout">Log Out</a>
             			</h5>
             			</div>
