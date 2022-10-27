@@ -8,6 +8,52 @@
 <head>
 <title>Dictionary Application</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -23,20 +69,31 @@
 
 <body>
 
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="home">Words List</a>
+  <a href="logout">Log Out</a>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: rgb(99, 186, 240)">
+			<span style="font-size:25px;cursor:pointer" onclick="openNav()">&#9776;</span>
 			<div>
 
-				<h3 class="navbar-brand" style= "color:rgb(18, 0, 0)"> Dictionary App </h3>
+				<h3 class="navbar-brand" style= "font-size:23px; padding: 8px 8px 8px 32px; color:rgb(18, 0, 0)"> Dictionary App </h3>
 
-			<h5 class="links">
 
-            				<a style= "color:rgb(18, 0, 0)" href="home">Words List</a>
-            				&nbsp;&nbsp;|&nbsp;&nbsp;
-            				<a style= "color:rgb(14, 1, 1)"  href="logout">Log Out</a>
-
-            			</h5>
             			</div>
        </header>
 	<br>
