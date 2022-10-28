@@ -2,6 +2,7 @@ package com.lxisoft.vegetablestore.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -27,6 +28,8 @@ public class localizationConfiguration  implements WebMvcConfigurer {
         localeChangeInterceptor.setParamName("language");
         return localeChangeInterceptor;
     }
+
+
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

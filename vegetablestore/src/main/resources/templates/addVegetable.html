@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Vegetable Add Form</title>
 
 <style>
@@ -55,8 +55,8 @@ padding:10px;
     </a>
    </div>
 <div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVegetable">
-Add Vegetable
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addVegetable" th:text="#{addvegetable}">
+
    </button>
  </div>
 </div>
@@ -73,8 +73,8 @@ Add Vegetable
     </a>
    </div>
 
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">
-Add Category
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory" th:text="#{addcategory}">
+
    </button>
 </div>
 </div>
@@ -88,7 +88,7 @@ Add Category
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{addcategory}"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
         </button>
@@ -104,8 +104,8 @@ Add Category
 </div>
 
 <div class = "container text-center">
-<button class = "btn btn-outline-success">Add Category</button>
- <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+<button class = "btn btn-outline-success"th:text="#{save}"></button>
+ <button type="button" class="btn btn-outline-danger" data-dismiss="modal" th:text="#{close}"></button>
 </div>
 </form>
       </div>
@@ -120,7 +120,7 @@ Add Category
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Vegetable</h5>
+        <h5 class="modal-title" id="exampleModalLabel" th:text="#{addvegetable}"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
         </button>
@@ -130,7 +130,7 @@ Add Category
         <form th:action ="@{create-vegetable}" enctype="multipart/form-data" method ="POST">
 
         <div class = "form-group">
-        <input type = "text" class = "form-control" placeholder = "Enter Name" name = "name" required/>
+        <input type = "text" class = "form-control" placeholder = "#{entername}" name = "name" required/>
         </div>
 
           <div class = "form-group">
@@ -146,7 +146,9 @@ Add Category
                    </div>
 
 <div class = "form-group">
-<select name ="category"  class = "form-control" id = "">
+    <label for="category" th:text="#{selectcategory}+' :'"></label>
+
+    <select name ="category"  class = "form-control" id = "category">
 
 
 <option th:value = "${category.id}" th:each="category : ${categories}" th:text="${category.category}"></option>
@@ -157,7 +159,7 @@ Add Category
 
 <div class = "form-group text-left">
 
-<label for="imageFile">Select Image</label>
+<label for="imageFile" th:text="#{selectimage}"></label>
 <br>
 <input type = "file" name = "imageFile" required />
 
@@ -165,8 +167,8 @@ Add Category
 
 <div class = "container text-center">
 
-<button class = "btn btn-outline-success">Add Vegetable</button>
-<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+<button class = "btn btn-outline-success" th:text="#{save}"></button>
+<button type="button" class="btn btn-outline-danger" data-dismiss="modal" th:text="#{close}"></button>
 
 </div>
 

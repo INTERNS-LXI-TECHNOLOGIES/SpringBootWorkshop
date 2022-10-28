@@ -10,7 +10,7 @@
 
 <title>Results</title>
 
-
+<meta charset="UTF-8">
 <style>
 
 .editBtn{
@@ -18,16 +18,16 @@
   color : white;
   border: none;
   border-radius:10px;
-  width:70px;
-  height:30px
+  width:90px;
+  height:45px
 }
 .deleteBtn{
 background-color:red;
 border: none;
 border-radius:10px;
 color : white;
-width:70px;
-  height:30px;
+  width:90px;
+  height:45px
 
 }
 .card{
@@ -51,11 +51,10 @@ border: none;
           </button></h4>
 
       <li class="nav-item active">
-        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" th:href="@{/}" th:text="#{home}"><span class="sr-only">(current)</span></a>
 
 <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
+        <a class="nav-link dropdown-toggle" th:href="@{#}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{categories}">
         </a>
 
          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -74,7 +73,7 @@ border: none;
 
     <form class="form-inline my-2 my-lg-0" action ="search" method = "get">
       <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-success my-2 my-sm-0" type="submit" th:text="#{search}"></button>
     </form>
   </div>
 </nav>
@@ -90,21 +89,21 @@ border: none;
   <img class="card-img-top" th:src="'data:image/jpg;base64,'+${vegetable.base64Image}" alt="Card image cap" width = "200" height ="200">
   <div class="card-body">
     <h5 class="card-title" th:text="${vegetable.name}"></h5>
-    <p class="card-text" th:text="'Stock :'+${vegetable.stock}"></p>
-     <p class="card-text" th:text="'Minimum Order Quantity :'+${vegetable.minOrderQuantity}"></p>
-     <h5 class="card-title text-danger" th:text="'Rs :'+${vegetable.price}+'/-'"></h5>
+    <p class="card-text" th:text="#{stock}+' : '+${vegetable.stock}"></p>
+     <p class="card-text" th:text="#{orderquantity}+' : '+${vegetable.minOrderQuantity}"></p>
+     <h5 class="card-title text-danger" th:text="#{rs}+' : '+${vegetable.price}+'/-'"></h5>
 
 
 
       <form th:action = "@{select-vegetable}" method = "GET"  >
 
           <center><input type = "hidden" name ="id" th:value= "${vegetable.id}">
-              <input type = "hidden" ><button class = "editBtn">Edit</button></input></center></form>
+              <input type = "hidden" ><button class = "editBtn"th:text="#{edit}"></button></input></center></form>
 
       <form th:action = "@{delete-vegetable}" method = "POST">
 
           <center><input type = "hidden" name ="id" th:value= "${vegetable.id}">
-              <input type = "hidden" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')">Delete</button></input></center></form>
+              <input type = "hidden" ><button class = "deleteBtn" onclick ="return confirm('Are You Delete Permanently?')"th:text="#{delete}"></button></input></center></form>
 
 
 
