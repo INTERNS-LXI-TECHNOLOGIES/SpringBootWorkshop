@@ -6,6 +6,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html>
 <head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+        <!-- Google Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+        />
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="style.css" />
+        
 <title>Dictionary Application</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +29,27 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.Search {
+  height: 60%;
+  width: 80%;
+  font-size: 20px;
+  padding: 100px 8px 8px  300px;
+
+}
+
+
+.background {
+ 
+  width: 70%;
+  background-color: #f444f4;
+  padding: 80px 100px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(38, 33, 61, 0.2);
+  
+}
+
+
+
 .sidenav {
   height: 100%;
   width: 0;
@@ -21,7 +57,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: rgb(10, 1, 1);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -30,22 +66,22 @@ body {
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 18px;
+  color: #f6f2f2;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #a73030;
 }
 
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  right: 20px;
+  font-size: 30px;
+  margin-left: 40px;
 }
 
 @media screen and (max-height: 450px) {
@@ -71,7 +107,9 @@ body {
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <% if (request.isUserInRole("ADMIN")) { %>
   <a href="home">Words List</a>
+  <% } %>
   <a href="logout">Log Out</a>
 </div>
 
@@ -98,22 +136,19 @@ function closeNav() {
        </header>
 	<br>
 
-	<div class="row">
-
-		<div class="container">
-
-			<div class="container" >
-				<div align="center">
+			<div class="Search" >
+				
 				<form th:action="@{/}">
-                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+          <div class="background">
+                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="20" th:value="${keyword}" required />
                     &nbsp;
                     <input type="submit" value="Search" />
                     &nbsp;
                     <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
                 </form>
+              </div>
 			  </div>
 
 			<br>
-
   </body>
 </html>
