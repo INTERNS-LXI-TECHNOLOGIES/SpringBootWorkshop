@@ -7,19 +7,6 @@
 <html>
 <head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <!-- Google Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-            rel="stylesheet"
-        />
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="style.css" />
         
 <title>Dictionary Application</title>
 
@@ -41,11 +28,17 @@ body {
 .background {
  
   width: 70%;
-  background-color: #f444f4;
+  background-color: #fdfdfd;
   padding: 80px 100px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(38, 33, 61, 0.2);
   
+}
+
+.background-box {
+
+  background: #5b65f6;
+  height:100%;
 }
 
 
@@ -105,6 +98,8 @@ body {
 
 <body>
 
+  <div class="background-box">
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <% if (request.isUserInRole("ADMIN")) { %>
@@ -131,23 +126,22 @@ function closeNav() {
 
 				<h3 class="navbar-brand" style= "font-size:23px; padding: 8px 8px 8px 32px; color:rgb(18, 0, 0)"> Dictionary App </h3>
 
-
             			</div>
        </header>
 	<br>
 
 			<div class="Search" >
-				
 				<form th:action="@{/}">
           <div class="background">
-                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="20" th:value="${keyword}" required />
-                    &nbsp;
-                    <input type="submit" value="Search" />
-                    &nbsp;
-                    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+            <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="20" th:value="${keyword}" required />
+            &nbsp;
+            <input type="submit" value="Search" />
+            &nbsp;
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
                 </form>
               </div>
 			  </div>
+      </div>
 
 			<br>
   </body>

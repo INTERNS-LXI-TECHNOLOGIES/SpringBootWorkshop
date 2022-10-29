@@ -34,30 +34,19 @@
                </header>
 
 	<br>
-	<div class="container col-md-5">
-		<div class="card">
-			<div class="card-body">
 
-				<form:form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="synonym">
+        <form action="/action_page.php">
+          <label for="cars">Choose a car:</label>
+          <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+          <br><br>
+          <input type="submit" value="Submit">
+        </form>
 
-				<table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
-
-				<caption>
-					<h2>${caption}</h2>
-				</caption>
-
-				   <tr>
-				   <form:hidden path="synonym_id"/>
-                	 <th>Synonyms</th>
-                		 <td>
-                		<form:input path="synonym_1"/>
-                	  </td>
-                	  </tr>
-               <tr>
-				<button type="submit" class="btn btn-success">Save</button>
-				   </tr>
-                </table>
-				  </form:form>
 			</div>
 		</div>
 	</div>

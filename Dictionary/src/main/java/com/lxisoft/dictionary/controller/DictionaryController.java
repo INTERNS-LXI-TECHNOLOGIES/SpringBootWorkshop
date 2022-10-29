@@ -74,6 +74,13 @@ public class DictionaryController {
         return "synonym-list";
     }
 
+    @GetMapping("/createSynonym/{id}")
+    public String createSynonym(@PathVariable long id, Model model) {
+        model.addAttribute("caption", "ADD NEW SYNONYM");
+
+        return "synonym-form";
+    }
+
 
     @GetMapping("/Login-form")
     public String login() {
