@@ -99,7 +99,7 @@ padding:10px;
 
 <div class = "form-group">
 
-<input type = "text" class = "form-control" name = "category" placeholder= "Enter New Category" required/>
+<input type = "text" class = "form-control" name = "category" th:placeholder= "#{entercategory}" required/>
 
 </div>
 
@@ -130,25 +130,25 @@ padding:10px;
         <form th:action ="@{create-vegetable}" enctype="multipart/form-data" method ="POST">
 
         <div class = "form-group">
-        <input type = "text" class = "form-control" placeholder = "#{entername}" name = "name" required/>
+        <input type = "text" class = "form-control" th:placeholder = "#{entername}" name = "name" required/>
         </div>
 
           <div class = "form-group">
-                <input type = "text" class = "form-control" placeholder = "Enter Price" name = "price" required/>
+                <input type = "text" class = "form-control" th:placeholder = "#{enterprice}" name = "price" required/>
                 </div>
 
              <div class = "form-group">
-                <input type = "text" class = "form-control" placeholder = "Enter Stock" name = "stock" required/>
+                <input type = "text" class = "form-control" th:placeholder = "#{enterstock}" name = "stock" required/>
                         </div>
 
              <div class = "form-group">
-                   <input type = "text" class = "form-control" placeholder = "Enter Minimum Order Quantity" name = "minOrderQuantity" required/>
+                   <input type = "text" class = "form-control" th:placeholder = "#{enterorderquantity}" name = "minOrderQuantity" required/>
                    </div>
 
 <div class = "form-group">
     <label for="category" th:text="#{selectcategory}+' :'"></label>
 
-    <select name ="category"  class = "form-control" id = "category">
+    <select name ="category"  class = "form-control" id = "category" th:placeholder = "#{selectcategory}">
 
 
 <option th:value = "${category.id}" th:each="category : ${categories}" th:text="${category.category}"></option>
@@ -156,6 +156,12 @@ padding:10px;
 
 </select>
 </div>
+
+         <!--<div class="custom-file">
+            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>   -->
 
 <div class = "form-group text-left">
 

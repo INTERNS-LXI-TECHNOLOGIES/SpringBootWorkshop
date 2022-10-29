@@ -45,7 +45,7 @@ border: none;
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-    <h4><a class="navbar-brand text-white fw-bold" th:href="@{#}">VEGEE-CART</a>
+    <h4><a class="navbar-brand text-white fw-bold" th:href="@{#}" th:text="#{heading}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button></h4>
@@ -72,7 +72,7 @@ border: none;
     </ul>
 
     <form class="form-inline my-2 my-lg-0" action ="search" method = "get">
-      <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" name = "search" th:placeholder="#{search}" aria-label="Search">
       <button class="btn btn-success my-2 my-sm-0" type="submit" th:text="#{search}"></button>
     </form>
   </div>
