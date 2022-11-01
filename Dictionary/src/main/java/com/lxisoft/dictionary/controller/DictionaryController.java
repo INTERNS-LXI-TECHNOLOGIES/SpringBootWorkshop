@@ -75,7 +75,10 @@ public class DictionaryController {
     }
 
     @GetMapping("/createSynonym/{id}")
-    public String createSynonym(@PathVariable long id, Model model) {
+    public String createSynonym(@PathVariable long id, Model model , @Param("keyword") String keyword) {
+        List<Word> wordsList =dictionaryService.listAllWords(keyword);
+        model.addAttribute("wordsList", wordsList);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("caption", "ADD NEW SYNONYM");
 
         return "synonym-form";
