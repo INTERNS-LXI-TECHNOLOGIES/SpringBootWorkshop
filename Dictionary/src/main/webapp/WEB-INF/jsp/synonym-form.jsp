@@ -31,7 +31,7 @@
 
 			<h5 class="links">
 
-            				<a style= "color:white" href="home">Words List</a>
+            				<a style= "color:white" href="${contextPath}/home">Words List</a>
             				&nbsp;&nbsp;|&nbsp;&nbsp;
             				<a style= "color:white" href="http://localhost:8080">Home Page</a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -64,7 +64,7 @@
 						<th>ID</th>
 						<th>Word</th>
 						<% if (request.isUserInRole("ADMIN")) { %>
-						<th>Actions</th>
+						<th>Select Word</th>
 						<% } %>
 					</tr>
 
@@ -74,7 +74,7 @@
                             <td>${word.name}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<form action="${contextPath}/saveSynonym" method="post" modelAttribute="synonyms">
+							<form action="${contextPath}/save" method="post">
 
 							<button type="submit" class="btn btn-success" name = "synonyms" value = "${word.id}">Select</button>
 
