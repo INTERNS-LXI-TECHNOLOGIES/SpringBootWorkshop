@@ -67,6 +67,7 @@
 						<th>Select Word</th>
 						<% } %>
 					</tr>
+					<form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="word">
 
 					<c:forEach var="word" items="${wordsList}" varStatus="status">
 						<tr>
@@ -74,7 +75,11 @@
                             <td>${word.name}</td>
 							<% if (request.isUserInRole("ADMIN")) { %>
 							<td>
-							<form action="${contextPath}/save" method="post">
+
+							<input type = "hidden" name = "id" value ="${word.id}">
+							<input type = "hidden" name = "name" value ="${word.name}">
+							<input type = "hidden" name = "partsOfSpeech" value ="${word.partsOfSpeech}">
+							<input type = "hidden" name = "meaning" value ="${word.meaning}">
 
 							<button type="submit" class="btn btn-success" name = "synonyms" value = "${word.id}">Select</button>
 

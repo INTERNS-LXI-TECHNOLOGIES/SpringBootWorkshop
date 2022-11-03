@@ -84,6 +84,13 @@ public class DictionaryController {
         return "synonym-form";
     }
 
+    @PostMapping("/saveSynonym/{id}")
+    public String saveSynonym(@PathVariable long id,@ModelAttribute Word word) {
+        dictionaryService.saveWord(word);
+        System.out.println(word.getId() + word.getName());
+        return "redirect:/Synonym/" + id;
+    }
+
 
     @GetMapping("/Login-form")
     public String login() {
