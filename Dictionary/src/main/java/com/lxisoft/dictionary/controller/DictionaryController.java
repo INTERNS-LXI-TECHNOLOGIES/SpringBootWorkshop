@@ -76,18 +76,18 @@ public class DictionaryController {
 
     @GetMapping("/createSynonym/{id}")
     public String createSynonym(@PathVariable long id, Model model , @Param("keyword") String keyword) {
+        Word word = dictionaryService.getWord(id);
+        model.addAttribute("word", word);
         List<Word> wordsList =dictionaryService.listAllWords(keyword);
         model.addAttribute("wordsList", wordsList);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("caption", "ADD NEW SYNONYM");
 
         return "synonym-form";
     }
 
     @PostMapping("/saveSynonym/{id}")
-    public String saveSynonym(@PathVariable long id,@ModelAttribute Word word) {
+    public String saveWord(@PathVariable long id ,@ModelAttribute Word word) {
         dictionaryService.saveWord(word);
-        System.out.println(word.getId() + word.getName());
         return "redirect:/Synonym/" + id;
     }
 
