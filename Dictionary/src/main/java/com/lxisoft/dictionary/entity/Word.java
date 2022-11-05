@@ -1,7 +1,9 @@
 package com.lxisoft.dictionary.entity;
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -28,13 +30,13 @@ public class Word {
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="id")},
             inverseJoinColumns={@JoinColumn(name="WordId")})
-    private Set<Word> synonyms = new HashSet<Word>();
+    private List<Word> synonyms = new ArrayList<Word>();
 
 
-    public Set<Word> getSynonyms() {
+    public List<Word> getSynonyms() {
         return synonyms;
     }
-    public void setSynonyms(Set<Word> synonyms) {
+    public void setSynonyms(List<Word> synonyms) {
         this.synonyms = synonyms;
     }
 

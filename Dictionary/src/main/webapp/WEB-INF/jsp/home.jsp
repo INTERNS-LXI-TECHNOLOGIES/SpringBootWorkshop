@@ -7,7 +7,7 @@
 <html>
 <head>
 
-        
+
 <title>Dictionary Application</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,13 +26,13 @@ body {
 
 
 .background {
- 
+
   width: 70%;
   background-color: #fdfdfd;
   padding: 80px 100px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(38, 33, 61, 0.2);
-  
+
 }
 
 .background-box {
