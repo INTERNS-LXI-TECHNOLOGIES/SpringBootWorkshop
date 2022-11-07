@@ -69,7 +69,7 @@
       </tr>
 
       <form:form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="word">
-             
+
       			 <input type = "hidden" name = "id" value ="${word.id}">
                  <input type = "hidden" name = "name" value ="${word.name}">
                  	<input type = "hidden" name = "partsOfSpeech" value ="${word.partsOfSpeech}">
