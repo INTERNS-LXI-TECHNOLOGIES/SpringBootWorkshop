@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import java.util.logging.Logger;
 
 @Entity
 @Table(name = "word")
@@ -23,6 +24,9 @@ public class Word {
 
     @Column(name = "Meaning")
     private String meaning;
+
+    private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
+
     public Word() {
 
     }
@@ -38,6 +42,7 @@ public class Word {
     }
     public void setSynonyms(List<Word> synonyms) {
         this.synonyms = synonyms;
+        LOGGER.info("wordList" + synonyms);
     }
 
     public Word(long id, String name, String partsOfSpeech, String  meaning ) {
@@ -78,8 +83,8 @@ public class Word {
         this.meaning = meaning;
     }
 
-    /*@Override
+    @Override
     public String toString() {
-        return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + speech + ", Meanings=" + meaning + " ]";
-    }*/
+        return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + partsOfSpeech + ", Meanings=" + meaning + " ]";
+    }
 }
