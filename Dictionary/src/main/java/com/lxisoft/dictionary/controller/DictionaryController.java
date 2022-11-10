@@ -91,7 +91,6 @@ public class DictionaryController {
         return "redirect:/Synonym/" + id;
     }
 
-
     @GetMapping("/Login-form")
     public String login() {
         return "Login-form";

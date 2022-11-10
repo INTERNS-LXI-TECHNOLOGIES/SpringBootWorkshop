@@ -27,22 +27,23 @@ public class Word {
 
     private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
 
-    public Word() {
-
-    }
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="id")},
             inverseJoinColumns={@JoinColumn(name="WordId")})
-    private List<Word> synonyms = new ArrayList<Word>();
+    private Set<Word> synonyms = new HashSet<Word>();
 
+    public Word() {
 
-    public List<Word> getSynonyms() {
+    }
+
+    public Set<Word> getSynonyms() {
         return synonyms;
     }
-    public void setSynonyms(List<Word> synonyms) {
+    public void setSynonyms(Set<Word> synonyms) {
         this.synonyms = synonyms;
         LOGGER.info("wordList" + synonyms);
+
     }
 
     public Word(long id, String name, String partsOfSpeech, String  meaning ) {
@@ -87,4 +88,5 @@ public class Word {
     public String toString() {
         return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + partsOfSpeech + ", Meanings=" + meaning + " ]";
     }
+
 }
