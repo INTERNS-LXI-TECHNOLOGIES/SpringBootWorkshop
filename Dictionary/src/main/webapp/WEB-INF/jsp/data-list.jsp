@@ -53,7 +53,7 @@
 			<div class="container" >
 				<div align="center">
 				<form th:action="@{/}">
-                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                     <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="30" th:value="${keyword}" required />
                     &nbsp;
                     <input type="submit" value="Search" />
                     &nbsp;

@@ -11,9 +11,28 @@
 <title>Dictionary Application</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
+*{
+
+	margin: 0;
+
+	padding: 0;
+
+	font-family: sans-serif;
+
+	box-sizing: border-box;
+
+}
+
 body {
   font-family: "Lato", sans-serif;
+  height: 100vh;
+
+  	align-items: center;
+
+  	background: linear-gradient(25deg, #8600b3 50%, #cc33ff 50%);
 }
 
 .Search {
@@ -22,6 +41,52 @@ body {
   font-size: 20px;
   padding: 100px 8px 8px  300px;
 
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: 1px solid grey;
+  float: left;
+  width: 70%;
+  background: #f1f1f1;
+}
+
+form.example input[type=button] {
+   float: left;
+    width: 12%;
+    padding: 9.5px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border-radius: 20px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form.example button {
+  float: left;
+  width: 10%;
+  padding: 14px ;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border-radius: 20px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 
@@ -34,14 +99,6 @@ body {
   box-shadow: 0 20px 40px rgba(38, 33, 61, 0.2);
 
 }
-
-.background-box {
-
-  background: #5b65f6;
-  height:100%;
-}
-
-
 
 .sidenav {
   height: 100%;
@@ -131,11 +188,11 @@ function closeNav() {
 	<br>
 
 			<div class="Search" >
-				<form th:action="@{/}">
+				<form class="example" th:action="@{/}">
           <div class="background">
             <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="20" th:value="${keyword}" required />
             &nbsp;
-            <input type="submit" value="Search" />
+            <button type="submit"><i class="fa fa-search"></i></button>
             &nbsp;
             <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
                 </form>
