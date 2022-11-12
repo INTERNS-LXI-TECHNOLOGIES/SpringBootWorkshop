@@ -70,12 +70,6 @@
 
       <form:form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="word">
 
-      			 <input type = "hidden" name = "id" value ="${word.id}">
-                 <input type = "hidden" name = "name" value ="${word.name}">
-                 	<input type = "hidden" name = "partsOfSpeech" value ="${word.partsOfSpeech}">
-                 	<input type = "hidden" name = "meaning" value ="${word.meaning}">
-
-
     <c:forEach var="words" items="${wordsList}" varStatus="status">
     <tr>
    <td><c:out value="${status.index + 1}" /></td>

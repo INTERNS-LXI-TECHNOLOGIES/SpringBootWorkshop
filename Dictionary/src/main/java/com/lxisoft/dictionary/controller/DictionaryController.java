@@ -19,7 +19,7 @@ public class DictionaryController {
     @Autowired
     private DictionaryService dictionaryService;
 
-    //private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DictionaryController.class.getName());
 
     @GetMapping("/")
 
@@ -86,8 +86,11 @@ public class DictionaryController {
     }
 
     @PostMapping("/saveSynonym/{id}")
-    public String saveWord(@PathVariable long id ,@ModelAttribute Word word) {
-        dictionaryService.saveWord(word);
+    public String saveWord(@PathVariable long id ,@RequestParam ("synonyms") Word synonym){
+        Word w = dictionaryService.getWord(id);
+        w.getSynonyms().add(synonym);
+        LOGGER.info("saving word: "+ w);
+        dictionaryService.saveWord(w);
         return "redirect:/Synonym/" + id;
     }
 

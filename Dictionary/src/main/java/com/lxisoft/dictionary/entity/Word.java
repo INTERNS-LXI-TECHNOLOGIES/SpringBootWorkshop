@@ -1,4 +1,6 @@
 package com.lxisoft.dictionary.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class Word {
     private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("synonyms")
     @JoinTable(name="WordRel",
             joinColumns={@JoinColumn(name="id")},
             inverseJoinColumns={@JoinColumn(name="WordId")})
@@ -86,7 +89,7 @@ public class Word {
 
     @Override
     public String toString() {
-        return "Word [id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + partsOfSpeech + ", Meanings=" + meaning + " ]";
+        return "Word {id=" + id + ",Words=" + name + ", Parts_Of_Speech=" + partsOfSpeech + ", Meanings=" + meaning + "}";
     }
 
 }
