@@ -27,7 +27,7 @@ public class Word {
     @Column(name = "Meaning")
     private String meaning;
 
-    private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
+   // private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("synonyms")
@@ -45,7 +45,7 @@ public class Word {
     }
     public void setSynonyms(Set<Word> synonyms) {
         this.synonyms = synonyms;
-        LOGGER.info("wordList" + synonyms);
+        //LOGGER.info("wordList" + synonyms);
 
     }
 
