@@ -38,7 +38,7 @@
 		<div class="card">
 			<div class="card-body">
 
-				<form:form action="${contextPath}/save" method="post" modelAttribute="word">
+				<form:form action="${contextPath}/save/${id}" method="post" modelAttribute="word">
 
 				<table border="1" cellpadding="5" cellspacing="0" style="text-transform: uppercase;">
 
@@ -69,8 +69,11 @@
                <tr>
 				<button type="submit" class="btn btn-success">Save</button>
 				   </tr>
+
                 </table>
+
 				  </form:form>
+				  </div>
 			</div>
 		</div>
 	</div>

@@ -196,10 +196,17 @@ function closeNav() {
             &nbsp;
             <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
                 </form>
+
+                <div>
+
+                <p> ${word.name}</p>
+                <p>${word.partsOfSpeech}</p>
+                <p>${word.meaning}</p>
+                </div>
+
               </div>
 			  </div>
       </div>
 
-			<br>
   </body>
 </html>
