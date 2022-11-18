@@ -24,8 +24,6 @@ public class DictionaryServiceImpl  implements DictionaryService {
         }
         return wordRepository.findAll();
     }
-
-
     @Override
     public void saveWord(Word word) {
         wordRepository.save(word);

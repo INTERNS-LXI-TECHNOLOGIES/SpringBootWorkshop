@@ -70,7 +70,6 @@
 
       <form:form action="${contextPath}/saveSynonym/${id}" method="post" modelAttribute="word">
 
-
     <c:forEach var="words" items="${wordsList}" varStatus="status">
     <tr>
    <td><c:out value="${status.index + 1}" /></td>
