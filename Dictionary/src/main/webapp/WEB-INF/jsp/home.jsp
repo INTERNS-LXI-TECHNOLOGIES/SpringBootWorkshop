@@ -188,7 +188,7 @@ function closeNav() {
 	<br>
 
 			<div class="Search" >
-				<form class="example" th:action="@{/}">
+				<form class="example" action="/home-result">
           <div class="background">
             <input type="text" placeholder=  "Search Words" name="keyword" id="keyword" size="20" th:value="${keyword}" required />
             &nbsp;
@@ -200,6 +200,11 @@ function closeNav() {
               </div>
 			  </div>
       </div>
+<c:forEach var="word" items="${wordsList}" varStatus="status">
+        <h3> ${word.name}</h3>
+        <p>${word.meaning}</p>
+
+</c:forEach>
 
   </body>
 </html>

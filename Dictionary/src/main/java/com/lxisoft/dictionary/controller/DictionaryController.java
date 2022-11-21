@@ -23,7 +23,14 @@ public class DictionaryController {
 
     @GetMapping("/")
 
-    public String welcome(Model model, @Param("keyword") String keyword) {
+    public String welcome(){
+
+        return "home";
+    }
+
+    @GetMapping("/home-result")
+    public String homeResult(Model model, @Param("keyword") String keyword) {
+        System.out.println("start");
         List<Word> wordsList =dictionaryService.listAllWords(keyword);
         model.addAttribute("wordsList", wordsList);
         model.addAttribute("keyword", keyword);
