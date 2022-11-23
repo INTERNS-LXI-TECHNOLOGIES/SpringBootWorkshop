@@ -197,14 +197,14 @@ function closeNav() {
             <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
                 </form>
 
+                <c:forEach var="word" items="${wordsList}" varStatus="status">
+                        <h4> ${word.name}</h4>
+                       <p> ${word.meaning}</p>
+
+                     </c:forEach>
               </div>
 			  </div>
       </div>
-<c:forEach var="word" items="${wordsList}" varStatus="status">
-        <h3> ${word.name}</h3>
-        <p>${word.meaning}</p>
-
-</c:forEach>
 
   </body>
 </html>
