@@ -56,8 +56,6 @@
 
 	<div class="row">
 	<div class="container">
-
-
 			<br>
 			<table class="table table-bordered">
 
