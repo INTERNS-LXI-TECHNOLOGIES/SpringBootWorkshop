@@ -198,7 +198,7 @@ function closeNav() {
                 </form>
 
                 <c:forEach var="word" items="${wordsList}" varStatus="status">
-                        <h4> ${word.name}</h4>
+                        <h4 style = "text-align:left"> ${word.name}</h4>
                        <p> ${word.meaning}</p>
 
                      </c:forEach>

@@ -18,7 +18,6 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.QuoteMode;
 import org.springframework.web.multipart.MultipartFile;
 
-
 public class CSVHelper {
     public static String TYPE = "text/csv";
     static String[] HEADERs = { "id", "Name", "Parts_Of_Speech", "Meaning" };
