@@ -7,9 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 import com.lxisoft.dictionary.entity.Word;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -31,12 +30,12 @@ public class CSVHelper {
         return false;
     }
 
-    public static List<Word> csvToWords(InputStream is) {
+    public static Set<Word> csvToWords(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.TDF.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
-            List<Word> wordsList = new ArrayList<>();
+            Set<Word> wordsList = new HashSet<>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
@@ -57,7 +56,7 @@ public class CSVHelper {
         }
     }
 
-    public static ByteArrayInputStream wordsToCSV(List<Word> wordsList) {
+    public static ByteArrayInputStream wordsToCSV(Set<Word> wordsList) {
         final CSVFormat format = CSVFormat.TDF.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();

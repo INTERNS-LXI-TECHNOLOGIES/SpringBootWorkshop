@@ -3,6 +3,7 @@ package com.lxisoft.dictionary.service;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import com.lxisoft.dictionary.CSVHelper;
 import com.lxisoft.dictionary.entity.Word;
@@ -17,7 +18,7 @@ public class CSVService {
 
     public void save(MultipartFile file) {
         try {
-            List<Word> word = CSVHelper.csvToWords(file.getInputStream());
+            Set<Word> word = CSVHelper.csvToWords(file.getInputStream());
             repository.saveAll(word);
         } catch (IOException e) {
             throw new RuntimeException("fail to store csv data: " + e.getMessage());
@@ -27,7 +28,7 @@ public class CSVService {
     public ByteArrayInputStream load() {
         List<Word> word = repository.findAll();
 
-        ByteArrayInputStream in = CSVHelper.wordsToCSV(word);
+        ByteArrayInputStream in = CSVHelper.wordsToCSV((Set<Word>) word);
         return in;
     }
 
