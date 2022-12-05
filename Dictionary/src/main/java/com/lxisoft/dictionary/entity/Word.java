@@ -39,6 +39,7 @@ public class Word {
     public Word() {
 
     }
+
     public Set<Word> getSynonyms() {
         return synonyms;
     }
