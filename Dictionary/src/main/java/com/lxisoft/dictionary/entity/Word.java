@@ -40,6 +40,9 @@ public class Word {
 
     }
 
+    public Word(String name, String meaning, String partsOfSpeech) {
+    }
+
     public Set<Word> getSynonyms() {
         return synonyms;
     }
