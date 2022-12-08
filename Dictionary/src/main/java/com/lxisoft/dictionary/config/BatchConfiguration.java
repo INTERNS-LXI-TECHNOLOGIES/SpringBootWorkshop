@@ -42,7 +42,7 @@ public class BatchConfiguration {
     {
         System.out.println("-----------Inside reader() method--------");
         FlatFileItemReader<Word> reader = new FlatFileItemReader<Word>();
-        reader.setResource(new ClassPathResource("new.csv"));
+        reader.setResource(new ClassPathResource("words.csv"));
         reader.setLineMapper(new DefaultLineMapper<Word>()
         {
             {
