@@ -31,8 +31,8 @@ public class CompletionNotificationListener extends JobExecutionListenerSupport 
         {
             System.out.println(" -------- JOB FINISHED ------------------ ");
 
-            List<Word> results = jdbcTemplate.query("SELECT name,partsOfSpeech,meaning FROM word",
-                    new RowMapper<Word>()
+            List<Word> results = jdbcTemplate.query("SELECT name,partsOfSpeech,meaning FROM word",new RowMapper<Word>()
+
                     {
 
                         @Override
