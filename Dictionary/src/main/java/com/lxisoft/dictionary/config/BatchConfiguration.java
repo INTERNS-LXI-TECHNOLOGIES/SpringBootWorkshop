@@ -22,6 +22,15 @@ import org.springframework.core.io.ClassPathResource;
 
 import javax.sql.DataSource;
 
+/**
+ *
+ * This is a batch configuration file
+ *
+ *
+ * @author sujith.k.s@lxisoft.com
+ * @version 1.2
+ * @see com.lxisoft.dictionary.entity.Word
+ */
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
@@ -36,12 +45,16 @@ public class BatchConfiguration {
     @Autowired
     private DataSource dataSource;
 
-
+    /**
+     * This method uses a special logic.
+     * @return
+     */
     @Bean
     public FlatFileItemReader<Word> reader()
     {
         System.out.println("-----------Inside reader() method--------");
         FlatFileItemReader<Word> reader = new FlatFileItemReader<Word>();
+        reader.setEncoding("UTF-8");
         reader.setResource(new ClassPathResource("words.csv"));
         reader.setLineMapper(new DefaultLineMapper<Word>()
         {
@@ -49,7 +62,7 @@ public class BatchConfiguration {
                 setLineTokenizer(new DelimitedLineTokenizer()
                 {
                     {
-                        setNames(new String[] { "name", "partsOfSpeech", "meaning" });
+                        setNames(new String[] { "meaning", "name", "parts_of_speech" });
                     }
                 });
                 setFieldSetMapper(new BeanWrapperFieldSetMapper<Word>()
@@ -82,10 +95,11 @@ public class BatchConfiguration {
     {
         System.out.println("-----------Inside writer() method--------");
         JdbcBatchItemWriter<Word> writer = new JdbcBatchItemWriter<Word>();
+        writer.setSql("INSERT INTO Word ( MEANING, NAME, PARTS_OF_SPEECH) VALUES ( :meaning, :name, :partsOfSpeech )");
+        writer.setDataSource(dataSource);
         writer.setItemSqlParameterSourceProvider(
                 new BeanPropertyItemSqlParameterSourceProvider<Word>());
-        writer.setSql("INSERT INTO Word (MEANING, NAME, PARTS_OF_SPEECH) VALUES (:name, :partsOfSpeech, :meaning)");
-        writer.setDataSource(dataSource);
+
         return writer;
     }
 
@@ -99,7 +113,7 @@ public class BatchConfiguration {
     @Bean
     public Step step1()
     {
-        return stepBuilderFactory.get("step1").<Word, Word>chunk(4).reader(reader())
+        return stepBuilderFactory.get("step1").<Word, Word>chunk(10).reader(reader())
                 .processor(processor()).writer(writer()).build();
     }
 }

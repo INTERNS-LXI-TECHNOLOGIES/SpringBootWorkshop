@@ -31,22 +31,6 @@ public class CompletionNotificationListener extends JobExecutionListenerSupport 
         {
             System.out.println(" -------- JOB FINISHED ------------------ ");
 
-            List<Word> results = jdbcTemplate.query("SELECT name,partsOfSpeech,meaning FROM word",new RowMapper<Word>()
-
-                    {
-
-                        @Override
-                        public Word mapRow(ResultSet rs, int row) throws SQLException
-                        {
-//                            return new Word(rs.getString(1), rs.getInt(2),rs.getInt(3));
-                            return new Word();
-                        }
-                    });
-
-            for (Word word : results)
-            {
-                System.out.println("Found <" + word + "> in the database.");
-            }
         }
 
     }

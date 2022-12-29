@@ -21,11 +21,11 @@ public class Word {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "Parts_Of_Speech")
-    private String partsOfSpeech;
-
     @Column(name = "Meaning")
     private String meaning;
+
+    @Column(name = "Parts_Of_Speech")
+    private String partsOfSpeech;
 
    // private static final Logger LOGGER = Logger.getLogger(Word.class.getName());
 
@@ -41,6 +41,9 @@ public class Word {
     }
 
     public Word(String name, String meaning, String partsOfSpeech) {
+        this.name = name ;
+        this.meaning = meaning ;
+        this.partsOfSpeech = partsOfSpeech ;
     }
 
     public Set<Word> getSynonyms() {
@@ -52,11 +55,11 @@ public class Word {
 
     }
 
-    public Word(long id, String name, String partsOfSpeech, String  meaning ) {
+    public Word(long id, String name, String  meaning, String partsOfSpeech ) {
         this.id = id;
         this.name = name;
-        this.partsOfSpeech = partsOfSpeech;
         this.meaning = meaning;
+        this.partsOfSpeech = partsOfSpeech;
 
     }
 
@@ -74,6 +77,14 @@ public class Word {
         this.name = name;
     }
 
+    public String getMeaning() {
+        return meaning;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
     public String getPartsOfSpeech() {
         return partsOfSpeech;
     }
@@ -82,13 +93,6 @@ public class Word {
         this.partsOfSpeech = partsOfSpeech;
     }
 
-    public String getMeaning() {
-        return meaning;
-    }
-
-    public void setMeaning(String meaning) {
-        this.meaning = meaning;
-    }
 
     @Override
     public String toString() {

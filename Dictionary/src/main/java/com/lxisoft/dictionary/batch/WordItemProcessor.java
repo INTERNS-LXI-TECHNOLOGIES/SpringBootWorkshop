@@ -9,8 +9,8 @@ public class WordItemProcessor implements ItemProcessor<Word, Word> {
     public Word process(final Word word) throws Exception
     {
         System.out.println("-----------Inside process(final Word word) method--------");
-        final String name = word.getName().toUpperCase();
-        final Word transformedWord = new Word(name, word.getMeaning(), word.getPartsOfSpeech());
+        final String name = word.getName();
+        final Word transformedWord = new Word(word.getMeaning(), name,word.getPartsOfSpeech() );
 
         System.out.println("Converting (" + word + ") into (" + transformedWord + ")");
         return transformedWord;
